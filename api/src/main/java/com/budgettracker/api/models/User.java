@@ -13,7 +13,10 @@ import java.math.BigInteger;
 @Getter
 @Setter
 @Entity(name="user")
-@Table(name="users")
+@Table(name="users", uniqueConstraints={
+        @UniqueConstraint(columnNames={"username"}),
+        @UniqueConstraint(columnNames={"email"})
+})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,7 +26,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private BigInteger id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     @Size(min = 5, max = 15)
     @NotBlank
     @Pattern(regexp = "^[a-zA-Z0-9]*$")
