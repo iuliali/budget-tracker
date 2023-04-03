@@ -9,6 +9,7 @@ import com.budgettracker.api.models.User;
 import com.budgettracker.api.repositories.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,7 +26,7 @@ public class UserService {
 
     private final AuthenticationManager authenticationManager;
 
-    private JWTService jwtService;
+    private final JWTService jwtService;
 
     public UserDto createUser(NewUserDto newUserDto) {
             var user = NewUserDto.toUser(newUserDto);
@@ -41,6 +42,7 @@ public class UserService {
                         authenticationRequest.getPassword()
                 )
         );
+
         var user = userRepository.findByUsername(
                 authenticationRequest.getUsername()
         ).orElseThrow();

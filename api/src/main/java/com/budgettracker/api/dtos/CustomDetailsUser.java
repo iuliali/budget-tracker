@@ -40,7 +40,7 @@ public class CustomDetailsUser implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return user.isLocked();
+        return !user.isLocked();
     }
 
     @Override
@@ -50,6 +50,8 @@ public class CustomDetailsUser implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return user.isEnabled();
+
+        //return user.isEnabled(); //uncomment when email confirmation is done
+        return true;
     }
 }

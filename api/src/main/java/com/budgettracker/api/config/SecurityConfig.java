@@ -32,11 +32,10 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService(UserRepository userRepository) {
-        return new CustomDetailsService(userRepository);
+        return new CustomDetailsService((userRepository));
     }
 
     @Bean
-
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity)
             throws Exception {
         httpSecurity.csrf().disable()
