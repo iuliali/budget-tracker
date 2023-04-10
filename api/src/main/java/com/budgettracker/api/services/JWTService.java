@@ -5,6 +5,9 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +18,16 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
-public class JWTService {
+@PropertySource(value = "classpath:/config/env.properties")
 
-    // we need to put these constants in a .env file
-    public static final String SECRET_KEY = "7687689606E3272357538782F413F4428472B4B6250645367566B5970";
+public class JWTService {
+    @Value("${jwt.secret-key}")
+    private String secretKey;
+    public static String SECRET_KEY;
+    @PostConstruct
+    private void assignValue() {
+        SECRET_KEY = secretKey;
+    }
     public String extractUsername(String token ) {
         return extractClaim(token, Claims::getSubject);
     }

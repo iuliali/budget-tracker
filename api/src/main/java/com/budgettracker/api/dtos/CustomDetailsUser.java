@@ -50,7 +50,6 @@ public class CustomDetailsUser implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return user.isEnabled(); //uncomment when email confirmation is done
-//        return true;
+        return user.isEnabled();
     }
 }

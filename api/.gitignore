@@ -34,3 +34,7 @@ build/
 
 ### MacOs ###
 .DS_Store
+
+##ENV
+src/main/resources/config/env.properties
+!src/main/resources/config/env.sample.properties
