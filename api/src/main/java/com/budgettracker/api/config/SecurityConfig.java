@@ -38,14 +38,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity)
             throws Exception {
-        httpSecurity.csrf().disable()
-                .authorizeHttpRequests().requestMatchers("/api/v1/auth/**").permitAll()
-                .and()
-                .authorizeHttpRequests().anyRequest().authenticated()
-                .and()
-                .addFilterAfter(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        httpSecurity.csrf().disable();
+//                .authorizeHttpRequests().requestMatchers("/api/v1/auth/**").permitAll()
+//                .and()
+//                .authorizeHttpRequests().anyRequest().authenticated()
+//                .and()
+//                .addFilterAfter(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
+//                .sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         return httpSecurity.build();
     }
 
