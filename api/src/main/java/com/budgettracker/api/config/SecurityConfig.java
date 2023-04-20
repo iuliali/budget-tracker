@@ -34,14 +34,14 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService(UserRepository userRepository) {
         return new CustomDetailsService((userRepository));
     }
-
+    static const
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity)
             throws Exception {
         httpSecurity.csrf().disable()
-                .authorizeHttpRequests().requestMatchers("/api/v1/auth/**").permitAll()
-                .and()
-                .authorizeHttpRequests().anyRequest().authenticated()
+                .authorizeHttpRequests()
+                    .requestMatchers("/api/v1/auth/**").permitAll()
+                    .anyRequest().authenticated()
                 .and()
                 .addFilterAfter(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement()
