@@ -13,11 +13,11 @@ import java.math.BigInteger;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserCategoryDto {
-    private BigInteger userCategoryId;
+    private BigInteger id;
     private String name;
 
     public UserCategoryDto(UserCategory userCategory) {
-        this.userCategoryId = userCategory.getUserCategoryId();
+        this.id = userCategory.getId();
         this.name = userCategory.getName();
     }
 }

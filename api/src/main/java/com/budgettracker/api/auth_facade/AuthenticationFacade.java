@@ -1,2 +1,12 @@
-package com.budgettracker.api.auth_facade;public class AuthenticationFacade {
+package com.budgettracker.api.auth_facade;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
+
+@Component
+public class AuthenticationFacade {
+    public Authentication getAuthentication() {
+        return SecurityContextHolder.getContext().getAuthentication();
+    }
 }

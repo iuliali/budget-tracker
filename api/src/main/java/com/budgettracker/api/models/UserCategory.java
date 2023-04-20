@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 public class UserCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private BigInteger userCategoryId;
+    private BigInteger id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)

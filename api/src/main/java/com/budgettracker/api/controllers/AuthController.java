@@ -4,7 +4,6 @@ import com.budgettracker.api.dtos.AuthenticationRequest;
 import com.budgettracker.api.dtos.NewUserDto;
 import com.budgettracker.api.services.UserService;
 import jakarta.validation.Valid;
-import jdk.jfr.ContentType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
