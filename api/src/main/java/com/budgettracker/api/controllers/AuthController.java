@@ -2,15 +2,19 @@ package com.budgettracker.api.controllers;
 
 import com.budgettracker.api.dtos.AuthenticationRequest;
 import com.budgettracker.api.dtos.NewUserDto;
+import com.budgettracker.api.models.User;
 import com.budgettracker.api.services.UserService;
 import jakarta.validation.Valid;
 import jdk.jfr.ContentType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.Map;
 
 @RestController

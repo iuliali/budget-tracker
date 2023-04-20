@@ -26,6 +26,9 @@ class LoginForm extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Password',
             ),
+            obscureText: true,
+            enableSuggestions: false,
+            autocorrect: false,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter your password';
@@ -49,6 +52,8 @@ class LoginForm extends StatelessWidget {
                         content: Text('Processing Data'),
                       ),
                     );
+                    // Go to home
+                    Navigator.pushNamed(context, '/home');
                   }
                 },
                 child: const Text('Login'),

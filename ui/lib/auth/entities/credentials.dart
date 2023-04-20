@@ -1,16 +1,28 @@
+import 'dart:convert';
+
+import 'package:budget_tracker/auth/entities/user.dart';
+
 class Credentials {
   final String accessToken;
-  final String refreshToken;
+  final User user;
 
   const Credentials({
     required this.accessToken,
-    required this.refreshToken
+    required this.user
   });
 
   factory Credentials.fromJson(Map<String, dynamic> json) {
+    final decodedClaims = jsonDecode(
+      String.fromCharCodes(
+        base64Url.decode(
+          base64Url.normalize(json['access_token'].split('.')[1])
+        )
+      )
+    );
+    final user = User.fromJson(decodedClaims);
     return Credentials(
       accessToken: json['access_token'],
-      refreshToken: json['refresh_token']
+      user: user
     );
   }
 }
