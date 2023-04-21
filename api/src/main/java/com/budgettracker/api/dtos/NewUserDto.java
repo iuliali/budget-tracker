@@ -20,8 +20,6 @@ public class NewUserDto {
     @Size(min = 10)
     private String password;
 
-    @NonNull
-    private Role role;
     @NotNull
     private String email;
 
@@ -35,7 +33,7 @@ public class NewUserDto {
         var newUser = new User();
         newUser.setUsername(newUserDto.getUsername());
         newUser.setEmail(newUserDto.getEmail());
-        newUser.setRole(newUserDto.getRole());
+        newUser.setRole(Role.USER);
         newUser.setFirstName(newUserDto.getFirstName());
         newUser.setLastName(newUserDto.getLastName());
         return newUser;

@@ -5,10 +5,7 @@ import com.budgettracker.api.dtos.CustomDetailsUser;
 import com.budgettracker.api.dtos.NewUserDto;
 import com.budgettracker.api.dtos.UserDto;
 import com.budgettracker.api.email.EmailService;
-import com.budgettracker.api.exceptions.AlreadyConfirmedTokenException;
-import com.budgettracker.api.exceptions.ExpiredConfirmationTokenException;
-import com.budgettracker.api.exceptions.NonexistentConfirmationTokenException;
-import com.budgettracker.api.exceptions.UserDoesNotExistException;
+import com.budgettracker.api.exceptions.*;
 import com.budgettracker.api.models.ConfirmationToken;
 import com.budgettracker.api.models.User;
 import com.budgettracker.api.repositories.UserRepository;
@@ -23,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -38,13 +36,24 @@ public class UserService {
 
 
     public String createUser(NewUserDto newUserDto) {
+        String message = null;
+        try {
+            if (userRepository.findByUsername(newUserDto.getUsername()).isPresent()) {
+                throw new UsernameAlreadyExistsException();
+            }
+            if (userRepository.findByEmail(newUserDto.getEmail()).isPresent()) {
+                throw new EmailAlreadyExistsException();
+            }
             var user = NewUserDto.toUser(newUserDto);
-        user.setPassword(passwordEncoder.encode(newUserDto.getPassword()));
-        user = userRepository.save(user);
-        String token =  confirmationTokenService.getAndSaveConfirmationToken(user);
-        String link = "http://localhost:8081/api/v1/auth/confirm?token=" + token;
-        emailService.send(user.getEmail(), buildEmail(user.getFirstName(), link));
-        return "Please Confirm Your Email Now!";
+            user.setPassword(passwordEncoder.encode(newUserDto.getPassword()));
+            user = userRepository.save(user);
+            String token = confirmationTokenService.getAndSaveConfirmationToken(user);
+            String link = "http://localhost:8081/api/v1/auth/confirm?token=" + token;
+            emailService.send(user.getEmail(), buildEmail(user.getFirstName(), link));
+        } catch (Exception exception) {
+            message = exception.getMessage();
+        }
+        return Objects.requireNonNullElse(message, "Please Confirm Your Email Now!");
     }
 
     public String authenticate(AuthenticationRequest authenticationRequest) {
