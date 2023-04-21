@@ -5,6 +5,9 @@ import com.budgettracker.api.dtos.CustomDetailsUser;
 import com.budgettracker.api.dtos.NewUserDto;
 import com.budgettracker.api.dtos.UserDto;
 import com.budgettracker.api.email.EmailService;
+import com.budgettracker.api.exceptions.AlreadyConfirmedTokenException;
+import com.budgettracker.api.exceptions.ExpiredConfirmationTokenException;
+import com.budgettracker.api.exceptions.NonexistentConfirmationTokenException;
 import com.budgettracker.api.exceptions.UserDoesNotExistException;
 import com.budgettracker.api.models.ConfirmationToken;
 import com.budgettracker.api.models.User;
@@ -39,7 +42,7 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(newUserDto.getPassword()));
         user = userRepository.save(user);
         String token =  confirmationTokenService.getAndSaveConfirmationToken(user);
-        String link = "http://localhost:8080/api/v1/auth/confirm?token=" + token;
+        String link = "http://localhost:8081/api/v1/auth/confirm?token=" + token;
         emailService.send(user.getEmail(), buildEmail(user.getFirstName(), link));
         return "Please Confirm Your Email Now!";
     }
@@ -80,24 +83,29 @@ public class UserService {
     }
 
     @Transactional
-    public String confirmToken(String token) {
-        ConfirmationToken confirmationToken = confirmationTokenService.getToken(token).orElseThrow(
-                //TODO : NEW EXCEPTION
+    public Map<String, String> confirmToken(String token) {
+        String message = null;
+        try {
+            ConfirmationToken confirmationToken = confirmationTokenService.getToken(token).orElseThrow(
+                    () -> new NonexistentConfirmationTokenException(UserService.class)
+            );
 
-        );
-
-        if(confirmationToken.getConfirmedAt() != null) {
-            //TODO : NEW EXCEPTION
-            throw new IllegalStateException("alreadyConfirmed");
+            if(confirmationToken.getConfirmedAt() != null) {
+                throw new AlreadyConfirmedTokenException();
+            }
+            LocalDateTime expireDate = confirmationToken.getExpiresAt();
+            if(expireDate.isBefore(LocalDateTime.now())) {
+                throw new ExpiredConfirmationTokenException();
+            }
+            confirmationTokenService.setConfirmedAt(token);
+            enableUser(confirmationToken.getUser().getEmail());
+        } catch (Exception exception) {
+            message = exception.getMessage();
         }
-        LocalDateTime expireDate = confirmationToken.getExpiresAt();
-        if(expireDate.isBefore(LocalDateTime.now())) {
-            //TODO : NEW EXCEPTION
-            throw new IllegalStateException("TOKEN EXPIRED");
+        if (message == null) {
+            message = "You've just confirmed your EMAIL!";
         }
-        confirmationTokenService.setConfirmedAt(token);
-        enableUser(confirmationToken.getUser().getEmail());
-        return "You've just confirmed your EMAIL!";
+        return Map.of("message", message);
     }
 
     private void enableUser(String email) {

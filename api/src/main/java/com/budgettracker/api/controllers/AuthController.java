@@ -29,9 +29,9 @@ public class AuthController {
         return ResponseEntity.ok(userService.createUser(newUserDto));
 
     }
-    @GetMapping("/confirm")
-    public String confirmEmail(@RequestParam("token") String token) {
-        return userService.confirmToken(token);
+    @GetMapping(value = "/confirm", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> confirmEmail(@RequestParam("token") String token) {
+        return ResponseEntity.ok(userService.confirmToken(token));
     }
 
 
