@@ -2,7 +2,10 @@ package com.budgettracker.api.services;
 
 import com.budgettracker.api.dtos.NewUserCategoryDto;
 import com.budgettracker.api.dtos.UserCategoryDto;
+import com.budgettracker.api.models.User;
+import com.budgettracker.api.models.UserCategory;
 import com.budgettracker.api.repositories.UserCategoryRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +17,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserCategoryService {
     private final UserCategoryRepository userCategoryRepository;
+    private final UserService userService;
 
     public UserCategoryDto getUserCategoryById(BigInteger id){
         return new UserCategoryDto(userCategoryRepository.findById(id).orElseThrow());
     }
-    public String createUserCategory(NewUserCategoryDto userCategoryDto){
-        userCategoryRepository.save(NewUserCategoryDto.toUserCategory(userCategoryDto));
+    public String createUserCategory(NewUserCategoryDto userCategoryDto, HttpServletRequest request){
+        UserCategory userCategory = new UserCategory();
+        userCategory.setName(userCategoryDto.getName());
+        User user = userService.getUserFromHeader(request);
+        userCategory.setUser(user);
+        userCategoryRepository.save(userCategory);
         return "Category has been created successfully";
     }
     public List<UserCategoryDto> getUserCategories(BigInteger id){

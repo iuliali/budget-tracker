@@ -39,7 +39,7 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(newUserDto.getPassword()));
         user = userRepository.save(user);
         String token =  confirmationTokenService.getAndSaveConfirmationToken(user);
-        String link = "http://localhost:8080/api/v1/auth/confirm?token=" + token;
+        String link = "http://localhost:8081/api/v1/auth/confirm?token=" + token;
         emailService.send(user.getEmail(), buildEmail(user.getFirstName(), link));
         return "Please Confirm Your Email Now!";
     }
