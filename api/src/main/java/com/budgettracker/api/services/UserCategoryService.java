@@ -30,22 +30,23 @@ public class UserCategoryService {
         userCategoryRepository.save(userCategory);
         return "Category has been created successfully";
     }
-    public List<UserCategoryDto> getUserCategories(BigInteger id){
-        return userCategoryRepository.findByUserId(id)
+    public List<UserCategoryDto> getUserCategories(HttpServletRequest request){
+        return userCategoryRepository.findByUser(userService.getUserFromHeader(request))
                 .orElseThrow()
                 .stream()
+                .filter(userCategory -> userCategory.getDeletedAt() == null)
                 .map(UserCategoryDto::new)
                 .toList();
 
 
     }
-    String updateUserCategory(BigInteger id, NewUserCategoryDto userCategoryDto){
+    public String updateUserCategory(BigInteger id, NewUserCategoryDto userCategoryDto){
         var userCategory = userCategoryRepository.findById(id).orElseThrow();
         userCategory.setName(userCategoryDto.getName());
         userCategoryRepository.save(userCategory);
         return "Category has been updated successfully";
     }
-    String deleteUserCategory(BigInteger id){
+    public String deleteUserCategory(BigInteger id){
         var userCategory = userCategoryRepository.findById(id).orElseThrow();
         userCategory.setDeletedAt(LocalDateTime.now());
         userCategoryRepository.save(userCategory);
