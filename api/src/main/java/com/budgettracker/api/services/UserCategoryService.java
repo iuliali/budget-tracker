@@ -7,6 +7,7 @@ import com.budgettracker.api.models.User;
 import com.budgettracker.api.models.UserCategory;
 import com.budgettracker.api.repositories.UserCategoryRepository;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +22,25 @@ public class UserCategoryService {
     private final UserService userService;
     private final AuthenticationFacade authenticationFacade;
 
-    public UserCategoryDto getUserCategoryById(BigInteger id){
+    protected boolean checkIfDeleted(UserCategory userCategory){
+        return userCategory.getDeletedAt() != null;
+    }
+    protected boolean checkIfActiveCategoryWithTheSameName(String name){
+        return userCategoryRepository.findActiveByName(name).isPresent();
+    }
+
+    public UserCategoryDto getUserCategoryById(BigInteger id) {
         return new UserCategoryDto(userCategoryRepository.findById(id).orElseThrow(
                 // TODO: Create custom exception
                 () -> new RuntimeException("Category not found")
         ));
     }
+
     public String createUserCategory(NewUserCategoryDto userCategoryDto){
+        if(checkIfActiveCategoryWithTheSameName(userCategoryDto.getName())){
+            //TODO: Create custom exception
+            throw new RuntimeException("Category with the same name already exists");
+        }
         UserCategory userCategory = new UserCategory();
         userCategory.setName(userCategoryDto.getName());
         User user = userService.getUserByUsername(authenticationFacade.getAuthentication().getName());
@@ -37,13 +50,12 @@ public class UserCategoryService {
     }
     public List<UserCategoryDto> getUserCategories(){
         User user = userService.getUserByUsername(authenticationFacade.getAuthentication().getName());
-        return userCategoryRepository.findByUser(user)
+        return userCategoryRepository.findActiveByUser(user)
                 .orElseThrow(
                         //TODO: Create custom exception
                         () -> new RuntimeException("User has no categories")
                 )
                 .stream()
-                .filter(userCategory -> userCategory.getDeletedAt() == null)
                 .map(UserCategoryDto::new)
                 .toList();
 
@@ -54,17 +66,30 @@ public class UserCategoryService {
                 //TODO: Create custom exception
                 () -> new RuntimeException("Category not found")
         );
+        if(checkIfDeleted(userCategory)){
+            //TODO: Create custom exception
+            throw new RuntimeException("Category is deleted");
+        }
+        if(checkIfActiveCategoryWithTheSameName(userCategoryDto.getName())){
+            //TODO: Create custom exception
+            throw new RuntimeException("Category with the same name already exists");
+        }
         userCategory.setName(userCategoryDto.getName());
         userCategoryRepository.save(userCategory);
         return "Category has been updated successfully";
     }
+
+    @Transactional
     public String deleteUserCategory(BigInteger id){
         var userCategory = userCategoryRepository.findById(id).orElseThrow(
                 //TODO: Create custom exception
                 () -> new RuntimeException("Category not found")
         );
-        userCategory.setDeletedAt(LocalDateTime.now());
-        userCategoryRepository.save(userCategory);
+        if(checkIfDeleted(userCategory)){
+            //TODO: Create custom exception
+            throw new RuntimeException("Category has already been deleted");
+        }
+        userCategoryRepository.deleteById(id);
         return "Category has been deleted successfully";
     }
 }
