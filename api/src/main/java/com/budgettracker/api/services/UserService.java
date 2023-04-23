@@ -6,6 +6,7 @@ import com.budgettracker.api.exceptions.*;
 import com.budgettracker.api.models.ConfirmationToken;
 import com.budgettracker.api.models.User;
 import com.budgettracker.api.repositories.UserRepository;
+import com.budgettracker.api.utils.Utils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -31,17 +32,13 @@ public class UserService {
 
     private final JWTService jwtService;
     private final EmailService emailService;
-    private static boolean patternMatches(String emailAddress, String regexPattern) {
-        return Pattern.compile(regexPattern)
-                .matcher(emailAddress)
-                .matches();
-    }
 
     public String createUser(NewUserDto newUserDto) {
         if (userRepository.findByUsername(newUserDto.getUsername()).isPresent()) {
             throw new UsernameAlreadyExistsException();
         }
-        if (!patternMatches(newUserDto.getEmail(), "^[A-Za-z0-9+_.-]+@(.+)$")) {
+        if (!Utils.patternMatches(newUserDto.getEmail(),
+                "^[A-Za-z0-9+_.-]+@(.+)$")) {
             throw new EmailAddressInvalidException();
         }
         if (userRepository.findByEmail(newUserDto.getEmail()).isPresent()) {
