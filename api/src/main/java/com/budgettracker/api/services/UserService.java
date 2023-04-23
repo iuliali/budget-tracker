@@ -2,6 +2,7 @@ package com.budgettracker.api.services;
 
 import com.budgettracker.api.dtos.*;
 import com.budgettracker.api.email.EmailService;
+import com.budgettracker.api.enums.Role;
 import com.budgettracker.api.exceptions.*;
 import com.budgettracker.api.models.ConfirmationToken;
 import com.budgettracker.api.models.User;
@@ -12,6 +13,9 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -96,29 +100,24 @@ public class UserService {
     }
 
     @Transactional
-    public Map<String, String> confirmToken(String token) {
-        String message = null;
-        try {
-            ConfirmationToken confirmationToken = confirmationTokenService.getToken(token).orElseThrow(
-                    () -> new NonexistentConfirmationTokenException(UserService.class)
-            );
+    public String confirmToken(String token) {
 
-            if(confirmationToken.getConfirmedAt() != null) {
-                throw new AlreadyConfirmedTokenException();
-            }
-            LocalDateTime expireDate = confirmationToken.getExpiresAt();
-            if(expireDate.isBefore(LocalDateTime.now())) {
-                throw new ExpiredConfirmationTokenException();
-            }
-            confirmationTokenService.setConfirmedAt(token);
-            enableUser(confirmationToken.getUser().getEmail());
-        } catch (Exception exception) {
-            message = exception.getMessage();
+        ConfirmationToken confirmationToken = confirmationTokenService.getToken(token).orElseThrow(
+                () -> new NonexistentConfirmationTokenException(UserService.class)
+        );
+
+        if(confirmationToken.getConfirmedAt() != null) {
+            throw new AlreadyConfirmedTokenException();
         }
-        if (message == null) {
-            message = "You've just confirmed your EMAIL!";
+        LocalDateTime expireDate = confirmationToken.getExpiresAt();
+        if(expireDate.isBefore(LocalDateTime.now())) {
+            throw new ExpiredConfirmationTokenException();
         }
-        return Map.of("message", message);
+        confirmationTokenService.setConfirmedAt(token);
+        enableUser(confirmationToken.getUser().getEmail());
+        String message = "You've just confirmed your EMAIL!";
+
+        return  message;
     }
 
     private void enableUser(String email) {
@@ -192,5 +191,14 @@ public class UserService {
                 "  </tbody></table><div class=\"yj6qo\"></div><div class=\"adL\">\n" +
                 "\n" +
                 "</div></div>";
+    }
+
+    public UserDetailsDto getAuthenticatedUserDetails() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByUsername(username).orElseThrow(
+                () -> new UserDoesNotExistException(UserService.class)
+        );
+        UserDetailsDto userDetails = new UserDetailsDto(user);
+        return userDetails;
     }
 }
