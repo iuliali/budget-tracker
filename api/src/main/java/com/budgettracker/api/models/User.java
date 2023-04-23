@@ -10,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.math.BigInteger;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,6 +24,7 @@ import java.math.BigInteger;
 @AllArgsConstructor
 public class User {
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private BigInteger id;
 
@@ -46,6 +48,9 @@ public class User {
     @Email
     @Column(unique = true, nullable = false)
     private String email;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<UserCategory> userCategories;
 
     private boolean locked = false;
 

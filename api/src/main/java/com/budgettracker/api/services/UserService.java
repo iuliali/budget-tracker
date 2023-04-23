@@ -18,8 +18,6 @@ import org.springframework.stereotype.Service;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.Map;
-import java.util.Objects;
-import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor
@@ -93,14 +91,8 @@ public class UserService {
                 .orElseThrow();
     }
 
-    public User getUserFromHeader(HttpServletRequest request) {
-        var authorizationHeader = request.getHeader("Authorization");
-        var token = authorizationHeader.substring(7);
-        var username = jwtService.extractUsername(token);
-        User user = userRepository.findByUsername(username).orElseThrow(
-                () -> new UserDoesNotExistException(UserService.class)
-        );
-        return user;
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username).orElseThrow();
     }
 
     @Transactional
