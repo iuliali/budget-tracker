@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
 
-class RegisterForm extends StatelessWidget {
-  const RegisterForm({Key? key, required this.formKey}) : super(key: key);
+class RegisterContinueForm extends StatelessWidget {
+  const RegisterContinueForm({
+    Key? key,
+    required this.formKey,
+    required this.firstNameController,
+    required this.lastNameController,
+    required this.emailController,
+    required this.onSubmit,
+  }) : super(key: key);
 
   final GlobalKey<FormState> formKey;
+  final TextEditingController firstNameController;
+  final TextEditingController lastNameController;
+  final TextEditingController emailController;
+  final Function onSubmit;
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +23,31 @@ class RegisterForm extends StatelessWidget {
       child: Column(
         children: [
           TextFormField(
+            controller: firstNameController,
+            decoration: const InputDecoration(
+              labelText: 'First Name',
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your first name';
+              }
+              return null;
+            },
+          ),
+          TextFormField(
+            controller: lastNameController,
+            decoration: const InputDecoration(
+              labelText: 'Last Name',
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your last name';
+              }
+              return null;
+            },
+          ),
+          TextFormField(
+            controller: emailController,
             decoration: const InputDecoration(
               labelText: 'Email',
             ),
@@ -22,42 +58,12 @@ class RegisterForm extends StatelessWidget {
               return null;
             },
           ),
-          TextFormField(
-            decoration: const InputDecoration(
-              labelText: 'Password',
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your password';
-              }
-              return null;
-            },
-          ),
-          TextFormField(
-            decoration: const InputDecoration(
-              labelText: 'Confirm Password',
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your password';
-              }
-              return null;
-            },
-          ),
           const SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               ElevatedButton(
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Processing Data'),
-                      ),
-                    );
-                  }
-                },
+                onPressed: () => onSubmit(),
                 child: const Text('Register'),
               ),
             ],
