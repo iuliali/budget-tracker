@@ -16,7 +16,6 @@ import java.math.BigInteger;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NewUserCategoryDto {
-    @Size(min = 1)
     @NotBlank
     @Pattern(regexp = "^[a-zA-Z0-9]*$")
     private String name;

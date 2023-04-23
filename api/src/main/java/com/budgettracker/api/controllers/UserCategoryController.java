@@ -3,6 +3,7 @@ package com.budgettracker.api.controllers;
 import com.budgettracker.api.dtos.NewUserCategoryDto;
 import com.budgettracker.api.services.UserCategoryService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/categories")
@@ -29,24 +31,28 @@ public class UserCategoryController {
     private final UserCategoryService userCategoryService;
 
     @PostMapping("/create")
+    @Operation(summary = "Create a new category for the logged in user")
     public ResponseEntity<?> createCategory(@Valid @RequestBody NewUserCategoryDto newUserCategoryDto) {
-        return ResponseEntity.ok(userCategoryService.createUserCategory(newUserCategoryDto));
+        return ResponseEntity.ok(Map.of("message", userCategoryService.createUserCategory(newUserCategoryDto)));
     }
 
-    @GetMapping("/all.owned.by.user")
+    @GetMapping("/all")
+    @Operation(summary = "Get all the categories owned by the user currently logged in")
     public ResponseEntity<?> getAllCategories() {
-        return ResponseEntity.ok(userCategoryService.getUserCategories());
+        return ResponseEntity.ok(Map.of("categories", userCategoryService.getUserCategories()));
     }
 
     @PutMapping("/update/{id}")
+    @Operation(summary = "Update a category owned by current user")
     public ResponseEntity<?> updateCategory(@PathVariable("id") BigInteger id,
                                             @Valid @RequestBody NewUserCategoryDto newUserCategoryDto) {
-        return ResponseEntity.ok(userCategoryService.updateUserCategory(id, newUserCategoryDto));
+        return ResponseEntity.ok(Map.of("message", userCategoryService.updateUserCategory(id, newUserCategoryDto)));
     }
 
     @DeleteMapping("/delete/{id}")
+    @Operation(summary = "Delete a category owned by current user")
     public ResponseEntity<?> deleteCategory(@PathVariable("id") BigInteger id) {
-        return ResponseEntity.ok(userCategoryService.deleteUserCategory(id));
+        return ResponseEntity.ok(Map.of("message", userCategoryService.deleteUserCategory(id)));
     }
 
 
