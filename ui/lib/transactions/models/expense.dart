@@ -6,7 +6,7 @@ class Expense extends Transaction {
     required String title,
     required double amount,
     required DateTime date,
-    required String categoryId,
+    required int categoryId,
   }) : super(
             id: id,
             title: title,

@@ -5,7 +5,7 @@ class Transaction {
   final String title;
   final double amount;
   final DateTime date;
-  final String categoryId;
+  final int categoryId;
   Category? category;
 
   Transaction({

@@ -1,33 +1,58 @@
-import 'package:budget_tracker/config.dart';
+import 'dart:convert';
 
+import 'package:budget_tracker/config.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../auth/entities/credentials.dart';
 import '../models/category.dart';
+import 'package:http/http.dart' as http;
 
 var categories = [
   const Category(
-    id: "c1",
+    id: 4,
     name: 'Groceries',
   ),
   const Category(
-    id: "c2",
+    id: 4,
     name: 'Clothes',
   ),
   const Category(
-    id: "c3",
+    id: 4,
     name: 'Salary',
   ),
   const Category(
-    id: "c4",
+    id: 4,
     name: 'Gifts',
   ),
   const Category(
-    id: "c5",
+    id: 5,
     name: 'Other',
   ),
 ];
 
-Future<List<Category>> getCategories() {
-  final url = Uri.parse("$API_URL/categories");
-  return Future.delayed(const Duration(milliseconds: 500), () => categories);
+Future<List<Category>> getCategories() async {
+  final url = Uri.parse("$API_URL/categories/all");
+  final prefs = await SharedPreferences.getInstance();
+  final credString = prefs.getString('credentials') ?? '';
+  final cred = Credentials.fromJson(jsonDecode(credString));
+
+  final headers = <String, String>{
+    "Access-Control-Allow-Origin": "*",
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ${cred.accessToken}'
+  };
+
+  final response = await http.get(url, headers: headers);
+  if (response.statusCode == 200) {
+    final categories = <Category>[];
+    final json = jsonDecode(response.body);
+    for (var category in json) {
+      categories.add(Category.fromJson(category));
+    }
+    return categories;
+  } else {
+    throw Exception('Failed to load categories');
+  }
 }
 
 Future<Category> getCategory(String id) {

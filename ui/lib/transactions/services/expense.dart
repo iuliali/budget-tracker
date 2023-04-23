@@ -7,21 +7,21 @@ var expenses = [
     title: 'New Shoes',
     amount: 69.99,
     date: DateTime.now(),
-    categoryId: 'c1',
+    categoryId: 1,
   ),
   Expense(
     id: 'e2',
     title: 'Weekly Groceries',
     amount: 16.53,
     date: DateTime.now(),
-    categoryId: 'c2',
+    categoryId: 2,
   ),
   Expense(
     id: 'e3',
     title: 'New Shirt',
     amount: 29.99,
     date: DateTime.now(),
-    categoryId: 'c1',
+    categoryId: 1,
   ),
 ];
 
