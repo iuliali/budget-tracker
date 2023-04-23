@@ -35,7 +35,7 @@ public class AuthController {
     @Operation(summary = "Resend confirmation link on email.")
     @PostMapping(value = "/resend-confirmation-token")
     public ResponseEntity<?> resendConfirmationToken(@RequestBody ResendConfirmationTokenRequest confirmationTokenRequest) {
-        return ResponseEntity.ok(Map.of("message",userService.resendConfirmationToken(confirmationTokenRequest)));
+        return ResponseEntity.ok(Map.of("message", userService.resendConfirmationToken(confirmationTokenRequest)));
     }
 
     @Operation(summary = "Authenticate in account.")

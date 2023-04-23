@@ -108,7 +108,7 @@ public class UserService {
     }
 
     @Transactional
-    public Map<String, String> confirmToken(String token) {
+    public String confirmToken(String token) {
         String message = null;
         try {
             ConfirmationToken confirmationToken = confirmationTokenService.getToken(token).orElseThrow(
@@ -130,7 +130,7 @@ public class UserService {
         if (message == null) {
             message = "You've just confirmed your EMAIL!";
         }
-        return Map.of("message", message);
+        return  message;
     }
 
     private void enableUser(String email) {
