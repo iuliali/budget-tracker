@@ -24,6 +24,7 @@ import java.util.Collections;
 import java.util.Map;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/v1/categories")
 @RequiredArgsConstructor
 @Secured({"ADMIN", "USER"})
