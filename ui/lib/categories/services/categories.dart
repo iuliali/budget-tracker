@@ -1,3 +1,5 @@
+import 'package:budget_tracker/config.dart';
+
 import '../models/category.dart';
 
 var categories = [
@@ -24,6 +26,7 @@ var categories = [
 ];
 
 Future<List<Category>> getCategories() {
+  final url = Uri.parse("$API_URL/categories");
   return Future.delayed(const Duration(milliseconds: 500), () => categories);
 }
 

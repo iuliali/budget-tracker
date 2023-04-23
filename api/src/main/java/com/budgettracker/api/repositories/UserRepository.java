@@ -16,6 +16,7 @@ public interface UserRepository extends JpaRepository<User, BigInteger> {
     @Override
     Optional<User> findById(BigInteger Id);
     Optional<User> findByUsername(String username);
+    Optional<User> findByEmail(String email);
 
     @Transactional
     @Modifying
