@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping(name = "/api/v1/auth", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
 @Tag(name = "Auth Controller", description = "Create an account, confirm email and authenticate.")
 public class AuthController {

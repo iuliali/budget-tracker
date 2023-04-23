@@ -20,6 +20,7 @@ public class NewUserDto {
 
     @NotBlank
     @Size(min = 10)
+    @Schema(example = "myPa55Pa55%$$")
     private String password;
 
     @NotNull

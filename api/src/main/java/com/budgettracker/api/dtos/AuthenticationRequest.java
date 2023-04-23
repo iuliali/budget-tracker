@@ -13,6 +13,6 @@ import lombok.Setter;
 public class AuthenticationRequest {
     @Schema(example = "tomTest123")
     private String username;
-    @Schema(example = "myPa55")
+    @Schema(example = "myPa55Pa55%$$")
     private String password;
 }
