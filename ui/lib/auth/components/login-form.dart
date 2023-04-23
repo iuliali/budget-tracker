@@ -1,3 +1,4 @@
+import 'package:budget_tracker/auth/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginForm extends StatelessWidget {
@@ -7,17 +8,20 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController usernameController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
     return Form(
       key: formKey,
       child: Column(
         children: [
           TextFormField(
+            controller: usernameController,
             decoration: const InputDecoration(
-              labelText: 'Email',
+              labelText: 'username',
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter your email';
+                return 'Please enter your username';
               }
               return null;
             },
@@ -45,15 +49,25 @@ class LoginForm extends StatelessWidget {
                 child: const Text('Forgot password?'),
               ),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (formKey.currentState!.validate()) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text('Processing Data'),
                       ),
                     );
-                    // Go to home
-                    Navigator.pushNamed(context, '/home');
+                    try {
+                      await login(
+                          usernameController.text, passwordController.text);
+                      // Go to home
+                      Navigator.pushNamed(context, '/home');
+                    } catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Login failed'),
+                        ),
+                      );
+                    }
                   }
                 },
                 child: const Text('Login'),

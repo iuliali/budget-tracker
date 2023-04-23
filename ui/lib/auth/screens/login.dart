@@ -1,4 +1,4 @@
-import 'package:budget_tracker/auth/components/login_form.dart';
+import 'package:budget_tracker/auth/components/login-form.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
