@@ -8,7 +8,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,7 +35,7 @@ public class AuthController {
     @Operation(summary = "Resend confirmation link on email.")
     @PostMapping(value = "/resend-confirmation-token")
     public ResponseEntity<?> resendConfirmationToken(@RequestBody ResendConfirmationTokenRequest confirmationTokenRequest) {
-        return ResponseEntity.ok(Map.of("message",userService.resendConfirmationToken(confirmationTokenRequest)));
+        return ResponseEntity.ok(Map.of("message", userService.resendConfirmationToken(confirmationTokenRequest)));
     }
 
     @Operation(summary = "Authenticate in account.")

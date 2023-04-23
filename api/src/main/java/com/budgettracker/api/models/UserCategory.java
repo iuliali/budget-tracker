@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity(name="userCategory")
-@Table(name="userCategories")
+@Table(name="user_categories")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -27,7 +27,6 @@ public class UserCategory {
     private User user;
 
     @Column(nullable = false)
-    @Size(min = 1)
     @NotBlank
     @Pattern(regexp = "^[a-zA-Z0-9]*$")
     private String name;
