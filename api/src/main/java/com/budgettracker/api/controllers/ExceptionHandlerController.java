@@ -13,8 +13,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
+
     @ExceptionHandler(value = {UsernameAlreadyExistsException.class})
-    public ResponseEntity<?> handleBadRequest(UsernameAlreadyExistsException exception,
+    public ResponseEntity<?> handleUsernameAlreadyExistsException(UsernameAlreadyExistsException exception,
                                               WebRequest request) {
         logger.warn(exception.getMessage());
         return new ResponseEntity<>("A user is already registered with this username. ",
@@ -22,7 +23,7 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(value = {EmailAlreadyExistsException.class})
-    public ResponseEntity<?> handleBadRequest(EmailAlreadyExistsException exception,
+    public ResponseEntity<?> handleEmailAlreadyExistsException(EmailAlreadyExistsException exception,
                                               WebRequest request) {
         logger.warn(exception.getMessage());
         return new ResponseEntity<>(" A user is already registered with this email. Please log in if you already have an account.",
@@ -30,7 +31,7 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(value = {UserDoesNotExistException.class})
-    public ResponseEntity<?> handleBadRequest(UserDoesNotExistException exception,
+    public ResponseEntity<?> handleUserDoesNotExistException(UserDoesNotExistException exception,
                                               WebRequest request) {
         logger.warn(exception.getMessage());
         return new ResponseEntity<>("Email or username not found. Please try again or register first if you don't have an account yet!",
@@ -38,7 +39,7 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(value = {AlreadyConfirmedTokenException.class})
-    public ResponseEntity<?> handleBadRequest(AlreadyConfirmedTokenException exception,
+    public ResponseEntity<?> handleAlreadyConfirmedTokenException(AlreadyConfirmedTokenException exception,
                                               WebRequest request) {
         logger.warn(exception.getMessage());
         return new ResponseEntity<>("You already used this token in order to confirm your email. You can login into your account now.",
@@ -46,7 +47,7 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(value = {ExpiredConfirmationTokenException.class})
-    public ResponseEntity<?> handleBadRequest(ExpiredConfirmationTokenException exception,
+    public ResponseEntity<?> handleExpiredConfirmationTokenException(ExpiredConfirmationTokenException exception,
                                               WebRequest request) {
         logger.warn(exception.getMessage());
         return new ResponseEntity<>("Your confirmation token has expired. You can request another in order to activate your account.",
@@ -55,7 +56,7 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
 
 
     @ExceptionHandler(value = {NonexistentConfirmationTokenException.class})
-    public ResponseEntity<?> handleBadRequest(NonexistentConfirmationTokenException exception,
+    public ResponseEntity<?> handleNonexistentConfirmationTokenException(NonexistentConfirmationTokenException exception,
                                               WebRequest request) {
         logger.warn(exception.getMessage());
         return new ResponseEntity<>("Activation account failed due to invalid confirmation token.",
@@ -64,7 +65,7 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
 
 
     @ExceptionHandler(value = {EmailAddressInvalidException.class})
-    public ResponseEntity<?> handleBadRequest(EmailAddressInvalidException exception,
+    public ResponseEntity<?> handleEmailAddressInvalidException(EmailAddressInvalidException exception,
                                               WebRequest request) {
         logger.warn(exception.getMessage());
         return new ResponseEntity<>( "Email Address is invalid!",
@@ -72,7 +73,7 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(value = {EmailAlreadyVerifiedException.class})
-    public ResponseEntity<?> handleBadRequest(EmailAlreadyVerifiedException exception,
+    public ResponseEntity<?> handleEmailAlreadyVerifiedException(EmailAlreadyVerifiedException exception,
                                               WebRequest request) {
         logger.warn(request + exception.getMessage());
         return new ResponseEntity<>( "You already confirmed your email!",
@@ -81,7 +82,7 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = {BadCredentialsException.class,
             InternalAuthenticationServiceException.class})
-    public ResponseEntity<?> handleBadRequest(Exception exception,
+    public ResponseEntity<?> handleBadCredentialsException(Exception exception,
                                               WebRequest request) {
         logger.warn(request + exception.getMessage());
         return new ResponseEntity<>( "Wrong username or password!",
@@ -89,10 +90,11 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(value = {Exception.class, Error.class})
-    public ResponseEntity<String> handleInternalServerError (Throwable exception, WebRequest request) {
+    public ResponseEntity<String> handleOtherExceptions (Throwable exception,
+                                                             WebRequest request) {
 
         logger.error(exception.getMessage(), exception);
-        return new ResponseEntity<>("Internal Server Error" , HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>("An unexpected exception occurred" , HttpStatus.I_AM_A_TEAPOT);
     }
 
 
