@@ -1,5 +1,6 @@
 package com.budgettracker.api.dtos;
 
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,9 +11,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationRequest {
-    @Schema(example = "tomTest123")
-    private String username;
-    @Schema(example = "myPa55")
-    private String password;
+public class ResendConfirmationTokenRequest {
+    @Schema(example = "test@email.com")
+    private String email;
+
 }

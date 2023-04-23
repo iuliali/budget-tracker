@@ -1,9 +1,6 @@
 package com.budgettracker.api.services;
 
-import com.budgettracker.api.dtos.AuthenticationRequest;
-import com.budgettracker.api.dtos.CustomDetailsUser;
-import com.budgettracker.api.dtos.NewUserDto;
-import com.budgettracker.api.dtos.UserDto;
+import com.budgettracker.api.dtos.*;
 import com.budgettracker.api.email.EmailService;
 import com.budgettracker.api.exceptions.*;
 import com.budgettracker.api.models.ConfirmationToken;
@@ -21,6 +18,7 @@ import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor
@@ -33,27 +31,41 @@ public class UserService {
 
     private final JWTService jwtService;
     private final EmailService emailService;
-
+    private static boolean patternMatches(String emailAddress, String regexPattern) {
+        return Pattern.compile(regexPattern)
+                .matcher(emailAddress)
+                .matches();
+    }
 
     public String createUser(NewUserDto newUserDto) {
-        String message = null;
-        try {
-            if (userRepository.findByUsername(newUserDto.getUsername()).isPresent()) {
-                throw new UsernameAlreadyExistsException();
-            }
-            if (userRepository.findByEmail(newUserDto.getEmail()).isPresent()) {
-                throw new EmailAlreadyExistsException();
-            }
-            var user = NewUserDto.toUser(newUserDto);
-            user.setPassword(passwordEncoder.encode(newUserDto.getPassword()));
-            user = userRepository.save(user);
-            String token = confirmationTokenService.getAndSaveConfirmationToken(user);
-            String link = "http://localhost:8081/api/v1/auth/confirm?token=" + token;
-            emailService.send(user.getEmail(), buildEmail(user.getFirstName(), link));
-        } catch (Exception exception) {
-            message = exception.getMessage();
+        if (userRepository.findByUsername(newUserDto.getUsername()).isPresent()) {
+            throw new UsernameAlreadyExistsException();
         }
-        return Objects.requireNonNullElse(message, "Please Confirm Your Email Now!");
+        if (!patternMatches(newUserDto.getEmail(), "^[A-Za-z0-9+_.-]+@(.+)$")) {
+            throw new EmailAddressInvalidException();
+        }
+        if (userRepository.findByEmail(newUserDto.getEmail()).isPresent()) {
+            throw new EmailAlreadyExistsException();
+        }
+        var user = NewUserDto.toUser(newUserDto);
+        user.setPassword(passwordEncoder.encode(newUserDto.getPassword()));
+        user = userRepository.save(user);
+        sendConfirmationTokenEmail(user);
+
+        return "Please Confirm Your Email Now!";
+    }
+    private void sendConfirmationTokenEmail(User user) {
+        String token = confirmationTokenService.getAndSaveConfirmationToken(user);
+        String link = "http://localhost:8081/api/v1/auth/confirm?token=" + token;
+        emailService.send(user.getEmail(), buildEmail(user.getFirstName(), link));
+    }
+
+    public String resendConfirmationToken(ResendConfirmationTokenRequest confirmationTokenRequest) {
+        User user = userRepository.findByEmail(confirmationTokenRequest.getEmail()).orElseThrow(
+                () -> new UserDoesNotExistException(UserService.class)
+        );
+        sendConfirmationTokenEmail(user);
+        return "Please Confirm Your Email Now!";
     }
 
     public String authenticate(AuthenticationRequest authenticationRequest) {
