@@ -109,27 +109,22 @@ public class UserService {
 
     @Transactional
     public String confirmToken(String token) {
-        String message = null;
-        try {
-            ConfirmationToken confirmationToken = confirmationTokenService.getToken(token).orElseThrow(
-                    () -> new NonexistentConfirmationTokenException(UserService.class)
-            );
 
-            if(confirmationToken.getConfirmedAt() != null) {
-                throw new AlreadyConfirmedTokenException();
-            }
-            LocalDateTime expireDate = confirmationToken.getExpiresAt();
-            if(expireDate.isBefore(LocalDateTime.now())) {
-                throw new ExpiredConfirmationTokenException();
-            }
-            confirmationTokenService.setConfirmedAt(token);
-            enableUser(confirmationToken.getUser().getEmail());
-        } catch (Exception exception) {
-            message = exception.getMessage();
+        ConfirmationToken confirmationToken = confirmationTokenService.getToken(token).orElseThrow(
+                () -> new NonexistentConfirmationTokenException(UserService.class)
+        );
+
+        if(confirmationToken.getConfirmedAt() != null) {
+            throw new AlreadyConfirmedTokenException();
         }
-        if (message == null) {
-            message = "You've just confirmed your EMAIL!";
+        LocalDateTime expireDate = confirmationToken.getExpiresAt();
+        if(expireDate.isBefore(LocalDateTime.now())) {
+            throw new ExpiredConfirmationTokenException();
         }
+        confirmationTokenService.setConfirmedAt(token);
+        enableUser(confirmationToken.getUser().getEmail());
+        String message = "You've just confirmed your EMAIL!";
+
         return  message;
     }
 
