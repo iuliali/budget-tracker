@@ -69,6 +69,10 @@ public class UserService {
                 .orElseThrow();
     }
 
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username).orElseThrow();
+    }
+
     public User getUserFromHeader(HttpServletRequest request) {
         var authorizationHeader = request.getHeader("Authorization");
         var token = authorizationHeader.substring(7);

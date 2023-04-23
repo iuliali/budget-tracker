@@ -29,14 +29,13 @@ public class UserCategoryController {
     private final UserCategoryService userCategoryService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createCategory(@Valid @RequestBody NewUserCategoryDto newUserCategoryDto,
-                                            HttpServletRequest request) {
-        return ResponseEntity.ok(userCategoryService.createUserCategory(newUserCategoryDto, request));
+    public ResponseEntity<?> createCategory(@Valid @RequestBody NewUserCategoryDto newUserCategoryDto) {
+        return ResponseEntity.ok(userCategoryService.createUserCategory(newUserCategoryDto));
     }
 
     @GetMapping("/all.owned.by.user")
-    public ResponseEntity<?> getAllCategories(HttpServletRequest request) {
-        return ResponseEntity.ok(userCategoryService.getUserCategories(request));
+    public ResponseEntity<?> getAllCategories() {
+        return ResponseEntity.ok(userCategoryService.getUserCategories());
     }
 
     @PutMapping("/update/{id}")
