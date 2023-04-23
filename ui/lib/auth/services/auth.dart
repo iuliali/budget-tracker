@@ -1,39 +1,53 @@
 import 'dart:convert';
+import 'package:budget_tracker/config.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../entities/credentials.dart';
-import '../entities/user.dart';
+
+
 
 Future<Credentials> login(String username, String password) async {
+  final url = Uri.parse("$API_URL/auth/authenticate");
+  final headers = <String, String>{
+    'Content-Type': 'application/json',
+  };
   final response = await http.post(
-    Uri.parse('https://api.example.com/login'),
-    body: {
+    url,
+    headers: headers,
+    body: jsonEncode(<String, String>{
       'username': username,
       'password': password
-    }
+    })
   );
 
   if (response.statusCode == 200) {
-    return Credentials.fromJson(jsonDecode(response.body));
+    final prefs = await SharedPreferences.getInstance();
+    final cred = Credentials.fromJson(jsonDecode(response.body));
+    await prefs.setString('credentials', jsonEncode(cred.toJson()));
+    return cred;
   } else {
     throw Exception('Failed to login');
   }
 }
 
-Future<Credentials> register(String firstName, String lastName, String username, String password) async {
+Future<void> register(String firstName, String lastName, String email, String username, String password) async {
+  final url = Uri.parse("$API_URL/auth/register");
   final response = await http.post(
-    Uri.parse('https://api.example.com/register'),
-    body: {
-      'first_name': firstName,
-      'last_name': lastName,
+    url,
+    headers: <String, String>{
+      'Content-Type': 'application/json',
+    },
+    body: jsonEncode({
+      'firstName': firstName,
+      'lastName': lastName,
       'username': username,
-      'password': password
-    }
+      'password': password,
+      "email": email
+    })
   );
 
-  if (response.statusCode == 200) {
-    return Credentials.fromJson(jsonDecode(response.body));
-  } else {
-    throw Exception('Failed to register');
+  if (response.statusCode != 200) {
+    throw Exception(response.body);
   }
 }
