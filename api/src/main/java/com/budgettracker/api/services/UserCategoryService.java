@@ -22,7 +22,10 @@ public class UserCategoryService {
     private final AuthenticationFacade authenticationFacade;
 
     public UserCategoryDto getUserCategoryById(BigInteger id){
-        return new UserCategoryDto(userCategoryRepository.findById(id).orElseThrow());
+        return new UserCategoryDto(userCategoryRepository.findById(id).orElseThrow(
+                // TODO: Create custom exception
+                () -> new RuntimeException("Category not found")
+        ));
     }
     public String createUserCategory(NewUserCategoryDto userCategoryDto){
         UserCategory userCategory = new UserCategory();
@@ -35,7 +38,10 @@ public class UserCategoryService {
     public List<UserCategoryDto> getUserCategories(){
         User user = userService.getUserByUsername(authenticationFacade.getAuthentication().getName());
         return userCategoryRepository.findByUser(user)
-                .orElseThrow()
+                .orElseThrow(
+                        //TODO: Create custom exception
+                        () -> new RuntimeException("User has no categories")
+                )
                 .stream()
                 .filter(userCategory -> userCategory.getDeletedAt() == null)
                 .map(UserCategoryDto::new)
@@ -44,13 +50,19 @@ public class UserCategoryService {
 
     }
     public String updateUserCategory(BigInteger id, NewUserCategoryDto userCategoryDto){
-        var userCategory = userCategoryRepository.findById(id).orElseThrow();
+        var userCategory = userCategoryRepository.findById(id).orElseThrow(
+                //TODO: Create custom exception
+                () -> new RuntimeException("Category not found")
+        );
         userCategory.setName(userCategoryDto.getName());
         userCategoryRepository.save(userCategory);
         return "Category has been updated successfully";
     }
     public String deleteUserCategory(BigInteger id){
-        var userCategory = userCategoryRepository.findById(id).orElseThrow();
+        var userCategory = userCategoryRepository.findById(id).orElseThrow(
+                //TODO: Create custom exception
+                () -> new RuntimeException("Category not found")
+        );
         userCategory.setDeletedAt(LocalDateTime.now());
         userCategoryRepository.save(userCategory);
         return "Category has been deleted successfully";

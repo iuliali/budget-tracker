@@ -73,16 +73,6 @@ public class UserService {
         return userRepository.findByUsername(username).orElseThrow();
     }
 
-    public User getUserFromHeader(HttpServletRequest request) {
-        var authorizationHeader = request.getHeader("Authorization");
-        var token = authorizationHeader.substring(7);
-        var username = jwtService.extractUsername(token);
-        User user = userRepository.findByUsername(username).orElseThrow(
-                () -> new UserDoesNotExistException(UserService.class)
-        );
-        return user;
-    }
-
     @Transactional
     public String confirmToken(String token) {
         ConfirmationToken confirmationToken = confirmationTokenService.getToken(token).orElseThrow(

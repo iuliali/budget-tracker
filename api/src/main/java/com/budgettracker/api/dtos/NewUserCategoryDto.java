@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.math.BigInteger;
 
 @Setter
@@ -13,6 +16,9 @@ import java.math.BigInteger;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NewUserCategoryDto {
+    @Size(min = 1)
+    @NotBlank
+    @Pattern(regexp = "^[a-zA-Z0-9]*$")
     private String name;
 
     public static UserCategory toUserCategory(NewUserCategoryDto newUserCategoryDto) {
