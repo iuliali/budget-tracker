@@ -64,6 +64,9 @@ public class UserService {
         User user = userRepository.findByEmail(confirmationTokenRequest.getEmail()).orElseThrow(
                 () -> new UserDoesNotExistException(UserService.class)
         );
+        if (user.isEnabled()) {
+            throw new EmailAlreadyVerifiedException();
+        }
         sendConfirmationTokenEmail(user);
         return "Please Confirm Your Email Now!";
     }

@@ -69,6 +69,14 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
                 HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(value = {EmailAlreadyVerifiedException.class})
+    public ResponseEntity<?> handleBadRequest(EmailAlreadyVerifiedException exception,
+                                              WebRequest request) {
+        logger.warn(request + exception.getMessage());
+        return new ResponseEntity<>( "You already confirmed your email!",
+                HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(value = {Exception.class, Error.class})
     public ResponseEntity<String> handleInternalServerError (Throwable exception, WebRequest request) {
 
