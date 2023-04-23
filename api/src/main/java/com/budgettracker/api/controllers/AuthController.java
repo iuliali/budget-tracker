@@ -10,39 +10,37 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping(name = "/api/v1/auth", produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
 @Tag(name = "Auth Controller", description = "Create an account, confirm email and authenticate.")
 public class AuthController {
     private final UserService userService;
     @Operation(summary = "Register a new user.")
     @PostMapping("/register")
-    public ResponseEntity<?> register (@Valid @RequestBody NewUserDto newUserDto,
-                                       BindingResult bindingResult) {
-        return ResponseEntity.ok(userService.createUser(newUserDto));
+    public ResponseEntity<?> register (@Valid @RequestBody NewUserDto newUserDto) {
+        return ResponseEntity.ok(Map.of("message", userService.createUser(newUserDto)));
 
     }
 
     @Operation(summary = "Confirm email in order to enable an account.")
-    @GetMapping(value = "/confirm", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/confirm")
     public ResponseEntity<?> confirmEmail(@RequestParam("token") String token) {
         return ResponseEntity.ok(Map.of("message",userService.confirmToken(token)));
     }
 
     @Operation(summary = "Resend confirmation link on email.")
-    @PostMapping(value = "/resend-confirmation-token", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/resend-confirmation-token")
     public ResponseEntity<?> resendConfirmationToken(@RequestBody ResendConfirmationTokenRequest confirmationTokenRequest) {
         return ResponseEntity.ok(Map.of("message",userService.resendConfirmationToken(confirmationTokenRequest)));
     }
 
     @Operation(summary = "Authenticate in account.")
-    @PostMapping(value = "/authenticate", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/authenticate")
     public ResponseEntity<?> authenticate(@RequestBody AuthenticationRequest authRequest) {
         return ResponseEntity.ok(Map.of("access_token",userService.authenticate(authRequest)));
     }
