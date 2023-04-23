@@ -5,6 +5,7 @@ import com.budgettracker.api.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
@@ -78,8 +79,9 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
                 HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(value = {BadCredentialsException.class})
-    public ResponseEntity<?> handleBadRequest(BadCredentialsException exception,
+    @ExceptionHandler(value = {BadCredentialsException.class,
+            InternalAuthenticationServiceException.class})
+    public ResponseEntity<?> handleBadRequest(Exception exception,
                                               WebRequest request) {
         logger.warn(request + exception.getMessage());
         return new ResponseEntity<>( "Wrong username or password!",
