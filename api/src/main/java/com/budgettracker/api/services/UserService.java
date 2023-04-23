@@ -2,6 +2,7 @@ package com.budgettracker.api.services;
 
 import com.budgettracker.api.dtos.*;
 import com.budgettracker.api.email.EmailService;
+import com.budgettracker.api.enums.Role;
 import com.budgettracker.api.exceptions.*;
 import com.budgettracker.api.models.ConfirmationToken;
 import com.budgettracker.api.models.User;
@@ -12,6 +13,9 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -200,5 +204,14 @@ public class UserService {
                 "  </tbody></table><div class=\"yj6qo\"></div><div class=\"adL\">\n" +
                 "\n" +
                 "</div></div>";
+    }
+
+    public UserDetailsDto getAuthenticatedUserDetails() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByUsername(username).orElseThrow(
+                () -> new UserDoesNotExistException(UserService.class)
+        );
+        UserDetailsDto userDetails = new UserDetailsDto(user);
+        return userDetails;
     }
 }
