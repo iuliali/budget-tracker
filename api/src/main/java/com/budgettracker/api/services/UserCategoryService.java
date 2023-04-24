@@ -31,10 +31,10 @@ public class UserCategoryService {
         return userCategoryRepository.findActiveByName(name, user).isPresent();
     }
 
-    public UserCategoryDto getUserCategoryById(BigInteger id) {
-        return new UserCategoryDto(userCategoryRepository.findById(id).orElseThrow(
+    public UserCategory getUserCategoryById(BigInteger id) {
+        return userCategoryRepository.findById(id).orElseThrow(
                 CategoryNotFoundException::new
-        ));
+        );
     }
 
     public String createUserCategory(NewUserCategoryDto userCategoryDto){
