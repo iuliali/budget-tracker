@@ -14,8 +14,8 @@ import java.util.Optional;
 
 @Repository
 public interface UserCategoryRepository extends JpaRepository<UserCategory, BigInteger> {
-    @Query("SELECT uc FROM userCategory uc WHERE uc.name = :name AND uc.deletedAt IS NULL")
-    Optional<UserCategory> findActiveByName(String name);
+    @Query("SELECT uc FROM userCategory uc WHERE uc.name = :name AND uc.deletedAt IS NULL and uc.user = :user")
+    Optional<UserCategory> findActiveByName(String name, User user);
     @Query("SELECT uc FROM userCategory uc WHERE uc.user = :user AND uc.deletedAt IS NULL")
     Optional<List<UserCategory>> findActiveByUser(User user);
     @Override
@@ -23,6 +23,6 @@ public interface UserCategoryRepository extends JpaRepository<UserCategory, BigI
 
     @Transactional
     @Modifying
-    @Query("UPDATE userCategory uc SET uc.deletedAt = CURRENT_TIMESTAMP WHERE uc.id = :id")
-    void deleteById(BigInteger id);
+    @Query("UPDATE userCategory uc SET uc.deletedAt = CURRENT_TIMESTAMP WHERE uc.id = :id AND uc.user = :user")
+    void deleteById(BigInteger id, User user);
 }
