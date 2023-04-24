@@ -29,7 +29,7 @@ public class Income {
     @JoinColumn(name = "user_category_id", referencedColumnName = "id", nullable = false)
     private UserCategory userCategory;
 
-    @Column(nullable = false)
+    @Column(name = "sender", nullable = false)
     @NotBlank
     @Pattern(regexp = "^[a-zA-Z0-9]*$")
     private String from;

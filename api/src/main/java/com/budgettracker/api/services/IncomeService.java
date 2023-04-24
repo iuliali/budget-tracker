@@ -32,7 +32,6 @@ public class IncomeService {
     }
 
 
-    @Transactional
     public String createIncome(NewIncomeDto incomeDto){
         Income income = new Income();
         income.setFrom(incomeDto.getFrom());
