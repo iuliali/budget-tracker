@@ -22,8 +22,8 @@ public class Expense {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private BigInteger id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userCategory_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "user_category_id", referencedColumnName = "id", nullable = false)
     private UserCategory userCategory;
 
     @Column(nullable = false)

@@ -11,6 +11,7 @@ import lombok.Setter;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 @Setter
 @Getter
@@ -26,6 +27,8 @@ public class NewExpenseDto {
 
     @NotBlank
     private Currency currency;
+
+    private BigInteger userCategoryId;
 
     public static Expense toExpense(NewExpenseDto newExpenseDto) {
         var newExpense = new Expense();

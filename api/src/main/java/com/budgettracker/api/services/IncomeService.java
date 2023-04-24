@@ -9,6 +9,7 @@ import com.budgettracker.api.models.Income;
 import com.budgettracker.api.models.User;
 import com.budgettracker.api.models.UserCategory;
 import com.budgettracker.api.repositories.IncomeRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -31,14 +32,17 @@ public class IncomeService {
     }
 
 
+    @Transactional
     public String createIncome(NewIncomeDto incomeDto){
         Income income = new Income();
         income.setFrom(incomeDto.getFrom());
         income.setAmount(incomeDto.getAmount());
         income.setCurrency(incomeDto.getCurrency());
-        User user = userService.getUserByUsername(authenticationFacade.getAuthentication().getName());
-
-        //income.setUserCategory(incomeDto.);
+        UserCategory userCategory = userCategoryService.getUserCategoryIfExists(incomeDto.getUserCategoryId())
+                .orElseThrow(
+                        () -> new RuntimeException("UserCategory for income doesn't exist")
+                );
+        income.setUserCategory(userCategory);
         incomeRepository.save(income);
         return "Income has been added successfully";
     }

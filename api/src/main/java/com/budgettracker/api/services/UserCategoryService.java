@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,11 +30,20 @@ public class UserCategoryService {
         return userCategoryRepository.findActiveByName(name).isPresent();
     }
 
-    public UserCategoryDto getUserCategoryById(BigInteger id) {
-        return new UserCategoryDto(userCategoryRepository.findById(id).orElseThrow(
+    public UserCategory getUserCategoryById(BigInteger id) {
+        return userCategoryRepository.findById(id).orElseThrow(
                 // TODO: Create custom exception
                 () -> new RuntimeException("Category not found")
-        ));
+        );
+    }
+
+    public Optional<UserCategory> getUserCategoryIfExists(BigInteger id){
+        User user = userService.getUserByUsername(authenticationFacade.getAuthentication().getName());
+        UserCategory userCategory = getUserCategoryById(id);
+        if(userCategory.getUser() == user){
+            return Optional.of(userCategory);
+        }
+        return Optional.empty();
     }
 
     public String createUserCategory(NewUserCategoryDto userCategoryDto){

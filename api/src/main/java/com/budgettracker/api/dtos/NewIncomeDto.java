@@ -12,6 +12,7 @@ import lombok.Setter;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 @Setter
 @Getter
@@ -27,6 +28,8 @@ public class NewIncomeDto {
 
     @NotBlank
     private Currency currency;
+
+    private BigInteger userCategoryId;
 
     public static Income toIncome(NewIncomeDto newIncomeDto) {
         var newIncome = new Income();
