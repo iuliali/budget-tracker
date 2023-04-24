@@ -46,7 +46,13 @@ Future<List<Category>> getCategories() async {
   if (response.statusCode == 200) {
     final categories = <Category>[];
     final json = jsonDecode(response.body);
-    for (var category in json) {
+    if (json == null) {
+      return categories;
+    }
+    if (json['categories'] == null) {
+      return categories;
+    }
+    for (var category in json['categories']) {
       categories.add(Category.fromJson(category));
     }
     return categories;

@@ -1,3 +1,4 @@
+import 'package:budget_tracker/common/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../models.dart';
@@ -20,7 +21,11 @@ class MenuItemWidget extends StatelessWidget {
       title: Text(
         item.title,
         style: TextStyle(
-          color: isSelected ? Colors.blue : Colors.black,
+          color: item.disabled
+              ? cGreyColor
+              : isSelected
+                  ? cBlueColor
+                  : cBlackColor,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -28,7 +33,7 @@ class MenuItemWidget extends StatelessWidget {
         item.icon,
         color: isSelected ? Colors.blue : Colors.black,
       ),
-      onTap: onTap,
+      onTap: item.disabled ? () => {} : onTap,
     );
   }
 }
