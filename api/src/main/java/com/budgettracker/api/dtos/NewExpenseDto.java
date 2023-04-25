@@ -12,6 +12,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 
 @Setter
 @Getter
@@ -28,6 +29,9 @@ public class NewExpenseDto {
     @NotBlank
     private Currency currency;
 
+    @NotBlank
+    private LocalDateTime registeredAt;
+
     private BigInteger userCategoryId;
 
     public static Expense toExpense(NewExpenseDto newExpenseDto) {
@@ -35,6 +39,7 @@ public class NewExpenseDto {
         newExpense.setTo(newExpenseDto.getTo());
         newExpense.setAmount(newExpenseDto.getAmount());
         newExpense.setCurrency(newExpenseDto.getCurrency());
+        newExpense.setRegisteredAt(LocalDateTime.now());
         return newExpense;
     }
 }

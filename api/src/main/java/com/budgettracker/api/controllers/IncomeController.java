@@ -1,18 +1,15 @@
 package com.budgettracker.api.controllers;
 
 import com.budgettracker.api.dtos.NewIncomeDto;
-import com.budgettracker.api.dtos.NewUserCategoryDto;
 import com.budgettracker.api.services.IncomeService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
 import java.util.Map;
 
 @RestController
@@ -26,5 +23,24 @@ public class IncomeController {
     @Operation(summary = "Add a new income for the logged in user")
     public ResponseEntity<?> createCategory(@Valid @RequestBody NewIncomeDto newIncomeDto) {
         return ResponseEntity.ok(Map.of("message", incomeService.createIncome(newIncomeDto)));
+    }
+
+    @GetMapping("/all")
+    @Operation(summary = "Get all incomes for the user currently logged in")
+    public ResponseEntity<?> getAllIncomes() {
+        return ResponseEntity.ok(Map.of("incomes", incomeService.getIncomes()));
+    }
+
+    @PutMapping("/update/{id}")
+    @Operation(summary = "Update an income for current user")
+    public ResponseEntity<?> updateIncome(@PathVariable("id") BigInteger id,
+                                            @Valid @RequestBody NewIncomeDto newIncomeDto) {
+        return ResponseEntity.ok(Map.of("message", incomeService.updateIncome(id, newIncomeDto)));
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @Operation(summary = "Delete an income for current user")
+    public ResponseEntity<?> deleteIncome(@PathVariable("id") BigInteger id) {
+        return ResponseEntity.ok(Map.of("message", incomeService.deleteIncome(id)));
     }
 }

@@ -6,17 +6,15 @@ import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
 @Getter
 @Setter
-@Entity(name="income")
-@Table(name="incomes")
+@Entity(name = "income")
+@Table(name = "incomes")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -42,5 +40,7 @@ public class Income {
     @NotBlank
     private Currency currency;
 
+    @Column(nullable = false)
+    @NotBlank
     private LocalDateTime registeredAt;
 }

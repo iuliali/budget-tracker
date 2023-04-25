@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Entity(name="expense")
-@Table(name="expenses")
+@Entity(name = "expense")
+@Table(name = "expenses")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -39,5 +39,7 @@ public class Expense {
     @NotBlank
     private Currency currency;
 
+    @Column(nullable = false)
+    @NotBlank
     private LocalDateTime registeredAt;
 }

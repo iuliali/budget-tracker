@@ -10,6 +10,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 
 @Setter
 @Getter
@@ -20,11 +21,13 @@ public class ExpenseDto {
     private String to;
     private BigDecimal amount;
     private Currency currency;
+    private LocalDateTime registeredAt;
 
     public ExpenseDto(Expense expense) {
         this.id = expense.getId();
         this.to = expense.getTo();
         this.amount = expense.getAmount();
         this.currency = expense.getCurrency();
+        this.registeredAt = expense.getRegisteredAt();
     }
 }

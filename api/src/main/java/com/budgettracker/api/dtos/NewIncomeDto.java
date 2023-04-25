@@ -13,6 +13,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 
 @Setter
 @Getter
@@ -29,13 +30,19 @@ public class NewIncomeDto {
     @NotBlank
     private Currency currency;
 
+    @NotBlank
+    private LocalDateTime registeredAt;
+
     private BigInteger userCategoryId;
+
+
 
     public static Income toIncome(NewIncomeDto newIncomeDto) {
         var newIncome = new Income();
         newIncome.setFrom(newIncomeDto.getFrom());
         newIncome.setAmount(newIncomeDto.getAmount());
         newIncome.setCurrency(newIncomeDto.getCurrency());
+        newIncome.setRegisteredAt(LocalDateTime.now());
         return newIncome;
     }
 
