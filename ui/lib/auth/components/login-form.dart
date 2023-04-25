@@ -31,6 +31,9 @@ class LoginForm extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Password',
             ),
+            obscureText: true,
+            enableSuggestions: false,
+            autocorrect: false,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter your password';
