@@ -1,6 +1,7 @@
 package com.budgettracker.api.budget;
 
 import com.budgettracker.api.budget.dtos.BudgetDTO;
+import com.budgettracker.api.budget.dtos.BudgetUpdateDTO;
 import com.budgettracker.api.budget.dtos.NewBudgetDTO;
 import com.budgettracker.api.budget.exceptions.ActiveBudgetAlreadyExistsException;
 import com.budgettracker.api.budget.exceptions.BudgetNotFoundException;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -31,6 +33,7 @@ public class BudgetService {
         budget.setAmount(newBudget.getAmount());
         budget.setCreatedAt(LocalDateTime.now());
         budget.setUserCategory(userCategory);
+        budgetRepository.save(budget);
         return "Budget successfully created";
     }
 
@@ -43,7 +46,7 @@ public class BudgetService {
         return "Budget successfully deleted";
     }
 
-    public String updateActiveBudget(BigInteger userCategoryId, NewBudgetDTO newBudget){
+    public String updateActiveBudget(BigInteger userCategoryId, BudgetUpdateDTO newBudget){
         UserCategory userCategory = userCategoryService.getUserCategoryById(userCategoryId);
         Budget budget = budgetRepository.findActiveByUserCategory(userCategory).orElseThrow(
                 BudgetNotFoundException::new
