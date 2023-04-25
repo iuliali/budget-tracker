@@ -51,3 +51,10 @@ Future<void> register(String firstName, String lastName, String email, String us
     throw Exception(response.body);
   }
 }
+
+Future<Credentials> getAccessToken() async {
+  final prefs = await SharedPreferences.getInstance();
+  final credString = prefs.getString('credentials') ?? '';
+  final cred = Credentials.fromJson(jsonDecode(credString));
+  return cred;
+}

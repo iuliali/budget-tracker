@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'auth/screens/login.dart';
 import 'auth/screens/register.dart';
+import 'categories/screens/add-category.dart';
 import 'categories/screens/categories.dart';
 import 'common/colors.dart';
 import 'transactions/screens/home.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget{
         '/register': (context) => const RegisterScreen(),
         "/home": (context) => const HomeScreen(),
         "/categories": (context) => const CategoriesScreen(),
+        '/categories/add': (context) => const AddCategoryScreen(),
       }
     );
   }

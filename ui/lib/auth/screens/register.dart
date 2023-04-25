@@ -109,13 +109,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   minHeight: MediaQuery.of(context).size.height,
                 ),
                 child: IntrinsicHeight(
-                  child: Column(
+                  child: ListView(
+                    shrinkWrap: true,
                     children: [
                       const SizedBox(height: 32),
-                      const Text('Welcome!', style: TextStyle(fontSize: 24)),
+                      const Center(child: Text('Welcome!', style: TextStyle(fontSize: 24))),
                       const SizedBox(height: 16),
-                      const Text('Please register to your account',
-                          style: TextStyle(fontSize: 16)),
+                      const Center(
+                        child: Text('Please register to your account',
+                            style: TextStyle(fontSize: 16)),
+                      ),
                       const SizedBox(height: 16),
                       step == 1
                           ? RegisterForm(

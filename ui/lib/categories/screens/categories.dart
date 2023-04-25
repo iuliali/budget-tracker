@@ -30,17 +30,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             color: Theme.of(context).colorScheme.secondary,
           ),
         ),
-        leading: Builder(
-            builder: (context) {
-              return IconButton(
-                  icon: const Icon(
-                    Icons.menu,
-                    color: cBlackColor,
-                  ),
-                  onPressed: () => Scaffold.of(context).openDrawer()
-              );
-            }
-        ),
+        leading: Builder(builder: (context) {
+          return IconButton(
+              icon: const Icon(
+                Icons.menu,
+                color: cBlackColor,
+              ),
+              onPressed: () => Scaffold.of(context).openDrawer());
+        }),
       ),
       drawer: Drawer(
         child: MenuWidget(
@@ -52,7 +49,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushNamed('/categories/add');
+        },
         child: const Icon(Icons.add),
       ),
       body: FutureBuilder(
@@ -62,15 +61,53 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             return ListView.builder(
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  onTap: () {
-                    Navigator.of(context).pushNamed(
-                      '/category',
-                      arguments: snapshot.data![index].id,
-                    );
+                final item = snapshot.data![index];
+                return Dismissible(
+                  key: Key(item.id.toString()),
+                  onDismissed: (direction) {
+                    setState(() async {
+                      await deleteCategory(item.id as int);
+                      snapshot.data!.removeAt(index);
+                    });
+
+                    // Then show a snackbar.
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('${item.name} dismissed')));
                   },
-                  title: Text(snapshot.data![index].name),
-                  leading: const Icon(Icons.money),
+                  background: Container(
+                    color: Colors.red,
+                    alignment: Alignment.center,
+                    child: Row(
+                      children: const [
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Icon(
+                            Icons.delete,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Expanded(child: SizedBox()),
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Icon(
+                            Icons.delete,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  child: ListTile(
+                    onTap: () {
+                      Navigator.of(context).pushNamed(
+                        '/category',
+                        arguments: snapshot.data![index].id,
+                      );
+                    },
+                    title: Text(snapshot.data![index].name),
+                    leading: const Icon(Icons.money),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                  ),
                 );
               },
             );

@@ -1,9 +1,9 @@
 class Category {
-  final int id;
+  final int? id;
   final String name;
 
   const Category({
-    required this.id,
+    this.id,
     required this.name,
   });
 
@@ -12,5 +12,12 @@ class Category {
       id: json['id'],
       name: json['name'],
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+    };
   }
 }

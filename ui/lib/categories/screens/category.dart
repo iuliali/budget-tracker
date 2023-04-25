@@ -17,7 +17,7 @@ class CategoryScreen extends StatefulWidget {
 class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
-    var categoryId = ModalRoute.of(context)!.settings.arguments as String;
+    var categoryId = ModalRoute.of(context)!.settings.arguments as int;
     var category = getCategory(categoryId);
     var transactions = getTransactionsByCategory(categoryId);
 

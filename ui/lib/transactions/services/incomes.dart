@@ -36,7 +36,7 @@ Future<List<Income>> getIncomes() {
   return Future.delayed(const Duration(milliseconds: 600), () => incomes);
 }
 
-Future<List<Income>> getIncomesByCategory(String categoryId) {
+Future<List<Income>> getIncomesByCategory(int categoryId) {
   return Future.delayed(const Duration(milliseconds: 600), () {
     return incomes.where((income) => income.categoryId == categoryId).toList();
   });

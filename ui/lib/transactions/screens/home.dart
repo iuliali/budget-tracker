@@ -2,8 +2,10 @@ import 'package:budget_tracker/common/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../categories/services/categories.dart';
 import '../../common/menu/services.dart';
 import '../../common/menu/widgets/menu.dart';
+import '../components/expenses-stats.dart';
 import '../models/expense.dart';
 import '../services/statistics.dart';
 import '../services/transactions.dart';
@@ -18,7 +20,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   static const firstName = "John";
 
-  var statistics = getStatistics();
+  final statistics = getStatistics();
+  final categories = getCategories();
 
   @override
   Widget build(BuildContext context) {
@@ -28,17 +31,14 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.background,
         elevation: 0,
-        leading: Builder(
-          builder: (context) {
-            return IconButton(
-                  icon: const Icon(
-                    Icons.menu,
-                    color: cBlackColor,
-                  ),
-                  onPressed: () => Scaffold.of(context).openDrawer()
-                );
-          }
-        ),
+        leading: Builder(builder: (context) {
+          return IconButton(
+              icon: const Icon(
+                Icons.menu,
+                color: cBlackColor,
+              ),
+              onPressed: () => Scaffold.of(context).openDrawer());
+        }),
         actions: <Widget>[
           IconButton(
             icon: const Icon(
@@ -171,86 +171,105 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          SizedBox(
-            height: 500,
-            child: FutureBuilder(
-              future: transactions,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return ListView.builder(
-                    padding: const EdgeInsets.only(left: 16, right: 8),
-                    scrollDirection: Axis.vertical,
-                    itemCount: snapshot.data!.length,
-                    itemBuilder: (context, index) {
-                      var transaction = snapshot.data![index];
-                      return Container(
-                        margin: const EdgeInsets.all(8),
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                            color: cWhiteGreyColor,
-                            borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              margin: const EdgeInsets.symmetric(horizontal: 8),
-                              child: transaction is Expense ? const Icon(
-                                Icons.arrow_downward,
-                                color: cRedColor,
-                                size: 18,
-                              ) : const Icon(
-                                Icons.arrow_upward,
-                                color: cGreenColor,
-                                size: 18,
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  transaction.category != null ? Text(
-                                    transaction.category!.name,
-                                    style: GoogleFonts.nunito(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400,
-                                      color: cBlackColor
-                                    ),
-                                  ) : const SizedBox(),
-                                  Text(
-                                    transaction.title,
-                                    style: GoogleFonts.nunito(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400,
-                                      color: cGreyColor,
-                                    ),
+          FutureBuilder(
+            future: categories,
+            builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+              final lengthOfCategories = snapshot.hasData ? snapshot.data!.length : 0;
+              return SizedBox(
+                height: 500,
+                child: lengthOfCategories == 0
+                    ? const Center(
+                        child: Text("No transactions"),
+                      )
+                    : FutureBuilder(
+                        future: transactions,
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return ListView.builder(
+                              padding:
+                                  const EdgeInsets.only(left: 16, right: 8),
+                              scrollDirection: Axis.vertical,
+                              itemCount: snapshot.data!.length,
+                              itemBuilder: (context, index) {
+                                var transaction = snapshot.data![index];
+                                return Container(
+                                  margin: const EdgeInsets.all(8),
+                                  padding: const EdgeInsets.all(16),
+                                  decoration: BoxDecoration(
+                                    color: cWhiteGreyColor,
+                                    borderRadius: BorderRadius.circular(8),
                                   ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              margin: const EdgeInsets.symmetric(horizontal: 16),
-                              child: Text(
-                                "${transaction.amount} RON",
-                                style: GoogleFonts.nunito(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  color: cBlackColor,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      );
-                    },
-                  );
-                } else {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-              },
-            ),
+                                  child: Row(
+                                    children: <Widget>[
+                                      Container(
+                                        margin: const EdgeInsets.symmetric(
+                                            horizontal: 8),
+                                        child: transaction is Expense
+                                            ? const Icon(
+                                                Icons.arrow_downward,
+                                                color: cRedColor,
+                                                size: 18,
+                                              )
+                                            : const Icon(
+                                                Icons.arrow_upward,
+                                                color: cGreenColor,
+                                                size: 18,
+                                              ),
+                                      ),
+                                      Expanded(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            transaction.category != null
+                                                ? Text(
+                                                    transaction.category!.name,
+                                                    style: GoogleFonts.nunito(
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        color: cBlackColor),
+                                                  )
+                                                : const SizedBox(),
+                                            Text(
+                                              transaction.title,
+                                              style: GoogleFonts.nunito(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w400,
+                                                color: cGreyColor,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        margin: const EdgeInsets.symmetric(
+                                            horizontal: 16),
+                                        child: Text(
+                                          "${transaction.amount} RON",
+                                          style: GoogleFonts.nunito(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w400,
+                                            color: cBlackColor,
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                );
+                              },
+                            );
+                          } else {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                        },
+                      ),
+              );
+            },
           ),
         ],
       ),

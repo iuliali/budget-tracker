@@ -1,3 +1,5 @@
+import 'package:budget_tracker/categories/services/categories.dart';
+import 'package:budget_tracker/transactions/models/expense-stats.dart';
 
 import '../models/expense.dart';
 
@@ -29,7 +31,11 @@ Future<List<Expense>> getExpenses() {
   return Future.delayed(const Duration(milliseconds: 500), () => expenses);
 }
 
-Future<List<Expense>> getExpensesByCategory(String categoryId) {
+Future<ExpenseStats> getExpenseStats() async {
+  return ExpenseStats.fromExpenses(await getExpenses(), await getCategories());
+}
+
+Future<List<Expense>> getExpensesByCategory(int categoryId) {
   return Future.delayed(const Duration(milliseconds: 500), () {
     return expenses.where((expense) => expense.categoryId == categoryId).toList();
   });

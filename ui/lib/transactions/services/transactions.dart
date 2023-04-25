@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:budget_tracker/transactions/services/expense.dart';
 import 'package:budget_tracker/transactions/services/incomes.dart';
 
@@ -12,14 +14,16 @@ Future<List<Transaction>> getTransactions() async {
 
   // fetch categories
   for (var transaction in transactions) {
-    transaction.category = categories
-        .firstWhere((category) => category.id == transaction.categoryId);
+    // get a random category
+    Random random = Random();
+    int randomNumber = random.nextInt(categories.length);
+    transaction.category = categories[randomNumber];
   }
   transactions.sort((a, b) => b.date.compareTo(a.date));
   return transactions;
 }
 
-Future<List<Transaction>> getTransactionsByCategory(String categoryId) async {
+Future<List<Transaction>> getTransactionsByCategory(int categoryId) async {
   var transactions = <Transaction>[];
   transactions.addAll(await getExpensesByCategory(categoryId));
   transactions.addAll(await getIncomesByCategory(categoryId));

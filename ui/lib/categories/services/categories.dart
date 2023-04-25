@@ -4,6 +4,7 @@ import 'package:budget_tracker/config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../auth/entities/credentials.dart';
+import '../../auth/services/auth.dart';
 import '../models/category.dart';
 import 'package:http/http.dart' as http;
 
@@ -32,9 +33,7 @@ var categories = [
 
 Future<List<Category>> getCategories() async {
   final url = Uri.parse("$API_URL/categories/all");
-  final prefs = await SharedPreferences.getInstance();
-  final credString = prefs.getString('credentials') ?? '';
-  final cred = Credentials.fromJson(jsonDecode(credString));
+  final cred = await getAccessToken();
 
   final headers = <String, String>{
     "Access-Control-Allow-Origin": "*",
@@ -61,22 +60,44 @@ Future<List<Category>> getCategories() async {
   }
 }
 
-Future<Category> getCategory(String id) {
+Future<Category> getCategory(int id) {
   return Future.delayed(const Duration(milliseconds: 500), () {
     return categories.firstWhere((category) => category.id == id);
   });
 }
 
-Future<void> addCategory(Category category) {
-  return Future.delayed(const Duration(milliseconds: 500), () {
-    categories.add(category);
-  });
+Future<void> addCategory(Category category) async {
+  final url = Uri.parse("$API_URL/categories/create");
+  final cred = await getAccessToken();
+  final headers = <String, String>{
+    "Access-Control-Allow-Origin": "*",
+    "Authorization": "Bearer ${cred.accessToken}",
+    'Content-Type': 'application/json',
+  };
+  final response = await http.post(
+    url,
+    headers: headers,
+    body: jsonEncode(category.toJson()),
+  );
+
+  if (response.statusCode != 200) {
+    throw Exception('Failed to add category');
+  }
 }
 
-Future<void> deleteCategory(String id) {
-  return Future.delayed(const Duration(milliseconds: 500), () {
-    categories.removeWhere((category) => category.id == id);
-  });
+Future<void> deleteCategory(int id) async {
+  final url = Uri.parse("$API_URL/categories/delete/$id");
+  final cred = await getAccessToken();
+
+  final headers = <String, String>{
+    "Access-Control-Allow-Origin": "*",
+    "Content-Type": "application/json",
+    "Authorization": "Bearer ${cred.accessToken}",
+  };
+  final response = await http.delete(url, headers: headers);
+  if (response.statusCode != 200) {
+    throw Exception('Failed to delete category');
+  }
 }
 
 Future<void> updateCategory(Category category) {
