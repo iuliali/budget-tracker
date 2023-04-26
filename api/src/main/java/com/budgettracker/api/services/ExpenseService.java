@@ -3,6 +3,9 @@ package com.budgettracker.api.services;
 import com.budgettracker.api.auth_facade.AuthenticationFacade;
 import com.budgettracker.api.dtos.ExpenseDto;
 import com.budgettracker.api.dtos.NewExpenseDto;
+import com.budgettracker.api.exceptions.ExpenseNotFoundException;
+import com.budgettracker.api.exceptions.NoUserCategoryForExpenseException;
+import com.budgettracker.api.exceptions.UserHasNoExpensesException;
 import com.budgettracker.api.models.Expense;
 import com.budgettracker.api.models.User;
 import com.budgettracker.api.models.UserCategory;
@@ -25,8 +28,7 @@ public class ExpenseService {
 
     public ExpenseDto getExpenseById(BigInteger id) {
         return new ExpenseDto(expenseRepository.findById(id).orElseThrow(
-                // TODO: Create custom exception
-                () -> new RuntimeException("Expense not found")
+                ExpenseNotFoundException::new
         ));
     }
 
@@ -38,7 +40,7 @@ public class ExpenseService {
         expense.setRegisteredAt(LocalDateTime.now());
         UserCategory userCategory = userCategoryService.getUserCategoryIfExists(expenseDto.getUserCategoryId())
                 .orElseThrow(
-                        () -> new RuntimeException("UserCategory for expense doesn't exist")
+                        NoUserCategoryForExpenseException::new
                 );
         expense.setUserCategory(userCategory);
         expenseRepository.save(expense);
@@ -49,7 +51,7 @@ public class ExpenseService {
         User user = userService.getUserByUsername(authenticationFacade.getAuthentication().getName());
         return expenseRepository.findExpensesByUser(user)
                 .orElseThrow(
-                        () -> new RuntimeException("User has no expenses")
+                        UserHasNoExpensesException:: new
                 )
                 .stream()
                 .map(ExpenseDto::new)
@@ -59,15 +61,14 @@ public class ExpenseService {
 
     public String updateExpense(BigInteger id, NewExpenseDto expenseDto){
         var expense = expenseRepository.findById(id).orElseThrow(
-                //TODO: Create custom exception
-                () -> new RuntimeException("Expense not found")
+                ExpenseNotFoundException::new
         );
         expense.setTo(expenseDto.getTo());
         expense.setAmount(expenseDto.getAmount());
         expense.setCurrency(expenseDto.getCurrency());
         UserCategory userCategory = userCategoryService.getUserCategoryIfExists(expenseDto.getUserCategoryId())
                 .orElseThrow(
-                        () -> new RuntimeException("UserCategory for expense doesn't exist")
+                        NoUserCategoryForExpenseException::new
                 );
         expense.setUserCategory(userCategory);
         expenseRepository.save(expense);
@@ -77,12 +78,11 @@ public class ExpenseService {
     @Transactional
     public String deleteExpense(BigInteger id){
         var expense = expenseRepository.findById(id).orElseThrow(
-                //TODO: Create custom exception
-                () -> new RuntimeException("Income not found")
+                ExpenseNotFoundException::new
         );
         UserCategory userCategory = userCategoryService.getUserCategoryIfExists(expense.getUserCategory().getId())
                 .orElseThrow(
-                        () -> new RuntimeException("UserCategory for expense doesn't exist")
+                        NoUserCategoryForExpenseException::new
                 );
         expenseRepository.deleteById(id);
         return "Expense has been deleted successfully";

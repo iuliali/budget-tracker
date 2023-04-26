@@ -3,6 +3,9 @@ package com.budgettracker.api.services;
 import com.budgettracker.api.auth_facade.AuthenticationFacade;
 import com.budgettracker.api.dtos.IncomeDto;
 import com.budgettracker.api.dtos.NewIncomeDto;
+import com.budgettracker.api.exceptions.IncomeNotFoundException;
+import com.budgettracker.api.exceptions.NoUserCategoryForIncomeException;
+import com.budgettracker.api.exceptions.UserHasNoIncomesException;
 import com.budgettracker.api.models.Income;
 import com.budgettracker.api.models.User;
 import com.budgettracker.api.models.UserCategory;
@@ -23,11 +26,10 @@ public class IncomeService {
     private final UserService userService;
     private final AuthenticationFacade authenticationFacade;
 
-    public IncomeDto getIncomeById(BigInteger id) {
-        return new IncomeDto(incomeRepository.findById(id).orElseThrow(
-                // TODO: Create custom exception
-                () -> new RuntimeException("Income not found")
-        ));
+    public Income getIncomeById(BigInteger id) {
+        return incomeRepository.findById(id).orElseThrow(
+                IncomeNotFoundException::new
+        );
     }
 
 
@@ -39,7 +41,7 @@ public class IncomeService {
         income.setRegisteredAt(LocalDateTime.now());
         UserCategory userCategory = userCategoryService.getUserCategoryIfExists(incomeDto.getUserCategoryId())
                 .orElseThrow(
-                        () -> new RuntimeException("UserCategory for income doesn't exist")
+                        NoUserCategoryForIncomeException::new
                 );
         income.setUserCategory(userCategory);
         incomeRepository.save(income);
@@ -52,7 +54,7 @@ public class IncomeService {
         User user = userService.getUserByUsername(authenticationFacade.getAuthentication().getName());
         return incomeRepository.findIncomesByUser(user)
                 .orElseThrow(
-                        () -> new RuntimeException("User has no incomes")
+                        UserHasNoIncomesException :: new
                 )
                 .stream()
                 .map(IncomeDto::new)
@@ -62,15 +64,14 @@ public class IncomeService {
 
     public String updateIncome(BigInteger id, NewIncomeDto incomeDto){
         var income = incomeRepository.findById(id).orElseThrow(
-                //TODO: Create custom exception
-                () -> new RuntimeException("Income not found")
+                IncomeNotFoundException::new
         );
         income.setFrom(incomeDto.getFrom());
         income.setAmount(incomeDto.getAmount());
         income.setCurrency(incomeDto.getCurrency());
         UserCategory userCategory = userCategoryService.getUserCategoryIfExists(incomeDto.getUserCategoryId())
                 .orElseThrow(
-                        () -> new RuntimeException("UserCategory for income doesn't exist")
+                        NoUserCategoryForIncomeException::new
                 );
         income.setUserCategory(userCategory);
         incomeRepository.save(income);
@@ -80,12 +81,11 @@ public class IncomeService {
     @Transactional
     public String deleteIncome(BigInteger id){
         var income = incomeRepository.findById(id).orElseThrow(
-                //TODO: Create custom exception
-                () -> new RuntimeException("Income not found")
+                IncomeNotFoundException::new
         );
         UserCategory userCategory = userCategoryService.getUserCategoryIfExists(income.getUserCategory().getId())
                 .orElseThrow(
-                        () -> new RuntimeException("UserCategory for income doesn't exist")
+                        NoUserCategoryForIncomeException::new
                 );
         incomeRepository.deleteById(id);
         return "Income has been deleted successfully";

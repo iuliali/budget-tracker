@@ -1,9 +1,7 @@
 package com.budgettracker.api.controllers;
 
 import com.budgettracker.api.dtos.NewExpenseDto;
-import com.budgettracker.api.dtos.NewIncomeDto;
 import com.budgettracker.api.services.ExpenseService;
-import com.budgettracker.api.services.IncomeService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +28,7 @@ public class ExpenseController {
     @GetMapping("/all")
     @Operation(summary = "Get all expenses for the user currently logged in")
     public ResponseEntity<?> getAllExpenses() {
-        return ResponseEntity.ok(Map.of("incomes", expenseService.getExpenses()));
+        return ResponseEntity.ok(Map.of("expenses", expenseService.getExpenses()));
     }
 
     @PutMapping("/update/{id}")
