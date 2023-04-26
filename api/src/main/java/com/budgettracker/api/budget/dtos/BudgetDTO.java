@@ -3,6 +3,7 @@ package com.budgettracker.api.budget.dtos;
 import com.budgettracker.api.budget.Budget;
 import com.budgettracker.api.models.UserCategory;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class BudgetDTO {
     private BigInteger id;
 
     @Positive(message = "Amount must be positive")
+    @NotBlank
     private BigDecimal amount;
 
     private BigInteger userCategoryId;

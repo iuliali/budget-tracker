@@ -1,8 +1,8 @@
 package com.budgettracker.api.budget;
 
-import com.budgettracker.api.models.User;
 import com.budgettracker.api.models.UserCategory;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
 
@@ -25,6 +25,7 @@ public class Budget {
     private BigInteger id;
 
     @Positive(message = "Amount must be positive")
+    @NotBlank
     private BigDecimal amount;
 
     @ManyToOne(fetch = FetchType.LAZY)
