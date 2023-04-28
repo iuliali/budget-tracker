@@ -48,8 +48,6 @@ public class IncomeService {
         return "Income has been added successfully";
     }
 
-
-
     public List<IncomeDto> getIncomes(){
         User user = userService.getUserByUsername(authenticationFacade.getAuthentication().getName());
         return incomeRepository.findIncomesByUser(user)
@@ -61,6 +59,19 @@ public class IncomeService {
                 .toList();
     }
 
+    public List<IncomeDto> getIncomesByCategory(BigInteger id){
+        UserCategory userCategory = userCategoryService.getUserCategoryIfExists(id)
+                .orElseThrow(
+                        NoUserCategoryForIncomeException::new
+                );
+        return incomeRepository.findIncomesByCategoryForUser(userCategory.getUser(), id)
+                .orElseThrow(
+                        UserHasNoIncomesException :: new
+                )
+                .stream()
+                .map(IncomeDto::new)
+                .toList();
+    }
 
     public String updateIncome(BigInteger id, NewIncomeDto incomeDto){
         var income = incomeRepository.findById(id).orElseThrow(

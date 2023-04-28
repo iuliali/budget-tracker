@@ -17,4 +17,7 @@ public interface IncomeRepository extends JpaRepository<Income, BigInteger> {
 
     @Query("SELECT inc FROM income inc, userCategory uc WHERE inc.userCategory.id = uc.id AND uc.user = :user")
     Optional<List<Income>> findIncomesByUser(User user);
+
+    @Query("SELECT inc FROM income inc, userCategory uc WHERE inc.userCategory.id = :id AND inc.userCategory.id = uc.id AND uc.user = :user")
+    Optional<List<Income>> findIncomesByCategoryForUser(User user, BigInteger id);
 }

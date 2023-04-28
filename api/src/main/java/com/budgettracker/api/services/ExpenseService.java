@@ -3,9 +3,7 @@ package com.budgettracker.api.services;
 import com.budgettracker.api.auth_facade.AuthenticationFacade;
 import com.budgettracker.api.dtos.ExpenseDto;
 import com.budgettracker.api.dtos.NewExpenseDto;
-import com.budgettracker.api.exceptions.ExpenseNotFoundException;
-import com.budgettracker.api.exceptions.NoUserCategoryForExpenseException;
-import com.budgettracker.api.exceptions.UserHasNoExpensesException;
+import com.budgettracker.api.exceptions.*;
 import com.budgettracker.api.models.Expense;
 import com.budgettracker.api.models.User;
 import com.budgettracker.api.models.UserCategory;
@@ -58,6 +56,19 @@ public class ExpenseService {
                 .toList();
     }
 
+    public List<ExpenseDto> getExpensesByCategory(BigInteger id){
+        UserCategory userCategory = userCategoryService.getUserCategoryIfExists(id)
+                .orElseThrow(
+                        NoUserCategoryForExpenseException::new
+                );
+        return expenseRepository.findExpensesByCategoryForUser(userCategory.getUser(), id)
+                .orElseThrow(
+                        UserHasNoExpensesException:: new
+                )
+                .stream()
+                .map(ExpenseDto::new)
+                .toList();
+    }
 
     public String updateExpense(BigInteger id, NewExpenseDto expenseDto){
         var expense = expenseRepository.findById(id).orElseThrow(

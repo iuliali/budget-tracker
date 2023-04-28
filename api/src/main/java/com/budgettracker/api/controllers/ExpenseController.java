@@ -31,6 +31,12 @@ public class ExpenseController {
         return ResponseEntity.ok(Map.of("expenses", expenseService.getExpenses()));
     }
 
+    @GetMapping("/{id}/all")
+    @Operation(summary = "Get all expenses for a category for the user currently logged in")
+    public ResponseEntity<?> getAllExpensesByCategory(@PathVariable("id") BigInteger id) {
+        return ResponseEntity.ok(Map.of("expenses", expenseService.getExpensesByCategory(id)));
+    }
+
     @PutMapping("/update/{id}")
     @Operation(summary = "Update an expense for current user")
     public ResponseEntity<?> updateExpense(@PathVariable("id") BigInteger id,

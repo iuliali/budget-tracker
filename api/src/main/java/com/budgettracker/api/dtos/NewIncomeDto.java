@@ -3,7 +3,6 @@ package com.budgettracker.api.dtos;
 
 import com.budgettracker.api.enums.Currency;
 import com.budgettracker.api.models.Income;
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +12,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.time.LocalDateTime;
 
 @Setter
 @Getter
@@ -30,19 +28,13 @@ public class NewIncomeDto {
     @NotBlank
     private Currency currency;
 
-    @NotBlank
-    private LocalDateTime registeredAt;
-
     private BigInteger userCategoryId;
-
-
 
     public static Income toIncome(NewIncomeDto newIncomeDto) {
         var newIncome = new Income();
         newIncome.setFrom(newIncomeDto.getFrom());
         newIncome.setAmount(newIncomeDto.getAmount());
         newIncome.setCurrency(newIncomeDto.getCurrency());
-        newIncome.setRegisteredAt(LocalDateTime.now());
         return newIncome;
     }
 

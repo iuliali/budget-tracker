@@ -31,6 +31,12 @@ public class IncomeController {
         return ResponseEntity.ok(Map.of("incomes", incomeService.getIncomes()));
     }
 
+    @GetMapping("/{id}/all")
+    @Operation(summary = "Get all incomes for a category for the user currently logged in")
+    public ResponseEntity<?> getAllIncomesByCategory(@PathVariable("id") BigInteger id) {
+        return ResponseEntity.ok(Map.of("incomes", incomeService.getIncomesByCategory(id)));
+    }
+
     @PutMapping("/update/{id}")
     @Operation(summary = "Update an income for current user")
     public ResponseEntity<?> updateIncome(@PathVariable("id") BigInteger id,
