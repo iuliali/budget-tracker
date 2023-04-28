@@ -36,4 +36,10 @@ public class UserCategory {
     private String name;
 
     private LocalDateTime deletedAt;
+
+    @OneToMany(mappedBy = "userCategory", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Income> userIncomes;
+
+    @OneToMany(mappedBy = "userCategory", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Expense> userExpenses;
 }

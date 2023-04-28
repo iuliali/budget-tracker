@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +31,16 @@ public class UserCategoryService {
     protected boolean checkIfActiveCategoryWithTheSameName(String name, User user){
         return userCategoryRepository.findActiveByName(name, user).isPresent();
     }
+
+    public Optional<UserCategory> getUserCategoryIfExists(BigInteger id){
+        User user = userService.getUserByUsername(authenticationFacade.getAuthentication().getName());
+        UserCategory userCategory = getUserCategoryById(id);
+        if(userCategory.getUser() == user){
+            return Optional.of(userCategory);
+        }
+        return Optional.empty();
+    }
+
 
     public UserCategory getUserCategoryById(BigInteger id) {
         return userCategoryRepository.findById(id).orElseThrow(
