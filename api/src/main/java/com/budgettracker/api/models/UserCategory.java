@@ -8,6 +8,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -31,4 +32,10 @@ public class UserCategory {
     private String name;
 
     private LocalDateTime deletedAt;
+
+    @OneToMany(mappedBy = "userCategory", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Income> userIncomes;
+
+    @OneToMany(mappedBy = "userCategory", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Expense> userExpenses;
 }
