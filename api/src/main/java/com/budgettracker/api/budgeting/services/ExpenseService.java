@@ -1,6 +1,6 @@
 package com.budgettracker.api.services;
 
-import com.budgettracker.api.auth_facade.AuthenticationFacade;
+import com.budgettracker.api.auth.auth_facade.AuthenticationFacade;
 import com.budgettracker.api.dtos.ExpenseDto;
 import com.budgettracker.api.dtos.NewExpenseDto;
 import com.budgettracker.api.exceptions.*;

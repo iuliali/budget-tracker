@@ -1,6 +1,6 @@
 package com.budgettracker.api.services;
 
-import com.budgettracker.api.auth_facade.AuthenticationFacade;
+import com.budgettracker.api.auth.auth_facade.AuthenticationFacade;
 import com.budgettracker.api.dtos.NewUserCategoryDto;
 import com.budgettracker.api.dtos.UserCategoryDto;
 import com.budgettracker.api.exceptions.CategoryIsDeletedException;

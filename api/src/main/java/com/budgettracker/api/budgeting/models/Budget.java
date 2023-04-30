@@ -1,6 +1,6 @@
 package com.budgettracker.api.budget;
 
-import com.budgettracker.api.models.UserCategory;
+import com.budgettracker.api.budgeting.models.UserCategory;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;

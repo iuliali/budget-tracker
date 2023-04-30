@@ -5,8 +5,8 @@ import com.budgettracker.api.budget.dtos.BudgetUpdateDTO;
 import com.budgettracker.api.budget.dtos.NewBudgetDTO;
 import com.budgettracker.api.budget.exceptions.ActiveBudgetAlreadyExistsException;
 import com.budgettracker.api.budget.exceptions.BudgetNotFoundException;
-import com.budgettracker.api.models.UserCategory;
-import com.budgettracker.api.services.UserCategoryService;
+import com.budgettracker.api.budgeting.models.UserCategory;
+import com.budgettracker.api.budgeting.services.UserCategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
