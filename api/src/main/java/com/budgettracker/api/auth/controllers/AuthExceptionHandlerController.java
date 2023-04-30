@@ -2,8 +2,6 @@ package com.budgettracker.api.auth.controllers;
 
 
 import com.budgettracker.api.auth.exceptions.*;
-import com.budgettracker.api.budgeting.exceptions.ActiveBudgetAlreadyExistsException;
-import com.budgettracker.api.budgeting.exceptions.BudgetNotFoundException;
 import com.budgettracker.api.budgeting.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +14,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.util.Map;
 
-@ControllerAdvice
-public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
+@ControllerAdvice(basePackages = {"com.budgettracker.api.auth.controllers"})
+public class AuthExceptionHandlerController extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = {UsernameAlreadyExistsException.class})
     public ResponseEntity<?> handleUsernameAlreadyExistsException(UsernameAlreadyExistsException exception,
@@ -127,74 +125,6 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
                 HttpStatus.BAD_REQUEST);
     }
 
-
-    // ==================== BUDGET EXCEPTIONS ====================
-
-    @ExceptionHandler(value = {BudgetNotFoundException.class})
-    public ResponseEntity<?> handleBadRequest(BudgetNotFoundException exception,
-                                              WebRequest request) {
-        logger.warn(request + exception.getMessage());
-        return new ResponseEntity<>(Map.of("message", "This budget doesn't exist."),
-                HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(value = {ActiveBudgetAlreadyExistsException.class})
-    public ResponseEntity<?> handleBadRequest(ActiveBudgetAlreadyExistsException exception,
-                                              WebRequest request) {
-        logger.warn(request + exception.getMessage());
-        return new ResponseEntity<>(Map.of("message", "You already have an active budget."),
-                HttpStatus.BAD_REQUEST);
-    }
-
-    // ==================== INCOMES EXCEPTIONS ====================
-    @ExceptionHandler(value = {IncomeNotFoundException.class})
-    public ResponseEntity<?> handleBadRequest(IncomeNotFoundException exception,
-                                              WebRequest request) {
-        logger.warn(request + exception.getMessage());
-        return new ResponseEntity<>(Map.of("message", "This income doesn't exist."),
-                HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(value = {UserHasNoIncomesException.class})
-    public ResponseEntity<?> handleBadRequest(UserHasNoIncomesException exception,
-                                              WebRequest request) {
-        logger.warn(request + exception.getMessage());
-        return new ResponseEntity<>(Map.of("message", "You have no incomes."),
-                HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(value = {NoUserCategoryForIncomeException.class})
-    public ResponseEntity<?> handleBadRequest(NoUserCategoryForIncomeException exception,
-                                              WebRequest request) {
-        logger.warn(request + exception.getMessage());
-        return new ResponseEntity<>(Map.of("message", "You don't have this category."),
-                HttpStatus.BAD_REQUEST);
-    }
-
-    // ==================== EXPENSES EXCEPTIONS ====================
-    @ExceptionHandler(value = {ExpenseNotFoundException.class})
-    public ResponseEntity<?> handleBadRequest(ExpenseNotFoundException exception,
-                                              WebRequest request) {
-        logger.warn(request + exception.getMessage());
-        return new ResponseEntity<>(Map.of("message", "This expense doesn't exist."),
-                HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(value = {UserHasNoExpensesException.class})
-    public ResponseEntity<?> handleBadRequest(UserHasNoExpensesException exception,
-                                              WebRequest request) {
-        logger.warn(request + exception.getMessage());
-        return new ResponseEntity<>(Map.of("message", "You have no expenses."),
-                HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(value = {NoUserCategoryForExpenseException.class})
-    public ResponseEntity<?> handleBadRequest(NoUserCategoryForExpenseException exception,
-                                              WebRequest request) {
-        logger.warn(request + exception.getMessage());
-        return new ResponseEntity<>(Map.of("message", "You don't have this category."),
-                HttpStatus.BAD_REQUEST);
-    }
 
     // This catches all other exceptions
     @ExceptionHandler(value = {Exception.class, Error.class})
