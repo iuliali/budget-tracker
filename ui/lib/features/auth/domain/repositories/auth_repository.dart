@@ -4,11 +4,11 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/error/failures.dart';
 
 abstract class AuthRepository {
-  Future<Either<Failure, AccessToken>> signIn({
+  Future<Either<Failure, AccessToken>> login({
     required String username,
     required String password,
   });
-  Future<Either<Failure, bool>> signUp({
+  Future<Either<Failure, bool>> register({
     required String username,
     required String password,
     required String email,

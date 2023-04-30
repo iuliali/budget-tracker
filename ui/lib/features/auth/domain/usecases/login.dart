@@ -5,25 +5,25 @@ import '../../../../core/usecases/usecase.dart';
 import '../entities/access_token.dart';
 import '../repositories/auth_repository.dart';
 
-class SignIn implements UseCase<AccessToken, SignInParams>{
+class Login implements UseCase<AccessToken, LoginParams>{
   final AuthRepository repository;
 
-  SignIn(this.repository);
+  Login(this.repository);
 
   @override
-  Future<Either<Failure, AccessToken>> call(SignInParams params) async {
-    return await repository.signIn(
+  Future<Either<Failure, AccessToken>> call(LoginParams params) async {
+    return await repository.login(
       username: params.username,
       password: params.password,
     );
   }
 }
 
-class SignInParams {
+class LoginParams {
   final String username;
   final String password;
 
-  SignInParams({
+  LoginParams({
     required this.username,
     required this.password,
   });

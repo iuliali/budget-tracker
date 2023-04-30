@@ -4,14 +4,14 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../core/usecases/usecase.dart';
 
-class SignUp implements UseCase<bool, SignUpParams> {
+class Register implements UseCase<bool, RegisterParams> {
   final AuthRepository repository;
 
-  SignUp(this.repository);
+  Register(this.repository);
 
   @override
-  Future<Either<Failure, bool>> call(SignUpParams params) async {
-    return await repository.signUp(
+  Future<Either<Failure, bool>> call(RegisterParams params) async {
+    return await repository.register(
       firstName: params.firstName,
       lastName: params.lastName,
       email: params.email,
@@ -21,14 +21,14 @@ class SignUp implements UseCase<bool, SignUpParams> {
   }
 }
 
-class SignUpParams {
+class RegisterParams {
   final String firstName;
   final String lastName;
   final String email;
   final String username;
   final String password;
 
-  SignUpParams({
+  RegisterParams({
     required this.firstName,
     required this.lastName,
     required this.email,

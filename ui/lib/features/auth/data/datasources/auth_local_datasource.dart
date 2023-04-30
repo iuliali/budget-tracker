@@ -9,5 +9,5 @@ abstract class AuthLocalDataSource {
 
   /// Caches the [AccessTokenModel] which was gotten the last time
   /// the user had an internet connection.
-  Future<void> cacheAccessToken(AccessTokenModel accessTokenToCache);
+  Future<bool> cacheAccessToken(AccessTokenModel accessTokenToCache);
 }

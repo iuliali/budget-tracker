@@ -1,5 +1,5 @@
 import 'package:budget_tracker/features/auth/domain/repositories/auth_repository.dart';
-import 'package:budget_tracker/features/auth/domain/usecases/sign_up.dart';
+import 'package:budget_tracker/features/auth/domain/usecases/register.dart';
 import 'package:dartz/dartz.dart';
 import "package:flutter_test/flutter_test.dart";
 import "package:mocktail/mocktail.dart";
@@ -8,11 +8,11 @@ class MockAuthRepository extends Mock implements AuthRepository {}
 
 void main() {
   late MockAuthRepository mockAuthRepository;
-  late SignUp usecase;
+  late Register usecase;
 
   setUp(() {
     mockAuthRepository = MockAuthRepository();
-    usecase = SignUp(mockAuthRepository);
+    usecase = Register(mockAuthRepository);
   });
 
   test(
@@ -24,7 +24,7 @@ void main() {
       const email = "johndoe@example.com";
       const username = "johndoe";
       const password = "password12";
-      when(() => mockAuthRepository.signUp(
+      when(() => mockAuthRepository.register(
             firstName: firstName,
             lastName: lastName,
             email: email,
@@ -32,7 +32,7 @@ void main() {
             password: password,
           )).thenAnswer((_) async => const Right(true));
       // act
-      final result = await usecase(SignUpParams(
+      final result = await usecase(RegisterParams(
         firstName: firstName,
         lastName: lastName,
         email: email,
@@ -41,7 +41,7 @@ void main() {
       ));
       // assert
       expect(result, const Right(true));
-      verify(() => mockAuthRepository.signUp(
+      verify(() => mockAuthRepository.register(
             firstName: firstName,
             lastName: lastName,
             email: email,
