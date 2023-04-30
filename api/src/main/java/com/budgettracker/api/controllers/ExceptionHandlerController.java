@@ -142,7 +142,7 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
                                               WebRequest request) {
         logger.warn(request + exception.getMessage());
         return new ResponseEntity<>(Map.of("message", "You already have an active budget."),
-                HttpStatus.BAD_REQUEST);
+                HttpStatus.CONFLICT);
     }
 
     // ==================== INCOMES EXCEPTIONS ====================
