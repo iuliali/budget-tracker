@@ -1,7 +1,7 @@
-package com.budgettracker.api.models;
+package com.budgettracker.api.auth.models;
 
-import com.budgettracker.api.enums.Role;
-import io.swagger.v3.oas.annotations.media.Schema;
+import com.budgettracker.api.auth.enums.Role;
+import com.budgettracker.api.budgeting.models.UserCategory;
 import jakarta.persistence.*;
 import lombok.*;
 

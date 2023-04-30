@@ -1,5 +1,6 @@
-package com.budgettracker.api.budget;
+package com.budgettracker.api.budgeting.repositories;
 
+import com.budgettracker.api.budgeting.models.Budget;
 import com.budgettracker.api.budgeting.models.UserCategory;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;

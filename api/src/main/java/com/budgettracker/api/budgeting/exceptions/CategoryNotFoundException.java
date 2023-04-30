@@ -1,4 +1,4 @@
-package com.budgettracker.api.exceptions;
+package com.budgettracker.api.budgeting.exceptions;
 
 public class CategoryNotFoundException extends RuntimeException{
     private static final String MESSAGE = "Category not found";

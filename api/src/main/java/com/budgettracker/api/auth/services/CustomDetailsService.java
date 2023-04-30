@@ -1,7 +1,7 @@
-package com.budgettracker.api.services;
+package com.budgettracker.api.auth.services;
 
-import com.budgettracker.api.dtos.CustomDetailsUser;
-import com.budgettracker.api.repositories.UserRepository;
+import com.budgettracker.api.auth.dtos.CustomDetailsUser;
+import com.budgettracker.api.auth.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

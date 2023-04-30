@@ -1,7 +1,7 @@
-package com.budgettracker.api.dtos;
+package com.budgettracker.api.auth.dtos;
 
-import com.budgettracker.api.enums.Role;
-import com.budgettracker.api.models.User;
+import com.budgettracker.api.auth.enums.Role;
+import com.budgettracker.api.auth.models.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package com.budgettracker.api.enums;
+package com.budgettracker.api.budgeting.enums;
 
 public enum Currency {
     EUR, USD, RON

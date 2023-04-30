@@ -1,26 +1,15 @@
-package com.budgettracker.api.controllers;
+package com.budgettracker.api.budgeting.controllers;
 
-import com.budgettracker.api.dtos.NewUserCategoryDto;
-import com.budgettracker.api.services.UserCategoryService;
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import com.budgettracker.api.budgeting.dtos.NewUserCategoryDto;
+import com.budgettracker.api.budgeting.services.UserCategoryService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import io.swagger.v3.oas.models.Components;
-import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.security.SecurityScheme;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Map;
 
 @RestController

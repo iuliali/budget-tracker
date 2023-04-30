@@ -1,8 +1,8 @@
-package com.budgettracker.api.dtos;
+package com.budgettracker.api.budgeting.dtos;
 
 
-import com.budgettracker.api.enums.Currency;
-import com.budgettracker.api.models.Income;
+import com.budgettracker.api.budgeting.enums.Currency;
+import com.budgettracker.api.budgeting.models.Income;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

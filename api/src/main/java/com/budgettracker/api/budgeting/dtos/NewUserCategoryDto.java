@@ -1,6 +1,6 @@
-package com.budgettracker.api.dtos;
+package com.budgettracker.api.budgeting.dtos;
 
-import com.budgettracker.api.models.UserCategory;
+import com.budgettracker.api.budgeting.models.UserCategory;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,8 +8,6 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-import java.math.BigInteger;
 
 @Setter
 @Getter

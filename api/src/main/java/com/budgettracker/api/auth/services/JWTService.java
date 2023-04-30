@@ -1,4 +1,4 @@
-package com.budgettracker.api.services;
+package com.budgettracker.api.auth.services;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

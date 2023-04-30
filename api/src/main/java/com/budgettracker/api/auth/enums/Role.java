@@ -1,4 +1,4 @@
-package com.budgettracker.api.enums;
+package com.budgettracker.api.auth.enums;
 
 public enum Role {
     ADMIN, USER

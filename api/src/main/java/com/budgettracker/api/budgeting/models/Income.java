@@ -1,6 +1,6 @@
-package com.budgettracker.api.models;
+package com.budgettracker.api.budgeting.models;
 
-import com.budgettracker.api.enums.Currency;
+import com.budgettracker.api.budgeting.enums.Currency;
 import jakarta.persistence.*;
 import lombok.*;
 

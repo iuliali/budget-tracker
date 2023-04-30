@@ -1,12 +1,11 @@
-package com.budgettracker.api.models;
+package com.budgettracker.api.budgeting.models;
 
-import com.budgettracker.api.budget.Budget;
+import com.budgettracker.api.auth.models.User;
 import jakarta.persistence.*;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;

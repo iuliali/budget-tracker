@@ -1,7 +1,7 @@
-package com.budgettracker.api.controllers;
+package com.budgettracker.api.budgeting.controllers;
 
-import com.budgettracker.api.dtos.NewExpenseDto;
-import com.budgettracker.api.services.ExpenseService;
+import com.budgettracker.api.budgeting.dtos.NewExpenseDto;
+import com.budgettracker.api.budgeting.services.ExpenseService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

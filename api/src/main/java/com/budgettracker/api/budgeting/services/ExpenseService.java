@@ -1,13 +1,17 @@
-package com.budgettracker.api.services;
+package com.budgettracker.api.budgeting.services;
 
 import com.budgettracker.api.auth.auth_facade.AuthenticationFacade;
-import com.budgettracker.api.dtos.ExpenseDto;
-import com.budgettracker.api.dtos.NewExpenseDto;
+import com.budgettracker.api.auth.services.UserService;
+import com.budgettracker.api.budgeting.dtos.ExpenseDto;
+import com.budgettracker.api.budgeting.dtos.NewExpenseDto;
+import com.budgettracker.api.budgeting.exceptions.ExpenseNotFoundException;
+import com.budgettracker.api.budgeting.exceptions.NoUserCategoryForExpenseException;
+import com.budgettracker.api.budgeting.exceptions.UserHasNoExpensesException;
 import com.budgettracker.api.exceptions.*;
-import com.budgettracker.api.models.Expense;
-import com.budgettracker.api.models.User;
-import com.budgettracker.api.models.UserCategory;
-import com.budgettracker.api.repositories.ExpenseRepository;
+import com.budgettracker.api.budgeting.models.Expense;
+import com.budgettracker.api.auth.models.User;
+import com.budgettracker.api.budgeting.models.UserCategory;
+import com.budgettracker.api.budgeting.repositories.ExpenseRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

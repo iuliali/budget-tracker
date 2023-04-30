@@ -1,6 +1,6 @@
-package com.budgettracker.api.budget.dtos;
+package com.budgettracker.api.budgeting.dtos;
 
-import com.budgettracker.api.budget.Budget;
+import com.budgettracker.api.budgeting.models.Budget;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;

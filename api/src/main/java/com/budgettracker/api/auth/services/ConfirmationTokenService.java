@@ -1,8 +1,8 @@
-package com.budgettracker.api.services;
+package com.budgettracker.api.auth.services;
 
-import com.budgettracker.api.models.ConfirmationToken;
-import com.budgettracker.api.models.User;
-import com.budgettracker.api.repositories.ConfirmationTokenRepository;
+import com.budgettracker.api.auth.models.ConfirmationToken;
+import com.budgettracker.api.auth.models.User;
+import com.budgettracker.api.auth.repositories.ConfirmationTokenRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

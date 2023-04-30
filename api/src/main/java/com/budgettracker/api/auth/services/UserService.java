@@ -1,12 +1,12 @@
-package com.budgettracker.api.services;
+package com.budgettracker.api.auth.services;
 
-import com.budgettracker.api.dtos.*;
-import com.budgettracker.api.email.EmailService;
-import com.budgettracker.api.exceptions.*;
-import com.budgettracker.api.models.ConfirmationToken;
-import com.budgettracker.api.models.User;
-import com.budgettracker.api.repositories.UserRepository;
-import com.budgettracker.api.utils.Utils;
+import com.budgettracker.api.auth.dtos.*;
+import com.budgettracker.api.auth.email.EmailService;
+import com.budgettracker.api.auth.exceptions.*;
+import com.budgettracker.api.auth.models.ConfirmationToken;
+import com.budgettracker.api.auth.models.User;
+import com.budgettracker.api.auth.repositories.UserRepository;
+import com.budgettracker.api.auth.utils.Utils;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;

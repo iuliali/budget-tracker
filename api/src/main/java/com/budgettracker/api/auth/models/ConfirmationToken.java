@@ -1,4 +1,4 @@
-package com.budgettracker.api.models;
+package com.budgettracker.api.auth.models;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,4 +1,4 @@
-package com.budgettracker.api.dtos;
+package com.budgettracker.api.auth.dtos;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;

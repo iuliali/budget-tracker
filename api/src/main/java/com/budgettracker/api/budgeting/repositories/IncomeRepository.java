@@ -1,7 +1,7 @@
-package com.budgettracker.api.repositories;
+package com.budgettracker.api.budgeting.repositories;
 
-import com.budgettracker.api.models.Income;
-import com.budgettracker.api.models.User;
+import com.budgettracker.api.budgeting.models.Income;
+import com.budgettracker.api.auth.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

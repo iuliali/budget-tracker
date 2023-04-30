@@ -1,4 +1,4 @@
-package com.budgettracker.api.utils;
+package com.budgettracker.api.auth.utils;
 
 import java.util.regex.Pattern;
 

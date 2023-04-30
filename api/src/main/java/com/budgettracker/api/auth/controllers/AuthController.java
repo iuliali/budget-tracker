@@ -1,9 +1,9 @@
-package com.budgettracker.api.controllers;
+package com.budgettracker.api.auth.controllers;
 
-import com.budgettracker.api.dtos.AuthenticationRequest;
-import com.budgettracker.api.dtos.NewUserDto;
-import com.budgettracker.api.dtos.ResendConfirmationTokenRequest;
-import com.budgettracker.api.services.UserService;
+import com.budgettracker.api.auth.dtos.AuthenticationRequest;
+import com.budgettracker.api.auth.dtos.NewUserDto;
+import com.budgettracker.api.auth.dtos.ResendConfirmationTokenRequest;
+import com.budgettracker.api.auth.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

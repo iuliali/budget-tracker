@@ -1,4 +1,6 @@
-package com.budgettracker.api.exceptions;
+package com.budgettracker.api.auth.exceptions;
+
+import com.budgettracker.api.auth.exceptions.EntityDoesNotExistException;
 
 import java.lang.reflect.Type;
 

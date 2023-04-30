@@ -1,8 +1,8 @@
-package com.budgettracker.api.filters;
+package com.budgettracker.api.auth.filters;
 
-import com.budgettracker.api.repositories.UserRepository;
-import com.budgettracker.api.services.JWTService;
-import com.budgettracker.api.dtos.CustomDetailsUser;
+import com.budgettracker.api.auth.repositories.UserRepository;
+import com.budgettracker.api.auth.services.JWTService;
+import com.budgettracker.api.auth.dtos.CustomDetailsUser;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

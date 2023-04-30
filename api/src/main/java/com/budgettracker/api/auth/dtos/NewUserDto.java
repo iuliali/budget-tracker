@@ -1,7 +1,7 @@
-package com.budgettracker.api.dtos;
+package com.budgettracker.api.auth.dtos;
 
-import com.budgettracker.api.enums.Role;
-import com.budgettracker.api.models.User;
+import com.budgettracker.api.auth.enums.Role;
+import com.budgettracker.api.auth.models.User;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

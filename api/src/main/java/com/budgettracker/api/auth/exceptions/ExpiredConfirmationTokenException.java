@@ -1,4 +1,4 @@
-package com.budgettracker.api.exceptions;
+package com.budgettracker.api.auth.exceptions;
 
 import java.lang.reflect.Type;
 

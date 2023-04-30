@@ -1,4 +1,4 @@
-package com.budgettracker.api.budget.dtos;
+package com.budgettracker.api.budgeting.dtos;
 
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;

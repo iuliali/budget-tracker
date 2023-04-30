@@ -1,4 +1,4 @@
-package com.budgettracker.api.email;
+package com.budgettracker.api.auth.email;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;

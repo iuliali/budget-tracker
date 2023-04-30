@@ -1,15 +1,16 @@
-package com.budgettracker.api.services;
+package com.budgettracker.api.budgeting.services;
 
 import com.budgettracker.api.auth.auth_facade.AuthenticationFacade;
-import com.budgettracker.api.dtos.NewUserCategoryDto;
-import com.budgettracker.api.dtos.UserCategoryDto;
-import com.budgettracker.api.exceptions.CategoryIsDeletedException;
-import com.budgettracker.api.exceptions.CategoryNotFoundException;
-import com.budgettracker.api.exceptions.UserCategoryNameAlreadyExistsException;
-import com.budgettracker.api.exceptions.UserHasNoActiveCategoriesException;
-import com.budgettracker.api.models.User;
-import com.budgettracker.api.models.UserCategory;
-import com.budgettracker.api.repositories.UserCategoryRepository;
+import com.budgettracker.api.auth.services.UserService;
+import com.budgettracker.api.budgeting.dtos.NewUserCategoryDto;
+import com.budgettracker.api.budgeting.dtos.UserCategoryDto;
+import com.budgettracker.api.budgeting.exceptions.CategoryIsDeletedException;
+import com.budgettracker.api.budgeting.exceptions.CategoryNotFoundException;
+import com.budgettracker.api.budgeting.exceptions.UserCategoryNameAlreadyExistsException;
+import com.budgettracker.api.budgeting.exceptions.UserHasNoActiveCategoriesException;
+import com.budgettracker.api.auth.models.User;
+import com.budgettracker.api.budgeting.models.UserCategory;
+import com.budgettracker.api.budgeting.repositories.UserCategoryRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

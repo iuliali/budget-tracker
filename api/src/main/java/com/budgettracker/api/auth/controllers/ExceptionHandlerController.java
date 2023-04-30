@@ -1,9 +1,10 @@
-package com.budgettracker.api.controllers;
+package com.budgettracker.api.auth.controllers;
 
 
-import com.budgettracker.api.budget.exceptions.ActiveBudgetAlreadyExistsException;
-import com.budgettracker.api.budget.exceptions.BudgetNotFoundException;
-import com.budgettracker.api.exceptions.*;
+import com.budgettracker.api.auth.exceptions.*;
+import com.budgettracker.api.budgeting.exceptions.ActiveBudgetAlreadyExistsException;
+import com.budgettracker.api.budgeting.exceptions.BudgetNotFoundException;
+import com.budgettracker.api.budgeting.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;

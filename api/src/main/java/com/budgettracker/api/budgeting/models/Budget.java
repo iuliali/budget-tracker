@@ -1,4 +1,4 @@
-package com.budgettracker.api.budget;
+package com.budgettracker.api.budgeting.models;
 
 import com.budgettracker.api.budgeting.models.UserCategory;
 import jakarta.persistence.*;
