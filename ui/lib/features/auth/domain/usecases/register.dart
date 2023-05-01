@@ -1,8 +1,8 @@
-import 'package:budget_tracker/core/error/failures.dart';
-import 'package:budget_tracker/features/auth/domain/repositories/auth_repository.dart';
 import 'package:dartz/dartz.dart';
 
-import '../../../../core/usecases/usecase.dart';
+import '../../../../core/domain/usecases/usecase.dart';
+import '../../../../core/domain/error/failures.dart';
+import '../repositories/auth_repository.dart';
 
 class Register implements UseCase<bool, RegisterParams> {
   final AuthRepository repository;

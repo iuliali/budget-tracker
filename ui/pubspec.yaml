@@ -21,6 +21,7 @@ dependencies:
   collection: ^1.15.0
   # Remote API
   connectivity: ^3.0.6
+  internet_connection_checker: ^1.0.0+1
   http: ^0.13.3
   url_launcher: ^6.0.9
   # Local storage

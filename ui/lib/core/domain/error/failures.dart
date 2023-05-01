@@ -15,22 +15,10 @@ class CacheFailure extends Failure {}
 
 class ConnectionFailure extends Failure {}
 
-class InvalidInputFailure extends Failure {
-  final String message;
-
-  InvalidInputFailure({required this.message}) : super([message]);
-}
+class InvalidInputFailure extends Failure {}
 
 class ConflictFailure extends Failure {
   final String message;
 
   ConflictFailure({required this.message}) : super([message]);
-}
-
-class EmailAlreadyUsedFailure extends ConflictFailure {
-  EmailAlreadyUsedFailure() : super(message: 'Email already exists');
-}
-
-class UsernameAlreadyUsedFailure extends ConflictFailure {
-  UsernameAlreadyUsedFailure() : super(message: 'Username already exists');
 }

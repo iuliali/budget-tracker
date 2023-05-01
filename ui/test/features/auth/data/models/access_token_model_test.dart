@@ -52,7 +52,7 @@ void main() {
       () async {
         // arrange
         final Map<String, dynamic> jsonMap = json.decode(
-            fixture("auth/authenticate.json"));
+            fixture("auth/authenticate/200_ok.json"));
         final tAccessTokenModel = AccessTokenModel(
           token: jsonMap['access_token'],
         );

@@ -1,11 +1,12 @@
-import 'package:budget_tracker/core/error/failures.dart';
-
 import 'package:budget_tracker/features/auth/domain/entities/access_token.dart';
 
 import 'package:dartz/dartz.dart';
 
-import '../../../../core/error/exceptions.dart';
-import '../../../../core/platform/network_info.dart';
+import '../../../../core/domain/error/failures.dart';
+import '../../../../core/domain/error/exceptions.dart';
+import '../../../../core/data/network/network_info.dart';
+import '../../domain/error/exception.dart';
+import '../../domain/error/failure.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../datasources/auth_api_datasource.dart';
 import '../datasources/auth_local_datasource.dart';
@@ -34,6 +35,8 @@ class AuthRepositoryImpl implements AuthRepository {
         );
         localDataSource.cacheAccessToken(remoteAccessToken);
         return Right(remoteAccessToken);
+      } on InvalidCredentialsException {
+        return Left(InvalidCredentialsFailure());
       } on ServerException {
         return Left(ServerFailure());
       }

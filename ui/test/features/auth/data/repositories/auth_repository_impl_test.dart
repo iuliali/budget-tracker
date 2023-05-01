@@ -1,10 +1,12 @@
-import 'package:budget_tracker/core/error/exceptions.dart';
-import 'package:budget_tracker/core/error/failures.dart';
-import 'package:budget_tracker/core/platform/network_info.dart';
+import 'package:budget_tracker/core/domain/error/exceptions.dart';
+import 'package:budget_tracker/core/domain/error/failures.dart';
+import 'package:budget_tracker/core/data/network/network_info.dart';
 import 'package:budget_tracker/features/auth/data/datasources/auth_api_datasource.dart';
 import 'package:budget_tracker/features/auth/data/datasources/auth_local_datasource.dart';
 import 'package:budget_tracker/features/auth/data/models/access_token_model.dart';
 import 'package:budget_tracker/features/auth/data/repositories/auth_repository_impl.dart';
+import 'package:budget_tracker/features/auth/domain/error/exception.dart';
+import 'package:budget_tracker/features/auth/domain/error/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -117,6 +119,29 @@ void main() {
                 password: tPassword,
               ));
           verify(() => mockAuthLocalDataSource.cacheAccessToken(tAccessToken));
+        },
+      );
+
+      test(
+        "should return a InvalidCredentialsFailure when the call to remote data source is unsuccessful",
+        () async {
+          // arrange
+          when(() => mockAuthRemoteDataSource.login(
+                username: any(named: "username"),
+                password: any(named: "password"),
+              )).thenThrow(InvalidCredentialsException());
+          // act
+          final result = await repository.login(
+            username: tUsername,
+            password: tPassword,
+          );
+          // assert
+          verify(() => mockAuthRemoteDataSource.login(
+                username: tUsername,
+                password: tPassword,
+              ));
+          verifyZeroInteractions(mockAuthLocalDataSource);
+          expect(result, equals(Left(InvalidCredentialsFailure())));
         },
       );
 

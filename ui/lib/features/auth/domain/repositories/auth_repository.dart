@@ -1,7 +1,7 @@
 import 'package:budget_tracker/features/auth/domain/entities/access_token.dart';
 import 'package:dartz/dartz.dart';
 
-import '../../../../core/error/failures.dart';
+import '../../../../core/domain/error/failures.dart';
 
 abstract class AuthRepository {
   Future<Either<Failure, AccessToken>> login({
