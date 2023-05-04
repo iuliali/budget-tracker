@@ -2,7 +2,6 @@ package com.budgettracker.api.auth.controllers;
 
 
 import com.budgettracker.api.auth.exceptions.*;
-import com.budgettracker.api.budgeting.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -91,40 +90,6 @@ public class AuthExceptionHandlerController extends ResponseEntityExceptionHandl
         return new ResponseEntity<>( Map.of("message", "Wrong username or password!"),
                 HttpStatus.BAD_REQUEST);
     }
-
-    // ==================== CATEGORIES EXCEPTIONS ====================
-    @ExceptionHandler(value = {CategoryIsDeletedException.class})
-    public ResponseEntity<?> handleBadRequest(CategoryIsDeletedException exception,
-                                              WebRequest request) {
-        logger.warn(request + exception.getMessage());
-        return new ResponseEntity<>(Map.of("message", "This category is deleted. You can't perform this action on a deleted category."),
-                HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(value = {CategoryNotFoundException.class})
-    public ResponseEntity<?> handleBadRequest(CategoryNotFoundException exception,
-                                              WebRequest request) {
-        logger.warn(request + exception.getMessage());
-        return new ResponseEntity<>(Map.of("message", "This category doesn't exist."),
-                HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(value = {UserCategoryNameAlreadyExistsException.class})
-    public ResponseEntity<?> handleBadRequest(UserCategoryNameAlreadyExistsException exception,
-                                              WebRequest request) {
-        logger.warn(request + exception.getMessage());
-        return new ResponseEntity<>(Map.of("message", "You already have an active category with this name."),
-                HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(value = {UserHasNoActiveCategoriesException.class})
-    public ResponseEntity<?> handleBadRequest(UserHasNoActiveCategoriesException exception,
-                                              WebRequest request) {
-        logger.warn(request + exception.getMessage());
-        return new ResponseEntity<>(Map.of("message", "You don't have any active categories."),
-                HttpStatus.BAD_REQUEST);
-    }
-
 
     // This catches all other exceptions
     @ExceptionHandler(value = {Exception.class, Error.class})

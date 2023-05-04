@@ -33,7 +33,7 @@ public class BudgetController {
         return ResponseEntity.ok(Map.of("budget", budgetService.getActiveBudget(userCategoryId)));
     }
 
-    @PutMapping("/update/{userCategoryId}")
+    @PatchMapping("/update/{userCategoryId}")
     @Operation(summary = "Update the active budget for a category")
     public ResponseEntity<?> updateBudget(@PathVariable("userCategoryId") BigInteger userCategoryId,
                                           @Valid @RequestBody BudgetUpdateDTO newBudgetDto) {

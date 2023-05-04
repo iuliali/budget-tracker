@@ -8,6 +8,7 @@ import com.budgettracker.api.budgeting.exceptions.BudgetNotFoundException;
 import com.budgettracker.api.budgeting.models.Budget;
 import com.budgettracker.api.budgeting.models.UserCategory;
 import com.budgettracker.api.budgeting.repositories.BudgetRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +38,7 @@ public class BudgetService {
         return "Budget successfully created";
     }
 
+    @Transactional
     public String deleteActiveBudget(BigInteger userCategoryId){
         UserCategory userCategory = userCategoryService.getUserCategoryById(userCategoryId);
         Budget budget = budgetRepository.findActiveByUserCategory(userCategory).orElseThrow(
