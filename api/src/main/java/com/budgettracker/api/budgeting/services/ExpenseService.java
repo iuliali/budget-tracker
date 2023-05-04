@@ -7,7 +7,6 @@ import com.budgettracker.api.budgeting.dtos.NewExpenseDto;
 import com.budgettracker.api.budgeting.exceptions.ExpenseNotFoundException;
 import com.budgettracker.api.budgeting.exceptions.NoUserCategoryForExpenseException;
 import com.budgettracker.api.budgeting.exceptions.UserHasNoExpensesException;
-import com.budgettracker.api.exceptions.*;
 import com.budgettracker.api.budgeting.models.Expense;
 import com.budgettracker.api.auth.models.User;
 import com.budgettracker.api.budgeting.models.UserCategory;
