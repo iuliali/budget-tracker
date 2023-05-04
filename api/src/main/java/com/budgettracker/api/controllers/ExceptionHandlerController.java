@@ -1,6 +1,8 @@
 package com.budgettracker.api.controllers;
 
 
+import com.budgettracker.api.budget.exceptions.ActiveBudgetAlreadyExistsException;
+import com.budgettracker.api.budget.exceptions.BudgetNotFoundException;
 import com.budgettracker.api.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -125,6 +127,24 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
     }
 
 
+    // ==================== BUDGET EXCEPTIONS ====================
+
+    @ExceptionHandler(value = {BudgetNotFoundException.class})
+    public ResponseEntity<?> handleBadRequest(BudgetNotFoundException exception,
+                                              WebRequest request) {
+        logger.warn(request + exception.getMessage());
+        return new ResponseEntity<>(Map.of("message", "This budget doesn't exist."),
+                HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = {ActiveBudgetAlreadyExistsException.class})
+    public ResponseEntity<?> handleBadRequest(ActiveBudgetAlreadyExistsException exception,
+                                              WebRequest request) {
+        logger.warn(request + exception.getMessage());
+        return new ResponseEntity<>(Map.of("message", "You already have an active budget."),
+                HttpStatus.CONFLICT);
+    }
+
     // ==================== INCOMES EXCEPTIONS ====================
     @ExceptionHandler(value = {IncomeNotFoundException.class})
     public ResponseEntity<?> handleBadRequest(IncomeNotFoundException exception,
@@ -150,8 +170,6 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
                 HttpStatus.BAD_REQUEST);
     }
 
-
-
     // ==================== EXPENSES EXCEPTIONS ====================
     @ExceptionHandler(value = {ExpenseNotFoundException.class})
     public ResponseEntity<?> handleBadRequest(ExpenseNotFoundException exception,
@@ -176,8 +194,6 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(Map.of("message", "You don't have this category."),
                 HttpStatus.BAD_REQUEST);
     }
-
-
 
     // This catches all other exceptions
     @ExceptionHandler(value = {Exception.class, Error.class})

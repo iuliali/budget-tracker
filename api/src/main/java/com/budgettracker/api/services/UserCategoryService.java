@@ -32,7 +32,6 @@ public class UserCategoryService {
         return userCategoryRepository.findActiveByName(name, user).isPresent();
     }
 
-
     public Optional<UserCategory> getUserCategoryIfExists(BigInteger id){
         User user = userService.getUserByUsername(authenticationFacade.getAuthentication().getName());
         UserCategory userCategory = getUserCategoryById(id);
@@ -41,6 +40,7 @@ public class UserCategoryService {
         }
         return Optional.empty();
     }
+
 
     public UserCategory getUserCategoryById(BigInteger id) {
         return userCategoryRepository.findById(id).orElseThrow(

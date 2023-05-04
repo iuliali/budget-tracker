@@ -1,6 +1,9 @@
 package com.budgettracker.api.services;
 
 import com.budgettracker.api.auth_facade.AuthenticationFacade;
+import com.budgettracker.api.budget.Budget;
+import com.budgettracker.api.budget.BudgetService;
+import com.budgettracker.api.budget.exceptions.BudgetNotFoundException;
 import com.budgettracker.api.dtos.ExpenseDto;
 import com.budgettracker.api.dtos.NewExpenseDto;
 import com.budgettracker.api.exceptions.*;
@@ -12,9 +15,12 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +28,7 @@ public class ExpenseService {
     private final ExpenseRepository expenseRepository;
     private final UserCategoryService userCategoryService;
     private final UserService userService;
+    private final BudgetService budgetService;
     private final AuthenticationFacade authenticationFacade;
 
     public ExpenseDto getExpenseById(BigInteger id) {
@@ -30,7 +37,19 @@ public class ExpenseService {
         ));
     }
 
-    public String createExpense(NewExpenseDto expenseDto){
+    public boolean checkIfNewExpenseIsOverBudget(BigDecimal newExpenseAmount, BigInteger userCategoryId){
+        BigDecimal currentAmount = budgetService.getActiveBudget(userCategoryId).getAmount();
+        BigDecimal sumOfExpenses = expensesSumByUserCategoryId(userCategoryId);
+        return sumOfExpenses.add(newExpenseAmount).compareTo(currentAmount) > 0;
+
+    }
+
+    public Map<String, String> createExpense(NewExpenseDto expenseDto){
+
+        String warning = "No warning";
+        if (checkIfNewExpenseIsOverBudget(expenseDto.getAmount(), expenseDto.getUserCategoryId()))
+            warning = "You are over budget for this category";
+
         Expense expense = new Expense();
         expense.setTo(expenseDto.getTo());
         expense.setAmount(expenseDto.getAmount());
@@ -42,7 +61,8 @@ public class ExpenseService {
                 );
         expense.setUserCategory(userCategory);
         expenseRepository.save(expense);
-        return "Expense has been added successfully";
+
+        return Map.of("message", "Expense has been added successfully", "warning", warning);
     }
 
     public List<ExpenseDto> getExpenses(){
@@ -97,5 +117,11 @@ public class ExpenseService {
                 );
         expenseRepository.deleteById(id);
         return "Expense has been deleted successfully";
+    }
+
+    public BigDecimal expensesSumByUserCategoryId(BigInteger userCategoryId){
+        Optional<BigDecimal> sum = expenseRepository.expensesSumByUserCategory(userCategoryId);
+        return sum.orElseGet(() -> BigDecimal.valueOf(0));
+
     }
 }
