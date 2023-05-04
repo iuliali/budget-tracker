@@ -25,7 +25,6 @@ public class Budget {
     private BigInteger id;
 
     @Positive(message = "Amount must be positive")
-    @NotBlank
     private BigDecimal amount;
 
     @ManyToOne(fetch = FetchType.LAZY)

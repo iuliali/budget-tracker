@@ -22,7 +22,6 @@ public class BudgetDTO {
     private BigInteger id;
 
     @Positive(message = "Amount must be positive")
-    @NotBlank
     private BigDecimal amount;
 
     private BigInteger userCategoryId;
