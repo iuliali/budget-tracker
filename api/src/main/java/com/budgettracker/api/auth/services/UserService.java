@@ -88,7 +88,16 @@ public class UserService {
     public UserDto findById(BigInteger id) {
         return userRepository.findById(id)
                 .map(UserDto::new)
-                .orElseThrow();
+                .orElseThrow(
+                        () -> new UserDoesNotExistException(UserService.class)
+                );
+    }
+
+    public User findUserById(BigInteger id) {
+        return userRepository.findById(id)
+                .orElseThrow(
+                        () -> new UserDoesNotExistException(UserService.class)
+                );
     }
 
     public User getUserByUsername(String username) {
@@ -196,5 +205,12 @@ public class UserService {
         );
         UserDetailsDto userDetails = new UserDetailsDto(user);
         return userDetails;
+    }
+
+    public User getAuthenticatedUser() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userRepository.findByUsername(username).orElseThrow(
+                () -> new UserDoesNotExistException(UserService.class)
+        );
     }
 }
