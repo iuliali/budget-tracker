@@ -1,8 +1,8 @@
 package com.budgettracker.api.config;
 
-import com.budgettracker.api.filters.JWTAuthorizationFilter;
-import com.budgettracker.api.repositories.UserRepository;
-import com.budgettracker.api.services.CustomDetailsService;
+import com.budgettracker.api.auth.filters.JWTAuthorizationFilter;
+import com.budgettracker.api.auth.repositories.UserRepository;
+import com.budgettracker.api.auth.services.CustomDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
