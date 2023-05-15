@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 
-import 'auth/screens/login.dart';
-import 'auth/screens/register.dart';
-import 'categories/screens/add-category.dart';
-import 'categories/screens/categories.dart';
-import 'common/colors.dart';
-import 'transactions/screens/home.dart';
+import 'injection.dart';
+import 'presentation/auth/screens/login.dart';
+import 'presentation/auth/screens/register.dart';
+import 'presentation/categories/screens/add-category.dart';
+import 'presentation/categories/screens/categories.dart';
+import 'presentation/common/colors.dart';
+import 'presentation/transactions/screens/home.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  configureDependencies();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget{
   const MyApp({super.key});
