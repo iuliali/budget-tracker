@@ -29,7 +29,9 @@ public class Dinics extends NetworkFlowSolverBase {
             }
         }
 
-        for (int i = 0; i < n; i++) if (level[i] != -1) minCut[i] = true;
+        for (int i = 0; i < n; i++)
+            if (level[i] != -1)
+                minCut[i] = true;
     }
 
     private boolean bfs() {

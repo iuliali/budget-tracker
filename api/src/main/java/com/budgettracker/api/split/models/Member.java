@@ -1,8 +1,5 @@
 package com.budgettracker.api.split.models;
 
-import com.budgettracker.api.auth.auth_facade.AuthenticationFacade;
-import com.budgettracker.api.auth.dtos.NewUserDto;
-import com.budgettracker.api.auth.enums.Role;
 import com.budgettracker.api.auth.models.User;
 import jakarta.persistence.*;
 import lombok.*;

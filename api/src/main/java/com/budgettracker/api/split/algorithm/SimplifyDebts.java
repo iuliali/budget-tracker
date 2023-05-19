@@ -1,26 +1,21 @@
 package com.budgettracker.api.split.algorithm;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class SimplifyDebts {
     private static final long OFFSET = 1000000000L;
     private static Set<Long> visitedEdges;
 
+    private SimplifyDebts() {
 
-    private static void createGraphForDebts(List<BigInteger> users, List<SplitTransaction> transacions) {
+    }
+
+    public static List<SplitResult> createGraphForDebts(List<BigInteger> users, List<SplitTransaction> transactions) {
         int n = users.size();
         Dinics solver = new Dinics(n, users);
-        solver = addAllTransactions(solver, transacions);
+        addAllTransactions(solver, transactions);
 
-        System.out.println();
-        System.out.println("Simplifying Debts...");
-        System.out.println("--------------------");
-        System.out.println();
 
         //  Map to keep track of visited edges
         visitedEdges = new HashSet<>();
@@ -31,6 +26,7 @@ public class SimplifyDebts {
             solver.recompute();
             //  Set source and sink in the flow graph
             Dinics.Edge firstEdge = solver.getEdges().get(edgePos);
+
             solver.setSource(firstEdge.from);
             solver.setSink(firstEdge.to);
             //  Initialize the residual graph to be same as the given graph
@@ -42,6 +38,7 @@ public class SimplifyDebts {
                     long remainingFlow = ((edge.flow < 0) ? edge.capacity : (edge.capacity - edge.flow));
                     //  If there is capacity remaining in the graph, then add the remaining capacity as an edge
                     //  so that it can be used for optimizing other debts within the graph
+
                     if(remainingFlow > 0) {
                         newEdges.add(new Dinics.Edge(edge.from, edge.to, remainingFlow));
                     }
@@ -62,13 +59,13 @@ public class SimplifyDebts {
             solver.addEdge(source, sink, maxFlow);
         }
         //  Print the edges in the graph
-        solver.printEdges();
-        System.out.println();
+        return solver.returnEdges();
     }
 
     private static Dinics addAllTransactions(Dinics solver, List<SplitTransaction> transactions) {
         for (SplitTransaction t: transactions) {
-            solver.addEdge(t.getFrom(), t.getTo(), t.getCapacity());
+            solver.addEdge(solver.vertexLabels.indexOf(t.getFrom()),
+                    solver.vertexLabels.indexOf(t.getTo()), t.getCapacity());
         }
         return solver;
     }

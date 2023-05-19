@@ -10,6 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface GroupMemberRepository extends JpaRepository<Member, BigInteger > {
-    @Query("SELECT m FROM member m WHERE m.user.id= :id")
-    Optional<Member> findByUser(BigInteger id);
+    @Query("SELECT m FROM member m WHERE m.user.id=:id AND m.group.id =:groupId")
+    Optional<Member> findByUserAndGroup(BigInteger id, BigInteger groupId);
 }

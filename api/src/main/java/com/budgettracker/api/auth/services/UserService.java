@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -127,6 +128,10 @@ public class UserService {
 
     private void enableUser(String email) {
         userRepository.enableUser(email);
+    }
+
+    public List<User> getAllUsers(){
+        return userRepository.findAll();
     }
 
     private String buildEmail(String name, String link) {

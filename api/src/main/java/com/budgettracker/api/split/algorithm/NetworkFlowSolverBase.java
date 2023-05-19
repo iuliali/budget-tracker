@@ -1,8 +1,12 @@
 package com.budgettracker.api.split.algorithm;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public abstract class NetworkFlowSolverBase {
 
@@ -16,6 +20,12 @@ public abstract class NetworkFlowSolverBase {
         public long cost;
         public final long capacity;
 
+
+        public Edge(BigInteger from, BigInteger to, long capacity) {
+            this.from = from.intValue();
+            this.to = to.intValue();
+            this.capacity = capacity;
+        }
 
         public Edge(int from, int to, long capacity) {
             this.from = from;
@@ -36,16 +46,18 @@ public abstract class NetworkFlowSolverBase {
             residual.flow -= bottleNeck;
         }
 
-        public String toString(int s, int t) {
-            String u = (from == s) ? "s" : ((from == t) ? "t" : String.valueOf(from));
-            String v = (to == s) ? "s" : ((to == t) ? "t" : String.valueOf(to));
+        public String toString() {
+//            String u = (from == s) ? "s" : ((from == t) ? "t" : String.valueOf(from));
+//            String v = (to == s) ? "s" : ((to == t) ? "t" : String.valueOf(to));
             return String.format(
                     "Edge %s -> %s | flow = %d | capacity = %d | is residual: %s",
-                    u, v, flow, capacity, isResidual());
+                    this.from, this.to, flow, capacity, isResidual());
         }
     }
 
-    protected int n, s, t;
+    protected int n;
+    protected int s;
+    protected int t;
 
     protected long maxFlow;
 
@@ -58,7 +70,7 @@ public abstract class NetworkFlowSolverBase {
     protected boolean solved;
 
 
-    public NetworkFlowSolverBase(int n, List<BigInteger> vertexLabels) {
+    protected NetworkFlowSolverBase(int n, List<BigInteger> vertexLabels) {
         this.n = n;
         initializeGraph();
         assignLabelsToVertices(vertexLabels);
@@ -68,7 +80,7 @@ public abstract class NetworkFlowSolverBase {
     }
     private void initializeGraph() {
         graph = new List[n];
-        for (int i = 0; i < n; i++) graph[i] = new ArrayList<Edge>();
+        for (int i = 0; i < n; i++) graph[i] = new ArrayList<>();
     }
 
     private void assignLabelsToVertices(List<BigInteger> vertexLabels) {
@@ -87,7 +99,8 @@ public abstract class NetworkFlowSolverBase {
 
 
     public void addEdge(int from, int to, long capacity) {
-        if (capacity < 0) throw new IllegalArgumentException("Capacity < 0");
+        if (capacity < 0)
+            throw new IllegalArgumentException("Capacity < 0");
         Edge e1 = new Edge(from, to, capacity);
         Edge e2 = new Edge(to, from, 0);
         e1.residual = e2;
@@ -96,6 +109,7 @@ public abstract class NetworkFlowSolverBase {
         graph[to].add(e2);
         edges.add(e1);
     }
+
 
 
     public void visit(int i) {
@@ -160,10 +174,31 @@ public abstract class NetworkFlowSolverBase {
     }
 
 
-    public void printEdges() {
+    public List<SplitResult> returnEdges() {
+       List<Edge>  toDelete = new ArrayList<>();
+       List<Edge> toAdd = new ArrayList<>();
         for(Edge edge : edges) {
-            System.out.println(String.format("%s ----%s----> %s", vertexLabels.get(edge.from), edge.capacity, vertexLabels.get(edge.to)));
+            List<Edge> reversedEdge = edges.stream()
+                    .filter(edge1 -> edge1.to == edge.from && edge1.from ==  edge.to).toList();
+            for( Edge opposite: reversedEdge) {
+                if (opposite.capacity > edge.capacity) {
+                    toAdd.add(new Edge(opposite.from, opposite.to, opposite.capacity - edge.capacity));
+                    toDelete.add(edge);
+                } else {
+                    toAdd.add(new Edge(edge.from, edge.to, edge.capacity - opposite.capacity));
+                    toDelete.add(opposite);
+                }
+            }
         }
+        for(Edge edge: toDelete) {
+            edges.remove(edge);
+        }
+        edges.addAll(toAdd);
+
+        return edges.stream()
+                .map(edge -> new SplitResult(vertexLabels.get(edge.from), vertexLabels.get(edge.to),  edge.capacity))
+                .filter(splitResult -> splitResult.getDebt().compareTo(BigDecimal.valueOf(0.02)) >= 0)
+                .toList();
     }
 
     // Wrapper method that ensures we only call solve() once

@@ -1,6 +1,5 @@
 package com.budgettracker.api.split.services;
 
-import com.budgettracker.api.auth.auth_facade.AuthenticationFacade;
 import com.budgettracker.api.auth.exceptions.UserDoesNotExistException;
 import com.budgettracker.api.auth.models.User;
 import com.budgettracker.api.auth.repositories.UserRepository;
@@ -39,8 +38,8 @@ public class GroupService {
         return groupMemberRepository.findById(id).orElseThrow();
     }
 
-    public Member findMemberByUserId(BigInteger id) {
-        return groupMemberRepository.findByUser(id).orElseThrow();
+    public Member findMemberByUserIdAndGroupId(BigInteger id, BigInteger group_id) {
+        return groupMemberRepository.findByUserAndGroup(id, group_id).orElseThrow();
     }
     public List<User> getUsersByIds(List<BigInteger> userIds) {
         return userIds.stream()
@@ -65,6 +64,7 @@ public class GroupService {
         members.add(toMember(groupAdmin, newGroup, true));
         groupRepository.save(newGroup);
         groupMemberRepository.saveAll(members);
+
     }
 
     public void addMembers(BigInteger groupId, NewMembersDto newMembersDto) {
@@ -76,9 +76,10 @@ public class GroupService {
         }
         List<BigInteger> userIds = newMembersDto.getUserIds();
         List<Member> alreadyMembers = group.getMembers();
+        List<User> alreadyMemberUsers = alreadyMembers.stream().map(Member::getUser).toList();
         List<Member> newMembers = getUsersByIds(userIds).stream()
                 .map(u -> toMember(u, group, false))
-                .filter(alreadyMembers::contains)
+                .filter(m -> !alreadyMemberUsers.contains(m.getUser()))
                 .toList();
         groupMemberRepository.saveAll(newMembers);
     }

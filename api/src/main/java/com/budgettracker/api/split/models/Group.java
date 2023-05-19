@@ -33,6 +33,6 @@ public class Group {
     @ManyToOne(fetch = FetchType.EAGER)
     private User admin;
 
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Member> members;
 }
