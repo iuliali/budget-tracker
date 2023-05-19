@@ -19,7 +19,7 @@ public class UserController {
     private final UserService userService;
     @Operation(summary = "Get authenticated user details")
     @GetMapping(value = "/details")
-    public ResponseEntity<?> confirmEmail() {
+    public ResponseEntity<?> getUserDetails() {
         return ResponseEntity.ok(userService.getAuthenticatedUserDetails());
     }
 

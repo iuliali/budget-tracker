@@ -125,8 +125,7 @@ public class UserService {
                 "\n" +
                 "<span style=\"display:none;font-size:1px;color:#fff;max-height:0\"></span>\n" +
                 "\n" +
-                "  <table role=\"presentation\" width=\"100%\" style=\"border-collapse:collapse;min-width:100%;width:100%!important\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n" +
-                "    <tbody><tr>\n" +
+                "  <table role=\"presentation\" width=\"100%\" style=\"border-collapse:collapse;min-width:100%;width:100%!important\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n    <tbody><tr>\n" +
                 "      <td width=\"100%\" height=\"53\" bgcolor=\"#0b0c0c\">\n" +
                 "        \n" +
                 "        <table role=\"presentation\" width=\"100%\" style=\"border-collapse:collapse;max-width:580px\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" align=\"center\">\n" +
@@ -194,7 +193,6 @@ public class UserService {
         User user = userRepository.findByUsername(username).orElseThrow(
                 () -> new UserDoesNotExistException(UserService.class)
         );
-        UserDetailsDto userDetails = new UserDetailsDto(user);
-        return userDetails;
+        return new UserDetailsDto(user);
     }
 }

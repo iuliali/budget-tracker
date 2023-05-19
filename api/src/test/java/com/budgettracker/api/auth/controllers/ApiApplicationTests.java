@@ -1,18 +1,16 @@
-package com.budgettracker.api.auth;
+package com.budgettracker.api.auth.controllers;
 
-import com.budgettracker.api.controllers.AuthController;
-import com.budgettracker.api.dtos.AuthenticationRequest;
-import com.budgettracker.api.dtos.NewUserDto;
-import com.budgettracker.api.dtos.ResendConfirmationTokenRequest;
-import com.budgettracker.api.services.UserService;
+
+import com.budgettracker.api.auth.dtos.AuthenticationRequest;
+import com.budgettracker.api.auth.dtos.NewUserDto;
+import com.budgettracker.api.auth.dtos.ResendConfirmationTokenRequest;
+import com.budgettracker.api.auth.services.UserService;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -20,7 +18,6 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
-import static org.mockito.MockitoAnnotations.openMocks;
 
 @ExtendWith(MockitoExtension.class)
 class AuthControllerTest {
