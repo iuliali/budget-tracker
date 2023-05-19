@@ -201,13 +201,11 @@ public abstract class NetworkFlowSolverBase {
                 .toList();
     }
 
-    // Wrapper method that ensures we only call solve() once
     private void execute() {
         if (solved) return;
         solved = true;
         solve();
     }
 
-    // Method to implement which solves the network flow problem.
     public abstract void solve();
 }

@@ -1,6 +1,5 @@
 package com.budgettracker.api.split.dtos;
 
-import com.budgettracker.api.budgeting.enums.Currency;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,11 +10,13 @@ import java.math.BigInteger;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
-public class SettleTransactionDto {
-    private BigInteger groupId;
-    private BigInteger memberId;
-    private BigDecimal settleAmount;
-    private boolean addIncome = false;
+public class SplitDto {
+
+    public MemberDto memberFrom;
+    public  MemberDto memberTo;
+    public BigDecimal debt;
+
 
 }

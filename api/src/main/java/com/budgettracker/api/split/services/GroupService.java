@@ -52,6 +52,10 @@ public class GroupService {
                 .toList();
     }
 
+    public List<Group> getGroupsByUserId(BigInteger userId) {
+        return groupMemberRepository.findByUserId(userId).stream().map(Member::getGroup).toList();
+    }
+
     public void createGroup(NewGroupDto newGroupDto) {
         Group newGroup = new Group();
         User groupAdmin = userService.getAuthenticatedUser();

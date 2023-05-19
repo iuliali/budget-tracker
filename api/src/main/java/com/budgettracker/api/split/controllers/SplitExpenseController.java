@@ -24,15 +24,30 @@ public class SplitExpenseController {
     private final SplitService splitService;
 
     @GetMapping("/{groupId}")
-    @Operation(summary = "Calculate debts through algorithm")
-    public ResponseEntity<?> createGroupExpense(@PathVariable BigInteger groupId) {
+    @Operation(summary = "Calculate debts through algorithm for the current logged user in the group.")
+    public ResponseEntity<?> getDebtsForGroup(@PathVariable BigInteger groupId) {
+        /**
+         * Intended to be used to display current debt status for a specific group
+         * with members within that group.
+         */
+        return ResponseEntity.ok(Map.of(MESSAGE, splitService.getGroupDebtStatus(groupId)));
+    }
 
-        return ResponseEntity.ok(Map.of(MESSAGE, splitService.runSplitExpenseAlgorithm(groupId)));
+    @GetMapping("/")
+    @Operation(summary = "Calculate debts through algorithm for the current logged user in all groups.")
+    public ResponseEntity<?> getAllGroupsDebts() {
+        /**
+         * Intended to be used to display a list with groups and current status for every group.
+         */
+        return ResponseEntity.ok(Map.of(MESSAGE, splitService.getAllGroupsDebts()));
     }
 
     @PostMapping("/settle")
     @Operation(summary = "Settle with a member within a group.")
     public ResponseEntity<?> createSettleTransaction(@RequestBody SettleTransactionDto settleTransactionDto) {
+        /**
+         * Settle has an option to add income for person
+         */
         splitService.settle(settleTransactionDto);
         return ResponseEntity.ok(Map.of(MESSAGE, "Settle operation completed!"));
     }
