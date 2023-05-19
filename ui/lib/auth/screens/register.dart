@@ -1,3 +1,4 @@
+import 'package:budget_tracker/auth/screens/verify-email.dart';
 import 'package:budget_tracker/auth/services/auth.dart';
 import 'package:flutter/material.dart';
 
@@ -38,34 +39,45 @@ class _RegisterScreenState extends State<RegisterScreen> {
         });
       }
     } else if (step == 2 && _secondFormKey.currentState!.validate()) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Processing Data'),
+        ),
+      );
+      try {
+        await register(
+          _firstNameController.text,
+          _lastNameController.text,
+          _emailController.text,
+          _usernameController.text,
+          _passwordController.text,
+        );
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Processing Data'),
+            content: Text('Successfully registered your account!'),
           ),
         );
-        try {
-          await register(
-            _firstNameController.text,
-            _lastNameController.text,
-            _emailController.text,
-            _usernameController.text,
-            _passwordController.text,
-          );
-          Navigator.of(context).pushReplacementNamed("/login");
-        } catch (e) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text("Couldn't register your account!"),
+        setState(() {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => const VerifyEmailWidget(),
             ),
           );
-          final errorMessage = e.toString();
-          if (errorMessage.isNotEmpty) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(errorMessage),
-              ),
-            );
-          }
+        });
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Couldn't register your account!"),
+          ),
+        );
+        final errorMessage = e.toString();
+        if (errorMessage.isNotEmpty) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(errorMessage),
+            ),
+          );
+        }
       }
     }
   }
@@ -145,4 +157,3 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 }
-
