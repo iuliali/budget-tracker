@@ -109,7 +109,6 @@ class BudgetServiceTest {
 
     @Test
     void updateActiveBudget_BudgetNotFound_ThrowsBudgetNotFoundException() {
-        // Arrange
         BigInteger userCategoryId = BigInteger.ONE;
         UserCategory userCategory = new UserCategory();
         when(userCategoryService.getUserCategoryById(userCategoryId)).thenReturn(userCategory);
