@@ -1,5 +1,4 @@
-
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -16,48 +15,49 @@ part 'login_form_bloc.freezed.dart';
 class LoginFormBloc extends Bloc<LoginFormEvent, LoginFormState> {
   final IAuthFacade _authFacade;
 
-  LoginFormBloc(this._authFacade) : super(LoginFormState.initial());
+  LoginFormBloc(this._authFacade) : super(LoginFormState.initial()) {
+    on<UsernameChanged>(_onUsernameChanged);
+    on<PasswordChanged>(_onPasswordChanged);
+    on<LoginWithUsernameAndPasswordPressed>(_onLoginWithUsernameAndPasswordPressed);
+  }
 
-  @override
-  Stream<LoginFormState> mapEventToState(LoginFormEvent event) async* {
-    yield* event.map(
-      usernameChanged: (e) async* {
-        yield state.copyWith(
-          username: Username(e.usernameStr),
-          authFailureOrSuccessOption: none(),
-        );
-      },
-      passwordChanged: (e) async* {
-        yield state.copyWith(
-          password: Password(e.passwordStr),
-          authFailureOrSuccessOption: none(),
-        );
-      },
-      loginWithEmailAndPasswordPressed: (e) async* {
-        Either<AuthFailure, Unit>? failureOrSuccess;
+  Future _onUsernameChanged(UsernameChanged event, Emitter<LoginFormState> emit) async {
+    emit(state.copyWith(
+      username: Username(event.usernameStr),
+      authFailureOrSuccessOption: none(),
+    ));
+  }
 
-        final isUsernameValid = state.username.isValid();
-        final isPasswordValid = state.password.isValid();
+  Future _onPasswordChanged(PasswordChanged event, Emitter<LoginFormState> emit) async {
+    emit(state.copyWith(
+      password: Password(event.passwordStr),
+      authFailureOrSuccessOption: none(),
+    ));
+  }
 
-        if (isUsernameValid && isPasswordValid) {
-          yield state.copyWith(
-            isSubmitting: true,
-            authFailureOrSuccessOption: none(),
-          );
+  Future _onLoginWithUsernameAndPasswordPressed(LoginWithUsernameAndPasswordPressed event, Emitter<LoginFormState> emit) async {
+    Either<AuthFailure, Unit>? failureOrSuccess;
 
-          failureOrSuccess = await _authFacade.login(
-            username: state.username,
-            password: state.password,
-          );
-        }
+    final isUsernameValid = state.username.isValid();
+    final isPasswordValid = state.password.isValid();
 
-        yield state.copyWith(
-          isSubmitting: false,
-          showErrorMessages: true,
-          authFailureOrSuccessOption: optionOf(failureOrSuccess),
-        );
-      },
-    );
+    if (isUsernameValid && isPasswordValid) {
+      emit(state.copyWith(
+        isSubmitting: true,
+        authFailureOrSuccessOption: none(),
+      ));
+
+      failureOrSuccess = await _authFacade.login(
+        username: state.username,
+        password: state.password,
+      );
+    }
+
+    emit(state.copyWith(
+      isSubmitting: false,
+      showErrorMessages: true,
+      authFailureOrSuccessOption: optionOf(failureOrSuccess),
+    ));
   }
 
 }

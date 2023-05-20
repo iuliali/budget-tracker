@@ -50,7 +50,7 @@ class FirstName extends ValueObject<String> {
   const FirstName._(this.value);
 
   factory FirstName(String input) {
-    return FirstName._(right(input));
+    return FirstName._(validateFirstName(input));
   }
 }
 
@@ -62,6 +62,6 @@ class LastName extends ValueObject<String> {
   const LastName._(this.value);
 
   factory LastName(String input) {
-    return LastName._(right(input));
+    return LastName._(validateLastName(input));
   }
 }

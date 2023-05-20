@@ -10,6 +10,7 @@ abstract class AuthFailure with _$AuthFailure implements Failure {
       InvalidUsernameAndPasswordCombination;
   const factory AuthFailure.emailAlreadyInUse() = EmailAlreadyInUse;
   const factory AuthFailure.usernameAlreadyInUse() = UsernameAlreadyInUse;
+  const factory AuthFailure.passwordsNotMatch() = PasswordsNotMatch;
   const factory AuthFailure.serverError() = ServerError;
   const factory AuthFailure.cacheError() = CacheError;
   const factory AuthFailure.connectionError() = ConnectionError;

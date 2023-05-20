@@ -20,21 +20,21 @@ mixin _$LoginFormEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String usernameStr) usernameChanged,
     required TResult Function(String passwordStr) passwordChanged,
-    required TResult Function() loginWithEmailAndPasswordPressed,
+    required TResult Function() loginWithUsernameAndPasswordPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String usernameStr)? usernameChanged,
     TResult? Function(String passwordStr)? passwordChanged,
-    TResult? Function()? loginWithEmailAndPasswordPressed,
+    TResult? Function()? loginWithUsernameAndPasswordPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String usernameStr)? usernameChanged,
     TResult Function(String passwordStr)? passwordChanged,
-    TResult Function()? loginWithEmailAndPasswordPressed,
+    TResult Function()? loginWithUsernameAndPasswordPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -42,24 +42,24 @@ mixin _$LoginFormEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(UsernameChanged value) usernameChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
-    required TResult Function(LoginWithEmailAndPasswordPressed value)
-        loginWithEmailAndPasswordPressed,
+    required TResult Function(LoginWithUsernameAndPasswordPressed value)
+        loginWithUsernameAndPasswordPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UsernameChanged value)? usernameChanged,
     TResult? Function(PasswordChanged value)? passwordChanged,
-    TResult? Function(LoginWithEmailAndPasswordPressed value)?
-        loginWithEmailAndPasswordPressed,
+    TResult? Function(LoginWithUsernameAndPasswordPressed value)?
+        loginWithUsernameAndPasswordPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UsernameChanged value)? usernameChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
-    TResult Function(LoginWithEmailAndPasswordPressed value)?
-        loginWithEmailAndPasswordPressed,
+    TResult Function(LoginWithUsernameAndPasswordPressed value)?
+        loginWithUsernameAndPasswordPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -150,7 +150,7 @@ class _$UsernameChanged implements UsernameChanged {
   TResult when<TResult extends Object?>({
     required TResult Function(String usernameStr) usernameChanged,
     required TResult Function(String passwordStr) passwordChanged,
-    required TResult Function() loginWithEmailAndPasswordPressed,
+    required TResult Function() loginWithUsernameAndPasswordPressed,
   }) {
     return usernameChanged(usernameStr);
   }
@@ -160,7 +160,7 @@ class _$UsernameChanged implements UsernameChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String usernameStr)? usernameChanged,
     TResult? Function(String passwordStr)? passwordChanged,
-    TResult? Function()? loginWithEmailAndPasswordPressed,
+    TResult? Function()? loginWithUsernameAndPasswordPressed,
   }) {
     return usernameChanged?.call(usernameStr);
   }
@@ -170,7 +170,7 @@ class _$UsernameChanged implements UsernameChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String usernameStr)? usernameChanged,
     TResult Function(String passwordStr)? passwordChanged,
-    TResult Function()? loginWithEmailAndPasswordPressed,
+    TResult Function()? loginWithUsernameAndPasswordPressed,
     required TResult orElse(),
   }) {
     if (usernameChanged != null) {
@@ -184,8 +184,8 @@ class _$UsernameChanged implements UsernameChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(UsernameChanged value) usernameChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
-    required TResult Function(LoginWithEmailAndPasswordPressed value)
-        loginWithEmailAndPasswordPressed,
+    required TResult Function(LoginWithUsernameAndPasswordPressed value)
+        loginWithUsernameAndPasswordPressed,
   }) {
     return usernameChanged(this);
   }
@@ -195,8 +195,8 @@ class _$UsernameChanged implements UsernameChanged {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UsernameChanged value)? usernameChanged,
     TResult? Function(PasswordChanged value)? passwordChanged,
-    TResult? Function(LoginWithEmailAndPasswordPressed value)?
-        loginWithEmailAndPasswordPressed,
+    TResult? Function(LoginWithUsernameAndPasswordPressed value)?
+        loginWithUsernameAndPasswordPressed,
   }) {
     return usernameChanged?.call(this);
   }
@@ -206,8 +206,8 @@ class _$UsernameChanged implements UsernameChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UsernameChanged value)? usernameChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
-    TResult Function(LoginWithEmailAndPasswordPressed value)?
-        loginWithEmailAndPasswordPressed,
+    TResult Function(LoginWithUsernameAndPasswordPressed value)?
+        loginWithUsernameAndPasswordPressed,
     required TResult orElse(),
   }) {
     if (usernameChanged != null) {
@@ -293,7 +293,7 @@ class _$PasswordChanged implements PasswordChanged {
   TResult when<TResult extends Object?>({
     required TResult Function(String usernameStr) usernameChanged,
     required TResult Function(String passwordStr) passwordChanged,
-    required TResult Function() loginWithEmailAndPasswordPressed,
+    required TResult Function() loginWithUsernameAndPasswordPressed,
   }) {
     return passwordChanged(passwordStr);
   }
@@ -303,7 +303,7 @@ class _$PasswordChanged implements PasswordChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String usernameStr)? usernameChanged,
     TResult? Function(String passwordStr)? passwordChanged,
-    TResult? Function()? loginWithEmailAndPasswordPressed,
+    TResult? Function()? loginWithUsernameAndPasswordPressed,
   }) {
     return passwordChanged?.call(passwordStr);
   }
@@ -313,7 +313,7 @@ class _$PasswordChanged implements PasswordChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String usernameStr)? usernameChanged,
     TResult Function(String passwordStr)? passwordChanged,
-    TResult Function()? loginWithEmailAndPasswordPressed,
+    TResult Function()? loginWithUsernameAndPasswordPressed,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -327,8 +327,8 @@ class _$PasswordChanged implements PasswordChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(UsernameChanged value) usernameChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
-    required TResult Function(LoginWithEmailAndPasswordPressed value)
-        loginWithEmailAndPasswordPressed,
+    required TResult Function(LoginWithUsernameAndPasswordPressed value)
+        loginWithUsernameAndPasswordPressed,
   }) {
     return passwordChanged(this);
   }
@@ -338,8 +338,8 @@ class _$PasswordChanged implements PasswordChanged {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UsernameChanged value)? usernameChanged,
     TResult? Function(PasswordChanged value)? passwordChanged,
-    TResult? Function(LoginWithEmailAndPasswordPressed value)?
-        loginWithEmailAndPasswordPressed,
+    TResult? Function(LoginWithUsernameAndPasswordPressed value)?
+        loginWithUsernameAndPasswordPressed,
   }) {
     return passwordChanged?.call(this);
   }
@@ -349,8 +349,8 @@ class _$PasswordChanged implements PasswordChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UsernameChanged value)? usernameChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
-    TResult Function(LoginWithEmailAndPasswordPressed value)?
-        loginWithEmailAndPasswordPressed,
+    TResult Function(LoginWithUsernameAndPasswordPressed value)?
+        loginWithUsernameAndPasswordPressed,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -370,40 +370,40 @@ abstract class PasswordChanged implements LoginFormEvent {
 }
 
 /// @nodoc
-abstract class _$$LoginWithEmailAndPasswordPressedCopyWith<$Res> {
-  factory _$$LoginWithEmailAndPasswordPressedCopyWith(
-          _$LoginWithEmailAndPasswordPressed value,
-          $Res Function(_$LoginWithEmailAndPasswordPressed) then) =
-      __$$LoginWithEmailAndPasswordPressedCopyWithImpl<$Res>;
+abstract class _$$LoginWithUsernameAndPasswordPressedCopyWith<$Res> {
+  factory _$$LoginWithUsernameAndPasswordPressedCopyWith(
+          _$LoginWithUsernameAndPasswordPressed value,
+          $Res Function(_$LoginWithUsernameAndPasswordPressed) then) =
+      __$$LoginWithUsernameAndPasswordPressedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoginWithEmailAndPasswordPressedCopyWithImpl<$Res>
+class __$$LoginWithUsernameAndPasswordPressedCopyWithImpl<$Res>
     extends _$LoginFormEventCopyWithImpl<$Res,
-        _$LoginWithEmailAndPasswordPressed>
-    implements _$$LoginWithEmailAndPasswordPressedCopyWith<$Res> {
-  __$$LoginWithEmailAndPasswordPressedCopyWithImpl(
-      _$LoginWithEmailAndPasswordPressed _value,
-      $Res Function(_$LoginWithEmailAndPasswordPressed) _then)
+        _$LoginWithUsernameAndPasswordPressed>
+    implements _$$LoginWithUsernameAndPasswordPressedCopyWith<$Res> {
+  __$$LoginWithUsernameAndPasswordPressedCopyWithImpl(
+      _$LoginWithUsernameAndPasswordPressed _value,
+      $Res Function(_$LoginWithUsernameAndPasswordPressed) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$LoginWithEmailAndPasswordPressed
-    implements LoginWithEmailAndPasswordPressed {
-  const _$LoginWithEmailAndPasswordPressed();
+class _$LoginWithUsernameAndPasswordPressed
+    implements LoginWithUsernameAndPasswordPressed {
+  const _$LoginWithUsernameAndPasswordPressed();
 
   @override
   String toString() {
-    return 'LoginFormEvent.loginWithEmailAndPasswordPressed()';
+    return 'LoginFormEvent.loginWithUsernameAndPasswordPressed()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoginWithEmailAndPasswordPressed);
+            other is _$LoginWithUsernameAndPasswordPressed);
   }
 
   @override
@@ -414,9 +414,9 @@ class _$LoginWithEmailAndPasswordPressed
   TResult when<TResult extends Object?>({
     required TResult Function(String usernameStr) usernameChanged,
     required TResult Function(String passwordStr) passwordChanged,
-    required TResult Function() loginWithEmailAndPasswordPressed,
+    required TResult Function() loginWithUsernameAndPasswordPressed,
   }) {
-    return loginWithEmailAndPasswordPressed();
+    return loginWithUsernameAndPasswordPressed();
   }
 
   @override
@@ -424,9 +424,9 @@ class _$LoginWithEmailAndPasswordPressed
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String usernameStr)? usernameChanged,
     TResult? Function(String passwordStr)? passwordChanged,
-    TResult? Function()? loginWithEmailAndPasswordPressed,
+    TResult? Function()? loginWithUsernameAndPasswordPressed,
   }) {
-    return loginWithEmailAndPasswordPressed?.call();
+    return loginWithUsernameAndPasswordPressed?.call();
   }
 
   @override
@@ -434,11 +434,11 @@ class _$LoginWithEmailAndPasswordPressed
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String usernameStr)? usernameChanged,
     TResult Function(String passwordStr)? passwordChanged,
-    TResult Function()? loginWithEmailAndPasswordPressed,
+    TResult Function()? loginWithUsernameAndPasswordPressed,
     required TResult orElse(),
   }) {
-    if (loginWithEmailAndPasswordPressed != null) {
-      return loginWithEmailAndPasswordPressed();
+    if (loginWithUsernameAndPasswordPressed != null) {
+      return loginWithUsernameAndPasswordPressed();
     }
     return orElse();
   }
@@ -448,10 +448,10 @@ class _$LoginWithEmailAndPasswordPressed
   TResult map<TResult extends Object?>({
     required TResult Function(UsernameChanged value) usernameChanged,
     required TResult Function(PasswordChanged value) passwordChanged,
-    required TResult Function(LoginWithEmailAndPasswordPressed value)
-        loginWithEmailAndPasswordPressed,
+    required TResult Function(LoginWithUsernameAndPasswordPressed value)
+        loginWithUsernameAndPasswordPressed,
   }) {
-    return loginWithEmailAndPasswordPressed(this);
+    return loginWithUsernameAndPasswordPressed(this);
   }
 
   @override
@@ -459,10 +459,10 @@ class _$LoginWithEmailAndPasswordPressed
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UsernameChanged value)? usernameChanged,
     TResult? Function(PasswordChanged value)? passwordChanged,
-    TResult? Function(LoginWithEmailAndPasswordPressed value)?
-        loginWithEmailAndPasswordPressed,
+    TResult? Function(LoginWithUsernameAndPasswordPressed value)?
+        loginWithUsernameAndPasswordPressed,
   }) {
-    return loginWithEmailAndPasswordPressed?.call(this);
+    return loginWithUsernameAndPasswordPressed?.call(this);
   }
 
   @override
@@ -470,20 +470,20 @@ class _$LoginWithEmailAndPasswordPressed
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UsernameChanged value)? usernameChanged,
     TResult Function(PasswordChanged value)? passwordChanged,
-    TResult Function(LoginWithEmailAndPasswordPressed value)?
-        loginWithEmailAndPasswordPressed,
+    TResult Function(LoginWithUsernameAndPasswordPressed value)?
+        loginWithUsernameAndPasswordPressed,
     required TResult orElse(),
   }) {
-    if (loginWithEmailAndPasswordPressed != null) {
-      return loginWithEmailAndPasswordPressed(this);
+    if (loginWithUsernameAndPasswordPressed != null) {
+      return loginWithUsernameAndPasswordPressed(this);
     }
     return orElse();
   }
 }
 
-abstract class LoginWithEmailAndPasswordPressed implements LoginFormEvent {
-  const factory LoginWithEmailAndPasswordPressed() =
-      _$LoginWithEmailAndPasswordPressed;
+abstract class LoginWithUsernameAndPasswordPressed implements LoginFormEvent {
+  const factory LoginWithUsernameAndPasswordPressed() =
+      _$LoginWithUsernameAndPasswordPressed;
 }
 
 /// @nodoc

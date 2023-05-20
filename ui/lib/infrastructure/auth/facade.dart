@@ -1,19 +1,20 @@
+import 'package:budget_tracker/domain/auth/entities/user.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../application/core/network/network_info.dart';
+import '../../application/core/network_info.dart';
 import '../../domain/auth/failures.dart';
 import '../../domain/auth/value_objects.dart';
 import '../../domain/auth/facade.dart';
-import 'datasources/auth_api_datasource.dart';
+import 'datasources/auth_remote_datasource.dart';
 import 'datasources/auth_local_datasource.dart';
 import 'exceptions.dart';
 
-@LazySingleton(as: IAuthFacade)
+@Singleton(as: IAuthFacade)
 class AuthFacade implements IAuthFacade {
   final AuthRemoteDataSource remoteDataSource;
   final AuthLocalDataSource localDataSource;
-  final NetworkInfo networkInfo;
+  final INetworkInfo networkInfo;
 
   AuthFacade({
     required this.remoteDataSource,
@@ -28,25 +29,25 @@ class AuthFacade implements IAuthFacade {
   }) async {
     final usernameStr = username.getOrCrash();
     final passwordStr = password.getOrCrash();
-    if (!await networkInfo.isConnected) {
+    if (await networkInfo.isConnected) {
       try {
-        await localDataSource.getCachedAccessToken();
+        final remoteAccessToken = await remoteDataSource.login(
+          username: usernameStr,
+          password: passwordStr,
+        );
+        localDataSource.cacheAccessToken(remoteAccessToken);
         return const Right(unit);
-      } on AuthCacheException {
-        return const Left(AuthFailure.cacheError());
+      } on InvalidCredentialsException {
+        return const Left(AuthFailure.invalidUsernameAndPasswordCombination());
+      } on AuthServerException {
+        return const Left(AuthFailure.serverError());
       }
     }
     try {
-      final remoteAccessToken = await remoteDataSource.login(
-        username: usernameStr,
-        password: passwordStr,
-      );
-      localDataSource.cacheAccessToken(remoteAccessToken);
+      await localDataSource.getCachedAccessToken();
       return const Right(unit);
-    } on InvalidCredentialsException {
-      return const Left(AuthFailure.invalidUsernameAndPasswordCombination());
-    } on AuthServerException {
-      return const Left(AuthFailure.serverError());
+    } catch (_) {
+      return const Left(AuthFailure.connectionError());
     }
   }
 
@@ -82,5 +83,22 @@ class AuthFacade implements IAuthFacade {
     } on AuthServerException {
       return const Left(AuthFailure.serverError());
     }
+  }
+
+  @override
+  Future<Option<User>> getSignedInUser() async {
+    try {
+      final accessToken = await localDataSource.getCachedAccessToken();
+      final userModel = await remoteDataSource.getUser(accessToken: accessToken);
+      return optionOf(userModel.toDomain());
+    } catch (_) {
+      return none();
+    }
+  }
+
+  @override
+  Future<void> signOut() {
+    // TODO: implement signOut
+    throw UnimplementedError();
   }
 }

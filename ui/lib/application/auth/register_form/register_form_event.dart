@@ -9,4 +9,5 @@ abstract class RegisterFormEvent with _$RegisterFormEvent {
   const factory RegisterFormEvent.firstNameChanged(String firstNameStr) = FirstNameChanged;
   const factory RegisterFormEvent.lastNameChanged(String lastNameStr) = LastNameChanged;
   const factory RegisterFormEvent.registerPressed() = RegisterPressed;
+  const factory RegisterFormEvent.registerAgain() = RegisterAgain;
 }

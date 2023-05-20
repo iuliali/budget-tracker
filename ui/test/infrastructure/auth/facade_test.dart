@@ -1,7 +1,7 @@
-import 'package:budget_tracker/application/core/network/network_info.dart';
+import 'package:budget_tracker/application/core/network_info.dart';
 import 'package:budget_tracker/domain/auth/failures.dart';
 import 'package:budget_tracker/domain/auth/value_objects.dart';
-import 'package:budget_tracker/infrastructure/auth/datasources/auth_api_datasource.dart';
+import 'package:budget_tracker/infrastructure/auth/datasources/auth_remote_datasource.dart';
 import 'package:budget_tracker/infrastructure/auth/datasources/auth_local_datasource.dart';
 import 'package:budget_tracker/infrastructure/auth/exceptions.dart';
 import 'package:budget_tracker/infrastructure/auth/facade.dart';
@@ -14,7 +14,7 @@ class MockAuthRemoteDataSource extends Mock implements AuthRemoteDataSource {}
 
 class MockAuthLocalDataSource extends Mock implements AuthLocalDataSource {}
 
-class MockNetworkInfo extends Mock implements NetworkInfo {}
+class MockNetworkInfo extends Mock implements INetworkInfo {}
 
 void main() {
   late AuthFacade repository;

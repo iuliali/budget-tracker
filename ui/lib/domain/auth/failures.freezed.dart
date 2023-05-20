@@ -21,6 +21,7 @@ mixin _$AuthFailure {
     required TResult Function() invalidUsernameAndPasswordCombination,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() usernameAlreadyInUse,
+    required TResult Function() passwordsNotMatch,
     required TResult Function() serverError,
     required TResult Function() cacheError,
     required TResult Function() connectionError,
@@ -31,6 +32,7 @@ mixin _$AuthFailure {
     TResult? Function()? invalidUsernameAndPasswordCombination,
     TResult? Function()? emailAlreadyInUse,
     TResult? Function()? usernameAlreadyInUse,
+    TResult? Function()? passwordsNotMatch,
     TResult? Function()? serverError,
     TResult? Function()? cacheError,
     TResult? Function()? connectionError,
@@ -41,6 +43,7 @@ mixin _$AuthFailure {
     TResult Function()? invalidUsernameAndPasswordCombination,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? usernameAlreadyInUse,
+    TResult Function()? passwordsNotMatch,
     TResult Function()? serverError,
     TResult Function()? cacheError,
     TResult Function()? connectionError,
@@ -53,6 +56,7 @@ mixin _$AuthFailure {
         invalidUsernameAndPasswordCombination,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
     required TResult Function(UsernameAlreadyInUse value) usernameAlreadyInUse,
+    required TResult Function(PasswordsNotMatch value) passwordsNotMatch,
     required TResult Function(ServerError value) serverError,
     required TResult Function(CacheError value) cacheError,
     required TResult Function(ConnectionError value) connectionError,
@@ -64,6 +68,7 @@ mixin _$AuthFailure {
         invalidUsernameAndPasswordCombination,
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult? Function(UsernameAlreadyInUse value)? usernameAlreadyInUse,
+    TResult? Function(PasswordsNotMatch value)? passwordsNotMatch,
     TResult? Function(ServerError value)? serverError,
     TResult? Function(CacheError value)? cacheError,
     TResult? Function(ConnectionError value)? connectionError,
@@ -75,6 +80,7 @@ mixin _$AuthFailure {
         invalidUsernameAndPasswordCombination,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(UsernameAlreadyInUse value)? usernameAlreadyInUse,
+    TResult Function(PasswordsNotMatch value)? passwordsNotMatch,
     TResult Function(ServerError value)? serverError,
     TResult Function(CacheError value)? cacheError,
     TResult Function(ConnectionError value)? connectionError,
@@ -147,6 +153,7 @@ class _$InvalidUsernameAndPasswordCombination
     required TResult Function() invalidUsernameAndPasswordCombination,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() usernameAlreadyInUse,
+    required TResult Function() passwordsNotMatch,
     required TResult Function() serverError,
     required TResult Function() cacheError,
     required TResult Function() connectionError,
@@ -160,6 +167,7 @@ class _$InvalidUsernameAndPasswordCombination
     TResult? Function()? invalidUsernameAndPasswordCombination,
     TResult? Function()? emailAlreadyInUse,
     TResult? Function()? usernameAlreadyInUse,
+    TResult? Function()? passwordsNotMatch,
     TResult? Function()? serverError,
     TResult? Function()? cacheError,
     TResult? Function()? connectionError,
@@ -173,6 +181,7 @@ class _$InvalidUsernameAndPasswordCombination
     TResult Function()? invalidUsernameAndPasswordCombination,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? usernameAlreadyInUse,
+    TResult Function()? passwordsNotMatch,
     TResult Function()? serverError,
     TResult Function()? cacheError,
     TResult Function()? connectionError,
@@ -191,6 +200,7 @@ class _$InvalidUsernameAndPasswordCombination
         invalidUsernameAndPasswordCombination,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
     required TResult Function(UsernameAlreadyInUse value) usernameAlreadyInUse,
+    required TResult Function(PasswordsNotMatch value) passwordsNotMatch,
     required TResult Function(ServerError value) serverError,
     required TResult Function(CacheError value) cacheError,
     required TResult Function(ConnectionError value) connectionError,
@@ -205,6 +215,7 @@ class _$InvalidUsernameAndPasswordCombination
         invalidUsernameAndPasswordCombination,
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult? Function(UsernameAlreadyInUse value)? usernameAlreadyInUse,
+    TResult? Function(PasswordsNotMatch value)? passwordsNotMatch,
     TResult? Function(ServerError value)? serverError,
     TResult? Function(CacheError value)? cacheError,
     TResult? Function(ConnectionError value)? connectionError,
@@ -219,6 +230,7 @@ class _$InvalidUsernameAndPasswordCombination
         invalidUsernameAndPasswordCombination,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(UsernameAlreadyInUse value)? usernameAlreadyInUse,
+    TResult Function(PasswordsNotMatch value)? passwordsNotMatch,
     TResult Function(ServerError value)? serverError,
     TResult Function(CacheError value)? cacheError,
     TResult Function(ConnectionError value)? connectionError,
@@ -277,6 +289,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     required TResult Function() invalidUsernameAndPasswordCombination,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() usernameAlreadyInUse,
+    required TResult Function() passwordsNotMatch,
     required TResult Function() serverError,
     required TResult Function() cacheError,
     required TResult Function() connectionError,
@@ -290,6 +303,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     TResult? Function()? invalidUsernameAndPasswordCombination,
     TResult? Function()? emailAlreadyInUse,
     TResult? Function()? usernameAlreadyInUse,
+    TResult? Function()? passwordsNotMatch,
     TResult? Function()? serverError,
     TResult? Function()? cacheError,
     TResult? Function()? connectionError,
@@ -303,6 +317,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     TResult Function()? invalidUsernameAndPasswordCombination,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? usernameAlreadyInUse,
+    TResult Function()? passwordsNotMatch,
     TResult Function()? serverError,
     TResult Function()? cacheError,
     TResult Function()? connectionError,
@@ -321,6 +336,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
         invalidUsernameAndPasswordCombination,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
     required TResult Function(UsernameAlreadyInUse value) usernameAlreadyInUse,
+    required TResult Function(PasswordsNotMatch value) passwordsNotMatch,
     required TResult Function(ServerError value) serverError,
     required TResult Function(CacheError value) cacheError,
     required TResult Function(ConnectionError value) connectionError,
@@ -335,6 +351,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
         invalidUsernameAndPasswordCombination,
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult? Function(UsernameAlreadyInUse value)? usernameAlreadyInUse,
+    TResult? Function(PasswordsNotMatch value)? passwordsNotMatch,
     TResult? Function(ServerError value)? serverError,
     TResult? Function(CacheError value)? cacheError,
     TResult? Function(ConnectionError value)? connectionError,
@@ -349,6 +366,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
         invalidUsernameAndPasswordCombination,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(UsernameAlreadyInUse value)? usernameAlreadyInUse,
+    TResult Function(PasswordsNotMatch value)? passwordsNotMatch,
     TResult Function(ServerError value)? serverError,
     TResult Function(CacheError value)? cacheError,
     TResult Function(ConnectionError value)? connectionError,
@@ -406,6 +424,7 @@ class _$UsernameAlreadyInUse implements UsernameAlreadyInUse {
     required TResult Function() invalidUsernameAndPasswordCombination,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() usernameAlreadyInUse,
+    required TResult Function() passwordsNotMatch,
     required TResult Function() serverError,
     required TResult Function() cacheError,
     required TResult Function() connectionError,
@@ -419,6 +438,7 @@ class _$UsernameAlreadyInUse implements UsernameAlreadyInUse {
     TResult? Function()? invalidUsernameAndPasswordCombination,
     TResult? Function()? emailAlreadyInUse,
     TResult? Function()? usernameAlreadyInUse,
+    TResult? Function()? passwordsNotMatch,
     TResult? Function()? serverError,
     TResult? Function()? cacheError,
     TResult? Function()? connectionError,
@@ -432,6 +452,7 @@ class _$UsernameAlreadyInUse implements UsernameAlreadyInUse {
     TResult Function()? invalidUsernameAndPasswordCombination,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? usernameAlreadyInUse,
+    TResult Function()? passwordsNotMatch,
     TResult Function()? serverError,
     TResult Function()? cacheError,
     TResult Function()? connectionError,
@@ -450,6 +471,7 @@ class _$UsernameAlreadyInUse implements UsernameAlreadyInUse {
         invalidUsernameAndPasswordCombination,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
     required TResult Function(UsernameAlreadyInUse value) usernameAlreadyInUse,
+    required TResult Function(PasswordsNotMatch value) passwordsNotMatch,
     required TResult Function(ServerError value) serverError,
     required TResult Function(CacheError value) cacheError,
     required TResult Function(ConnectionError value) connectionError,
@@ -464,6 +486,7 @@ class _$UsernameAlreadyInUse implements UsernameAlreadyInUse {
         invalidUsernameAndPasswordCombination,
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult? Function(UsernameAlreadyInUse value)? usernameAlreadyInUse,
+    TResult? Function(PasswordsNotMatch value)? passwordsNotMatch,
     TResult? Function(ServerError value)? serverError,
     TResult? Function(CacheError value)? cacheError,
     TResult? Function(ConnectionError value)? connectionError,
@@ -478,6 +501,7 @@ class _$UsernameAlreadyInUse implements UsernameAlreadyInUse {
         invalidUsernameAndPasswordCombination,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(UsernameAlreadyInUse value)? usernameAlreadyInUse,
+    TResult Function(PasswordsNotMatch value)? passwordsNotMatch,
     TResult Function(ServerError value)? serverError,
     TResult Function(CacheError value)? cacheError,
     TResult Function(ConnectionError value)? connectionError,
@@ -492,6 +516,141 @@ class _$UsernameAlreadyInUse implements UsernameAlreadyInUse {
 
 abstract class UsernameAlreadyInUse implements AuthFailure {
   const factory UsernameAlreadyInUse() = _$UsernameAlreadyInUse;
+}
+
+/// @nodoc
+abstract class _$$PasswordsNotMatchCopyWith<$Res> {
+  factory _$$PasswordsNotMatchCopyWith(
+          _$PasswordsNotMatch value, $Res Function(_$PasswordsNotMatch) then) =
+      __$$PasswordsNotMatchCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$PasswordsNotMatchCopyWithImpl<$Res>
+    extends _$AuthFailureCopyWithImpl<$Res, _$PasswordsNotMatch>
+    implements _$$PasswordsNotMatchCopyWith<$Res> {
+  __$$PasswordsNotMatchCopyWithImpl(
+      _$PasswordsNotMatch _value, $Res Function(_$PasswordsNotMatch) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$PasswordsNotMatch implements PasswordsNotMatch {
+  const _$PasswordsNotMatch();
+
+  @override
+  String toString() {
+    return 'AuthFailure.passwordsNotMatch()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$PasswordsNotMatch);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() invalidUsernameAndPasswordCombination,
+    required TResult Function() emailAlreadyInUse,
+    required TResult Function() usernameAlreadyInUse,
+    required TResult Function() passwordsNotMatch,
+    required TResult Function() serverError,
+    required TResult Function() cacheError,
+    required TResult Function() connectionError,
+  }) {
+    return passwordsNotMatch();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? invalidUsernameAndPasswordCombination,
+    TResult? Function()? emailAlreadyInUse,
+    TResult? Function()? usernameAlreadyInUse,
+    TResult? Function()? passwordsNotMatch,
+    TResult? Function()? serverError,
+    TResult? Function()? cacheError,
+    TResult? Function()? connectionError,
+  }) {
+    return passwordsNotMatch?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? invalidUsernameAndPasswordCombination,
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? usernameAlreadyInUse,
+    TResult Function()? passwordsNotMatch,
+    TResult Function()? serverError,
+    TResult Function()? cacheError,
+    TResult Function()? connectionError,
+    required TResult orElse(),
+  }) {
+    if (passwordsNotMatch != null) {
+      return passwordsNotMatch();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InvalidUsernameAndPasswordCombination value)
+        invalidUsernameAndPasswordCombination,
+    required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(UsernameAlreadyInUse value) usernameAlreadyInUse,
+    required TResult Function(PasswordsNotMatch value) passwordsNotMatch,
+    required TResult Function(ServerError value) serverError,
+    required TResult Function(CacheError value) cacheError,
+    required TResult Function(ConnectionError value) connectionError,
+  }) {
+    return passwordsNotMatch(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(InvalidUsernameAndPasswordCombination value)?
+        invalidUsernameAndPasswordCombination,
+    TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult? Function(UsernameAlreadyInUse value)? usernameAlreadyInUse,
+    TResult? Function(PasswordsNotMatch value)? passwordsNotMatch,
+    TResult? Function(ServerError value)? serverError,
+    TResult? Function(CacheError value)? cacheError,
+    TResult? Function(ConnectionError value)? connectionError,
+  }) {
+    return passwordsNotMatch?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InvalidUsernameAndPasswordCombination value)?
+        invalidUsernameAndPasswordCombination,
+    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(UsernameAlreadyInUse value)? usernameAlreadyInUse,
+    TResult Function(PasswordsNotMatch value)? passwordsNotMatch,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(CacheError value)? cacheError,
+    TResult Function(ConnectionError value)? connectionError,
+    required TResult orElse(),
+  }) {
+    if (passwordsNotMatch != null) {
+      return passwordsNotMatch(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PasswordsNotMatch implements AuthFailure {
+  const factory PasswordsNotMatch() = _$PasswordsNotMatch;
 }
 
 /// @nodoc
@@ -535,6 +694,7 @@ class _$ServerError implements ServerError {
     required TResult Function() invalidUsernameAndPasswordCombination,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() usernameAlreadyInUse,
+    required TResult Function() passwordsNotMatch,
     required TResult Function() serverError,
     required TResult Function() cacheError,
     required TResult Function() connectionError,
@@ -548,6 +708,7 @@ class _$ServerError implements ServerError {
     TResult? Function()? invalidUsernameAndPasswordCombination,
     TResult? Function()? emailAlreadyInUse,
     TResult? Function()? usernameAlreadyInUse,
+    TResult? Function()? passwordsNotMatch,
     TResult? Function()? serverError,
     TResult? Function()? cacheError,
     TResult? Function()? connectionError,
@@ -561,6 +722,7 @@ class _$ServerError implements ServerError {
     TResult Function()? invalidUsernameAndPasswordCombination,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? usernameAlreadyInUse,
+    TResult Function()? passwordsNotMatch,
     TResult Function()? serverError,
     TResult Function()? cacheError,
     TResult Function()? connectionError,
@@ -579,6 +741,7 @@ class _$ServerError implements ServerError {
         invalidUsernameAndPasswordCombination,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
     required TResult Function(UsernameAlreadyInUse value) usernameAlreadyInUse,
+    required TResult Function(PasswordsNotMatch value) passwordsNotMatch,
     required TResult Function(ServerError value) serverError,
     required TResult Function(CacheError value) cacheError,
     required TResult Function(ConnectionError value) connectionError,
@@ -593,6 +756,7 @@ class _$ServerError implements ServerError {
         invalidUsernameAndPasswordCombination,
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult? Function(UsernameAlreadyInUse value)? usernameAlreadyInUse,
+    TResult? Function(PasswordsNotMatch value)? passwordsNotMatch,
     TResult? Function(ServerError value)? serverError,
     TResult? Function(CacheError value)? cacheError,
     TResult? Function(ConnectionError value)? connectionError,
@@ -607,6 +771,7 @@ class _$ServerError implements ServerError {
         invalidUsernameAndPasswordCombination,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(UsernameAlreadyInUse value)? usernameAlreadyInUse,
+    TResult Function(PasswordsNotMatch value)? passwordsNotMatch,
     TResult Function(ServerError value)? serverError,
     TResult Function(CacheError value)? cacheError,
     TResult Function(ConnectionError value)? connectionError,
@@ -664,6 +829,7 @@ class _$CacheError implements CacheError {
     required TResult Function() invalidUsernameAndPasswordCombination,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() usernameAlreadyInUse,
+    required TResult Function() passwordsNotMatch,
     required TResult Function() serverError,
     required TResult Function() cacheError,
     required TResult Function() connectionError,
@@ -677,6 +843,7 @@ class _$CacheError implements CacheError {
     TResult? Function()? invalidUsernameAndPasswordCombination,
     TResult? Function()? emailAlreadyInUse,
     TResult? Function()? usernameAlreadyInUse,
+    TResult? Function()? passwordsNotMatch,
     TResult? Function()? serverError,
     TResult? Function()? cacheError,
     TResult? Function()? connectionError,
@@ -690,6 +857,7 @@ class _$CacheError implements CacheError {
     TResult Function()? invalidUsernameAndPasswordCombination,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? usernameAlreadyInUse,
+    TResult Function()? passwordsNotMatch,
     TResult Function()? serverError,
     TResult Function()? cacheError,
     TResult Function()? connectionError,
@@ -708,6 +876,7 @@ class _$CacheError implements CacheError {
         invalidUsernameAndPasswordCombination,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
     required TResult Function(UsernameAlreadyInUse value) usernameAlreadyInUse,
+    required TResult Function(PasswordsNotMatch value) passwordsNotMatch,
     required TResult Function(ServerError value) serverError,
     required TResult Function(CacheError value) cacheError,
     required TResult Function(ConnectionError value) connectionError,
@@ -722,6 +891,7 @@ class _$CacheError implements CacheError {
         invalidUsernameAndPasswordCombination,
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult? Function(UsernameAlreadyInUse value)? usernameAlreadyInUse,
+    TResult? Function(PasswordsNotMatch value)? passwordsNotMatch,
     TResult? Function(ServerError value)? serverError,
     TResult? Function(CacheError value)? cacheError,
     TResult? Function(ConnectionError value)? connectionError,
@@ -736,6 +906,7 @@ class _$CacheError implements CacheError {
         invalidUsernameAndPasswordCombination,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(UsernameAlreadyInUse value)? usernameAlreadyInUse,
+    TResult Function(PasswordsNotMatch value)? passwordsNotMatch,
     TResult Function(ServerError value)? serverError,
     TResult Function(CacheError value)? cacheError,
     TResult Function(ConnectionError value)? connectionError,
@@ -793,6 +964,7 @@ class _$ConnectionError implements ConnectionError {
     required TResult Function() invalidUsernameAndPasswordCombination,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() usernameAlreadyInUse,
+    required TResult Function() passwordsNotMatch,
     required TResult Function() serverError,
     required TResult Function() cacheError,
     required TResult Function() connectionError,
@@ -806,6 +978,7 @@ class _$ConnectionError implements ConnectionError {
     TResult? Function()? invalidUsernameAndPasswordCombination,
     TResult? Function()? emailAlreadyInUse,
     TResult? Function()? usernameAlreadyInUse,
+    TResult? Function()? passwordsNotMatch,
     TResult? Function()? serverError,
     TResult? Function()? cacheError,
     TResult? Function()? connectionError,
@@ -819,6 +992,7 @@ class _$ConnectionError implements ConnectionError {
     TResult Function()? invalidUsernameAndPasswordCombination,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? usernameAlreadyInUse,
+    TResult Function()? passwordsNotMatch,
     TResult Function()? serverError,
     TResult Function()? cacheError,
     TResult Function()? connectionError,
@@ -837,6 +1011,7 @@ class _$ConnectionError implements ConnectionError {
         invalidUsernameAndPasswordCombination,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
     required TResult Function(UsernameAlreadyInUse value) usernameAlreadyInUse,
+    required TResult Function(PasswordsNotMatch value) passwordsNotMatch,
     required TResult Function(ServerError value) serverError,
     required TResult Function(CacheError value) cacheError,
     required TResult Function(ConnectionError value) connectionError,
@@ -851,6 +1026,7 @@ class _$ConnectionError implements ConnectionError {
         invalidUsernameAndPasswordCombination,
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult? Function(UsernameAlreadyInUse value)? usernameAlreadyInUse,
+    TResult? Function(PasswordsNotMatch value)? passwordsNotMatch,
     TResult? Function(ServerError value)? serverError,
     TResult? Function(CacheError value)? cacheError,
     TResult? Function(ConnectionError value)? connectionError,
@@ -865,6 +1041,7 @@ class _$ConnectionError implements ConnectionError {
         invalidUsernameAndPasswordCombination,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(UsernameAlreadyInUse value)? usernameAlreadyInUse,
+    TResult Function(PasswordsNotMatch value)? passwordsNotMatch,
     TResult Function(ServerError value)? serverError,
     TResult Function(CacheError value)? cacheError,
     TResult Function(ConnectionError value)? connectionError,

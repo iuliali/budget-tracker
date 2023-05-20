@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
+import '../../../domain/auth/facade.dart';
 import '../../../domain/auth/failures.dart';
 import '../../../domain/auth/value_objects.dart';
 
@@ -12,77 +14,118 @@ part 'register_form_state.dart';
 
 part 'register_form_bloc.freezed.dart';
 
+@injectable
 class RegisterFormBloc extends Bloc<RegisterFormEvent, RegisterFormState> {
-  RegisterFormBloc() : super(RegisterFormState.initial());
+  final IAuthFacade _authFacade;
 
-  @override
-  Stream<RegisterFormState> mapEventToState(RegisterFormEvent event) async* {
-    yield* event.map(
-      usernameChanged: (e) async* {
-        yield state.copyWith(
-          username: Username(e.usernameStr),
-          authFailureOrSuccessOption: none(),
-        );
-      },
-      passwordChanged: (e) async* {
-        yield state.copyWith(
-          password: Password(e.passwordStr),
-          authFailureOrSuccessOption: none(),
-        );
-      },
-      confirmPasswordChanged: (e) async* {
-        yield state.copyWith(
-          confirmPassword: Password(e.confirmPasswordStr),
-          authFailureOrSuccessOption: none(),
-        );
-      },
-      firstNameChanged: (e) async* {
-        yield state.copyWith(
-          firstName: FirstName(e.firstNameStr),
-          authFailureOrSuccessOption: none(),
-        );
-      },
-      lastNameChanged: (e) async* {
-        yield state.copyWith(
-          lastName: LastName(e.lastNameStr),
-          authFailureOrSuccessOption: none(),
-        );
-      },
-      emailChanged: (e) async* {
-        yield state.copyWith(
-          emailAddress: EmailAddress(e.emailStr),
-          authFailureOrSuccessOption: none(),
-        );
-      },
-      registerPressed: (e) async* {
-        Either<AuthFailure, Unit>? failureOrSuccess;
+  RegisterFormBloc(this._authFacade) : super(RegisterFormState.initial()) {
+    on<UsernameChanged>(_onUsernameChanged);
+    on<PasswordChanged>(_onPasswordChanged);
+    on<ConfirmPasswordChanged>(_onConfirmPasswordChanged);
+    on<FirstNameChanged>(_onFirstNameChanged);
+    on<LastNameChanged>(_onLastNameChanged);
+    on<EmailChanged>(_onEmailChanged);
+    on<RegisterPressed>(_onRegisterPressed);
+    on<RegisterAgain>(_onRegisterAgain);
+  }
 
-        final isUsernameValid = state.username.isValid();
-        final isPasswordValid = state.password.isValid();
-        final isFirstNameValid = state.firstName.isValid();
-        final isLastNameValid = state.lastName.isValid();
-        final isEmailAddressValid = state.emailAddress.isValid();
+  bool get _isValid {
+    return state.username.isValid() &&
+        state.password.isValid() &&
+        state.confirmPassword.isValid() &&
+        state.firstName.isValid() &&
+        state.lastName.isValid() &&
+        state.emailAddress.isValid();
+  }
 
-        if (isUsernameValid &&
-            isPasswordValid &&
-            isFirstNameValid &&
-            isLastNameValid &&
-            isEmailAddressValid) {
-          yield state.copyWith(
-            isSubmitting: true,
-            authFailureOrSuccessOption: none(),
-          );
+  Future _onUsernameChanged(
+      UsernameChanged event, Emitter<RegisterFormState> emit) async {
+    emit(state.copyWith(
+      username: Username(event.usernameStr),
+      authFailureOrSuccessOption: none(),
+    ));
+  }
 
-          failureOrSuccess = right(unit);
-        }
+  Future _onPasswordChanged(
+      PasswordChanged event, Emitter<RegisterFormState> emit) async {
+    emit(state.copyWith(
+      password: Password(event.passwordStr),
+      authFailureOrSuccessOption: none(),
+    ));
+  }
 
-        yield state.copyWith(
-          isSubmitting: false,
-          showErrorMessages: true,
-          authFailureOrSuccessOption: optionOf(failureOrSuccess),
-        );
-      },
-    );
+  Future _onConfirmPasswordChanged(
+      ConfirmPasswordChanged event, Emitter<RegisterFormState> emit) async {
+    emit(state.copyWith(
+      confirmPassword: Password(event.confirmPasswordStr),
+      authFailureOrSuccessOption: none(),
+    ));
+  }
 
+  Future _onFirstNameChanged(
+      FirstNameChanged event, Emitter<RegisterFormState> emit) async {
+    emit(state.copyWith(
+      firstName: FirstName(event.firstNameStr),
+      authFailureOrSuccessOption: none(),
+    ));
+  }
+
+  Future _onLastNameChanged(
+      LastNameChanged event, Emitter<RegisterFormState> emit) async {
+    emit(state.copyWith(
+      lastName: LastName(event.lastNameStr),
+      authFailureOrSuccessOption: none(),
+    ));
+  }
+
+  Future _onEmailChanged(
+      EmailChanged event, Emitter<RegisterFormState> emit) async {
+    emit(state.copyWith(
+      emailAddress: EmailAddress(event.emailStr),
+      authFailureOrSuccessOption: none(),
+    ));
+  }
+
+  Future _onRegisterPressed(
+      RegisterPressed event, Emitter<RegisterFormState> emit) async {
+    Either<AuthFailure, Unit>? failureOrSuccess;
+
+    final isUsernameValid = state.username.isValid();
+    final isPasswordValid = state.password.isValid();
+    final isConfirmPasswordValid = state.confirmPassword.isValid();
+    final isFirstNameValid = state.firstName.isValid();
+    final isLastNameValid = state.lastName.isValid();
+    final isEmailValid = state.emailAddress.isValid();
+
+    if (isUsernameValid &&
+        isPasswordValid &&
+        isConfirmPasswordValid &&
+        isFirstNameValid &&
+        isLastNameValid &&
+        isEmailValid) {
+      emit(state.copyWith(
+        isSubmitting: true,
+        authFailureOrSuccessOption: none(),
+      ));
+
+      failureOrSuccess = await _authFacade.register(
+        username: state.username,
+        password: state.password,
+        email: state.emailAddress,
+        firstName: state.firstName,
+        lastName: state.lastName,
+      );
+    }
+
+    emit(state.copyWith(
+      isSubmitting: false,
+      showErrorMessages: true,
+      authFailureOrSuccessOption: optionOf(failureOrSuccess),
+    ));
+  }
+
+  Future _onRegisterAgain(
+      RegisterAgain event, Emitter<RegisterFormState> emit) async {
+    emit(RegisterFormState.initial());
   }
 }
