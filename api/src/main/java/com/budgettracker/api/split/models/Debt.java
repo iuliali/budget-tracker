@@ -2,6 +2,7 @@ package com.budgettracker.api.split.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Where;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -13,6 +14,7 @@ import java.math.BigInteger;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+//@Where(clause = "settled=false")
 public class Debt {
     @Id
     @Column(name = "id")
@@ -33,5 +35,7 @@ public class Debt {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="debtor_id", referencedColumnName = "id")
     private Member debtor;
+
+    //private boolean settled = false;
 
 }

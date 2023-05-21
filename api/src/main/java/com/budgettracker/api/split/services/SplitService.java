@@ -44,8 +44,11 @@ public class SplitService {
         List<SplitResult> splitResults = SimplifyDebts.createGraphForDebts(membersIds, splitTransactionList);
         BigInteger memberId = groupService.findMemberByUserIdAndGroupId(userService.getAuthenticatedUser().getId(),
                 groupId).getId();
-        return splitResults.stream().filter(splitResult -> Objects.equals(splitResult.getFrom(), memberId)
-                || Objects.equals(splitResult.getTo(), memberId)).toList();
+        return splitResults.stream()
+                .distinct()
+//                .filter(splitResult -> Objects.equals(splitResult.getFrom(), memberId)
+//                || Objects.equals(splitResult.getTo(), memberId))
+                .toList();
     }
 
     public List<SplitDto> getGroupDebtStatus(BigInteger groupId) {
@@ -72,17 +75,13 @@ public class SplitService {
     public void settle(SettleTransactionDto settleTransactionDto) {
         User user = userService.getAuthenticatedUser();
         Member member = groupService.findMemberByUserIdAndGroupId(user.getId(), settleTransactionDto.getGroupId());
-        BigInteger splitUserCategoryId = userCategoryService
-                .getUserCategoryByName(SPLIT_PAYMENTS_USER_CATEGORY_NAME, member.getUser().getId())
-                .getId();
-        NewGroupExpenseDto newGroupExpenseDto = new NewGroupExpenseDto(settleTransactionDto,
-                                                                        member.getId(),
-                                                                        splitUserCategoryId);
+
+        NewGroupExpenseDto newGroupExpenseDto = new NewGroupExpenseDto(settleTransactionDto);
         groupExpenseService.createGroupExpense(newGroupExpenseDto);
 
-        if (settleTransactionDto.isAddIncome()) {
-            addIncomeOnSettle(settleTransactionDto);
-        }
+//        if (settleTransactionDto.isAddIncome()) {
+//            addIncomeOnSettle(settleTransactionDto);
+//        }
     }
 
     private void addIncomeOnSettle(SettleTransactionDto settleTransactionDto) {

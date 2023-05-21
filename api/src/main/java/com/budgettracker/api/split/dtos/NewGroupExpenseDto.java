@@ -22,22 +22,16 @@ public class NewGroupExpenseDto {
     @NonNull
     private BigDecimal amount;
     @NonNull
-    private BigInteger userCategoryId;
-    @NonNull
     List<BigInteger> memberIds;
     @NonNull
     List<BigDecimal> amounts;
 
-    public NewGroupExpenseDto(SettleTransactionDto settleTransactionDto,
-                              BigInteger currentMemberId,
-                              BigInteger userCategoryId
-    ) {
+    public NewGroupExpenseDto(SettleTransactionDto settleTransactionDto) {
         this.amount = settleTransactionDto.getSettleAmount();
         this.groupId = settleTransactionDto.getGroupId();
         this.memberIds = new ArrayList<>();
         memberIds.add(settleTransactionDto.getMemberId());
         this.amounts = new ArrayList<>();
         amounts.add(settleTransactionDto.getSettleAmount());
-        this.userCategoryId = userCategoryId;
     }
 }

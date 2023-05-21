@@ -3,10 +3,8 @@ package com.budgettracker.api.split.algorithm;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
 public abstract class NetworkFlowSolverBase {
 
@@ -17,9 +15,17 @@ public abstract class NetworkFlowSolverBase {
         public int to;
         public Edge residual;
         public long flow;
-        public long cost;
-        public final long capacity;
+        public long capacity;
 
+        @Override
+        public String toString() {
+            return "Edge{" +
+                    "from=" + from +
+                    ", to=" + to +
+                    ", flow=" + flow +
+                    ", capacity=" + capacity +
+                    '}';
+        }
 
         public Edge(BigInteger from, BigInteger to, long capacity) {
             this.from = from.intValue();
@@ -31,6 +37,19 @@ public abstract class NetworkFlowSolverBase {
             this.from = from;
             this.to = to;
             this.capacity = capacity;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Edge edge = (Edge) o;
+            return from == edge.from && to == edge.to;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(from, to, residual, flow, capacity);
         }
 
         public boolean isResidual() {
@@ -46,13 +65,6 @@ public abstract class NetworkFlowSolverBase {
             residual.flow -= bottleNeck;
         }
 
-        public String toString() {
-//            String u = (from == s) ? "s" : ((from == t) ? "t" : String.valueOf(from));
-//            String v = (to == s) ? "s" : ((to == t) ? "t" : String.valueOf(to));
-            return String.format(
-                    "Edge %s -> %s | flow = %d | capacity = %d | is residual: %s",
-                    this.from, this.to, flow, capacity, isResidual());
-        }
     }
 
     protected int n;
@@ -87,6 +99,7 @@ public abstract class NetworkFlowSolverBase {
         if(vertexLabels.size() != n)
             throw new IllegalArgumentException(String.format("You must pass %s number of labels", n));
         this.vertexLabels = vertexLabels;
+
     }
 
 
@@ -103,6 +116,7 @@ public abstract class NetworkFlowSolverBase {
             throw new IllegalArgumentException("Capacity < 0");
         Edge e1 = new Edge(from, to, capacity);
         Edge e2 = new Edge(to, from, 0);
+
         e1.residual = e2;
         e2.residual = e1;
         graph[from].add(e1);
@@ -178,8 +192,19 @@ public abstract class NetworkFlowSolverBase {
        List<Edge>  toDelete = new ArrayList<>();
        List<Edge> toAdd = new ArrayList<>();
         for(Edge edge : edges) {
+//            if(toDelete.contains(edge)) {
+//                continue;
+//            }
             List<Edge> reversedEdge = edges.stream()
                     .filter(edge1 -> edge1.to == edge.from && edge1.from ==  edge.to).toList();
+//            List<Edge> sameEdge = edges.stream()
+//                                        .filter(edge1 -> edge1.from == edge.from && edge1.to ==  edge.to).toList();
+//
+//            for(Edge e: sameEdge) {
+//                edge.capacity += e.capacity;
+//                toDelete.add(e);
+//            }
+
             for( Edge opposite: reversedEdge) {
                 if (opposite.capacity > edge.capacity) {
                     toAdd.add(new Edge(opposite.from, opposite.to, opposite.capacity - edge.capacity));
@@ -204,8 +229,8 @@ public abstract class NetworkFlowSolverBase {
     private void execute() {
         if (solved) return;
         solved = true;
-        solve();
+        dinicsAlgorithm();
     }
 
-    public abstract void solve();
+    public abstract void dinicsAlgorithm();
 }

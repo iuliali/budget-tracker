@@ -5,6 +5,7 @@ import com.budgettracker.api.budgeting.dtos.NewExpenseDto;
 import com.budgettracker.api.budgeting.enums.Currency;
 import com.budgettracker.api.budgeting.models.Expense;
 import com.budgettracker.api.budgeting.services.ExpenseService;
+import com.budgettracker.api.budgeting.services.UserCategoryService;
 import com.budgettracker.api.split.algorithm.SplitTransaction;
 import com.budgettracker.api.split.dtos.NewGroupExpenseDto;
 import com.budgettracker.api.split.exceptions.GroupDoesNotExistException;
@@ -23,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static com.budgettracker.api.constants.Constants.SPLIT_PAYMENTS_USER_CATEGORY_NAME;
+
 @Service
 @RequiredArgsConstructor
 public class GroupExpenseService {
@@ -31,12 +34,14 @@ public class GroupExpenseService {
     private final ExpenseService expenseService;
     private final UserService userService;
     private final DebtRepository debtRepository;
+    private final UserCategoryService userCategoryService;
     public void createGroupExpense(NewGroupExpenseDto newGroupExpenseDto) {
         Group group =  groupService.findGroupById(newGroupExpenseDto.getGroupId()).orElseThrow(
                 () -> new GroupDoesNotExistException(GroupExpenseService.class)
         );
         NewExpenseDto newExpenseDto = new NewExpenseDto("Group Expense", newGroupExpenseDto.getAmount(),
-                Currency.RON, newGroupExpenseDto.getUserCategoryId());
+                Currency.RON, userCategoryService.getUserCategoryByName(SPLIT_PAYMENTS_USER_CATEGORY_NAME,
+                userService.getAuthenticatedUser().getId()).getId());
 
         validateGroupExpenseConfiguration(newGroupExpenseDto);
 

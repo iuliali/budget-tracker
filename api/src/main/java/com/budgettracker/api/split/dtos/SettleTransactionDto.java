@@ -1,7 +1,6 @@
 package com.budgettracker.api.split.dtos;
 
 import com.budgettracker.api.budgeting.enums.Currency;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +15,6 @@ public class SettleTransactionDto {
     private BigInteger groupId;
     private BigInteger memberId;
     private BigDecimal settleAmount;
-    private boolean addIncome = false;
+    //private boolean addIncome = false;
 
 }

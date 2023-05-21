@@ -19,7 +19,7 @@ public class Dinics extends NetworkFlowSolverBase {
     }
 
     @Override
-    public void solve() {
+    public void dinicsAlgorithm() {
         int[] next = new int[n];
 
         while (bfs()) {
