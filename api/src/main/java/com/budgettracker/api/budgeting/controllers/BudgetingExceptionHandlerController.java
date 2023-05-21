@@ -118,6 +118,29 @@ public class BudgetingExceptionHandlerController extends ResponseEntityException
                 HttpStatus.BAD_REQUEST);
     }
 
+    // ==================== STATISTICS EXCEPTIONS ====================
+    @ExceptionHandler(value = {GivenDateIsInTheFutureException.class})
+    public ResponseEntity<?> handleBadRequest(GivenDateIsInTheFutureException exception,
+                                              WebRequest request) {
+        logger.warn(request + exception.getMessage());
+        return new ResponseEntity<>(Map.of("message", "Given date is in the future."),
+                HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(value = {InvalidMonthNumberException.class})
+    public ResponseEntity<?> handleBadRequest(InvalidMonthNumberException exception,
+                                              WebRequest request) {
+        logger.warn(request + exception.getMessage());
+        return new ResponseEntity<>(Map.of("message", "Invalid month number."),
+                HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(value = {NegativeYearException.class})
+    public ResponseEntity<?> handleBadRequest(NegativeYearException exception,
+                                              WebRequest request) {
+        logger.warn(request + exception.getMessage());
+        return new ResponseEntity<>(Map.of("message", "Year can't be negative."),
+                HttpStatus.BAD_REQUEST);
+    }
+
     // This catches all other exceptions
     @ExceptionHandler(value = {Exception.class, Error.class})
     public ResponseEntity<?> handleOtherExceptions (Throwable exception,
