@@ -23,7 +23,7 @@ public class BudgetController {
 
     @PostMapping("/create")
     @Operation(summary = "Create a new budget for a category")
-    public ResponseEntity<?> createCategory(@Valid @RequestBody NewBudgetDTO newBudgetDto) {
+    public ResponseEntity<?> createBudget(@Valid @RequestBody NewBudgetDTO newBudgetDto) {
         return ResponseEntity.ok(Map.of("message", budgetService.createBudget(newBudgetDto)));
     }
 

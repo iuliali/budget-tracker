@@ -6,7 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,4 +22,7 @@ public interface IncomeRepository extends JpaRepository<Income, BigInteger> {
 
     @Query("SELECT inc FROM income inc, userCategory uc WHERE inc.userCategory.id = :id AND inc.userCategory.id = uc.id AND uc.user = :user")
     Optional<List<Income>> findIncomesByCategoryForUser(User user, BigInteger id);
+
+    @Query("SELECT SUM(expe.amount) FROM expense expe WHERE expe.userCategory.id = :userCategoryId AND expe.registeredAt >= :startDate AND expe.registeredAt <= :endDate")
+    Optional<BigDecimal> incomesSSumByUserCategoryBetweenDates(BigInteger userCategoryId, LocalDateTime startDate, LocalDateTime endDate);
 }
