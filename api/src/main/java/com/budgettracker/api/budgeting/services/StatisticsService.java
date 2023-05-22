@@ -2,8 +2,8 @@ package com.budgettracker.api.budgeting.services;
 
 import com.budgettracker.api.budgeting.dtos.UserCategoryDto;
 import com.budgettracker.api.budgeting.exceptions.GivenDateIsInTheFutureException;
+import com.budgettracker.api.budgeting.exceptions.InvalidMonthFormatException;
 import com.budgettracker.api.budgeting.exceptions.InvalidMonthNumberException;
-import com.budgettracker.api.budgeting.exceptions.NegativeYearException;
 import com.budgettracker.api.budgeting.repositories.ExpenseRepository;
 import com.budgettracker.api.budgeting.repositories.IncomeRepository;
 import lombok.RequiredArgsConstructor;
@@ -120,12 +120,12 @@ public class StatisticsService {
         monthInfo.put("sum", sum);
         monthlyInfo.put(userCategoryName, monthInfo);
     }
-    private Pair<LocalDateTime, LocalDateTime> getStartAndEndDatesForMonth(String month){
+    public Pair<LocalDateTime, LocalDateTime> getStartAndEndDatesForMonth(String month){
+        if (!month.matches("\\d{4}-\\d{2}")) {
+            throw new InvalidMonthFormatException();
+        }
         String[] monthParts = month.split("-");
         int year = Integer.parseInt(monthParts[0]);
-        if (year < 0) {
-            throw new NegativeYearException();
-        }
         int monthNumber = Integer.parseInt(monthParts[1]);
         if (monthNumber < 1 || monthNumber > 12) {
             throw new InvalidMonthNumberException();

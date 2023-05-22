@@ -133,11 +133,11 @@ public class BudgetingExceptionHandlerController extends ResponseEntityException
         return new ResponseEntity<>(Map.of("message", "Invalid month number."),
                 HttpStatus.BAD_REQUEST);
     }
-    @ExceptionHandler(value = {NegativeYearException.class})
-    public ResponseEntity<?> handleBadRequest(NegativeYearException exception,
+    @ExceptionHandler(value = {InvalidMonthFormatException.class})
+    public ResponseEntity<?> handleBadRequest(InvalidMonthFormatException exception,
                                               WebRequest request) {
         logger.warn(request + exception.getMessage());
-        return new ResponseEntity<>(Map.of("message", "Year can't be negative."),
+        return new ResponseEntity<>(Map.of("message", "Invalid month format. Please use the following format: YYYY-MM."),
                 HttpStatus.BAD_REQUEST);
     }
 
