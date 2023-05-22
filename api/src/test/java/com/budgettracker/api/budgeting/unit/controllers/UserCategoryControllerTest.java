@@ -1,4 +1,4 @@
-package com.budgettracker.api.budgeting.tests.unitests.controllers;
+package com.budgettracker.api.budgeting.unit.controllers;
 
 import com.budgettracker.api.budgeting.controllers.UserCategoryController;
 import com.budgettracker.api.budgeting.dtos.NewUserCategoryDto;
