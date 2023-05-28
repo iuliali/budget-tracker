@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../application/auth/auth_bloc.dart';
 import '../colors.dart';
 import '../routing/router.dart';
 
@@ -67,9 +69,11 @@ class MenuWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const items = [
-      MenuItem(title: "Expenses", icon: Icons.south_east, route: ExpensesRoute()),
+      MenuItem(
+          title: "Expenses", icon: Icons.south_east, route: ExpensesRoute()),
       MenuItem(title: "Incomes", icon: Icons.north_east, route: IncomesRoute()),
       MenuItem(title: "Categories", icon: Icons.dns, route: CategoriesRoute()),
+      MenuItem(title: "Groups", icon: Icons.attach_money, route: GroupRoute()),
       // const MenuItem(title: "Statistics", icon: Icons.pie_chart, route: "/statistics", disabled: true),
       // const MenuItem(title: "Settings", icon: Icons.settings, route: "/settings", disabled: true),
     ];
@@ -92,10 +96,17 @@ class MenuWidget extends StatelessWidget {
             },
           ),
           const Spacer(),
-          ListTile(
-            title: const Text('Logout'),
-            leading: const Icon(Icons.logout, color: cRedColor),
-            onTap: () => context.router.replace(const LoginRoute()),
+          BlocBuilder<AuthBloc, AuthState>(
+            builder: (context, state) {
+              return ListTile(
+                title: const Text('Logout'),
+                leading: const Icon(Icons.logout, color: cRedColor),
+                onTap: () {
+                  context.read<AuthBloc>().add(const AuthEvent.signedOut());
+                  context.router.replace(const LoginRoute());
+                },
+              );
+            },
           ),
         ],
       ),

@@ -18,7 +18,7 @@ class IncomesPage extends StatelessWidget {
     var transactions = Future(() => []);
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      appBar: generateAppBarWidget(context, FirstName("Victor")),
+      appBar: generateAppBarWidget(context),
       drawer: const Drawer(
         child: MenuWidget(),
       ),

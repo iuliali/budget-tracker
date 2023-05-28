@@ -98,7 +98,6 @@ class AuthFacade implements IAuthFacade {
 
   @override
   Future<void> signOut() {
-    // TODO: implement signOut
-    throw UnimplementedError();
+    return localDataSource.deleteCachedAccessToken();
   }
 }

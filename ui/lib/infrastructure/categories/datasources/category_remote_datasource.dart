@@ -1,9 +1,6 @@
-import 'dart:convert';
-
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:http/http.dart' as http;
 
-import '../../../config.dart';
 import '../../../domain/categories/entities/category.dart';
 import '../../../domain/categories/value_objects.dart';
 import '../exceptions.dart';
@@ -23,18 +20,15 @@ abstract class CategoryRemoteDataSource{
 
 @LazySingleton(as: CategoryRemoteDataSource)
 class CategoryRemoteDataSourceImpl implements CategoryRemoteDataSource{
-  final http.Client client;
+  final Dio client;
 
-  CategoryRemoteDataSourceImpl({required this.client});
+  CategoryRemoteDataSourceImpl(this.client);
 
   @override
   Future<void> createCategory(CategoryName categoryName) async {
     final response = await client.post(
-      Uri.parse('${API_URL}/categories'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode({"name": categoryName.getOrCrash()}),
+      "/categories",
+      data: {"name": categoryName.getOrCrash()},
     );
     if(response.statusCode == 201){
       return;
@@ -48,10 +42,7 @@ class CategoryRemoteDataSourceImpl implements CategoryRemoteDataSource{
   @override
   Future<void> deleteCategory(CategoryId categoryId) async {
     final response = await client.delete(
-      Uri.parse('${API_URL}/categories/${categoryId.getOrCrash()}'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
+        "/categories/${categoryId.getOrCrash()}"
     );
     if(response.statusCode == 200){
       return;
@@ -64,17 +55,12 @@ class CategoryRemoteDataSourceImpl implements CategoryRemoteDataSource{
 
   @override
   Future<List<CategoryModel>> getCategories() async {
-    final response = await client.get(
-      Uri.parse('${API_URL}/categories/all'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-    );
+    final response = await client.get<List<CategoryModel>>("/categories/all");
     print("getCategories");
     print(response.statusCode);
     if(response.statusCode == 200){
-      final List<dynamic> categories = jsonDecode(response.body);
-      return categories.map((category) => CategoryModel.fromJson(category)).toList();
+      final List<CategoryModel> categories = response.data ?? [];
+      return categories;
     } else {
       throw CategoryServerException();
     }
@@ -83,11 +69,8 @@ class CategoryRemoteDataSourceImpl implements CategoryRemoteDataSource{
   @override
   Future<void> updateCategory(Category category) async {
     final response = await client.put(
-      Uri.parse('/${API_URL}/categories/${category.id.getOrCrash()}'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode({"name": category.name.getOrCrash()}),
+      "/categories/${category.id.getOrCrash()}",
+      data: {"name": category.name.getOrCrash()},
     );
     if(response.statusCode == 200){
       return;

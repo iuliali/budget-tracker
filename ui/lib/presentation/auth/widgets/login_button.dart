@@ -6,20 +6,23 @@ class LoginButton extends StatelessWidget {
     Key? key,
     required this.onPressed,
     this.filled = true,
+    this.disabled = false,
   }) : super(key: key);
 
   final Function() onPressed;
   final bool filled;
+  final bool disabled;
 
   @override
   Widget build(BuildContext context) {
+    final accentColor = cLightBlueColor.withAlpha(disabled ? 100 : 255);
     return FilledButton(
       style: FilledButton.styleFrom(
-        backgroundColor: filled ? cLightBlueColor : Colors.transparent,
+        backgroundColor: filled ? accentColor : Colors.transparent,
         foregroundColor: filled ? cWhiteGreyColor : cLightBlueColor,
-        side: const BorderSide(color: cLightBlueColor),
+        side: BorderSide(color: accentColor),
       ),
-      onPressed: onPressed,
+      onPressed: disabled ? () {} : onPressed,
       child: const SizedBox(
         width: double.infinity,
         child: Padding(

@@ -3,7 +3,6 @@ import 'package:budget_tracker/application/categories/categories_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../domain/auth/value_objects.dart';
 import '../../../domain/categories/entities/category.dart';
 import '../../../injection.dart';
 import '../../core/routing/router.dart';
@@ -17,17 +16,13 @@ class CategoriesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) {
-        final bloc = getIt<CategoriesBloc>();
-        bloc.add(const CategoriesEvent.fetchCategories());
-        return bloc;
-      },
+      create: (_) => getIt<CategoriesBloc>()..add(const CategoriesEvent.fetchCategories()),
       child: Scaffold(
         backgroundColor: Theme
             .of(context)
             .colorScheme
             .background,
-        appBar: generateAppBarWidget(context, FirstName("Victor")),
+        appBar: generateAppBarWidget(context),
         drawer: const Drawer(child: MenuWidget()),
         floatingActionButton: FloatingActionButton(
           onPressed: () => context.router.push(const AddCategoryRoute()),

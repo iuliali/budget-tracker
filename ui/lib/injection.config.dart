@@ -9,30 +9,32 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:dio/dio.dart' as _i4;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:http/http.dart' as _i3;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:internet_connection_checker/internet_connection_checker.dart'
-    as _i4;
-import 'package:shared_preferences/shared_preferences.dart' as _i5;
+    as _i5;
+import 'package:shared_preferences/shared_preferences.dart' as _i6;
 
-import 'application/auth/auth_bloc.dart' as _i17;
-import 'application/auth/login_form/login_form_bloc.dart' as _i15;
-import 'application/auth/register_form/register_form_bloc.dart' as _i16;
-import 'application/categories/categories_bloc.dart' as _i18;
-import 'application/core/network_info.dart' as _i9;
-import 'domain/auth/facade.dart' as _i11;
-import 'domain/categories/facade.dart' as _i13;
-import 'infrastructure/auth/datasources/auth_local_datasource.dart' as _i6;
-import 'infrastructure/auth/datasources/auth_remote_datasource.dart' as _i7;
-import 'infrastructure/auth/facade.dart' as _i12;
+import 'application/auth/auth_bloc.dart' as _i18;
+import 'application/auth/login_form/login_form_bloc.dart' as _i16;
+import 'application/auth/register_form/register_form_bloc.dart' as _i17;
+import 'application/categories/categories_bloc.dart' as _i19;
+import 'application/core/network_info.dart' as _i10;
+import 'domain/auth/facade.dart' as _i12;
+import 'domain/categories/repository.dart' as _i14;
+import 'infrastructure/auth/datasources/auth_local_datasource.dart' as _i7;
+import 'infrastructure/auth/datasources/auth_remote_datasource.dart' as _i8;
+import 'infrastructure/auth/facade.dart' as _i13;
 import 'infrastructure/categories/datasources/category_remote_datasource.dart'
-    as _i8;
-import 'infrastructure/categories/facade.dart' as _i14;
-import 'infrastructure/core/injectable_modules/http.dart' as _i21;
-import 'infrastructure/core/injectable_modules/internet_checker.dart' as _i20;
-import 'infrastructure/core/injectable_modules/shared_preferences.dart' as _i19;
-import 'infrastructure/core/network/network_info.dart' as _i10;
+    as _i9;
+import 'infrastructure/categories/repository.dart' as _i15;
+import 'infrastructure/core/injectable_modules/dio.dart' as _i20;
+import 'infrastructure/core/injectable_modules/http.dart' as _i23;
+import 'infrastructure/core/injectable_modules/internet_checker.dart' as _i22;
+import 'infrastructure/core/injectable_modules/shared_preferences.dart' as _i21;
+import 'infrastructure/core/network/network_info.dart' as _i11;
 
 extension GetItInjectableX on _i1.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -46,45 +48,49 @@ extension GetItInjectableX on _i1.GetIt {
       environmentFilter,
     );
     final httpInjectableModule = _$HttpInjectableModule();
+    final dioInjectableModule = _$DioInjectableModule();
     final networkInfoInjectableModule = _$NetworkInfoInjectableModule();
     final sharedPrefsModule = _$SharedPrefsModule();
     gh.lazySingleton<_i3.Client>(() => httpInjectableModule.httpClient);
-    gh.lazySingleton<_i4.InternetConnectionChecker>(
+    gh.lazySingleton<_i4.Dio>(() => dioInjectableModule.dio);
+    gh.lazySingleton<_i5.InternetConnectionChecker>(
         () => networkInfoInjectableModule.internetConnectionChecker);
-    await gh.factoryAsync<_i5.SharedPreferences>(
+    await gh.factoryAsync<_i6.SharedPreferences>(
       () => sharedPrefsModule.prefs,
       preResolve: true,
     );
-    gh.lazySingleton<_i6.AuthLocalDataSource>(() => _i6.AuthLocalDataSourceImpl(
-        sharedPreferences: gh<_i5.SharedPreferences>()));
-    gh.lazySingleton<_i7.AuthRemoteDataSource>(
-        () => _i7.AuthApiDataSourceImpl(client: gh<_i3.Client>()));
-    gh.lazySingleton<_i8.CategoryRemoteDataSource>(
-        () => _i8.CategoryRemoteDataSourceImpl(client: gh<_i3.Client>()));
-    gh.lazySingleton<_i9.INetworkInfo>(() => _i10.NetworkInfoImpl(
-        connectionChecker: gh<_i4.InternetConnectionChecker>()));
-    gh.singleton<_i11.IAuthFacade>(_i12.AuthFacade(
-      remoteDataSource: gh<_i7.AuthRemoteDataSource>(),
-      localDataSource: gh<_i6.AuthLocalDataSource>(),
-      networkInfo: gh<_i9.INetworkInfo>(),
+    gh.lazySingleton<_i7.AuthLocalDataSource>(() => _i7.AuthLocalDataSourceImpl(
+        sharedPreferences: gh<_i6.SharedPreferences>()));
+    gh.lazySingleton<_i8.AuthRemoteDataSource>(
+        () => _i8.AuthApiDataSourceImpl(gh<_i4.Dio>()));
+    gh.lazySingleton<_i9.CategoryRemoteDataSource>(
+        () => _i9.CategoryRemoteDataSourceImpl(gh<_i4.Dio>()));
+    gh.lazySingleton<_i10.INetworkInfo>(() => _i11.NetworkInfoImpl(
+        connectionChecker: gh<_i5.InternetConnectionChecker>()));
+    gh.singleton<_i12.IAuthFacade>(_i13.AuthFacade(
+      remoteDataSource: gh<_i8.AuthRemoteDataSource>(),
+      localDataSource: gh<_i7.AuthLocalDataSource>(),
+      networkInfo: gh<_i10.INetworkInfo>(),
     ));
-    gh.singleton<_i13.ICategoryFacade>(_i14.CategoryFacade(
-      networkInfo: gh<_i9.INetworkInfo>(),
-      remoteDataSource: gh<_i8.CategoryRemoteDataSource>(),
+    gh.singleton<_i14.ICategoryRepository>(_i15.CategoryRepository(
+      networkInfo: gh<_i10.INetworkInfo>(),
+      remoteDataSource: gh<_i9.CategoryRemoteDataSource>(),
     ));
-    gh.factory<_i15.LoginFormBloc>(
-        () => _i15.LoginFormBloc(gh<_i11.IAuthFacade>()));
-    gh.factory<_i16.RegisterFormBloc>(
-        () => _i16.RegisterFormBloc(gh<_i11.IAuthFacade>()));
-    gh.factory<_i17.AuthBloc>(() => _i17.AuthBloc(gh<_i11.IAuthFacade>()));
-    gh.factory<_i18.CategoriesBloc>(
-        () => _i18.CategoriesBloc(gh<_i13.ICategoryFacade>()));
+    gh.factory<_i16.LoginFormBloc>(
+        () => _i16.LoginFormBloc(gh<_i12.IAuthFacade>()));
+    gh.factory<_i17.RegisterFormBloc>(
+        () => _i17.RegisterFormBloc(gh<_i12.IAuthFacade>()));
+    gh.factory<_i18.AuthBloc>(() => _i18.AuthBloc(gh<_i12.IAuthFacade>()));
+    gh.factory<_i19.CategoriesBloc>(
+        () => _i19.CategoriesBloc(gh<_i14.ICategoryRepository>()));
     return this;
   }
 }
 
-class _$SharedPrefsModule extends _i19.SharedPrefsModule {}
+class _$DioInjectableModule extends _i20.DioInjectableModule {}
 
-class _$NetworkInfoInjectableModule extends _i20.NetworkInfoInjectableModule {}
+class _$SharedPrefsModule extends _i21.SharedPrefsModule {}
 
-class _$HttpInjectableModule extends _i21.HttpInjectableModule {}
+class _$NetworkInfoInjectableModule extends _i22.NetworkInfoInjectableModule {}
+
+class _$HttpInjectableModule extends _i23.HttpInjectableModule {}

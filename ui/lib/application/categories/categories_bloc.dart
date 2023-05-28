@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../domain/categories/facade.dart';
+import '../../domain/categories/repository.dart';
 import '../../domain/categories/entities/category.dart';
 import '../../domain/categories/failures.dart';
 import '../../domain/categories/value_objects.dart';
@@ -16,7 +16,7 @@ part 'categories_bloc.freezed.dart';
 
 @injectable
 class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
-  final ICategoryFacade _categoryFacade;
+  final ICategoryRepository _categoryFacade;
 
   CategoriesBloc(this._categoryFacade) : super(CategoriesState.initial()) {
     on<FetchCategories>(_onFetchCategories);

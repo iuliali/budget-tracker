@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'entities/category.dart';
 import 'failures.dart';
 
-abstract class ICategoryFacade {
+abstract class ICategoryRepository {
   Future<Either<CategoryFailure, Unit>> createCategory({
     required CategoryName categoryName,
   });

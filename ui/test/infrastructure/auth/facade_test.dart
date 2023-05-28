@@ -201,7 +201,7 @@ void main() {
           // assert
           verifyZeroInteractions(mockAuthRemoteDataSource);
           verify(() => mockAuthLocalDataSource.getCachedAccessToken());
-          expect(result, equals(const Left(AuthFailure.cacheError())));
+          expect(result, equals(const Left(AuthFailure.connectionError())));
         },
       );
     });

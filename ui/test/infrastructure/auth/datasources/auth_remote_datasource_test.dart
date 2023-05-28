@@ -3,22 +3,22 @@ import 'dart:convert';
 import 'package:budget_tracker/infrastructure/auth/datasources/auth_remote_datasource.dart';
 import 'package:budget_tracker/infrastructure/auth/exceptions.dart';
 import 'package:budget_tracker/infrastructure/auth/models/access_token_model.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:http/http.dart' as http;
 
 import '../../../fixtures/fixture_reader.dart';
 
-class MockHttpClient extends Mock implements http.Client {}
+class MockDioClient extends Mock implements Dio {}
 
 void main() {
   late AuthApiDataSourceImpl dataSource;
-  late MockHttpClient mockHttpClient;
+  late MockDioClient mockDioClient;
 
   setUp(() {
-    mockHttpClient = MockHttpClient();
+    mockDioClient = MockDioClient();
     dataSource = AuthApiDataSourceImpl(
-      client: mockHttpClient,
+      mockDioClient,
     );
   });
 
@@ -32,13 +32,19 @@ void main() {
 
     void setUpMockHttpClient(String body, int statusCode) {
       when(
-        () => mockHttpClient.post(
-          Uri.parse('http://localhost:8081/api/v1/auth/authenticate'),
-          headers: {'Content-Type': 'application/json'},
-          body: jsonEncode({'username': tUsername, 'password': tPassword}),
+        () => mockDioClient.post(
+          'auth/authenticate',
+          data: jsonEncode({'username': tUsername, 'password': tPassword}),
         ),
       ).thenAnswer(
-        (_) async => http.Response(body, statusCode),
+        (_) async => Response(
+          data: jsonDecode(body),
+          statusCode: statusCode,
+          requestOptions: RequestOptions(
+            path: 'auth/authenticate',
+            method: "POST",
+          ),
+        ),
       );
     }
 
@@ -52,10 +58,9 @@ void main() {
 
       // assert
       verify(
-        () => mockHttpClient.post(
-          Uri.parse('http://localhost:8081/api/v1/auth/authenticate'),
-          headers: {'Content-Type': 'application/json'},
-          body: jsonEncode({'username': tUsername, 'password': tPassword}),
+        () => mockDioClient.post(
+          'auth/authenticate',
+          data: {'username': tUsername, 'password': tPassword},
         ),
       );
     });
@@ -113,21 +118,27 @@ void main() {
     const tFirstName = "testfirstname";
     const tLastName = "testlastname";
 
-    void setUpMockHttpClient(String body, int statusCode) {
+    void setUpMockDioClient(String body, int statusCode) {
       when(
-        () => mockHttpClient.post(
-          Uri.parse('http://localhost:8081/api/v1/auth/register'),
-          headers: {'Content-Type': 'application/json'},
-          body: jsonEncode({
+        () => mockDioClient.post(
+          'auth/register',
+          data: {
             'username': tUsername,
             'password': tPassword,
             'email': tEmail,
             "firstName": tFirstName,
             "lastName": tLastName,
-          }),
+          },
         ),
       ).thenAnswer(
-        (_) async => http.Response(body, statusCode),
+        (_) async => Response(
+          data: jsonDecode(body),
+          statusCode: statusCode,
+          requestOptions: RequestOptions(
+            path: 'auth/register',
+            method: "POST",
+          ),
+        )
       );
     }
 
@@ -136,7 +147,7 @@ void main() {
       firstName and lastName and with application/json header""",
       () async {
         // arrange
-        setUpMockHttpClient(fixture("auth/register/200_ok.json"), 200);
+        setUpMockDioClient(fixture("auth/register/200_ok.json"), 200);
         // act
         await dataSource.register(
           username: tUsername,
@@ -147,16 +158,15 @@ void main() {
         );
         // assert
         verify(
-          () => mockHttpClient.post(
-            Uri.parse('http://localhost:8081/api/v1/auth/register'),
-            headers: {'Content-Type': 'application/json'},
-            body: jsonEncode({
+          () => mockDioClient.post(
+            'auth/register',
+            data: {
               'username': tUsername,
               'password': tPassword,
               'email': tEmail,
               "firstName": tFirstName,
               "lastName": tLastName,
-            }),
+            },
           ),
         );
       },
@@ -166,7 +176,7 @@ void main() {
       "should return true when the response code is 200 (success)",
       () async {
         // arrange
-        setUpMockHttpClient(fixture("auth/register/200_ok.json"), 200);
+        setUpMockDioClient(fixture("auth/register/200_ok.json"), 200);
         // act
         final result = await dataSource.register(
           username: tUsername,
@@ -184,7 +194,7 @@ void main() {
       'should throw EmailAlreadyUsedException when the response code is 409 (conflict)',
       () async {
         // arrange
-        setUpMockHttpClient(fixture("auth/register/409_email_used.json"), 409);
+        setUpMockDioClient(fixture("auth/register/409_email_used.json"), 409);
         // act
         final call = dataSource.register;
         // assert
@@ -205,7 +215,7 @@ void main() {
       'should throw UsernameAlreadyUsedException when the response code is 409 (conflict)',
       () async {
         // arrange
-        setUpMockHttpClient(fixture("auth/register/409_username_used.json"), 409);
+        setUpMockDioClient(fixture("auth/register/409_username_used.json"), 409);
         // act
         final call = dataSource.register;
         // assert
@@ -226,7 +236,7 @@ void main() {
       "should throw ServerException when the response code is 500 (server error)",
       () async {
         // arrange
-        setUpMockHttpClient("Server Error", 500);
+        setUpMockDioClient("Server Error", 500);
         // act
         final call = dataSource.register;
         // assert

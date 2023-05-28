@@ -15,6 +15,12 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    SplashRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SplashPage(),
+      );
+    },
     VerifyEmailRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -55,19 +61,93 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
-    AddCategoryRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const AddCategoryPage(),
-      );
-    },
     CategoriesRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const CategoriesPage(),
       );
     },
+    GroupRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const GroupPage(),
+      );
+    },
+    GroupsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const GroupsPage(),
+      );
+    },
+    SplitRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SplitPage(),
+      );
+    },
+    AddGroupRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AddGroupPage(),
+      );
+    },
+    ExpenseRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ExpensePage(),
+      );
+    },
+    IncomeRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const IncomePage(),
+      );
+    },
+    BudgetRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const BudgetPage(),
+      );
+    },
+    AddCategoryRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AddCategoryPage(),
+      );
+    },
+    EditCategoryRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const EditCategoryPage(),
+      );
+    },
+    AddBudgetRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AddBudgetPage(),
+      );
+    },
+    EditBudgetRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const EditBudgetPage(),
+      );
+    },
   };
+}
+
+/// generated route for
+/// [SplashPage]
+class SplashRoute extends PageRouteInfo<void> {
+  const SplashRoute({List<PageRouteInfo>? children})
+      : super(
+          SplashRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SplashRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -179,6 +259,118 @@ class CategoryRouteArgs {
 }
 
 /// generated route for
+/// [CategoriesPage]
+class CategoriesRoute extends PageRouteInfo<void> {
+  const CategoriesRoute({List<PageRouteInfo>? children})
+      : super(
+          CategoriesRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CategoriesRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [GroupPage]
+class GroupRoute extends PageRouteInfo<void> {
+  const GroupRoute({List<PageRouteInfo>? children})
+      : super(
+          GroupRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'GroupRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [GroupsPage]
+class GroupsRoute extends PageRouteInfo<void> {
+  const GroupsRoute({List<PageRouteInfo>? children})
+      : super(
+          GroupsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'GroupsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SplitPage]
+class SplitRoute extends PageRouteInfo<void> {
+  const SplitRoute({List<PageRouteInfo>? children})
+      : super(
+          SplitRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SplitRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [AddGroupPage]
+class AddGroupRoute extends PageRouteInfo<void> {
+  const AddGroupRoute({List<PageRouteInfo>? children})
+      : super(
+          AddGroupRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AddGroupRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ExpensePage]
+class ExpenseRoute extends PageRouteInfo<void> {
+  const ExpenseRoute({List<PageRouteInfo>? children})
+      : super(
+          ExpenseRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ExpenseRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [IncomePage]
+class IncomeRoute extends PageRouteInfo<void> {
+  const IncomeRoute({List<PageRouteInfo>? children})
+      : super(
+          IncomeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'IncomeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [BudgetPage]
+class BudgetRoute extends PageRouteInfo<void> {
+  const BudgetRoute({List<PageRouteInfo>? children})
+      : super(
+          BudgetRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'BudgetRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [AddCategoryPage]
 class AddCategoryRoute extends PageRouteInfo<void> {
   const AddCategoryRoute({List<PageRouteInfo>? children})
@@ -193,15 +385,43 @@ class AddCategoryRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [CategoriesPage]
-class CategoriesRoute extends PageRouteInfo<void> {
-  const CategoriesRoute({List<PageRouteInfo>? children})
+/// [EditCategoryPage]
+class EditCategoryRoute extends PageRouteInfo<void> {
+  const EditCategoryRoute({List<PageRouteInfo>? children})
       : super(
-          CategoriesRoute.name,
+          EditCategoryRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CategoriesRoute';
+  static const String name = 'EditCategoryRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [AddBudgetPage]
+class AddBudgetRoute extends PageRouteInfo<void> {
+  const AddBudgetRoute({List<PageRouteInfo>? children})
+      : super(
+          AddBudgetRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AddBudgetRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [EditBudgetPage]
+class EditBudgetRoute extends PageRouteInfo<void> {
+  const EditBudgetRoute({List<PageRouteInfo>? children})
+      : super(
+          EditBudgetRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'EditBudgetRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

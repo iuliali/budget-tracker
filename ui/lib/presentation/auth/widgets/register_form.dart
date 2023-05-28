@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:budget_tracker/presentation/auth/pages/verify_email.dart';
 import 'package:budget_tracker/presentation/auth/widgets/register_button.dart';
+import 'package:budget_tracker/presentation/core/routing/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,9 +40,7 @@ class RegisterForm extends StatelessWidget {
               ),
             );
           },
-              (_) => Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const VerifyEmailPage(),
-                  ))),
+              (_) => context.navigateTo(const VerifyEmailRoute())),
         );
       },
       builder: (context, state) {
@@ -205,6 +205,7 @@ class RegisterForm extends StatelessWidget {
                     context
                         .read<RegisterFormBloc>()
                         .add(const RegisterFormEvent.registerPressed());
+                    context.navigateTo(const VerifyEmailRoute());
                   }
                 },
               )

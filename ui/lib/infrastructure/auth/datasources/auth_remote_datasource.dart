@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:budget_tracker/infrastructure/auth/contracts/authenticate_response.dart';
+import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 
@@ -41,26 +43,27 @@ const EMAIL_ALREADY_USED_MESSAGE = "A user is already registered with this email
 
 @LazySingleton(as: AuthRemoteDataSource)
 class AuthApiDataSourceImpl implements AuthRemoteDataSource {
-  final http.Client client;
+  final Dio client;
 
-  AuthApiDataSourceImpl({required this.client});
+  AuthApiDataSourceImpl(this.client);
 
   @override
   Future<AccessTokenModel> login({
     required String username,
     required String password,
   }) async {
-    final response = await client.post(
-      Uri.parse('${API_URL}/auth/authenticate'),
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({'username': username, 'password': password}),
-    );
-    if (response.statusCode == 200) {
-      return AccessTokenModel.fromJson(jsonDecode(response.body));
-    } else if (response.statusCode == 401) {
-      throw InvalidCredentialsException();
-    } else {
-      throw AuthServerException();
+    try {
+      final response = await client.post(
+        "/auth/authenticate",
+        data: {'username': username, 'password': password},
+      );
+      return AccessTokenModel.fromJson(response.data);
+    } on DioError catch (e) {
+      if (e.response?.statusCode == 401) {
+        throw InvalidCredentialsException();
+      } else {
+        throw AuthServerException();
+      }
     }
   }
 
@@ -73,20 +76,19 @@ class AuthApiDataSourceImpl implements AuthRemoteDataSource {
     required String lastName,
   }) async {
     final response = await client.post(
-      Uri.parse('${API_URL}/auth/register'),
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({
+      "/auth/register",
+      data: {
         'username': username,
         'password': password,
         'email': email,
         'firstName': firstName,
         'lastName': lastName,
-      }),
+      },
     );
     if (response.statusCode == 200) {
       return true;
     } else if (response.statusCode == 409) {
-      final body = jsonDecode(response.body);
+      final body = jsonDecode(response.data);
       if (body['message'] == EMAIL_ALREADY_USED_MESSAGE) {
         throw EmailAlreadyUsedException();
       } else if (body['message'] == USERNAME_ALREADY_USED_MESSAGE) {
@@ -102,14 +104,10 @@ class AuthApiDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<UserModel> getUser({required AccessTokenModel accessToken}) async {
     final response = await client.get(
-      Uri.parse('${API_URL}/user/details'),
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${accessToken.token}',
-      },
+      "/user/details",
     );
     if (response.statusCode == 200) {
-      return UserModel.fromJson(jsonDecode(response.body));
+      return UserModel.fromJson(jsonDecode(response.data));
     } else {
       throw AuthServerException();
     }

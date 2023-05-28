@@ -1,5 +1,5 @@
 import 'package:budget_tracker/domain/categories/entities/category.dart';
-import 'package:budget_tracker/domain/categories/facade.dart';
+import 'package:budget_tracker/domain/categories/repository.dart';
 import 'package:budget_tracker/domain/categories/failures.dart';
 import 'package:budget_tracker/domain/categories/value_objects.dart';
 import 'package:budget_tracker/infrastructure/categories/exceptions.dart';
@@ -7,14 +7,15 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../application/core/network_info.dart';
+import '../../domain/auth/facade.dart';
 import 'datasources/category_remote_datasource.dart';
 
-@Singleton(as: ICategoryFacade)
-class CategoryFacade implements ICategoryFacade {
+@Singleton(as: ICategoryRepository)
+class CategoryRepository implements ICategoryRepository {
   final INetworkInfo networkInfo;
   final CategoryRemoteDataSource remoteDataSource;
 
-  CategoryFacade({
+  CategoryRepository({
     required this.networkInfo,
     required this.remoteDataSource,
   });

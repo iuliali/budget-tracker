@@ -107,6 +107,7 @@ class LoginForm extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               LoginButton(
+                disabled: state.isSubmitting,
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     context.read<LoginFormBloc>().add(

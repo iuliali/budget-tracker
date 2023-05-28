@@ -16,13 +16,17 @@ abstract class AuthLocalDataSource {
   /// Caches the [AccessTokenModel] which was gotten the last time
   /// the user had an internet connection.
   Future<bool> cacheAccessToken(AccessTokenModel accessTokenToCache);
+
+  /// Deletes the cached [AccessTokenModel] which was gotten the last time
+  Future<bool> deleteCachedAccessToken();
 }
 
-const accessTokenCacheKey = "ACCESS_TOKEN";
 
 @LazySingleton(as: AuthLocalDataSource)
 class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   final SharedPreferences sharedPreferences;
+
+  static const accessTokenCacheKey = "ACCESS_TOKEN";
 
   AuthLocalDataSourceImpl({required this.sharedPreferences});
 
@@ -41,4 +45,8 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
         accessTokenCacheKey, jsonEncode(accessTokenToCache.toJson()));
   }
 
+  @override
+  Future<bool> deleteCachedAccessToken() {
+    return sharedPreferences.remove(accessTokenCacheKey);
+  }
 }

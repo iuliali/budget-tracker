@@ -29,12 +29,14 @@ void main() {
       'should return AccessTokenModel from SharedPreferences when there is one in the cache',
       () async {
         // arrange
-        when(() => mockSharedPreferences.getString(accessTokenCacheKey))
+        when(() => mockSharedPreferences
+                .getString(AuthLocalDataSourceImpl.accessTokenCacheKey))
             .thenReturn(fixture('auth/access_token_cached.json'));
         // act
         final result = await dataSource.getCachedAccessToken();
         // assert
-        verify(() => mockSharedPreferences.getString(accessTokenCacheKey));
+        verify(() => mockSharedPreferences
+            .getString(AuthLocalDataSourceImpl.accessTokenCacheKey));
         expect(result, equals(tAccessTokenModel));
       },
     );
@@ -43,8 +45,8 @@ void main() {
       'should throw a CacheException when there is not a cached value',
       () async {
         // arrange
-        when(() => mockSharedPreferences.getString(accessTokenCacheKey))
-            .thenReturn(null);
+        when(() => mockSharedPreferences.getString(
+            AuthLocalDataSourceImpl.accessTokenCacheKey)).thenReturn(null);
         // act
         final call = dataSource.getCachedAccessToken;
         // assert
@@ -70,7 +72,7 @@ void main() {
         // assert
         final expectedJsonString = jsonEncode(tAccessTokenModel.toJson());
         verify(() => mockSharedPreferences.setString(
-              accessTokenCacheKey,
+              AuthLocalDataSourceImpl.accessTokenCacheKey,
               expectedJsonString,
             ));
         expect(result, future);
