@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -88,7 +89,16 @@ public class UserService {
     public UserDto findById(BigInteger id) {
         return userRepository.findById(id)
                 .map(UserDto::new)
-                .orElseThrow();
+                .orElseThrow(
+                        () -> new UserDoesNotExistException(UserService.class)
+                );
+    }
+
+    public User findUserById(BigInteger id) {
+        return userRepository.findById(id)
+                .orElseThrow(
+                        () -> new UserDoesNotExistException(UserService.class)
+                );
     }
 
     public User getUserByUsername(String username) {
@@ -118,6 +128,10 @@ public class UserService {
 
     private void enableUser(String email) {
         userRepository.enableUser(email);
+    }
+
+    public List<User> getAllUsers(){
+        return userRepository.findAll();
     }
 
     private String buildEmail(String name, String link) {
@@ -196,5 +210,12 @@ public class UserService {
         );
         UserDetailsDto userDetails = new UserDetailsDto(user);
         return userDetails;
+    }
+
+    public User getAuthenticatedUser() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userRepository.findByUsername(username).orElseThrow(
+                () -> new UserDoesNotExistException(UserService.class)
+        );
     }
 }
