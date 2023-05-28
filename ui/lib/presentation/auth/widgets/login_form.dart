@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../application/auth/login_form/login_form_bloc.dart';
 import '../../core/routing/router.dart';
 import '../../core/colors.dart';
-import 'login_button.dart';
+import '../../core/widgets/buttons/whole_length_button.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
@@ -106,7 +106,8 @@ class LoginForm extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              LoginButton(
+              WholeLengthButton(
+                text: "Login",
                 disabled: state.isSubmitting,
                 onPressed: () {
                   if (formKey.currentState!.validate()) {

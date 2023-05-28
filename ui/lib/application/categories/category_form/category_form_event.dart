@@ -1,0 +1,8 @@
+part of 'category_form_bloc.dart';
+
+@freezed
+abstract class CategoryFormEvent with _$CategoryFormEvent {
+  const factory CategoryFormEvent.initialized(Option<Category> initialCategoryOption) = Initialized;
+  const factory CategoryFormEvent.nameChanged(String nameStr) = NameChanged;
+  const factory CategoryFormEvent.saved() = Saved;
+}

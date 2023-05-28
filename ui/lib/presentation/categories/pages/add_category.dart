@@ -1,5 +1,13 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:budget_tracker/presentation/categories/widgets/category_form.dart';
+import 'package:budget_tracker/presentation/core/colors.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../application/categories/category_form/category_form_bloc.dart';
+import '../../../injection.dart';
+import '../../core/widgets/header.dart';
 
 @RoutePage()
 class AddCategoryPage extends StatelessWidget {
@@ -7,51 +15,31 @@ class AddCategoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
-    final nameController = TextEditingController();
-    return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
-      appBar: AppBar(
+    return BlocProvider(
+      create: (context) =>
+          getIt<CategoryFormBloc>()..add(CategoryFormEvent.initialized(none())),
+      child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
-        elevation: 0,
-      ),
-      body: Form(
-        key: formKey,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Expanded(child: SizedBox()),
-            const Text(
-              'Add Category',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+        appBar: AppBar(
+          leading: IconButton(
+            onPressed: () => context.router.pop(),
+            icon: const Icon(Icons.arrow_back, color: cBlackColor),
+          ),
+          backgroundColor: Theme.of(context).colorScheme.background,
+          elevation: 0,
+        ),
+        body: const SafeArea(
+          child: Padding(
+            padding: EdgeInsets.all(32),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Spacer(),
+                HeaderWidget(title: "Add Category"),
+                CategoryForm(),
+              ],
             ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: TextFormField(
-                controller: nameController,
-                decoration: const InputDecoration(
-                  labelText: 'Name',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter a name';
-                  }
-                  return null;
-                },
-              ),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text('Submit'),
-            ),
-            const Expanded(flex: 2, child: SizedBox()),
-          ],
+          ),
         ),
       ),
     );

@@ -44,6 +44,9 @@ dependencies:
   url_launcher: ^6.0.9
   auto_route: ^7.1.0
 
+  # DateFormating
+  intl: 0.18.1
+
 dev_dependencies:
   # Code generation
   build_runner:

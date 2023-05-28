@@ -1,10 +1,10 @@
 import 'dart:convert';
-import 'package:budget_tracker/infrastructure/auth/contracts/authenticate_response.dart';
+import 'package:budget_tracker/application/auth/auth_bloc.dart';
+import 'package:budget_tracker/injection.dart';
 import 'package:dio/dio.dart';
-import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 
-import '../../../config.dart';
+import '../../core/exceptions.dart';
 import '../exceptions.dart';
 import '../models/access_token_model.dart';
 import '../models/user_model.dart';
@@ -30,12 +30,12 @@ abstract class AuthRemoteDataSource {
     required String lastName,
   });
 
+  void addDioAuthInterceptor(AccessTokenModel accessToken);
+
   /// Calls the API using the [accessToken] to get the user.
   ///
   /// Throws [ServerException] for all error codes.
-  Future<UserModel> getUser({
-    required AccessTokenModel accessToken,
-  });
+  Future<UserModel> getUser();
 }
 
 const USERNAME_ALREADY_USED_MESSAGE = "A user is already registered with this username. ";
@@ -102,14 +102,40 @@ class AuthApiDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<UserModel> getUser({required AccessTokenModel accessToken}) async {
+  Future<UserModel> getUser() async {
     final response = await client.get(
       "/user/details",
     );
     if (response.statusCode == 200) {
-      return UserModel.fromJson(jsonDecode(response.data));
+      return UserModel.fromJson(response.data);
     } else {
       throw AuthServerException();
     }
+  }
+
+  @override
+  void addDioAuthInterceptor(AccessTokenModel token) {
+    AuthBloc authBloc;
+    authBloc = getIt<AuthBloc>();
+    if (token.expiresAt!.isBefore(DateTime.now())) {
+      authBloc.add(const AuthEvent.signedOut());
+      throw UnauthorizedException();
+    }
+    client.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          // Add the access token to the request header
+          options.headers['Authorization'] = 'Bearer ${token.token}';
+          return handler.next(options);
+        },
+        onError: (error, handler) {
+          if (error.response?.statusCode == 401 ||
+              error.response?.statusCode == 403) {
+            authBloc.add(const AuthEvent.signedOut());
+          }
+          return handler.next(error);
+        },
+      ),
+    );
   }
 }

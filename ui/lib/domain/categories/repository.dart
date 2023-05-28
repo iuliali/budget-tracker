@@ -5,17 +5,17 @@ import 'entities/category.dart';
 import 'failures.dart';
 
 abstract class ICategoryRepository {
-  Future<Either<CategoryFailure, Unit>> createCategory({
+  Future<Either<CategoryFailure, Unit>> create({
     required CategoryName categoryName,
   });
 
-  Future<Either<CategoryFailure, Unit>> updateCategory({
+  Future<Either<CategoryFailure, Unit>> update({
     required Category category,
   });
 
-  Future<Either<CategoryFailure, Unit>> deleteCategory({
+  Future<Either<CategoryFailure, Unit>> delete({
     required CategoryId categoryId,
   });
 
-  Future<Either<CategoryFailure, List<Category>>> getCategories();
+  Future<Either<CategoryFailure, List<Category>>> getAll();
 }

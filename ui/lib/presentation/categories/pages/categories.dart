@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:budget_tracker/application/categories/categories_bloc.dart';
+import 'package:budget_tracker/presentation/core/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,6 +8,7 @@ import '../../../domain/categories/entities/category.dart';
 import '../../../injection.dart';
 import '../../core/routing/router.dart';
 import '../../core/widgets/app_bar.dart';
+import '../../core/widgets/header.dart';
 import '../../core/widgets/menu.dart';
 
 @RoutePage()
@@ -16,87 +18,131 @@ class CategoriesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => getIt<CategoriesBloc>()..add(const CategoriesEvent.fetchCategories()),
+      create: (_) =>
+          getIt<CategoriesBloc>()..add(const CategoriesEvent.fetchCategories()),
       child: Scaffold(
-        backgroundColor: Theme
-            .of(context)
-            .colorScheme
-            .background,
+        backgroundColor: Theme.of(context).colorScheme.background,
         appBar: generateAppBarWidget(context),
         drawer: const Drawer(child: MenuWidget()),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => context.router.push(const AddCategoryRoute()),
+          onPressed: () => context.router.navigate(const AddCategoryRoute()),
+          backgroundColor: Theme.of(context).colorScheme.primary,
           child: const Icon(Icons.add),
         ),
-        body: BlocConsumer<CategoriesBloc, CategoriesState>(
-          listener: (context, state) {},
-          builder: (context, state) {
-            final List<Category> listOfCategories = state.failureOrCategories.fold(
-                  () => [],
-                  (a) => a.fold(
-                    (l) => [],
-                    (r) => r,
-                  )
-            );
-            if (state.isFetching) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            if (listOfCategories.isEmpty) {
-              return const Center(
-                child: Text("No categories found"),
-              );
-            }
-            return ListView.builder(
-              itemCount: listOfCategories.length,
-              itemBuilder: (context, index) {
-                final item = listOfCategories[index];
-                return Dismissible(
-                  key: Key(item.id.toString()),
-                  onDismissed: (direction) {
-                    // Then show a snackbar.
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('${item.name.getOrCrash()} dismissed')));
-                  },
-                  background: Container(
-                    color: Colors.red,
-                    alignment: Alignment.center,
-                    child: const Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Icon(
-                            Icons.delete,
-                            color: Colors.white,
-                          ),
+        body: SafeArea(
+          child: ListView(
+            shrinkWrap: true,
+            children: <Widget>[
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 32),
+                child: HeaderWidget(title: "Categories"),
+              ),
+              BlocConsumer<CategoriesBloc, CategoriesState>(
+                listener: (context, state) {
+                  state.failureOrCategories.fold(
+                    () {},
+                    (either) => either.fold(
+                      (failure) => ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(failure.maybeMap(
+                            unexpected: (_) =>
+                                "Unexpected error occured while fetching categories",
+                            categoryNotFound: (_) => "Insufficient permission",
+                            orElse: () => "Unexpected error occured",
+                          )),
                         ),
-                        Expanded(child: SizedBox()),
-                        Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Icon(
-                            Icons.delete,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
+                      ),
+                      (categories) {},
                     ),
-                  ),
-                  child: ListTile(
-                    onTap: () {
-                      Navigator.of(context).pushNamed(
-                        '/category',
-                        arguments: item.id,
+                  );
+                },
+                builder: (context, state) {
+                  final List<Category> listOfCategories =
+                      state.failureOrCategories.fold(
+                          () => [],
+                          (a) => a.fold(
+                                (l) => [],
+                                (r) => r,
+                              ));
+                  if (state.isFetching) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  if (listOfCategories.isEmpty) {
+                    return const Center(
+                      child: Text("No categories found"),
+                    );
+                  }
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: listOfCategories.length,
+                    itemBuilder: (context, index) {
+                      final item = listOfCategories[index];
+                      return Dismissible(
+                        key: Key(item.id.toString()),
+                        onDismissed: (direction) {
+                          context.read<CategoriesBloc>().add(
+                              CategoriesEvent.deleteCategory(
+                                  categoryId: item.id));
+                        },
+                        background: Container(
+                          color: Colors.red,
+                          alignment: Alignment.center,
+                          child: const Row(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Icon(
+                                  Icons.delete,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Spacer(),
+                              Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Icon(
+                                  Icons.delete,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        child: ListTile(
+                          onTap: () {
+                            context.router.navigate(
+                              EditCategoryRoute(category: item),
+                            );
+                          },
+                          title: Text(item.name.getOrCrash()),
+                          leading: const Icon(Icons.drag_indicator),
+                          trailing: IntrinsicWidth(
+                            child: Row(
+                              children: [
+                                (item.id.getOrElse(0) % 2 == 1)
+                                    ? const Icon(Icons.all_inclusive)
+                                    : Text(
+                                        "${item.id.getOrCrash()*27} RON",
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: cGreyColor
+                                        ),
+                                      ),
+                                const SizedBox(width: 26),
+                                const Icon(Icons.edit),
+                              ],
+                            ),
+                          ),
+                        ),
                       );
                     },
-                    title: Text(item.name.getOrCrash()),
-                    leading: const Icon(Icons.money),
-                    trailing: const Icon(Icons.arrow_forward_ios),
-                  ),
-                );
-              },
-            );
-          },
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

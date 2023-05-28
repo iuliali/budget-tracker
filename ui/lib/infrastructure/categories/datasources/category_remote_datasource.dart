@@ -8,14 +8,14 @@ import '../models/category_model.dart';
 
 abstract class CategoryRemoteDataSource{
   /// Throws [CategoryServerException] for all error codes.
-  Future<List<CategoryModel>> getCategories();
+  Future<List<CategoryModel>> getAll();
   /// Throws [CategoryAlreadyExistsException] if category with provided name already exists,
   /// Throws [CategoryServerException] for other error codes.
-  Future<void> createCategory(CategoryName categoryName);
+  Future<void> create(CategoryName categoryName);
   /// Throws [CategoryServerException] for all error codes.
-  Future<void> updateCategory(Category category);
+  Future<void> update(Category category);
   /// Throws [CategoryServerException] for all error codes.
-  Future<void> deleteCategory(CategoryId categoryId);
+  Future<void> delete(CategoryId categoryId);
 }
 
 @LazySingleton(as: CategoryRemoteDataSource)
@@ -25,12 +25,12 @@ class CategoryRemoteDataSourceImpl implements CategoryRemoteDataSource{
   CategoryRemoteDataSourceImpl(this.client);
 
   @override
-  Future<void> createCategory(CategoryName categoryName) async {
+  Future<void> create(CategoryName categoryName) async {
     final response = await client.post(
-      "/categories",
+      "/categories/create",
       data: {"name": categoryName.getOrCrash()},
     );
-    if(response.statusCode == 201){
+    if(response.statusCode == 200){
       return;
     } else if(response.statusCode == 400){
       throw CategoryAlreadyExistsException();
@@ -40,9 +40,9 @@ class CategoryRemoteDataSourceImpl implements CategoryRemoteDataSource{
   }
 
   @override
-  Future<void> deleteCategory(CategoryId categoryId) async {
+  Future<void> delete(CategoryId categoryId) async {
     final response = await client.delete(
-        "/categories/${categoryId.getOrCrash()}"
+        "/categories/delete/${categoryId.getOrCrash()}"
     );
     if(response.statusCode == 200){
       return;
@@ -54,12 +54,12 @@ class CategoryRemoteDataSourceImpl implements CategoryRemoteDataSource{
   }
 
   @override
-  Future<List<CategoryModel>> getCategories() async {
-    final response = await client.get<List<CategoryModel>>("/categories/all");
-    print("getCategories");
-    print(response.statusCode);
+  Future<List<CategoryModel>> getAll() async {
+    final response = await client.get("/categories/all");
     if(response.statusCode == 200){
-      final List<CategoryModel> categories = response.data ?? [];
+      final List<CategoryModel> categories = response.data["categories"]
+          .map<CategoryModel>((category) => CategoryModel.fromJson(category))
+          .toList();
       return categories;
     } else {
       throw CategoryServerException();
@@ -67,9 +67,9 @@ class CategoryRemoteDataSourceImpl implements CategoryRemoteDataSource{
   }
 
   @override
-  Future<void> updateCategory(Category category) async {
+  Future<void> update(Category category) async {
     final response = await client.put(
-      "/categories/${category.id.getOrCrash()}",
+      "/categories/update/${category.id.getOrCrash()}",
       data: {"name": category.name.getOrCrash()},
     );
     if(response.statusCode == 200){

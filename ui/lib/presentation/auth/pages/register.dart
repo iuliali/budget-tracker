@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../application/auth/register_form/register_form_bloc.dart';
 import '../../../injection.dart';
-import '../widgets/login_button.dart';
+import '../../core/widgets/buttons/whole_length_button.dart';
 import '../widgets/register_form.dart';
 
 @RoutePage()
@@ -39,7 +39,8 @@ class RegisterPage extends StatelessWidget {
                         children: [
                           const RegisterForm(),
                           const SizedBox(height: 16),
-                          LoginButton(
+                          WholeLengthButton(
+                            text: 'Login',
                             filled: false,
                             onPressed: () =>
                                 context.navigateTo(const LoginRoute()),

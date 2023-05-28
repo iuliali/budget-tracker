@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import '../../core/colors.dart';
+import '../../colors.dart';
 
-class LoginButton extends StatelessWidget {
-  const LoginButton({
+class WholeLengthButton extends StatelessWidget {
+  const WholeLengthButton({
     Key? key,
+    required this.text,
     required this.onPressed,
     this.filled = true,
     this.disabled = false,
   }) : super(key: key);
 
+  final text;
   final Function() onPressed;
   final bool filled;
   final bool disabled;
@@ -23,14 +25,14 @@ class LoginButton extends StatelessWidget {
         side: BorderSide(color: accentColor),
       ),
       onPressed: disabled ? () {} : onPressed,
-      child: const SizedBox(
+      child: SizedBox(
         width: double.infinity,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Text(
-            'Login',
+            text,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),

@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:budget_tracker/presentation/debt/pages/split_page.dart';
 import "package:flutter/material.dart";
+import '../../../domain/categories/entities/category.dart';
+import '../../../domain/transactions/entities/expense.dart';
+import '../../../domain/transactions/entities/income.dart';
 import '../../auth/pages/login.dart';
 import '../../auth/pages/register.dart';
 import '../../auth/pages/verify_email.dart';
@@ -15,9 +17,12 @@ import '../../transactions/pages/incomes.dart';
 import '../../transactions/pages/income.dart';
 import '../../transactions/pages/expenses.dart';
 import '../../transactions/pages/expense.dart';
+import '../../transactions/pages/add_expense.dart';
+import '../../transactions/pages/add_income.dart';
 import '../../debt/pages/add_group.dart';
 import '../../debt/pages/group_page.dart';
 import '../../debt/pages/groups_page.dart';
+import '../../debt/pages/split_page.dart';
 import '../splash.dart';
 
 part 'router.gr.dart';
@@ -47,8 +52,10 @@ class AppRouter extends _$AppRouter {
     // Transactions
     AutoRoute(page: ExpensesRoute.page),
     AutoRoute(page: ExpenseRoute.page),
+    AutoRoute(page: AddExpenseRoute.page),
     AutoRoute(page: IncomesRoute.page),
     AutoRoute(page: IncomeRoute.page),
+    AutoRoute(page: AddIncomeRoute.page),
 
     // Debt
     AutoRoute(page: AddGroupRoute.page),

@@ -1,12 +1,11 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:budget_tracker/presentation/auth/pages/verify_email.dart';
-import 'package:budget_tracker/presentation/auth/widgets/register_button.dart';
-import 'package:budget_tracker/presentation/core/routing/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../application/auth/register_form/register_form_bloc.dart';
 import '../../../domain/auth/validators.dart';
+import '../../core/routing/router.dart';
+import 'register_button.dart';
 
 class RegisterForm extends StatelessWidget {
   const RegisterForm({Key? key}) : super(key: key);

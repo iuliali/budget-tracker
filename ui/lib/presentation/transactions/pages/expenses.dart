@@ -1,11 +1,15 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:budget_tracker/domain/auth/value_objects.dart';
-import 'package:budget_tracker/presentation/core/widgets/header.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
+import '../../../domain/transactions/entities/expense.dart';
+import '../../../injection.dart';
+import '../../../application/transactions/expenses/expenses_bloc.dart';
 import '../../core/colors.dart';
+import '../../core/routing/router.dart';
 import '../../core/widgets/app_bar.dart';
+import '../../core/widgets/header.dart';
 import '../../core/widgets/menu.dart';
 
 @RoutePage()
@@ -14,103 +18,137 @@ class ExpensesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categories = Future(() => []);
-    var transactions = Future(() => []);
-    return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
-      appBar: generateAppBarWidget(context),
-      drawer: const Drawer(
-        child: MenuWidget(),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32),
+    return BlocProvider(
+      create: (_) =>
+        getIt<ExpensesBloc>()..add(const ExpensesEvent.getExpenses()),
+      child: Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.background,
+        appBar: generateAppBarWidget(context),
+        drawer: const Drawer(child: MenuWidget()),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => context.router.navigate(const AddExpenseRoute()),
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          child: const Icon(Icons.add),
+        ),
+        body: SafeArea(
           child: ListView(
-            physics: const ClampingScrollPhysics(),
+            shrinkWrap: true,
             children: <Widget>[
-              const HeaderWidget(title: "Expenses", subtitle: "Today"),
-              FutureBuilder(
-                future: categories,
-                builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                  final lengthOfCategories = snapshot.hasData ? snapshot.data!.length : 0;
-                  return SizedBox(
-                    height: 500,
-                    child: lengthOfCategories == 0
-                        ? const Center(
-                            child: Text("No transactions"),
-                          )
-                        : FutureBuilder(
-                            future: transactions,
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData) {
-                                return ListView.builder(
-                                  padding:
-                                      const EdgeInsets.only(left: 16, right: 8),
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: snapshot.data!.length,
-                                  itemBuilder: (context, index) {
-                                    var transaction = snapshot.data![index];
-                                    return Container(
-                                      margin: const EdgeInsets.all(8),
-                                      padding: const EdgeInsets.all(16),
-                                      decoration: BoxDecoration(
-                                        color: cWhiteGreyColor,
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      child: Row(
-                                        children: <Widget>[
-                                          Expanded(
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                transaction.category != null
-                                                    ? Text(
-                                                        transaction.category!.name,
-                                                        style: GoogleFonts.nunito(
-                                                            fontSize: 14,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            color: cBlackColor),
-                                                      )
-                                                    : const SizedBox(),
-                                                Text(
-                                                  transaction.title,
-                                                  style: GoogleFonts.nunito(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: cGreyColor,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            margin: const EdgeInsets.symmetric(
-                                                horizontal: 16),
-                                            child: Text(
-                                              "${transaction.amount} RON",
-                                              style: GoogleFonts.nunito(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w400,
-                                                color: cBlackColor,
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    );
-                                  },
-                                );
-                              } else {
-                                return const Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              }
-                            },
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 32),
+                child: HeaderWidget(title: "Expenses", subtitle: "All times"),
+              ),
+              BlocConsumer<ExpensesBloc, ExpensesState>(
+                listener: (context, state) {
+                  state.failureOrExpenses.fold(
+                        () {},
+                        (either) => either.fold(
+                          (failure) => ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(failure.maybeMap(
+                            unexpected: (_) =>
+                            "Unexpected error occured while fetching categories",
+                            notFound: (_) => "Expense not found",
+                            orElse: () => "Unexpected error occured",
+                          )),
+                        ),
+                      ),
+                          (categories) {},
+                    ),
+                  );
+                },
+                builder: (context, state) {
+                  final List<Expense> listOfExpenses =
+                  state.failureOrExpenses.fold(
+                          () => [],
+                          (a) => a.fold(
+                            (l) => [],
+                            (r) => r,
+                      ));
+                  if (state.isFetching) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  if (listOfExpenses.isEmpty) {
+                    return const Center(
+                      child: Text("No expenses found!"),
+                    );
+                  }
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: listOfExpenses.length,
+                    itemBuilder: (context, index) {
+                      final item = listOfExpenses[index];
+                      return Dismissible(
+                        key: Key(item.id.toString()),
+                        onDismissed: (direction) {
+                          context.read<ExpensesBloc>().add(
+                              ExpensesEvent.deleteExpense(item.id));
+                        },
+                        background: Container(
+                          color: Colors.red,
+                          alignment: Alignment.center,
+                          child: const Row(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Icon(
+                                  Icons.delete,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Spacer(),
+                              Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Icon(
+                                  Icons.delete,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
                           ),
+                        ),
+                        child: ListTile(
+                          onTap: () {
+                            context.router.navigate(
+                              ExpenseRoute(expense: item),
+                            );
+                          },
+                          title: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(item.recipient.getOrCrash()),
+                              Text(
+                                DateFormat.yMMMd()
+                                      .format(item.date.getOrCrash()),
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  color: cGreyColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                          leading: const Icon(Icons.drag_indicator),
+                          trailing: IntrinsicWidth(
+                            child: Row(
+                              children: [
+                                Text(
+                                  "${item.amount.getOrCrash()} ${item.currency.getOrCrash()}",
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: cGreyColor
+                                  ),
+                                ),
+                                const SizedBox(width: 26),
+                                const Icon(Icons.edit),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   );
                 },
               ),

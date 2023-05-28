@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import '../../../domain/auth/facade.dart';
 import '../../../domain/auth/failures.dart';
 import '../../../domain/auth/value_objects.dart';
+import '../auth_bloc.dart';
 
 part 'login_form_event.dart';
 part 'login_form_state.dart';
@@ -14,8 +15,9 @@ part 'login_form_bloc.freezed.dart';
 @injectable
 class LoginFormBloc extends Bloc<LoginFormEvent, LoginFormState> {
   final IAuthFacade _authFacade;
+  final AuthBloc _authBloc;
 
-  LoginFormBloc(this._authFacade) : super(LoginFormState.initial()) {
+  LoginFormBloc(this._authFacade, this._authBloc) : super(LoginFormState.initial()) {
     on<UsernameChanged>(_onUsernameChanged);
     on<PasswordChanged>(_onPasswordChanged);
     on<LoginWithUsernameAndPasswordPressed>(_onLoginWithUsernameAndPasswordPressed);
@@ -51,6 +53,9 @@ class LoginFormBloc extends Bloc<LoginFormEvent, LoginFormState> {
         username: state.username,
         password: state.password,
       );
+      if (failureOrSuccess.isRight()) {
+        _authBloc.add(const AuthEvent.authCheckRequested());
+      }
     }
 
     emit(state.copyWith(

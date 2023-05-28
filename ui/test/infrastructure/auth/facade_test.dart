@@ -7,6 +7,7 @@ import 'package:budget_tracker/infrastructure/auth/exceptions.dart';
 import 'package:budget_tracker/infrastructure/auth/facade.dart';
 import 'package:budget_tracker/infrastructure/auth/models/access_token_model.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -16,20 +17,25 @@ class MockAuthLocalDataSource extends Mock implements AuthLocalDataSource {}
 
 class MockNetworkInfo extends Mock implements INetworkInfo {}
 
+class MockDio extends Mock implements Dio {}
+
 void main() {
   late AuthFacade repository;
   late MockAuthRemoteDataSource mockAuthRemoteDataSource;
   late MockAuthLocalDataSource mockAuthLocalDataSource;
   late MockNetworkInfo mockNetworkInfo;
+  late MockDio mockDio;
 
   setUp(() {
     mockAuthRemoteDataSource = MockAuthRemoteDataSource();
     mockAuthLocalDataSource = MockAuthLocalDataSource();
     mockNetworkInfo = MockNetworkInfo();
+    mockDio = MockDio();
     repository = AuthFacade(
       remoteDataSource: mockAuthRemoteDataSource,
       localDataSource: mockAuthLocalDataSource,
       networkInfo: mockNetworkInfo,
+      dio: mockDio,
     );
   });
 

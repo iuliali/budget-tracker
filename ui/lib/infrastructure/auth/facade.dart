@@ -1,5 +1,6 @@
 import 'package:budget_tracker/domain/auth/entities/user.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../application/core/network_info.dart';
@@ -15,11 +16,13 @@ class AuthFacade implements IAuthFacade {
   final AuthRemoteDataSource remoteDataSource;
   final AuthLocalDataSource localDataSource;
   final INetworkInfo networkInfo;
+  final Dio dio;
 
   AuthFacade({
     required this.remoteDataSource,
     required this.localDataSource,
     required this.networkInfo,
+    required this.dio,
   });
 
   @override
@@ -29,26 +32,24 @@ class AuthFacade implements IAuthFacade {
   }) async {
     final usernameStr = username.getOrCrash();
     final passwordStr = password.getOrCrash();
+
     if (await networkInfo.isConnected) {
       try {
         final remoteAccessToken = await remoteDataSource.login(
           username: usernameStr,
           password: passwordStr,
         );
+        remoteDataSource.addDioAuthInterceptor(remoteAccessToken);
         localDataSource.cacheAccessToken(remoteAccessToken);
         return const Right(unit);
       } on InvalidCredentialsException {
-        return const Left(AuthFailure.invalidUsernameAndPasswordCombination());
-      } on AuthServerException {
+        return const Left(
+            AuthFailure.invalidUsernameAndPasswordCombination());
+      } catch (_) {
         return const Left(AuthFailure.serverError());
       }
     }
-    try {
-      await localDataSource.getCachedAccessToken();
-      return const Right(unit);
-    } catch (_) {
-      return const Left(AuthFailure.connectionError());
-    }
+    return const Left(AuthFailure.connectionError());
   }
 
   @override
@@ -80,7 +81,7 @@ class AuthFacade implements IAuthFacade {
       return const Left(AuthFailure.emailAlreadyInUse());
     } on UsernameAlreadyUsedException {
       return const Left(AuthFailure.usernameAlreadyInUse());
-    } on AuthServerException {
+    } catch (_) {
       return const Left(AuthFailure.serverError());
     }
   }
@@ -89,7 +90,8 @@ class AuthFacade implements IAuthFacade {
   Future<Option<User>> getSignedInUser() async {
     try {
       final accessToken = await localDataSource.getCachedAccessToken();
-      final userModel = await remoteDataSource.getUser(accessToken: accessToken);
+      remoteDataSource.addDioAuthInterceptor(accessToken);
+      final userModel = await remoteDataSource.getUser();
       return optionOf(userModel.toDomain());
     } catch (_) {
       return none();

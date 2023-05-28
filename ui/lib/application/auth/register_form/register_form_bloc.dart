@@ -29,15 +29,6 @@ class RegisterFormBloc extends Bloc<RegisterFormEvent, RegisterFormState> {
     on<RegisterAgain>(_onRegisterAgain);
   }
 
-  bool get _isValid {
-    return state.username.isValid() &&
-        state.password.isValid() &&
-        state.confirmPassword.isValid() &&
-        state.firstName.isValid() &&
-        state.lastName.isValid() &&
-        state.emailAddress.isValid();
-  }
-
   Future _onUsernameChanged(
       UsernameChanged event, Emitter<RegisterFormState> emit) async {
     emit(state.copyWith(

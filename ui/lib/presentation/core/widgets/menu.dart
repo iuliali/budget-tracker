@@ -73,7 +73,7 @@ class MenuWidget extends StatelessWidget {
           title: "Expenses", icon: Icons.south_east, route: ExpensesRoute()),
       MenuItem(title: "Incomes", icon: Icons.north_east, route: IncomesRoute()),
       MenuItem(title: "Categories", icon: Icons.dns, route: CategoriesRoute()),
-      MenuItem(title: "Groups", icon: Icons.attach_money, route: GroupRoute()),
+      MenuItem(title: "Groups", icon: Icons.attach_money, route: GroupsRoute()),
       // const MenuItem(title: "Statistics", icon: Icons.pie_chart, route: "/statistics", disabled: true),
       // const MenuItem(title: "Settings", icon: Icons.settings, route: "/settings", disabled: true),
     ];
@@ -91,7 +91,7 @@ class MenuWidget extends StatelessWidget {
                 icon: item.icon,
                 disabled: item.disabled,
                 selected: context.router.isRouteActive(item.route.routeName),
-                onTap: () => context.navigateTo(item.route),
+                onTap: () => context.router.replace(item.route),
               );
             },
           ),

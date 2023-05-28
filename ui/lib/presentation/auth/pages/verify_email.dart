@@ -9,7 +9,7 @@ import '../../../config.dart';
 import '../../../injection.dart';
 import '../../core/colors.dart';
 import '../../core/routing/router.dart';
-import '../widgets/login_button.dart';
+import '../../core/widgets/buttons/whole_length_button.dart';
 
 @RoutePage()
 class VerifyEmailPage extends StatelessWidget {
@@ -96,7 +96,8 @@ class VerifyEmailPage extends StatelessWidget {
                                 .read<RegisterFormBloc>()
                                 .add(const RegisterFormEvent.registerAgain()),
                           ),
-                          LoginButton(
+                          WholeLengthButton(
+                            text: 'Login',
                             filled: false,
                             onPressed: () => context
                                 .navigateTo(const LoginRoute()),

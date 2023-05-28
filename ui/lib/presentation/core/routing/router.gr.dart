@@ -39,34 +39,6 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const RegisterPage(),
       );
     },
-    ExpensesRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const ExpensesPage(),
-      );
-    },
-    IncomesRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const IncomesPage(),
-      );
-    },
-    CategoryRoute.name: (routeData) {
-      final args = routeData.argsAs<CategoryRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: CategoryPage(
-          key: args.key,
-          categoryId: args.categoryId,
-        ),
-      );
-    },
-    CategoriesRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const CategoriesPage(),
-      );
-    },
     GroupRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -91,22 +63,68 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const AddGroupPage(),
       );
     },
-    ExpenseRoute.name: (routeData) {
+    AddIncomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ExpensePage(),
+        child: const AddIncomePage(),
+      );
+    },
+    ExpenseRoute.name: (routeData) {
+      final args = routeData.argsAs<ExpenseRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ExpensePage(
+          key: args.key,
+          expense: args.expense,
+        ),
+      );
+    },
+    ExpensesRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ExpensesPage(),
       );
     },
     IncomeRoute.name: (routeData) {
+      final args = routeData.argsAs<IncomeRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const IncomePage(),
+        child: IncomePage(
+          key: args.key,
+          income: args.income,
+        ),
       );
     },
-    BudgetRoute.name: (routeData) {
+    IncomesRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const BudgetPage(),
+        child: const IncomesPage(),
+      );
+    },
+    AddExpenseRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AddExpensePage(),
+      );
+    },
+    EditCategoryRoute.name: (routeData) {
+      final args = routeData.argsAs<EditCategoryRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: EditCategoryPage(
+          key: args.key,
+          category: args.category,
+        ),
+      );
+    },
+    CategoryRoute.name: (routeData) {
+      final args = routeData.argsAs<CategoryRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: CategoryPage(
+          key: args.key,
+          categoryId: args.categoryId,
+        ),
       );
     },
     AddCategoryRoute.name: (routeData) {
@@ -115,10 +133,16 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const AddCategoryPage(),
       );
     },
-    EditCategoryRoute.name: (routeData) {
+    CategoriesRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const EditCategoryPage(),
+        child: const CategoriesPage(),
+      );
+    },
+    BudgetRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const BudgetPage(),
       );
     },
     AddBudgetRoute.name: (routeData) {
@@ -193,86 +217,6 @@ class RegisterRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [ExpensesPage]
-class ExpensesRoute extends PageRouteInfo<void> {
-  const ExpensesRoute({List<PageRouteInfo>? children})
-      : super(
-          ExpensesRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'ExpensesRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [IncomesPage]
-class IncomesRoute extends PageRouteInfo<void> {
-  const IncomesRoute({List<PageRouteInfo>? children})
-      : super(
-          IncomesRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'IncomesRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [CategoryPage]
-class CategoryRoute extends PageRouteInfo<CategoryRouteArgs> {
-  CategoryRoute({
-    Key? key,
-    required int categoryId,
-    List<PageRouteInfo>? children,
-  }) : super(
-          CategoryRoute.name,
-          args: CategoryRouteArgs(
-            key: key,
-            categoryId: categoryId,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'CategoryRoute';
-
-  static const PageInfo<CategoryRouteArgs> page =
-      PageInfo<CategoryRouteArgs>(name);
-}
-
-class CategoryRouteArgs {
-  const CategoryRouteArgs({
-    this.key,
-    required this.categoryId,
-  });
-
-  final Key? key;
-
-  final int categoryId;
-
-  @override
-  String toString() {
-    return 'CategoryRouteArgs{key: $key, categoryId: $categoryId}';
-  }
-}
-
-/// generated route for
-/// [CategoriesPage]
-class CategoriesRoute extends PageRouteInfo<void> {
-  const CategoriesRoute({List<PageRouteInfo>? children})
-      : super(
-          CategoriesRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'CategoriesRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
 /// [GroupPage]
 class GroupRoute extends PageRouteInfo<void> {
   const GroupRoute({List<PageRouteInfo>? children})
@@ -329,45 +273,210 @@ class AddGroupRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [ExpensePage]
-class ExpenseRoute extends PageRouteInfo<void> {
-  const ExpenseRoute({List<PageRouteInfo>? children})
+/// [AddIncomePage]
+class AddIncomeRoute extends PageRouteInfo<void> {
+  const AddIncomeRoute({List<PageRouteInfo>? children})
       : super(
+          AddIncomeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AddIncomeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ExpensePage]
+class ExpenseRoute extends PageRouteInfo<ExpenseRouteArgs> {
+  ExpenseRoute({
+    Key? key,
+    required Expense expense,
+    List<PageRouteInfo>? children,
+  }) : super(
           ExpenseRoute.name,
+          args: ExpenseRouteArgs(
+            key: key,
+            expense: expense,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'ExpenseRoute';
+
+  static const PageInfo<ExpenseRouteArgs> page =
+      PageInfo<ExpenseRouteArgs>(name);
+}
+
+class ExpenseRouteArgs {
+  const ExpenseRouteArgs({
+    this.key,
+    required this.expense,
+  });
+
+  final Key? key;
+
+  final Expense expense;
+
+  @override
+  String toString() {
+    return 'ExpenseRouteArgs{key: $key, expense: $expense}';
+  }
+}
+
+/// generated route for
+/// [ExpensesPage]
+class ExpensesRoute extends PageRouteInfo<void> {
+  const ExpensesRoute({List<PageRouteInfo>? children})
+      : super(
+          ExpensesRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ExpensesRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
 /// [IncomePage]
-class IncomeRoute extends PageRouteInfo<void> {
-  const IncomeRoute({List<PageRouteInfo>? children})
-      : super(
+class IncomeRoute extends PageRouteInfo<IncomeRouteArgs> {
+  IncomeRoute({
+    Key? key,
+    required Income income,
+    List<PageRouteInfo>? children,
+  }) : super(
           IncomeRoute.name,
+          args: IncomeRouteArgs(
+            key: key,
+            income: income,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'IncomeRoute';
 
+  static const PageInfo<IncomeRouteArgs> page = PageInfo<IncomeRouteArgs>(name);
+}
+
+class IncomeRouteArgs {
+  const IncomeRouteArgs({
+    this.key,
+    required this.income,
+  });
+
+  final Key? key;
+
+  final Income income;
+
+  @override
+  String toString() {
+    return 'IncomeRouteArgs{key: $key, income: $income}';
+  }
+}
+
+/// generated route for
+/// [IncomesPage]
+class IncomesRoute extends PageRouteInfo<void> {
+  const IncomesRoute({List<PageRouteInfo>? children})
+      : super(
+          IncomesRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'IncomesRoute';
+
   static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
-/// [BudgetPage]
-class BudgetRoute extends PageRouteInfo<void> {
-  const BudgetRoute({List<PageRouteInfo>? children})
+/// [AddExpensePage]
+class AddExpenseRoute extends PageRouteInfo<void> {
+  const AddExpenseRoute({List<PageRouteInfo>? children})
       : super(
-          BudgetRoute.name,
+          AddExpenseRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'BudgetRoute';
+  static const String name = 'AddExpenseRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [EditCategoryPage]
+class EditCategoryRoute extends PageRouteInfo<EditCategoryRouteArgs> {
+  EditCategoryRoute({
+    Key? key,
+    required Category category,
+    List<PageRouteInfo>? children,
+  }) : super(
+          EditCategoryRoute.name,
+          args: EditCategoryRouteArgs(
+            key: key,
+            category: category,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'EditCategoryRoute';
+
+  static const PageInfo<EditCategoryRouteArgs> page =
+      PageInfo<EditCategoryRouteArgs>(name);
+}
+
+class EditCategoryRouteArgs {
+  const EditCategoryRouteArgs({
+    this.key,
+    required this.category,
+  });
+
+  final Key? key;
+
+  final Category category;
+
+  @override
+  String toString() {
+    return 'EditCategoryRouteArgs{key: $key, category: $category}';
+  }
+}
+
+/// generated route for
+/// [CategoryPage]
+class CategoryRoute extends PageRouteInfo<CategoryRouteArgs> {
+  CategoryRoute({
+    Key? key,
+    required int categoryId,
+    List<PageRouteInfo>? children,
+  }) : super(
+          CategoryRoute.name,
+          args: CategoryRouteArgs(
+            key: key,
+            categoryId: categoryId,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'CategoryRoute';
+
+  static const PageInfo<CategoryRouteArgs> page =
+      PageInfo<CategoryRouteArgs>(name);
+}
+
+class CategoryRouteArgs {
+  const CategoryRouteArgs({
+    this.key,
+    required this.categoryId,
+  });
+
+  final Key? key;
+
+  final int categoryId;
+
+  @override
+  String toString() {
+    return 'CategoryRouteArgs{key: $key, categoryId: $categoryId}';
+  }
 }
 
 /// generated route for
@@ -385,15 +494,29 @@ class AddCategoryRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [EditCategoryPage]
-class EditCategoryRoute extends PageRouteInfo<void> {
-  const EditCategoryRoute({List<PageRouteInfo>? children})
+/// [CategoriesPage]
+class CategoriesRoute extends PageRouteInfo<void> {
+  const CategoriesRoute({List<PageRouteInfo>? children})
       : super(
-          EditCategoryRoute.name,
+          CategoriesRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'EditCategoryRoute';
+  static const String name = 'CategoriesRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [BudgetPage]
+class BudgetRoute extends PageRouteInfo<void> {
+  const BudgetRoute({List<PageRouteInfo>? children})
+      : super(
+          BudgetRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'BudgetRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

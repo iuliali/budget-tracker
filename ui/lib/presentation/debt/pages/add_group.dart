@@ -9,6 +9,6 @@ class AddGroupPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Text('Add Group Page'),
-    );;
+    );
   }
 }

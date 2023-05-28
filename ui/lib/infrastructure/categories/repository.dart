@@ -7,7 +7,6 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../application/core/network_info.dart';
-import '../../domain/auth/facade.dart';
 import 'datasources/category_remote_datasource.dart';
 
 @Singleton(as: ICategoryRepository)
@@ -21,53 +20,53 @@ class CategoryRepository implements ICategoryRepository {
   });
 
   @override
-  Future<Either<CategoryFailure, Unit>> createCategory({
+  Future<Either<CategoryFailure, Unit>> create({
     required CategoryName categoryName,
   }) async {
     try {
-      await remoteDataSource.createCategory(categoryName);
+      await remoteDataSource.create(categoryName);
       return right(unit);
     } on CategoryAlreadyExistsException {
       return left(const CategoryFailure.categoryAlreadyExists());
-    } on CategoryServerException {
+    } catch (_) {
       return left(const CategoryFailure.serverError());
     }
   }
 
   @override
-  Future<Either<CategoryFailure, Unit>> deleteCategory({
+  Future<Either<CategoryFailure, Unit>> delete({
     required CategoryId categoryId,
   }) async {
     try {
-      await remoteDataSource.deleteCategory(categoryId);
+      await remoteDataSource.delete(categoryId);
       return right(unit);
     } on CategoryNotFoundException {
       return left(const CategoryFailure.categoryNotFound());
-    } on CategoryServerException {
+    } catch (_) {
       return left(const CategoryFailure.serverError());
     }
   }
 
   @override
-  Future<Either<CategoryFailure, List<Category>>> getCategories() async {
+  Future<Either<CategoryFailure, List<Category>>> getAll() async {
     try {
-      final categories = await remoteDataSource.getCategories();
+      final categories = await remoteDataSource.getAll();
       return right(categories.map((e) => e.toDomain()).toList());
-    } on CategoryServerException {
+    } catch (_) {
       return left(const CategoryFailure.serverError());
     }
   }
 
   @override
-  Future<Either<CategoryFailure, Unit>> updateCategory({
+  Future<Either<CategoryFailure, Unit>> update({
     required Category category,
   }) async {
     try {
-      await remoteDataSource.updateCategory(category);
+      await remoteDataSource.update(category);
       return right(unit);
     } on CategoryNotFoundException {
       return left(const CategoryFailure.categoryNotFound());
-    } on CategoryServerException {
+    } catch (_) {
       return left(const CategoryFailure.serverError());
     }
   }

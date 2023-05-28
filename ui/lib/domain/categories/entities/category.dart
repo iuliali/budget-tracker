@@ -1,16 +1,27 @@
-import 'package:equatable/equatable.dart';
-
 import '../value_objects.dart';
 
-class Category extends Equatable {
+class Category {
   final CategoryId id;
-  final CategoryName name;
+  CategoryName name;
 
-  const Category({
+  Category({
     required this.id,
     required this.name,
   });
 
+  void setName(CategoryName name) {
+    this.name = name;
+  }
+
   @override
-  List<Object?> get props => [id];
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Category &&
+        other.id == id;
+  }
+
+  @override
+  int get hashCode => id.hashCode;
+
 }

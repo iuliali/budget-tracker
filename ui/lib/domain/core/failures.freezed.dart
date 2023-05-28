@@ -21,6 +21,7 @@ mixin _$ValueFailure<T> {
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) shortString,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -29,12 +30,17 @@ mixin _$ValueFailure<T> {
     required TResult Function(T failedValue) shortLastName,
     required TResult Function(T failedValue) shortCategoryName,
     required TResult Function(T failedValue) negativeBudgetAmount,
+    required TResult Function(T failedValue) negativeTransactionAmount,
+    required TResult Function(T failedValue) invalidTransactionCurrency,
+    required TResult Function(T failedValue) invalidTransactionRecipient,
+    required TResult Function(T failedValue) invalidTransactionSender,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue)? shortString,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -43,12 +49,17 @@ mixin _$ValueFailure<T> {
     TResult? Function(T failedValue)? shortLastName,
     TResult? Function(T failedValue)? shortCategoryName,
     TResult? Function(T failedValue)? negativeBudgetAmount,
+    TResult? Function(T failedValue)? negativeTransactionAmount,
+    TResult? Function(T failedValue)? invalidTransactionCurrency,
+    TResult? Function(T failedValue)? invalidTransactionRecipient,
+    TResult? Function(T failedValue)? invalidTransactionSender,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? shortString,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -57,6 +68,10 @@ mixin _$ValueFailure<T> {
     TResult Function(T failedValue)? shortLastName,
     TResult Function(T failedValue)? shortCategoryName,
     TResult Function(T failedValue)? negativeBudgetAmount,
+    TResult Function(T failedValue)? negativeTransactionAmount,
+    TResult Function(T failedValue)? invalidTransactionCurrency,
+    TResult Function(T failedValue)? invalidTransactionRecipient,
+    TResult Function(T failedValue)? invalidTransactionSender,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -64,6 +79,7 @@ mixin _$ValueFailure<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
+    required TResult Function(ShortString<T> value) shortString,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -73,12 +89,21 @@ mixin _$ValueFailure<T> {
     required TResult Function(ShortCategoryName<T> value) shortCategoryName,
     required TResult Function(NegativeBudgetAmount<T> value)
         negativeBudgetAmount,
+    required TResult Function(NegativeTransactionAmount<T> value)
+        negativeTransactionAmount,
+    required TResult Function(InvalidTransactionCurrency<T> value)
+        invalidTransactionCurrency,
+    required TResult Function(InvalidTransactionRecipient<T> value)
+        invalidTransactionRecipient,
+    required TResult Function(InvalidTransactionSender<T> value)
+        invalidTransactionSender,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ShortString<T> value)? shortString,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -87,12 +112,21 @@ mixin _$ValueFailure<T> {
     TResult? Function(ShortLastName<T> value)? shortLastName,
     TResult? Function(ShortCategoryName<T> value)? shortCategoryName,
     TResult? Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult? Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult? Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult? Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult? Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
+    TResult Function(ShortString<T> value)? shortString,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -101,6 +135,14 @@ mixin _$ValueFailure<T> {
     TResult Function(ShortLastName<T> value)? shortLastName,
     TResult Function(ShortCategoryName<T> value)? shortCategoryName,
     TResult Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -221,6 +263,7 @@ class _$Unexpected<T> with DiagnosticableTreeMixin implements Unexpected<T> {
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) shortString,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -229,6 +272,10 @@ class _$Unexpected<T> with DiagnosticableTreeMixin implements Unexpected<T> {
     required TResult Function(T failedValue) shortLastName,
     required TResult Function(T failedValue) shortCategoryName,
     required TResult Function(T failedValue) negativeBudgetAmount,
+    required TResult Function(T failedValue) negativeTransactionAmount,
+    required TResult Function(T failedValue) invalidTransactionCurrency,
+    required TResult Function(T failedValue) invalidTransactionRecipient,
+    required TResult Function(T failedValue) invalidTransactionSender,
   }) {
     return unexpected(failedValue);
   }
@@ -238,6 +285,7 @@ class _$Unexpected<T> with DiagnosticableTreeMixin implements Unexpected<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue)? shortString,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -246,6 +294,10 @@ class _$Unexpected<T> with DiagnosticableTreeMixin implements Unexpected<T> {
     TResult? Function(T failedValue)? shortLastName,
     TResult? Function(T failedValue)? shortCategoryName,
     TResult? Function(T failedValue)? negativeBudgetAmount,
+    TResult? Function(T failedValue)? negativeTransactionAmount,
+    TResult? Function(T failedValue)? invalidTransactionCurrency,
+    TResult? Function(T failedValue)? invalidTransactionRecipient,
+    TResult? Function(T failedValue)? invalidTransactionSender,
   }) {
     return unexpected?.call(failedValue);
   }
@@ -255,6 +307,7 @@ class _$Unexpected<T> with DiagnosticableTreeMixin implements Unexpected<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? shortString,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -263,6 +316,10 @@ class _$Unexpected<T> with DiagnosticableTreeMixin implements Unexpected<T> {
     TResult Function(T failedValue)? shortLastName,
     TResult Function(T failedValue)? shortCategoryName,
     TResult Function(T failedValue)? negativeBudgetAmount,
+    TResult Function(T failedValue)? negativeTransactionAmount,
+    TResult Function(T failedValue)? invalidTransactionCurrency,
+    TResult Function(T failedValue)? invalidTransactionRecipient,
+    TResult Function(T failedValue)? invalidTransactionSender,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -276,6 +333,7 @@ class _$Unexpected<T> with DiagnosticableTreeMixin implements Unexpected<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
+    required TResult Function(ShortString<T> value) shortString,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -285,6 +343,14 @@ class _$Unexpected<T> with DiagnosticableTreeMixin implements Unexpected<T> {
     required TResult Function(ShortCategoryName<T> value) shortCategoryName,
     required TResult Function(NegativeBudgetAmount<T> value)
         negativeBudgetAmount,
+    required TResult Function(NegativeTransactionAmount<T> value)
+        negativeTransactionAmount,
+    required TResult Function(InvalidTransactionCurrency<T> value)
+        invalidTransactionCurrency,
+    required TResult Function(InvalidTransactionRecipient<T> value)
+        invalidTransactionRecipient,
+    required TResult Function(InvalidTransactionSender<T> value)
+        invalidTransactionSender,
   }) {
     return unexpected(this);
   }
@@ -294,6 +360,7 @@ class _$Unexpected<T> with DiagnosticableTreeMixin implements Unexpected<T> {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ShortString<T> value)? shortString,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -302,6 +369,14 @@ class _$Unexpected<T> with DiagnosticableTreeMixin implements Unexpected<T> {
     TResult? Function(ShortLastName<T> value)? shortLastName,
     TResult? Function(ShortCategoryName<T> value)? shortCategoryName,
     TResult? Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult? Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult? Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult? Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult? Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
   }) {
     return unexpected?.call(this);
   }
@@ -311,6 +386,7 @@ class _$Unexpected<T> with DiagnosticableTreeMixin implements Unexpected<T> {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
+    TResult Function(ShortString<T> value)? shortString,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -319,6 +395,14 @@ class _$Unexpected<T> with DiagnosticableTreeMixin implements Unexpected<T> {
     TResult Function(ShortLastName<T> value)? shortLastName,
     TResult Function(ShortCategoryName<T> value)? shortCategoryName,
     TResult Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -415,6 +499,7 @@ class _$Empty<T> with DiagnosticableTreeMixin implements Empty<T> {
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) shortString,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -423,6 +508,10 @@ class _$Empty<T> with DiagnosticableTreeMixin implements Empty<T> {
     required TResult Function(T failedValue) shortLastName,
     required TResult Function(T failedValue) shortCategoryName,
     required TResult Function(T failedValue) negativeBudgetAmount,
+    required TResult Function(T failedValue) negativeTransactionAmount,
+    required TResult Function(T failedValue) invalidTransactionCurrency,
+    required TResult Function(T failedValue) invalidTransactionRecipient,
+    required TResult Function(T failedValue) invalidTransactionSender,
   }) {
     return empty(failedValue);
   }
@@ -432,6 +521,7 @@ class _$Empty<T> with DiagnosticableTreeMixin implements Empty<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue)? shortString,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -440,6 +530,10 @@ class _$Empty<T> with DiagnosticableTreeMixin implements Empty<T> {
     TResult? Function(T failedValue)? shortLastName,
     TResult? Function(T failedValue)? shortCategoryName,
     TResult? Function(T failedValue)? negativeBudgetAmount,
+    TResult? Function(T failedValue)? negativeTransactionAmount,
+    TResult? Function(T failedValue)? invalidTransactionCurrency,
+    TResult? Function(T failedValue)? invalidTransactionRecipient,
+    TResult? Function(T failedValue)? invalidTransactionSender,
   }) {
     return empty?.call(failedValue);
   }
@@ -449,6 +543,7 @@ class _$Empty<T> with DiagnosticableTreeMixin implements Empty<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? shortString,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -457,6 +552,10 @@ class _$Empty<T> with DiagnosticableTreeMixin implements Empty<T> {
     TResult Function(T failedValue)? shortLastName,
     TResult Function(T failedValue)? shortCategoryName,
     TResult Function(T failedValue)? negativeBudgetAmount,
+    TResult Function(T failedValue)? negativeTransactionAmount,
+    TResult Function(T failedValue)? invalidTransactionCurrency,
+    TResult Function(T failedValue)? invalidTransactionRecipient,
+    TResult Function(T failedValue)? invalidTransactionSender,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -470,6 +569,7 @@ class _$Empty<T> with DiagnosticableTreeMixin implements Empty<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
+    required TResult Function(ShortString<T> value) shortString,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -479,6 +579,14 @@ class _$Empty<T> with DiagnosticableTreeMixin implements Empty<T> {
     required TResult Function(ShortCategoryName<T> value) shortCategoryName,
     required TResult Function(NegativeBudgetAmount<T> value)
         negativeBudgetAmount,
+    required TResult Function(NegativeTransactionAmount<T> value)
+        negativeTransactionAmount,
+    required TResult Function(InvalidTransactionCurrency<T> value)
+        invalidTransactionCurrency,
+    required TResult Function(InvalidTransactionRecipient<T> value)
+        invalidTransactionRecipient,
+    required TResult Function(InvalidTransactionSender<T> value)
+        invalidTransactionSender,
   }) {
     return empty(this);
   }
@@ -488,6 +596,7 @@ class _$Empty<T> with DiagnosticableTreeMixin implements Empty<T> {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ShortString<T> value)? shortString,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -496,6 +605,14 @@ class _$Empty<T> with DiagnosticableTreeMixin implements Empty<T> {
     TResult? Function(ShortLastName<T> value)? shortLastName,
     TResult? Function(ShortCategoryName<T> value)? shortCategoryName,
     TResult? Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult? Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult? Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult? Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult? Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
   }) {
     return empty?.call(this);
   }
@@ -505,6 +622,7 @@ class _$Empty<T> with DiagnosticableTreeMixin implements Empty<T> {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
+    TResult Function(ShortString<T> value)? shortString,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -513,6 +631,14 @@ class _$Empty<T> with DiagnosticableTreeMixin implements Empty<T> {
     TResult Function(ShortLastName<T> value)? shortLastName,
     TResult Function(ShortCategoryName<T> value)? shortCategoryName,
     TResult Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -530,6 +656,244 @@ abstract class Empty<T> implements ValueFailure<T> {
   @override
   @JsonKey(ignore: true)
   _$$EmptyCopyWith<T, _$Empty<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ShortStringCopyWith<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  factory _$$ShortStringCopyWith(
+          _$ShortString<T> value, $Res Function(_$ShortString<T>) then) =
+      __$$ShortStringCopyWithImpl<T, $Res>;
+  @override
+  @useResult
+  $Res call({T failedValue});
+}
+
+/// @nodoc
+class __$$ShortStringCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res, _$ShortString<T>>
+    implements _$$ShortStringCopyWith<T, $Res> {
+  __$$ShortStringCopyWithImpl(
+      _$ShortString<T> _value, $Res Function(_$ShortString<T>) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+  }) {
+    return _then(_$ShortString<T>(
+      failedValue: freezed == failedValue
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as T,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ShortString<T> with DiagnosticableTreeMixin implements ShortString<T> {
+  const _$ShortString({required this.failedValue});
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ValueFailure<$T>.shortString(failedValue: $failedValue)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ValueFailure<$T>.shortString'))
+      ..add(DiagnosticsProperty('failedValue', failedValue));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ShortString<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(failedValue));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ShortStringCopyWith<T, _$ShortString<T>> get copyWith =>
+      __$$ShortStringCopyWithImpl<T, _$ShortString<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedValue) unexpected,
+    required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) shortString,
+    required TResult Function(T failedValue) invalidEmail,
+    required TResult Function(T failedValue) shortPassword,
+    required TResult Function(T failedValue) passwordNotMatch,
+    required TResult Function(T failedValue) shortUsername,
+    required TResult Function(T failedValue) shortFirstName,
+    required TResult Function(T failedValue) shortLastName,
+    required TResult Function(T failedValue) shortCategoryName,
+    required TResult Function(T failedValue) negativeBudgetAmount,
+    required TResult Function(T failedValue) negativeTransactionAmount,
+    required TResult Function(T failedValue) invalidTransactionCurrency,
+    required TResult Function(T failedValue) invalidTransactionRecipient,
+    required TResult Function(T failedValue) invalidTransactionSender,
+  }) {
+    return shortString(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(T failedValue)? unexpected,
+    TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue)? shortString,
+    TResult? Function(T failedValue)? invalidEmail,
+    TResult? Function(T failedValue)? shortPassword,
+    TResult? Function(T failedValue)? passwordNotMatch,
+    TResult? Function(T failedValue)? shortUsername,
+    TResult? Function(T failedValue)? shortFirstName,
+    TResult? Function(T failedValue)? shortLastName,
+    TResult? Function(T failedValue)? shortCategoryName,
+    TResult? Function(T failedValue)? negativeBudgetAmount,
+    TResult? Function(T failedValue)? negativeTransactionAmount,
+    TResult? Function(T failedValue)? invalidTransactionCurrency,
+    TResult? Function(T failedValue)? invalidTransactionRecipient,
+    TResult? Function(T failedValue)? invalidTransactionSender,
+  }) {
+    return shortString?.call(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedValue)? unexpected,
+    TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? shortString,
+    TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? passwordNotMatch,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? shortFirstName,
+    TResult Function(T failedValue)? shortLastName,
+    TResult Function(T failedValue)? shortCategoryName,
+    TResult Function(T failedValue)? negativeBudgetAmount,
+    TResult Function(T failedValue)? negativeTransactionAmount,
+    TResult Function(T failedValue)? invalidTransactionCurrency,
+    TResult Function(T failedValue)? invalidTransactionRecipient,
+    TResult Function(T failedValue)? invalidTransactionSender,
+    required TResult orElse(),
+  }) {
+    if (shortString != null) {
+      return shortString(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Unexpected<T> value) unexpected,
+    required TResult Function(Empty<T> value) empty,
+    required TResult Function(ShortString<T> value) shortString,
+    required TResult Function(InvalidEmail<T> value) invalidEmail,
+    required TResult Function(ShortPassword<T> value) shortPassword,
+    required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
+    required TResult Function(ShortUsername<T> value) shortUsername,
+    required TResult Function(ShortFirstName<T> value) shortFirstName,
+    required TResult Function(ShortLastName<T> value) shortLastName,
+    required TResult Function(ShortCategoryName<T> value) shortCategoryName,
+    required TResult Function(NegativeBudgetAmount<T> value)
+        negativeBudgetAmount,
+    required TResult Function(NegativeTransactionAmount<T> value)
+        negativeTransactionAmount,
+    required TResult Function(InvalidTransactionCurrency<T> value)
+        invalidTransactionCurrency,
+    required TResult Function(InvalidTransactionRecipient<T> value)
+        invalidTransactionRecipient,
+    required TResult Function(InvalidTransactionSender<T> value)
+        invalidTransactionSender,
+  }) {
+    return shortString(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Unexpected<T> value)? unexpected,
+    TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ShortString<T> value)? shortString,
+    TResult? Function(InvalidEmail<T> value)? invalidEmail,
+    TResult? Function(ShortPassword<T> value)? shortPassword,
+    TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
+    TResult? Function(ShortUsername<T> value)? shortUsername,
+    TResult? Function(ShortFirstName<T> value)? shortFirstName,
+    TResult? Function(ShortLastName<T> value)? shortLastName,
+    TResult? Function(ShortCategoryName<T> value)? shortCategoryName,
+    TResult? Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult? Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult? Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult? Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult? Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
+  }) {
+    return shortString?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Unexpected<T> value)? unexpected,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(ShortString<T> value)? shortString,
+    TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortPassword<T> value)? shortPassword,
+    TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
+    TResult Function(ShortUsername<T> value)? shortUsername,
+    TResult Function(ShortFirstName<T> value)? shortFirstName,
+    TResult Function(ShortLastName<T> value)? shortLastName,
+    TResult Function(ShortCategoryName<T> value)? shortCategoryName,
+    TResult Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
+    required TResult orElse(),
+  }) {
+    if (shortString != null) {
+      return shortString(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ShortString<T> implements ValueFailure<T> {
+  const factory ShortString({required final T failedValue}) = _$ShortString<T>;
+
+  @override
+  T get failedValue;
+  @override
+  @JsonKey(ignore: true)
+  _$$ShortStringCopyWith<T, _$ShortString<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -613,6 +977,7 @@ class _$InvalidEmail<T>
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) shortString,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -621,6 +986,10 @@ class _$InvalidEmail<T>
     required TResult Function(T failedValue) shortLastName,
     required TResult Function(T failedValue) shortCategoryName,
     required TResult Function(T failedValue) negativeBudgetAmount,
+    required TResult Function(T failedValue) negativeTransactionAmount,
+    required TResult Function(T failedValue) invalidTransactionCurrency,
+    required TResult Function(T failedValue) invalidTransactionRecipient,
+    required TResult Function(T failedValue) invalidTransactionSender,
   }) {
     return invalidEmail(failedValue);
   }
@@ -630,6 +999,7 @@ class _$InvalidEmail<T>
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue)? shortString,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -638,6 +1008,10 @@ class _$InvalidEmail<T>
     TResult? Function(T failedValue)? shortLastName,
     TResult? Function(T failedValue)? shortCategoryName,
     TResult? Function(T failedValue)? negativeBudgetAmount,
+    TResult? Function(T failedValue)? negativeTransactionAmount,
+    TResult? Function(T failedValue)? invalidTransactionCurrency,
+    TResult? Function(T failedValue)? invalidTransactionRecipient,
+    TResult? Function(T failedValue)? invalidTransactionSender,
   }) {
     return invalidEmail?.call(failedValue);
   }
@@ -647,6 +1021,7 @@ class _$InvalidEmail<T>
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? shortString,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -655,6 +1030,10 @@ class _$InvalidEmail<T>
     TResult Function(T failedValue)? shortLastName,
     TResult Function(T failedValue)? shortCategoryName,
     TResult Function(T failedValue)? negativeBudgetAmount,
+    TResult Function(T failedValue)? negativeTransactionAmount,
+    TResult Function(T failedValue)? invalidTransactionCurrency,
+    TResult Function(T failedValue)? invalidTransactionRecipient,
+    TResult Function(T failedValue)? invalidTransactionSender,
     required TResult orElse(),
   }) {
     if (invalidEmail != null) {
@@ -668,6 +1047,7 @@ class _$InvalidEmail<T>
   TResult map<TResult extends Object?>({
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
+    required TResult Function(ShortString<T> value) shortString,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -677,6 +1057,14 @@ class _$InvalidEmail<T>
     required TResult Function(ShortCategoryName<T> value) shortCategoryName,
     required TResult Function(NegativeBudgetAmount<T> value)
         negativeBudgetAmount,
+    required TResult Function(NegativeTransactionAmount<T> value)
+        negativeTransactionAmount,
+    required TResult Function(InvalidTransactionCurrency<T> value)
+        invalidTransactionCurrency,
+    required TResult Function(InvalidTransactionRecipient<T> value)
+        invalidTransactionRecipient,
+    required TResult Function(InvalidTransactionSender<T> value)
+        invalidTransactionSender,
   }) {
     return invalidEmail(this);
   }
@@ -686,6 +1074,7 @@ class _$InvalidEmail<T>
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ShortString<T> value)? shortString,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -694,6 +1083,14 @@ class _$InvalidEmail<T>
     TResult? Function(ShortLastName<T> value)? shortLastName,
     TResult? Function(ShortCategoryName<T> value)? shortCategoryName,
     TResult? Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult? Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult? Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult? Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult? Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
   }) {
     return invalidEmail?.call(this);
   }
@@ -703,6 +1100,7 @@ class _$InvalidEmail<T>
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
+    TResult Function(ShortString<T> value)? shortString,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -711,6 +1109,14 @@ class _$InvalidEmail<T>
     TResult Function(ShortLastName<T> value)? shortLastName,
     TResult Function(ShortCategoryName<T> value)? shortCategoryName,
     TResult Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
     required TResult orElse(),
   }) {
     if (invalidEmail != null) {
@@ -812,6 +1218,7 @@ class _$ShortPassword<T>
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) shortString,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -820,6 +1227,10 @@ class _$ShortPassword<T>
     required TResult Function(T failedValue) shortLastName,
     required TResult Function(T failedValue) shortCategoryName,
     required TResult Function(T failedValue) negativeBudgetAmount,
+    required TResult Function(T failedValue) negativeTransactionAmount,
+    required TResult Function(T failedValue) invalidTransactionCurrency,
+    required TResult Function(T failedValue) invalidTransactionRecipient,
+    required TResult Function(T failedValue) invalidTransactionSender,
   }) {
     return shortPassword(failedValue);
   }
@@ -829,6 +1240,7 @@ class _$ShortPassword<T>
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue)? shortString,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -837,6 +1249,10 @@ class _$ShortPassword<T>
     TResult? Function(T failedValue)? shortLastName,
     TResult? Function(T failedValue)? shortCategoryName,
     TResult? Function(T failedValue)? negativeBudgetAmount,
+    TResult? Function(T failedValue)? negativeTransactionAmount,
+    TResult? Function(T failedValue)? invalidTransactionCurrency,
+    TResult? Function(T failedValue)? invalidTransactionRecipient,
+    TResult? Function(T failedValue)? invalidTransactionSender,
   }) {
     return shortPassword?.call(failedValue);
   }
@@ -846,6 +1262,7 @@ class _$ShortPassword<T>
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? shortString,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -854,6 +1271,10 @@ class _$ShortPassword<T>
     TResult Function(T failedValue)? shortLastName,
     TResult Function(T failedValue)? shortCategoryName,
     TResult Function(T failedValue)? negativeBudgetAmount,
+    TResult Function(T failedValue)? negativeTransactionAmount,
+    TResult Function(T failedValue)? invalidTransactionCurrency,
+    TResult Function(T failedValue)? invalidTransactionRecipient,
+    TResult Function(T failedValue)? invalidTransactionSender,
     required TResult orElse(),
   }) {
     if (shortPassword != null) {
@@ -867,6 +1288,7 @@ class _$ShortPassword<T>
   TResult map<TResult extends Object?>({
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
+    required TResult Function(ShortString<T> value) shortString,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -876,6 +1298,14 @@ class _$ShortPassword<T>
     required TResult Function(ShortCategoryName<T> value) shortCategoryName,
     required TResult Function(NegativeBudgetAmount<T> value)
         negativeBudgetAmount,
+    required TResult Function(NegativeTransactionAmount<T> value)
+        negativeTransactionAmount,
+    required TResult Function(InvalidTransactionCurrency<T> value)
+        invalidTransactionCurrency,
+    required TResult Function(InvalidTransactionRecipient<T> value)
+        invalidTransactionRecipient,
+    required TResult Function(InvalidTransactionSender<T> value)
+        invalidTransactionSender,
   }) {
     return shortPassword(this);
   }
@@ -885,6 +1315,7 @@ class _$ShortPassword<T>
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ShortString<T> value)? shortString,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -893,6 +1324,14 @@ class _$ShortPassword<T>
     TResult? Function(ShortLastName<T> value)? shortLastName,
     TResult? Function(ShortCategoryName<T> value)? shortCategoryName,
     TResult? Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult? Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult? Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult? Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult? Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
   }) {
     return shortPassword?.call(this);
   }
@@ -902,6 +1341,7 @@ class _$ShortPassword<T>
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
+    TResult Function(ShortString<T> value)? shortString,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -910,6 +1350,14 @@ class _$ShortPassword<T>
     TResult Function(ShortLastName<T> value)? shortLastName,
     TResult Function(ShortCategoryName<T> value)? shortCategoryName,
     TResult Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
     required TResult orElse(),
   }) {
     if (shortPassword != null) {
@@ -1012,6 +1460,7 @@ class _$PasswordsNotMatch<T>
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) shortString,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -1020,6 +1469,10 @@ class _$PasswordsNotMatch<T>
     required TResult Function(T failedValue) shortLastName,
     required TResult Function(T failedValue) shortCategoryName,
     required TResult Function(T failedValue) negativeBudgetAmount,
+    required TResult Function(T failedValue) negativeTransactionAmount,
+    required TResult Function(T failedValue) invalidTransactionCurrency,
+    required TResult Function(T failedValue) invalidTransactionRecipient,
+    required TResult Function(T failedValue) invalidTransactionSender,
   }) {
     return passwordNotMatch(failedValue);
   }
@@ -1029,6 +1482,7 @@ class _$PasswordsNotMatch<T>
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue)? shortString,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -1037,6 +1491,10 @@ class _$PasswordsNotMatch<T>
     TResult? Function(T failedValue)? shortLastName,
     TResult? Function(T failedValue)? shortCategoryName,
     TResult? Function(T failedValue)? negativeBudgetAmount,
+    TResult? Function(T failedValue)? negativeTransactionAmount,
+    TResult? Function(T failedValue)? invalidTransactionCurrency,
+    TResult? Function(T failedValue)? invalidTransactionRecipient,
+    TResult? Function(T failedValue)? invalidTransactionSender,
   }) {
     return passwordNotMatch?.call(failedValue);
   }
@@ -1046,6 +1504,7 @@ class _$PasswordsNotMatch<T>
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? shortString,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -1054,6 +1513,10 @@ class _$PasswordsNotMatch<T>
     TResult Function(T failedValue)? shortLastName,
     TResult Function(T failedValue)? shortCategoryName,
     TResult Function(T failedValue)? negativeBudgetAmount,
+    TResult Function(T failedValue)? negativeTransactionAmount,
+    TResult Function(T failedValue)? invalidTransactionCurrency,
+    TResult Function(T failedValue)? invalidTransactionRecipient,
+    TResult Function(T failedValue)? invalidTransactionSender,
     required TResult orElse(),
   }) {
     if (passwordNotMatch != null) {
@@ -1067,6 +1530,7 @@ class _$PasswordsNotMatch<T>
   TResult map<TResult extends Object?>({
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
+    required TResult Function(ShortString<T> value) shortString,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -1076,6 +1540,14 @@ class _$PasswordsNotMatch<T>
     required TResult Function(ShortCategoryName<T> value) shortCategoryName,
     required TResult Function(NegativeBudgetAmount<T> value)
         negativeBudgetAmount,
+    required TResult Function(NegativeTransactionAmount<T> value)
+        negativeTransactionAmount,
+    required TResult Function(InvalidTransactionCurrency<T> value)
+        invalidTransactionCurrency,
+    required TResult Function(InvalidTransactionRecipient<T> value)
+        invalidTransactionRecipient,
+    required TResult Function(InvalidTransactionSender<T> value)
+        invalidTransactionSender,
   }) {
     return passwordNotMatch(this);
   }
@@ -1085,6 +1557,7 @@ class _$PasswordsNotMatch<T>
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ShortString<T> value)? shortString,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -1093,6 +1566,14 @@ class _$PasswordsNotMatch<T>
     TResult? Function(ShortLastName<T> value)? shortLastName,
     TResult? Function(ShortCategoryName<T> value)? shortCategoryName,
     TResult? Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult? Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult? Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult? Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult? Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
   }) {
     return passwordNotMatch?.call(this);
   }
@@ -1102,6 +1583,7 @@ class _$PasswordsNotMatch<T>
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
+    TResult Function(ShortString<T> value)? shortString,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -1110,6 +1592,14 @@ class _$PasswordsNotMatch<T>
     TResult Function(ShortLastName<T> value)? shortLastName,
     TResult Function(ShortCategoryName<T> value)? shortCategoryName,
     TResult Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
     required TResult orElse(),
   }) {
     if (passwordNotMatch != null) {
@@ -1211,6 +1701,7 @@ class _$ShortUsername<T>
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) shortString,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -1219,6 +1710,10 @@ class _$ShortUsername<T>
     required TResult Function(T failedValue) shortLastName,
     required TResult Function(T failedValue) shortCategoryName,
     required TResult Function(T failedValue) negativeBudgetAmount,
+    required TResult Function(T failedValue) negativeTransactionAmount,
+    required TResult Function(T failedValue) invalidTransactionCurrency,
+    required TResult Function(T failedValue) invalidTransactionRecipient,
+    required TResult Function(T failedValue) invalidTransactionSender,
   }) {
     return shortUsername(failedValue);
   }
@@ -1228,6 +1723,7 @@ class _$ShortUsername<T>
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue)? shortString,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -1236,6 +1732,10 @@ class _$ShortUsername<T>
     TResult? Function(T failedValue)? shortLastName,
     TResult? Function(T failedValue)? shortCategoryName,
     TResult? Function(T failedValue)? negativeBudgetAmount,
+    TResult? Function(T failedValue)? negativeTransactionAmount,
+    TResult? Function(T failedValue)? invalidTransactionCurrency,
+    TResult? Function(T failedValue)? invalidTransactionRecipient,
+    TResult? Function(T failedValue)? invalidTransactionSender,
   }) {
     return shortUsername?.call(failedValue);
   }
@@ -1245,6 +1745,7 @@ class _$ShortUsername<T>
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? shortString,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -1253,6 +1754,10 @@ class _$ShortUsername<T>
     TResult Function(T failedValue)? shortLastName,
     TResult Function(T failedValue)? shortCategoryName,
     TResult Function(T failedValue)? negativeBudgetAmount,
+    TResult Function(T failedValue)? negativeTransactionAmount,
+    TResult Function(T failedValue)? invalidTransactionCurrency,
+    TResult Function(T failedValue)? invalidTransactionRecipient,
+    TResult Function(T failedValue)? invalidTransactionSender,
     required TResult orElse(),
   }) {
     if (shortUsername != null) {
@@ -1266,6 +1771,7 @@ class _$ShortUsername<T>
   TResult map<TResult extends Object?>({
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
+    required TResult Function(ShortString<T> value) shortString,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -1275,6 +1781,14 @@ class _$ShortUsername<T>
     required TResult Function(ShortCategoryName<T> value) shortCategoryName,
     required TResult Function(NegativeBudgetAmount<T> value)
         negativeBudgetAmount,
+    required TResult Function(NegativeTransactionAmount<T> value)
+        negativeTransactionAmount,
+    required TResult Function(InvalidTransactionCurrency<T> value)
+        invalidTransactionCurrency,
+    required TResult Function(InvalidTransactionRecipient<T> value)
+        invalidTransactionRecipient,
+    required TResult Function(InvalidTransactionSender<T> value)
+        invalidTransactionSender,
   }) {
     return shortUsername(this);
   }
@@ -1284,6 +1798,7 @@ class _$ShortUsername<T>
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ShortString<T> value)? shortString,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -1292,6 +1807,14 @@ class _$ShortUsername<T>
     TResult? Function(ShortLastName<T> value)? shortLastName,
     TResult? Function(ShortCategoryName<T> value)? shortCategoryName,
     TResult? Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult? Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult? Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult? Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult? Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
   }) {
     return shortUsername?.call(this);
   }
@@ -1301,6 +1824,7 @@ class _$ShortUsername<T>
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
+    TResult Function(ShortString<T> value)? shortString,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -1309,6 +1833,14 @@ class _$ShortUsername<T>
     TResult Function(ShortLastName<T> value)? shortLastName,
     TResult Function(ShortCategoryName<T> value)? shortCategoryName,
     TResult Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
     required TResult orElse(),
   }) {
     if (shortUsername != null) {
@@ -1410,6 +1942,7 @@ class _$ShortFirstName<T>
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) shortString,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -1418,6 +1951,10 @@ class _$ShortFirstName<T>
     required TResult Function(T failedValue) shortLastName,
     required TResult Function(T failedValue) shortCategoryName,
     required TResult Function(T failedValue) negativeBudgetAmount,
+    required TResult Function(T failedValue) negativeTransactionAmount,
+    required TResult Function(T failedValue) invalidTransactionCurrency,
+    required TResult Function(T failedValue) invalidTransactionRecipient,
+    required TResult Function(T failedValue) invalidTransactionSender,
   }) {
     return shortFirstName(failedValue);
   }
@@ -1427,6 +1964,7 @@ class _$ShortFirstName<T>
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue)? shortString,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -1435,6 +1973,10 @@ class _$ShortFirstName<T>
     TResult? Function(T failedValue)? shortLastName,
     TResult? Function(T failedValue)? shortCategoryName,
     TResult? Function(T failedValue)? negativeBudgetAmount,
+    TResult? Function(T failedValue)? negativeTransactionAmount,
+    TResult? Function(T failedValue)? invalidTransactionCurrency,
+    TResult? Function(T failedValue)? invalidTransactionRecipient,
+    TResult? Function(T failedValue)? invalidTransactionSender,
   }) {
     return shortFirstName?.call(failedValue);
   }
@@ -1444,6 +1986,7 @@ class _$ShortFirstName<T>
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? shortString,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -1452,6 +1995,10 @@ class _$ShortFirstName<T>
     TResult Function(T failedValue)? shortLastName,
     TResult Function(T failedValue)? shortCategoryName,
     TResult Function(T failedValue)? negativeBudgetAmount,
+    TResult Function(T failedValue)? negativeTransactionAmount,
+    TResult Function(T failedValue)? invalidTransactionCurrency,
+    TResult Function(T failedValue)? invalidTransactionRecipient,
+    TResult Function(T failedValue)? invalidTransactionSender,
     required TResult orElse(),
   }) {
     if (shortFirstName != null) {
@@ -1465,6 +2012,7 @@ class _$ShortFirstName<T>
   TResult map<TResult extends Object?>({
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
+    required TResult Function(ShortString<T> value) shortString,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -1474,6 +2022,14 @@ class _$ShortFirstName<T>
     required TResult Function(ShortCategoryName<T> value) shortCategoryName,
     required TResult Function(NegativeBudgetAmount<T> value)
         negativeBudgetAmount,
+    required TResult Function(NegativeTransactionAmount<T> value)
+        negativeTransactionAmount,
+    required TResult Function(InvalidTransactionCurrency<T> value)
+        invalidTransactionCurrency,
+    required TResult Function(InvalidTransactionRecipient<T> value)
+        invalidTransactionRecipient,
+    required TResult Function(InvalidTransactionSender<T> value)
+        invalidTransactionSender,
   }) {
     return shortFirstName(this);
   }
@@ -1483,6 +2039,7 @@ class _$ShortFirstName<T>
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ShortString<T> value)? shortString,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -1491,6 +2048,14 @@ class _$ShortFirstName<T>
     TResult? Function(ShortLastName<T> value)? shortLastName,
     TResult? Function(ShortCategoryName<T> value)? shortCategoryName,
     TResult? Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult? Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult? Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult? Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult? Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
   }) {
     return shortFirstName?.call(this);
   }
@@ -1500,6 +2065,7 @@ class _$ShortFirstName<T>
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
+    TResult Function(ShortString<T> value)? shortString,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -1508,6 +2074,14 @@ class _$ShortFirstName<T>
     TResult Function(ShortLastName<T> value)? shortLastName,
     TResult Function(ShortCategoryName<T> value)? shortCategoryName,
     TResult Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
     required TResult orElse(),
   }) {
     if (shortFirstName != null) {
@@ -1609,6 +2183,7 @@ class _$ShortLastName<T>
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) shortString,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -1617,6 +2192,10 @@ class _$ShortLastName<T>
     required TResult Function(T failedValue) shortLastName,
     required TResult Function(T failedValue) shortCategoryName,
     required TResult Function(T failedValue) negativeBudgetAmount,
+    required TResult Function(T failedValue) negativeTransactionAmount,
+    required TResult Function(T failedValue) invalidTransactionCurrency,
+    required TResult Function(T failedValue) invalidTransactionRecipient,
+    required TResult Function(T failedValue) invalidTransactionSender,
   }) {
     return shortLastName(failedValue);
   }
@@ -1626,6 +2205,7 @@ class _$ShortLastName<T>
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue)? shortString,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -1634,6 +2214,10 @@ class _$ShortLastName<T>
     TResult? Function(T failedValue)? shortLastName,
     TResult? Function(T failedValue)? shortCategoryName,
     TResult? Function(T failedValue)? negativeBudgetAmount,
+    TResult? Function(T failedValue)? negativeTransactionAmount,
+    TResult? Function(T failedValue)? invalidTransactionCurrency,
+    TResult? Function(T failedValue)? invalidTransactionRecipient,
+    TResult? Function(T failedValue)? invalidTransactionSender,
   }) {
     return shortLastName?.call(failedValue);
   }
@@ -1643,6 +2227,7 @@ class _$ShortLastName<T>
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? shortString,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -1651,6 +2236,10 @@ class _$ShortLastName<T>
     TResult Function(T failedValue)? shortLastName,
     TResult Function(T failedValue)? shortCategoryName,
     TResult Function(T failedValue)? negativeBudgetAmount,
+    TResult Function(T failedValue)? negativeTransactionAmount,
+    TResult Function(T failedValue)? invalidTransactionCurrency,
+    TResult Function(T failedValue)? invalidTransactionRecipient,
+    TResult Function(T failedValue)? invalidTransactionSender,
     required TResult orElse(),
   }) {
     if (shortLastName != null) {
@@ -1664,6 +2253,7 @@ class _$ShortLastName<T>
   TResult map<TResult extends Object?>({
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
+    required TResult Function(ShortString<T> value) shortString,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -1673,6 +2263,14 @@ class _$ShortLastName<T>
     required TResult Function(ShortCategoryName<T> value) shortCategoryName,
     required TResult Function(NegativeBudgetAmount<T> value)
         negativeBudgetAmount,
+    required TResult Function(NegativeTransactionAmount<T> value)
+        negativeTransactionAmount,
+    required TResult Function(InvalidTransactionCurrency<T> value)
+        invalidTransactionCurrency,
+    required TResult Function(InvalidTransactionRecipient<T> value)
+        invalidTransactionRecipient,
+    required TResult Function(InvalidTransactionSender<T> value)
+        invalidTransactionSender,
   }) {
     return shortLastName(this);
   }
@@ -1682,6 +2280,7 @@ class _$ShortLastName<T>
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ShortString<T> value)? shortString,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -1690,6 +2289,14 @@ class _$ShortLastName<T>
     TResult? Function(ShortLastName<T> value)? shortLastName,
     TResult? Function(ShortCategoryName<T> value)? shortCategoryName,
     TResult? Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult? Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult? Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult? Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult? Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
   }) {
     return shortLastName?.call(this);
   }
@@ -1699,6 +2306,7 @@ class _$ShortLastName<T>
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
+    TResult Function(ShortString<T> value)? shortString,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -1707,6 +2315,14 @@ class _$ShortLastName<T>
     TResult Function(ShortLastName<T> value)? shortLastName,
     TResult Function(ShortCategoryName<T> value)? shortCategoryName,
     TResult Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
     required TResult orElse(),
   }) {
     if (shortLastName != null) {
@@ -1809,6 +2425,7 @@ class _$ShortCategoryName<T>
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) shortString,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -1817,6 +2434,10 @@ class _$ShortCategoryName<T>
     required TResult Function(T failedValue) shortLastName,
     required TResult Function(T failedValue) shortCategoryName,
     required TResult Function(T failedValue) negativeBudgetAmount,
+    required TResult Function(T failedValue) negativeTransactionAmount,
+    required TResult Function(T failedValue) invalidTransactionCurrency,
+    required TResult Function(T failedValue) invalidTransactionRecipient,
+    required TResult Function(T failedValue) invalidTransactionSender,
   }) {
     return shortCategoryName(failedValue);
   }
@@ -1826,6 +2447,7 @@ class _$ShortCategoryName<T>
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue)? shortString,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -1834,6 +2456,10 @@ class _$ShortCategoryName<T>
     TResult? Function(T failedValue)? shortLastName,
     TResult? Function(T failedValue)? shortCategoryName,
     TResult? Function(T failedValue)? negativeBudgetAmount,
+    TResult? Function(T failedValue)? negativeTransactionAmount,
+    TResult? Function(T failedValue)? invalidTransactionCurrency,
+    TResult? Function(T failedValue)? invalidTransactionRecipient,
+    TResult? Function(T failedValue)? invalidTransactionSender,
   }) {
     return shortCategoryName?.call(failedValue);
   }
@@ -1843,6 +2469,7 @@ class _$ShortCategoryName<T>
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? shortString,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -1851,6 +2478,10 @@ class _$ShortCategoryName<T>
     TResult Function(T failedValue)? shortLastName,
     TResult Function(T failedValue)? shortCategoryName,
     TResult Function(T failedValue)? negativeBudgetAmount,
+    TResult Function(T failedValue)? negativeTransactionAmount,
+    TResult Function(T failedValue)? invalidTransactionCurrency,
+    TResult Function(T failedValue)? invalidTransactionRecipient,
+    TResult Function(T failedValue)? invalidTransactionSender,
     required TResult orElse(),
   }) {
     if (shortCategoryName != null) {
@@ -1864,6 +2495,7 @@ class _$ShortCategoryName<T>
   TResult map<TResult extends Object?>({
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
+    required TResult Function(ShortString<T> value) shortString,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -1873,6 +2505,14 @@ class _$ShortCategoryName<T>
     required TResult Function(ShortCategoryName<T> value) shortCategoryName,
     required TResult Function(NegativeBudgetAmount<T> value)
         negativeBudgetAmount,
+    required TResult Function(NegativeTransactionAmount<T> value)
+        negativeTransactionAmount,
+    required TResult Function(InvalidTransactionCurrency<T> value)
+        invalidTransactionCurrency,
+    required TResult Function(InvalidTransactionRecipient<T> value)
+        invalidTransactionRecipient,
+    required TResult Function(InvalidTransactionSender<T> value)
+        invalidTransactionSender,
   }) {
     return shortCategoryName(this);
   }
@@ -1882,6 +2522,7 @@ class _$ShortCategoryName<T>
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ShortString<T> value)? shortString,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -1890,6 +2531,14 @@ class _$ShortCategoryName<T>
     TResult? Function(ShortLastName<T> value)? shortLastName,
     TResult? Function(ShortCategoryName<T> value)? shortCategoryName,
     TResult? Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult? Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult? Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult? Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult? Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
   }) {
     return shortCategoryName?.call(this);
   }
@@ -1899,6 +2548,7 @@ class _$ShortCategoryName<T>
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
+    TResult Function(ShortString<T> value)? shortString,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -1907,6 +2557,14 @@ class _$ShortCategoryName<T>
     TResult Function(ShortLastName<T> value)? shortLastName,
     TResult Function(ShortCategoryName<T> value)? shortCategoryName,
     TResult Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
     required TResult orElse(),
   }) {
     if (shortCategoryName != null) {
@@ -2010,6 +2668,7 @@ class _$NegativeBudgetAmount<T>
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) shortString,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -2018,6 +2677,10 @@ class _$NegativeBudgetAmount<T>
     required TResult Function(T failedValue) shortLastName,
     required TResult Function(T failedValue) shortCategoryName,
     required TResult Function(T failedValue) negativeBudgetAmount,
+    required TResult Function(T failedValue) negativeTransactionAmount,
+    required TResult Function(T failedValue) invalidTransactionCurrency,
+    required TResult Function(T failedValue) invalidTransactionRecipient,
+    required TResult Function(T failedValue) invalidTransactionSender,
   }) {
     return negativeBudgetAmount(failedValue);
   }
@@ -2027,6 +2690,7 @@ class _$NegativeBudgetAmount<T>
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue)? shortString,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -2035,6 +2699,10 @@ class _$NegativeBudgetAmount<T>
     TResult? Function(T failedValue)? shortLastName,
     TResult? Function(T failedValue)? shortCategoryName,
     TResult? Function(T failedValue)? negativeBudgetAmount,
+    TResult? Function(T failedValue)? negativeTransactionAmount,
+    TResult? Function(T failedValue)? invalidTransactionCurrency,
+    TResult? Function(T failedValue)? invalidTransactionRecipient,
+    TResult? Function(T failedValue)? invalidTransactionSender,
   }) {
     return negativeBudgetAmount?.call(failedValue);
   }
@@ -2044,6 +2712,7 @@ class _$NegativeBudgetAmount<T>
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? shortString,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -2052,6 +2721,10 @@ class _$NegativeBudgetAmount<T>
     TResult Function(T failedValue)? shortLastName,
     TResult Function(T failedValue)? shortCategoryName,
     TResult Function(T failedValue)? negativeBudgetAmount,
+    TResult Function(T failedValue)? negativeTransactionAmount,
+    TResult Function(T failedValue)? invalidTransactionCurrency,
+    TResult Function(T failedValue)? invalidTransactionRecipient,
+    TResult Function(T failedValue)? invalidTransactionSender,
     required TResult orElse(),
   }) {
     if (negativeBudgetAmount != null) {
@@ -2065,6 +2738,7 @@ class _$NegativeBudgetAmount<T>
   TResult map<TResult extends Object?>({
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
+    required TResult Function(ShortString<T> value) shortString,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -2074,6 +2748,14 @@ class _$NegativeBudgetAmount<T>
     required TResult Function(ShortCategoryName<T> value) shortCategoryName,
     required TResult Function(NegativeBudgetAmount<T> value)
         negativeBudgetAmount,
+    required TResult Function(NegativeTransactionAmount<T> value)
+        negativeTransactionAmount,
+    required TResult Function(InvalidTransactionCurrency<T> value)
+        invalidTransactionCurrency,
+    required TResult Function(InvalidTransactionRecipient<T> value)
+        invalidTransactionRecipient,
+    required TResult Function(InvalidTransactionSender<T> value)
+        invalidTransactionSender,
   }) {
     return negativeBudgetAmount(this);
   }
@@ -2083,6 +2765,7 @@ class _$NegativeBudgetAmount<T>
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ShortString<T> value)? shortString,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -2091,6 +2774,14 @@ class _$NegativeBudgetAmount<T>
     TResult? Function(ShortLastName<T> value)? shortLastName,
     TResult? Function(ShortCategoryName<T> value)? shortCategoryName,
     TResult? Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult? Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult? Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult? Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult? Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
   }) {
     return negativeBudgetAmount?.call(this);
   }
@@ -2100,6 +2791,7 @@ class _$NegativeBudgetAmount<T>
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
+    TResult Function(ShortString<T> value)? shortString,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -2108,6 +2800,14 @@ class _$NegativeBudgetAmount<T>
     TResult Function(ShortLastName<T> value)? shortLastName,
     TResult Function(ShortCategoryName<T> value)? shortCategoryName,
     TResult Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
     required TResult orElse(),
   }) {
     if (negativeBudgetAmount != null) {
@@ -2127,4 +2827,984 @@ abstract class NegativeBudgetAmount<T> implements ValueFailure<T> {
   @JsonKey(ignore: true)
   _$$NegativeBudgetAmountCopyWith<T, _$NegativeBudgetAmount<T>> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$NegativeTransactionAmountCopyWith<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  factory _$$NegativeTransactionAmountCopyWith(
+          _$NegativeTransactionAmount<T> value,
+          $Res Function(_$NegativeTransactionAmount<T>) then) =
+      __$$NegativeTransactionAmountCopyWithImpl<T, $Res>;
+  @override
+  @useResult
+  $Res call({T failedValue});
+}
+
+/// @nodoc
+class __$$NegativeTransactionAmountCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res, _$NegativeTransactionAmount<T>>
+    implements _$$NegativeTransactionAmountCopyWith<T, $Res> {
+  __$$NegativeTransactionAmountCopyWithImpl(
+      _$NegativeTransactionAmount<T> _value,
+      $Res Function(_$NegativeTransactionAmount<T>) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+  }) {
+    return _then(_$NegativeTransactionAmount<T>(
+      failedValue: freezed == failedValue
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as T,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$NegativeTransactionAmount<T>
+    with DiagnosticableTreeMixin
+    implements NegativeTransactionAmount<T> {
+  const _$NegativeTransactionAmount({required this.failedValue});
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ValueFailure<$T>.negativeTransactionAmount(failedValue: $failedValue)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'ValueFailure<$T>.negativeTransactionAmount'))
+      ..add(DiagnosticsProperty('failedValue', failedValue));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$NegativeTransactionAmount<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(failedValue));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$NegativeTransactionAmountCopyWith<T, _$NegativeTransactionAmount<T>>
+      get copyWith => __$$NegativeTransactionAmountCopyWithImpl<T,
+          _$NegativeTransactionAmount<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedValue) unexpected,
+    required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) shortString,
+    required TResult Function(T failedValue) invalidEmail,
+    required TResult Function(T failedValue) shortPassword,
+    required TResult Function(T failedValue) passwordNotMatch,
+    required TResult Function(T failedValue) shortUsername,
+    required TResult Function(T failedValue) shortFirstName,
+    required TResult Function(T failedValue) shortLastName,
+    required TResult Function(T failedValue) shortCategoryName,
+    required TResult Function(T failedValue) negativeBudgetAmount,
+    required TResult Function(T failedValue) negativeTransactionAmount,
+    required TResult Function(T failedValue) invalidTransactionCurrency,
+    required TResult Function(T failedValue) invalidTransactionRecipient,
+    required TResult Function(T failedValue) invalidTransactionSender,
+  }) {
+    return negativeTransactionAmount(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(T failedValue)? unexpected,
+    TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue)? shortString,
+    TResult? Function(T failedValue)? invalidEmail,
+    TResult? Function(T failedValue)? shortPassword,
+    TResult? Function(T failedValue)? passwordNotMatch,
+    TResult? Function(T failedValue)? shortUsername,
+    TResult? Function(T failedValue)? shortFirstName,
+    TResult? Function(T failedValue)? shortLastName,
+    TResult? Function(T failedValue)? shortCategoryName,
+    TResult? Function(T failedValue)? negativeBudgetAmount,
+    TResult? Function(T failedValue)? negativeTransactionAmount,
+    TResult? Function(T failedValue)? invalidTransactionCurrency,
+    TResult? Function(T failedValue)? invalidTransactionRecipient,
+    TResult? Function(T failedValue)? invalidTransactionSender,
+  }) {
+    return negativeTransactionAmount?.call(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedValue)? unexpected,
+    TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? shortString,
+    TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? passwordNotMatch,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? shortFirstName,
+    TResult Function(T failedValue)? shortLastName,
+    TResult Function(T failedValue)? shortCategoryName,
+    TResult Function(T failedValue)? negativeBudgetAmount,
+    TResult Function(T failedValue)? negativeTransactionAmount,
+    TResult Function(T failedValue)? invalidTransactionCurrency,
+    TResult Function(T failedValue)? invalidTransactionRecipient,
+    TResult Function(T failedValue)? invalidTransactionSender,
+    required TResult orElse(),
+  }) {
+    if (negativeTransactionAmount != null) {
+      return negativeTransactionAmount(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Unexpected<T> value) unexpected,
+    required TResult Function(Empty<T> value) empty,
+    required TResult Function(ShortString<T> value) shortString,
+    required TResult Function(InvalidEmail<T> value) invalidEmail,
+    required TResult Function(ShortPassword<T> value) shortPassword,
+    required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
+    required TResult Function(ShortUsername<T> value) shortUsername,
+    required TResult Function(ShortFirstName<T> value) shortFirstName,
+    required TResult Function(ShortLastName<T> value) shortLastName,
+    required TResult Function(ShortCategoryName<T> value) shortCategoryName,
+    required TResult Function(NegativeBudgetAmount<T> value)
+        negativeBudgetAmount,
+    required TResult Function(NegativeTransactionAmount<T> value)
+        negativeTransactionAmount,
+    required TResult Function(InvalidTransactionCurrency<T> value)
+        invalidTransactionCurrency,
+    required TResult Function(InvalidTransactionRecipient<T> value)
+        invalidTransactionRecipient,
+    required TResult Function(InvalidTransactionSender<T> value)
+        invalidTransactionSender,
+  }) {
+    return negativeTransactionAmount(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Unexpected<T> value)? unexpected,
+    TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ShortString<T> value)? shortString,
+    TResult? Function(InvalidEmail<T> value)? invalidEmail,
+    TResult? Function(ShortPassword<T> value)? shortPassword,
+    TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
+    TResult? Function(ShortUsername<T> value)? shortUsername,
+    TResult? Function(ShortFirstName<T> value)? shortFirstName,
+    TResult? Function(ShortLastName<T> value)? shortLastName,
+    TResult? Function(ShortCategoryName<T> value)? shortCategoryName,
+    TResult? Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult? Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult? Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult? Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult? Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
+  }) {
+    return negativeTransactionAmount?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Unexpected<T> value)? unexpected,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(ShortString<T> value)? shortString,
+    TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortPassword<T> value)? shortPassword,
+    TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
+    TResult Function(ShortUsername<T> value)? shortUsername,
+    TResult Function(ShortFirstName<T> value)? shortFirstName,
+    TResult Function(ShortLastName<T> value)? shortLastName,
+    TResult Function(ShortCategoryName<T> value)? shortCategoryName,
+    TResult Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
+    required TResult orElse(),
+  }) {
+    if (negativeTransactionAmount != null) {
+      return negativeTransactionAmount(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NegativeTransactionAmount<T> implements ValueFailure<T> {
+  const factory NegativeTransactionAmount({required final T failedValue}) =
+      _$NegativeTransactionAmount<T>;
+
+  @override
+  T get failedValue;
+  @override
+  @JsonKey(ignore: true)
+  _$$NegativeTransactionAmountCopyWith<T, _$NegativeTransactionAmount<T>>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$InvalidTransactionCurrencyCopyWith<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  factory _$$InvalidTransactionCurrencyCopyWith(
+          _$InvalidTransactionCurrency<T> value,
+          $Res Function(_$InvalidTransactionCurrency<T>) then) =
+      __$$InvalidTransactionCurrencyCopyWithImpl<T, $Res>;
+  @override
+  @useResult
+  $Res call({T failedValue});
+}
+
+/// @nodoc
+class __$$InvalidTransactionCurrencyCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res, _$InvalidTransactionCurrency<T>>
+    implements _$$InvalidTransactionCurrencyCopyWith<T, $Res> {
+  __$$InvalidTransactionCurrencyCopyWithImpl(
+      _$InvalidTransactionCurrency<T> _value,
+      $Res Function(_$InvalidTransactionCurrency<T>) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+  }) {
+    return _then(_$InvalidTransactionCurrency<T>(
+      failedValue: freezed == failedValue
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as T,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InvalidTransactionCurrency<T>
+    with DiagnosticableTreeMixin
+    implements InvalidTransactionCurrency<T> {
+  const _$InvalidTransactionCurrency({required this.failedValue});
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ValueFailure<$T>.invalidTransactionCurrency(failedValue: $failedValue)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'ValueFailure<$T>.invalidTransactionCurrency'))
+      ..add(DiagnosticsProperty('failedValue', failedValue));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InvalidTransactionCurrency<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(failedValue));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InvalidTransactionCurrencyCopyWith<T, _$InvalidTransactionCurrency<T>>
+      get copyWith => __$$InvalidTransactionCurrencyCopyWithImpl<T,
+          _$InvalidTransactionCurrency<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedValue) unexpected,
+    required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) shortString,
+    required TResult Function(T failedValue) invalidEmail,
+    required TResult Function(T failedValue) shortPassword,
+    required TResult Function(T failedValue) passwordNotMatch,
+    required TResult Function(T failedValue) shortUsername,
+    required TResult Function(T failedValue) shortFirstName,
+    required TResult Function(T failedValue) shortLastName,
+    required TResult Function(T failedValue) shortCategoryName,
+    required TResult Function(T failedValue) negativeBudgetAmount,
+    required TResult Function(T failedValue) negativeTransactionAmount,
+    required TResult Function(T failedValue) invalidTransactionCurrency,
+    required TResult Function(T failedValue) invalidTransactionRecipient,
+    required TResult Function(T failedValue) invalidTransactionSender,
+  }) {
+    return invalidTransactionCurrency(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(T failedValue)? unexpected,
+    TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue)? shortString,
+    TResult? Function(T failedValue)? invalidEmail,
+    TResult? Function(T failedValue)? shortPassword,
+    TResult? Function(T failedValue)? passwordNotMatch,
+    TResult? Function(T failedValue)? shortUsername,
+    TResult? Function(T failedValue)? shortFirstName,
+    TResult? Function(T failedValue)? shortLastName,
+    TResult? Function(T failedValue)? shortCategoryName,
+    TResult? Function(T failedValue)? negativeBudgetAmount,
+    TResult? Function(T failedValue)? negativeTransactionAmount,
+    TResult? Function(T failedValue)? invalidTransactionCurrency,
+    TResult? Function(T failedValue)? invalidTransactionRecipient,
+    TResult? Function(T failedValue)? invalidTransactionSender,
+  }) {
+    return invalidTransactionCurrency?.call(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedValue)? unexpected,
+    TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? shortString,
+    TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? passwordNotMatch,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? shortFirstName,
+    TResult Function(T failedValue)? shortLastName,
+    TResult Function(T failedValue)? shortCategoryName,
+    TResult Function(T failedValue)? negativeBudgetAmount,
+    TResult Function(T failedValue)? negativeTransactionAmount,
+    TResult Function(T failedValue)? invalidTransactionCurrency,
+    TResult Function(T failedValue)? invalidTransactionRecipient,
+    TResult Function(T failedValue)? invalidTransactionSender,
+    required TResult orElse(),
+  }) {
+    if (invalidTransactionCurrency != null) {
+      return invalidTransactionCurrency(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Unexpected<T> value) unexpected,
+    required TResult Function(Empty<T> value) empty,
+    required TResult Function(ShortString<T> value) shortString,
+    required TResult Function(InvalidEmail<T> value) invalidEmail,
+    required TResult Function(ShortPassword<T> value) shortPassword,
+    required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
+    required TResult Function(ShortUsername<T> value) shortUsername,
+    required TResult Function(ShortFirstName<T> value) shortFirstName,
+    required TResult Function(ShortLastName<T> value) shortLastName,
+    required TResult Function(ShortCategoryName<T> value) shortCategoryName,
+    required TResult Function(NegativeBudgetAmount<T> value)
+        negativeBudgetAmount,
+    required TResult Function(NegativeTransactionAmount<T> value)
+        negativeTransactionAmount,
+    required TResult Function(InvalidTransactionCurrency<T> value)
+        invalidTransactionCurrency,
+    required TResult Function(InvalidTransactionRecipient<T> value)
+        invalidTransactionRecipient,
+    required TResult Function(InvalidTransactionSender<T> value)
+        invalidTransactionSender,
+  }) {
+    return invalidTransactionCurrency(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Unexpected<T> value)? unexpected,
+    TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ShortString<T> value)? shortString,
+    TResult? Function(InvalidEmail<T> value)? invalidEmail,
+    TResult? Function(ShortPassword<T> value)? shortPassword,
+    TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
+    TResult? Function(ShortUsername<T> value)? shortUsername,
+    TResult? Function(ShortFirstName<T> value)? shortFirstName,
+    TResult? Function(ShortLastName<T> value)? shortLastName,
+    TResult? Function(ShortCategoryName<T> value)? shortCategoryName,
+    TResult? Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult? Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult? Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult? Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult? Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
+  }) {
+    return invalidTransactionCurrency?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Unexpected<T> value)? unexpected,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(ShortString<T> value)? shortString,
+    TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortPassword<T> value)? shortPassword,
+    TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
+    TResult Function(ShortUsername<T> value)? shortUsername,
+    TResult Function(ShortFirstName<T> value)? shortFirstName,
+    TResult Function(ShortLastName<T> value)? shortLastName,
+    TResult Function(ShortCategoryName<T> value)? shortCategoryName,
+    TResult Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
+    required TResult orElse(),
+  }) {
+    if (invalidTransactionCurrency != null) {
+      return invalidTransactionCurrency(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InvalidTransactionCurrency<T> implements ValueFailure<T> {
+  const factory InvalidTransactionCurrency({required final T failedValue}) =
+      _$InvalidTransactionCurrency<T>;
+
+  @override
+  T get failedValue;
+  @override
+  @JsonKey(ignore: true)
+  _$$InvalidTransactionCurrencyCopyWith<T, _$InvalidTransactionCurrency<T>>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$InvalidTransactionRecipientCopyWith<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  factory _$$InvalidTransactionRecipientCopyWith(
+          _$InvalidTransactionRecipient<T> value,
+          $Res Function(_$InvalidTransactionRecipient<T>) then) =
+      __$$InvalidTransactionRecipientCopyWithImpl<T, $Res>;
+  @override
+  @useResult
+  $Res call({T failedValue});
+}
+
+/// @nodoc
+class __$$InvalidTransactionRecipientCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res,
+        _$InvalidTransactionRecipient<T>>
+    implements _$$InvalidTransactionRecipientCopyWith<T, $Res> {
+  __$$InvalidTransactionRecipientCopyWithImpl(
+      _$InvalidTransactionRecipient<T> _value,
+      $Res Function(_$InvalidTransactionRecipient<T>) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+  }) {
+    return _then(_$InvalidTransactionRecipient<T>(
+      failedValue: freezed == failedValue
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as T,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InvalidTransactionRecipient<T>
+    with DiagnosticableTreeMixin
+    implements InvalidTransactionRecipient<T> {
+  const _$InvalidTransactionRecipient({required this.failedValue});
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ValueFailure<$T>.invalidTransactionRecipient(failedValue: $failedValue)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'ValueFailure<$T>.invalidTransactionRecipient'))
+      ..add(DiagnosticsProperty('failedValue', failedValue));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InvalidTransactionRecipient<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(failedValue));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InvalidTransactionRecipientCopyWith<T, _$InvalidTransactionRecipient<T>>
+      get copyWith => __$$InvalidTransactionRecipientCopyWithImpl<T,
+          _$InvalidTransactionRecipient<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedValue) unexpected,
+    required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) shortString,
+    required TResult Function(T failedValue) invalidEmail,
+    required TResult Function(T failedValue) shortPassword,
+    required TResult Function(T failedValue) passwordNotMatch,
+    required TResult Function(T failedValue) shortUsername,
+    required TResult Function(T failedValue) shortFirstName,
+    required TResult Function(T failedValue) shortLastName,
+    required TResult Function(T failedValue) shortCategoryName,
+    required TResult Function(T failedValue) negativeBudgetAmount,
+    required TResult Function(T failedValue) negativeTransactionAmount,
+    required TResult Function(T failedValue) invalidTransactionCurrency,
+    required TResult Function(T failedValue) invalidTransactionRecipient,
+    required TResult Function(T failedValue) invalidTransactionSender,
+  }) {
+    return invalidTransactionRecipient(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(T failedValue)? unexpected,
+    TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue)? shortString,
+    TResult? Function(T failedValue)? invalidEmail,
+    TResult? Function(T failedValue)? shortPassword,
+    TResult? Function(T failedValue)? passwordNotMatch,
+    TResult? Function(T failedValue)? shortUsername,
+    TResult? Function(T failedValue)? shortFirstName,
+    TResult? Function(T failedValue)? shortLastName,
+    TResult? Function(T failedValue)? shortCategoryName,
+    TResult? Function(T failedValue)? negativeBudgetAmount,
+    TResult? Function(T failedValue)? negativeTransactionAmount,
+    TResult? Function(T failedValue)? invalidTransactionCurrency,
+    TResult? Function(T failedValue)? invalidTransactionRecipient,
+    TResult? Function(T failedValue)? invalidTransactionSender,
+  }) {
+    return invalidTransactionRecipient?.call(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedValue)? unexpected,
+    TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? shortString,
+    TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? passwordNotMatch,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? shortFirstName,
+    TResult Function(T failedValue)? shortLastName,
+    TResult Function(T failedValue)? shortCategoryName,
+    TResult Function(T failedValue)? negativeBudgetAmount,
+    TResult Function(T failedValue)? negativeTransactionAmount,
+    TResult Function(T failedValue)? invalidTransactionCurrency,
+    TResult Function(T failedValue)? invalidTransactionRecipient,
+    TResult Function(T failedValue)? invalidTransactionSender,
+    required TResult orElse(),
+  }) {
+    if (invalidTransactionRecipient != null) {
+      return invalidTransactionRecipient(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Unexpected<T> value) unexpected,
+    required TResult Function(Empty<T> value) empty,
+    required TResult Function(ShortString<T> value) shortString,
+    required TResult Function(InvalidEmail<T> value) invalidEmail,
+    required TResult Function(ShortPassword<T> value) shortPassword,
+    required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
+    required TResult Function(ShortUsername<T> value) shortUsername,
+    required TResult Function(ShortFirstName<T> value) shortFirstName,
+    required TResult Function(ShortLastName<T> value) shortLastName,
+    required TResult Function(ShortCategoryName<T> value) shortCategoryName,
+    required TResult Function(NegativeBudgetAmount<T> value)
+        negativeBudgetAmount,
+    required TResult Function(NegativeTransactionAmount<T> value)
+        negativeTransactionAmount,
+    required TResult Function(InvalidTransactionCurrency<T> value)
+        invalidTransactionCurrency,
+    required TResult Function(InvalidTransactionRecipient<T> value)
+        invalidTransactionRecipient,
+    required TResult Function(InvalidTransactionSender<T> value)
+        invalidTransactionSender,
+  }) {
+    return invalidTransactionRecipient(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Unexpected<T> value)? unexpected,
+    TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ShortString<T> value)? shortString,
+    TResult? Function(InvalidEmail<T> value)? invalidEmail,
+    TResult? Function(ShortPassword<T> value)? shortPassword,
+    TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
+    TResult? Function(ShortUsername<T> value)? shortUsername,
+    TResult? Function(ShortFirstName<T> value)? shortFirstName,
+    TResult? Function(ShortLastName<T> value)? shortLastName,
+    TResult? Function(ShortCategoryName<T> value)? shortCategoryName,
+    TResult? Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult? Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult? Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult? Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult? Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
+  }) {
+    return invalidTransactionRecipient?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Unexpected<T> value)? unexpected,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(ShortString<T> value)? shortString,
+    TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortPassword<T> value)? shortPassword,
+    TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
+    TResult Function(ShortUsername<T> value)? shortUsername,
+    TResult Function(ShortFirstName<T> value)? shortFirstName,
+    TResult Function(ShortLastName<T> value)? shortLastName,
+    TResult Function(ShortCategoryName<T> value)? shortCategoryName,
+    TResult Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
+    required TResult orElse(),
+  }) {
+    if (invalidTransactionRecipient != null) {
+      return invalidTransactionRecipient(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InvalidTransactionRecipient<T> implements ValueFailure<T> {
+  const factory InvalidTransactionRecipient({required final T failedValue}) =
+      _$InvalidTransactionRecipient<T>;
+
+  @override
+  T get failedValue;
+  @override
+  @JsonKey(ignore: true)
+  _$$InvalidTransactionRecipientCopyWith<T, _$InvalidTransactionRecipient<T>>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$InvalidTransactionSenderCopyWith<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  factory _$$InvalidTransactionSenderCopyWith(
+          _$InvalidTransactionSender<T> value,
+          $Res Function(_$InvalidTransactionSender<T>) then) =
+      __$$InvalidTransactionSenderCopyWithImpl<T, $Res>;
+  @override
+  @useResult
+  $Res call({T failedValue});
+}
+
+/// @nodoc
+class __$$InvalidTransactionSenderCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res, _$InvalidTransactionSender<T>>
+    implements _$$InvalidTransactionSenderCopyWith<T, $Res> {
+  __$$InvalidTransactionSenderCopyWithImpl(_$InvalidTransactionSender<T> _value,
+      $Res Function(_$InvalidTransactionSender<T>) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+  }) {
+    return _then(_$InvalidTransactionSender<T>(
+      failedValue: freezed == failedValue
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as T,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InvalidTransactionSender<T>
+    with DiagnosticableTreeMixin
+    implements InvalidTransactionSender<T> {
+  const _$InvalidTransactionSender({required this.failedValue});
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ValueFailure<$T>.invalidTransactionSender(failedValue: $failedValue)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'ValueFailure<$T>.invalidTransactionSender'))
+      ..add(DiagnosticsProperty('failedValue', failedValue));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InvalidTransactionSender<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(failedValue));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InvalidTransactionSenderCopyWith<T, _$InvalidTransactionSender<T>>
+      get copyWith => __$$InvalidTransactionSenderCopyWithImpl<T,
+          _$InvalidTransactionSender<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedValue) unexpected,
+    required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) shortString,
+    required TResult Function(T failedValue) invalidEmail,
+    required TResult Function(T failedValue) shortPassword,
+    required TResult Function(T failedValue) passwordNotMatch,
+    required TResult Function(T failedValue) shortUsername,
+    required TResult Function(T failedValue) shortFirstName,
+    required TResult Function(T failedValue) shortLastName,
+    required TResult Function(T failedValue) shortCategoryName,
+    required TResult Function(T failedValue) negativeBudgetAmount,
+    required TResult Function(T failedValue) negativeTransactionAmount,
+    required TResult Function(T failedValue) invalidTransactionCurrency,
+    required TResult Function(T failedValue) invalidTransactionRecipient,
+    required TResult Function(T failedValue) invalidTransactionSender,
+  }) {
+    return invalidTransactionSender(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(T failedValue)? unexpected,
+    TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue)? shortString,
+    TResult? Function(T failedValue)? invalidEmail,
+    TResult? Function(T failedValue)? shortPassword,
+    TResult? Function(T failedValue)? passwordNotMatch,
+    TResult? Function(T failedValue)? shortUsername,
+    TResult? Function(T failedValue)? shortFirstName,
+    TResult? Function(T failedValue)? shortLastName,
+    TResult? Function(T failedValue)? shortCategoryName,
+    TResult? Function(T failedValue)? negativeBudgetAmount,
+    TResult? Function(T failedValue)? negativeTransactionAmount,
+    TResult? Function(T failedValue)? invalidTransactionCurrency,
+    TResult? Function(T failedValue)? invalidTransactionRecipient,
+    TResult? Function(T failedValue)? invalidTransactionSender,
+  }) {
+    return invalidTransactionSender?.call(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedValue)? unexpected,
+    TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? shortString,
+    TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? passwordNotMatch,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? shortFirstName,
+    TResult Function(T failedValue)? shortLastName,
+    TResult Function(T failedValue)? shortCategoryName,
+    TResult Function(T failedValue)? negativeBudgetAmount,
+    TResult Function(T failedValue)? negativeTransactionAmount,
+    TResult Function(T failedValue)? invalidTransactionCurrency,
+    TResult Function(T failedValue)? invalidTransactionRecipient,
+    TResult Function(T failedValue)? invalidTransactionSender,
+    required TResult orElse(),
+  }) {
+    if (invalidTransactionSender != null) {
+      return invalidTransactionSender(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Unexpected<T> value) unexpected,
+    required TResult Function(Empty<T> value) empty,
+    required TResult Function(ShortString<T> value) shortString,
+    required TResult Function(InvalidEmail<T> value) invalidEmail,
+    required TResult Function(ShortPassword<T> value) shortPassword,
+    required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
+    required TResult Function(ShortUsername<T> value) shortUsername,
+    required TResult Function(ShortFirstName<T> value) shortFirstName,
+    required TResult Function(ShortLastName<T> value) shortLastName,
+    required TResult Function(ShortCategoryName<T> value) shortCategoryName,
+    required TResult Function(NegativeBudgetAmount<T> value)
+        negativeBudgetAmount,
+    required TResult Function(NegativeTransactionAmount<T> value)
+        negativeTransactionAmount,
+    required TResult Function(InvalidTransactionCurrency<T> value)
+        invalidTransactionCurrency,
+    required TResult Function(InvalidTransactionRecipient<T> value)
+        invalidTransactionRecipient,
+    required TResult Function(InvalidTransactionSender<T> value)
+        invalidTransactionSender,
+  }) {
+    return invalidTransactionSender(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Unexpected<T> value)? unexpected,
+    TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ShortString<T> value)? shortString,
+    TResult? Function(InvalidEmail<T> value)? invalidEmail,
+    TResult? Function(ShortPassword<T> value)? shortPassword,
+    TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
+    TResult? Function(ShortUsername<T> value)? shortUsername,
+    TResult? Function(ShortFirstName<T> value)? shortFirstName,
+    TResult? Function(ShortLastName<T> value)? shortLastName,
+    TResult? Function(ShortCategoryName<T> value)? shortCategoryName,
+    TResult? Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult? Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult? Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult? Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult? Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
+  }) {
+    return invalidTransactionSender?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Unexpected<T> value)? unexpected,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(ShortString<T> value)? shortString,
+    TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortPassword<T> value)? shortPassword,
+    TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
+    TResult Function(ShortUsername<T> value)? shortUsername,
+    TResult Function(ShortFirstName<T> value)? shortFirstName,
+    TResult Function(ShortLastName<T> value)? shortLastName,
+    TResult Function(ShortCategoryName<T> value)? shortCategoryName,
+    TResult Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
+    required TResult orElse(),
+  }) {
+    if (invalidTransactionSender != null) {
+      return invalidTransactionSender(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InvalidTransactionSender<T> implements ValueFailure<T> {
+  const factory InvalidTransactionSender({required final T failedValue}) =
+      _$InvalidTransactionSender<T>;
+
+  @override
+  T get failedValue;
+  @override
+  @JsonKey(ignore: true)
+  _$$InvalidTransactionSenderCopyWith<T, _$InvalidTransactionSender<T>>
+      get copyWith => throw _privateConstructorUsedError;
 }

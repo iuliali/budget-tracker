@@ -30,7 +30,7 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
       failureOrCategories: none(),
     ));
 
-    final failureOrSuccess = await _categoryFacade.getCategories();
+    final failureOrSuccess = await _categoryFacade.getAll();
 
     emit(state.copyWith(
       failureOrCategories: some(failureOrSuccess),
@@ -45,9 +45,9 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
       failureOrCategories: none(),
     ));
 
-    final failureOrSuccess = await _categoryFacade.deleteCategory(categoryId: event.categoryId);
+    final failureOrSuccess = await _categoryFacade.delete(categoryId: event.categoryId);
     if (failureOrSuccess.isRight()) {
-      final failureOrCategories = await _categoryFacade.getCategories();
+      final failureOrCategories = await _categoryFacade.getAll();
       emit(state.copyWith(
         failureOrCategories: some(failureOrCategories),
       ));
