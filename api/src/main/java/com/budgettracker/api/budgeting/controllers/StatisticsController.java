@@ -2,6 +2,7 @@ package com.budgettracker.api.budgeting.controllers;
 
 import com.budgettracker.api.budgeting.services.StatisticsService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/statistics")
 @RequiredArgsConstructor
 @Secured({"ADMIN", "USER"})
+@Tag(name = "Statistics Controller", description = "Get statistics about expenses and incomes.")
 public class StatisticsController {
     private final StatisticsService statisticsService;
 

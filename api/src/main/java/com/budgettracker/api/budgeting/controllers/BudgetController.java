@@ -4,6 +4,7 @@ import com.budgettracker.api.budgeting.services.BudgetService;
 import com.budgettracker.api.budgeting.dtos.BudgetUpdateDTO;
 import com.budgettracker.api.budgeting.dtos.NewBudgetDTO;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import java.util.Map;
 @RequestMapping("/api/v1/budget")
 @RequiredArgsConstructor
 @Secured({"ADMIN", "USER"})
+@Tag(name = "Budget Controller", description = "Create, update and delete budgets.")
 public class BudgetController {
     private final BudgetService budgetService;
 
