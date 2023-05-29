@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.util.Map;
 
-@ControllerAdvice(basePackages = {"com.budgettracker.api.budgeting.controllers"})
+@ControllerAdvice
 public class BudgetingExceptionHandlerController extends ResponseEntityExceptionHandler {
 
     // ==================== CATEGORIES EXCEPTIONS ====================
@@ -118,13 +118,27 @@ public class BudgetingExceptionHandlerController extends ResponseEntityException
                 HttpStatus.BAD_REQUEST);
     }
 
-    // This catches all other exceptions
-    @ExceptionHandler(value = {Exception.class, Error.class})
-    public ResponseEntity<?> handleOtherExceptions (Throwable exception,
-                                                    WebRequest request) {
-
-        logger.error(exception.getMessage(), exception);
-        return new ResponseEntity<>(Map.of("message", "An unexpected exception occurred"), HttpStatus.I_AM_A_TEAPOT);
+    // ==================== STATISTICS EXCEPTIONS ====================
+    @ExceptionHandler(value = {GivenDateIsInTheFutureException.class})
+    public ResponseEntity<?> handleBadRequest(GivenDateIsInTheFutureException exception,
+                                              WebRequest request) {
+        logger.warn(request + exception.getMessage());
+        return new ResponseEntity<>(Map.of("message", "Given date is in the future."),
+                HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(value = {InvalidMonthNumberException.class})
+    public ResponseEntity<?> handleBadRequest(InvalidMonthNumberException exception,
+                                              WebRequest request) {
+        logger.warn(request + exception.getMessage());
+        return new ResponseEntity<>(Map.of("message", "Invalid month number."),
+                HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(value = {InvalidMonthFormatException.class})
+    public ResponseEntity<?> handleBadRequest(InvalidMonthFormatException exception,
+                                              WebRequest request) {
+        logger.warn(request + exception.getMessage());
+        return new ResponseEntity<>(Map.of("message", "Invalid month format. Please use the following format: YYYY-MM."),
+                HttpStatus.BAD_REQUEST);
     }
 
 }

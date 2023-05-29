@@ -1,4 +1,4 @@
-package com.budgettracker.api.budgeting.tests.unitests.controllers;
+package com.budgettracker.api.budgeting.unit.controllers;
 
 import com.budgettracker.api.budgeting.controllers.BudgetController;
 import com.budgettracker.api.budgeting.dtos.BudgetDTO;
@@ -37,7 +37,7 @@ class BudgetControllerTest {
         NewBudgetDTO newBudgetDto = new NewBudgetDTO();
         when(budgetService.createBudget(any(NewBudgetDTO.class))).thenReturn("Budget created successfully");
 
-        ResponseEntity<?> response = budgetController.createCategory(newBudgetDto);
+        ResponseEntity<?> response = budgetController.createBudget(newBudgetDto);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(Collections.singletonMap("message", "Budget created successfully"), response.getBody());

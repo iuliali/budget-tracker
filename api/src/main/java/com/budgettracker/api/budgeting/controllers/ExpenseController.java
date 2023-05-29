@@ -3,6 +3,7 @@ package com.budgettracker.api.budgeting.controllers;
 import com.budgettracker.api.budgeting.dtos.NewExpenseDto;
 import com.budgettracker.api.budgeting.services.ExpenseService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import java.util.Map;
 @RequestMapping("/api/v1/expenses")
 @RequiredArgsConstructor
 @Secured({"ADMIN", "USER"})
+@Tag(name = "Expense Controller", description = "Create, update and delete expenses.")
 public class ExpenseController {
     private final ExpenseService expenseService;
 

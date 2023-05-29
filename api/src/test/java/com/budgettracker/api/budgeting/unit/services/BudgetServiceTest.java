@@ -1,4 +1,4 @@
-package com.budgettracker.api.budgeting.tests.unitests.services;
+package com.budgettracker.api.budgeting.unit.services;
 
 import com.budgettracker.api.budgeting.dtos.BudgetDTO;
 import com.budgettracker.api.budgeting.dtos.BudgetUpdateDTO;

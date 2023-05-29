@@ -2,6 +2,8 @@ package com.budgettracker.api.auth.controllers;
 
 
 import com.budgettracker.api.auth.exceptions.*;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -13,7 +15,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.util.Map;
 
-@ControllerAdvice(basePackages = {"com.budgettracker.api.auth.controllers"})
+@ControllerAdvice
+@Order(value = Ordered.HIGHEST_PRECEDENCE)
 public class AuthExceptionHandlerController extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = {UsernameAlreadyExistsException.class})
