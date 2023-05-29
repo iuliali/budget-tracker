@@ -23,6 +23,6 @@ public interface IncomeRepository extends JpaRepository<Income, BigInteger> {
     @Query("SELECT inc FROM income inc, userCategory uc WHERE inc.userCategory.id = :id AND inc.userCategory.id = uc.id AND uc.user = :user")
     Optional<List<Income>> findIncomesByCategoryForUser(User user, BigInteger id);
 
-    @Query("SELECT SUM(expe.amount) FROM expense expe WHERE expe.userCategory.id = :userCategoryId AND expe.registeredAt >= :startDate AND expe.registeredAt <= :endDate")
+    @Query("SELECT SUM(inc.amount) FROM income inc WHERE inc.userCategory.id = :userCategoryId AND inc.registeredAt >= :startDate AND inc.registeredAt <= :endDate")
     Optional<BigDecimal> incomesSSumByUserCategoryBetweenDates(BigInteger userCategoryId, LocalDateTime startDate, LocalDateTime endDate);
 }
