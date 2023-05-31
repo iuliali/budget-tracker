@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import '../../../domain/categories/entities/category.dart';
 import '../../../domain/transactions/entities/expense.dart';
 import '../../../domain/transactions/entities/income.dart';
+import '../../../domain/debt/entities/group.dart';
 import '../../auth/pages/login.dart';
 import '../../auth/pages/register.dart';
 import '../../auth/pages/verify_email.dart';

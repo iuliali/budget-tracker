@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:budget_tracker/application/auth/auth_bloc.dart';
 import 'package:budget_tracker/presentation/core/routing/router.dart';
 import 'package:flutter/material.dart';

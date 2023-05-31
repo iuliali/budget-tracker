@@ -61,6 +61,7 @@ class LoginForm extends StatelessWidget {
                 validator: (_) {
                   return state.username.value.fold(
                     (f) => f.maybeMap(
+                      empty: (_) => "The username can't be empty",
                       shortUsername: (_) => 'The username is too short',
                       orElse: () => "Unknown validation error",
                     ),

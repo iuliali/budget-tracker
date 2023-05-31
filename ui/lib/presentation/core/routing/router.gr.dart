@@ -40,9 +40,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     GroupRoute.name: (routeData) {
+      final args = routeData.argsAs<GroupRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const GroupPage(),
+        child: GroupPage(
+          key: args.key,
+          group: args.group,
+        ),
       );
     },
     GroupsRoute.name: (routeData) {
@@ -218,16 +222,39 @@ class RegisterRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [GroupPage]
-class GroupRoute extends PageRouteInfo<void> {
-  const GroupRoute({List<PageRouteInfo>? children})
-      : super(
+class GroupRoute extends PageRouteInfo<GroupRouteArgs> {
+  GroupRoute({
+    Key? key,
+    required Group group,
+    List<PageRouteInfo>? children,
+  }) : super(
           GroupRoute.name,
+          args: GroupRouteArgs(
+            key: key,
+            group: group,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'GroupRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<GroupRouteArgs> page = PageInfo<GroupRouteArgs>(name);
+}
+
+class GroupRouteArgs {
+  const GroupRouteArgs({
+    this.key,
+    required this.group,
+  });
+
+  final Key? key;
+
+  final Group group;
+
+  @override
+  String toString() {
+    return 'GroupRouteArgs{key: $key, group: $group}';
+  }
 }
 
 /// generated route for

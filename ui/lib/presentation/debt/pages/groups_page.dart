@@ -15,11 +15,104 @@ import '../../core/widgets/menu.dart';
 class GroupsPage extends StatelessWidget {
   const GroupsPage({Key? key}) : super(key: key);
 
+  void _groupsListener(BuildContext context, GroupsState state) {
+    state.failureOrGroups.fold(
+          () {},
+          (either) => either.fold(
+            (failure) => ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(failure.maybeMap(
+              unexpected: (_) =>
+              "Unexpected error occured while fetching groups",
+              notFound: (_) => "Group not found",
+              orElse: () => "Unexpected error occured",
+            )),
+          ),
+        ),
+            (categories) {},
+      ),
+    );
+  }
+
+  Widget _groupsBuilder(BuildContext context, GroupsState state) {
+    final List<Group> groups = state.failureOrGroups.fold(
+            () => [],
+            (a) => a.fold(
+              (l) => [],
+              (r) => r,
+        ));
+    if (state.isFetching) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+    if (groups.isEmpty) {
+      return const Center(
+        child: Text("No groups found!"),
+      );
+    }
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: groups.length,
+      itemBuilder: (context, index) {
+        final item = groups[index];
+        return Dismissible(
+          key: Key(item.id.toString()),
+          onDismissed: (direction) {
+            context.read<GroupsBloc>().add(GroupsEvent.deleteGroup(item.id));
+          },
+          background: Container(
+            color: Colors.red,
+            alignment: Alignment.center,
+            child: const Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(
+                    Icons.delete,
+                    color: Colors.white,
+                  ),
+                ),
+                Spacer(),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(
+                    Icons.delete,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          child: ListTile(
+            onTap: () {
+              context.router.navigate(GroupRoute(group: item));
+            },
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(item.name.getOrCrash().toString()),
+                const Text(
+                  "Description",
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: cGreyColor,
+                  ),
+                ),
+              ],
+            ),
+            leading: const Icon(Icons.drag_indicator),
+            trailing: const Icon(Icons.edit),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) =>
-      getIt<GroupsBloc>()..add(const GroupsEvent.getGroups()),
+      create: (_) => getIt<GroupsBloc>()..add(const GroupsEvent.getGroups()),
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
         appBar: generateAppBarWidget(context),
@@ -35,102 +128,11 @@ class GroupsPage extends StatelessWidget {
             children: <Widget>[
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 32),
-                child: HeaderWidget(title: "Groups", subtitle: "All times"),
+                child: HeaderWidget(title: "Groups", subtitle: "Split expenses with friends, roommates, and more."),
               ),
               BlocConsumer<GroupsBloc, GroupsState>(
-                listener: (context, state) {
-                  state.failureOrGroups.fold(
-                        () {},
-                        (either) => either.fold(
-                          (failure) => ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(failure.maybeMap(
-                            unexpected: (_) =>
-                            "Unexpected error occured while fetching groups",
-                            notFound: (_) => "Group not found",
-                            orElse: () => "Unexpected error occured",
-                          )),
-                        ),
-                      ),
-                          (categories) {},
-                    ),
-                  );
-                },
-                builder: (context, state) {
-                  final List<Group> listOfGroups =
-                  state.failureOrGroups.fold(
-                          () => [],
-                          (a) => a.fold(
-                            (l) => [],
-                            (r) => r,
-                      ));
-                  if (state.isFetching) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                  if (listOfGroups.isEmpty) {
-                    return const Center(
-                      child: Text("No groups found!"),
-                    );
-                  }
-                  return ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: listOfGroups.length,
-                    itemBuilder: (context, index) {
-                      final item = listOfGroups[index];
-                      return Dismissible(
-                        key: Key(item.id.toString()),
-                        onDismissed: (direction) {
-                          context.read<GroupsBloc>().add(
-                              GroupsEvent.deleteGroup(item.id));
-                        },
-                        background: Container(
-                          color: Colors.red,
-                          alignment: Alignment.center,
-                          child: const Row(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Icon(
-                                  Icons.delete,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              Spacer(),
-                              Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Icon(
-                                  Icons.delete,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        child: ListTile(
-                          onTap: () {
-                            // context.router.navigate(GroupRoute(group: item));
-                          },
-                          title: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(item.name.getOrCrash().toString()),
-                              const Text("Description",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: cGreyColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                          leading: const Icon(Icons.drag_indicator),
-                          trailing: const Icon(Icons.edit),
-                        ),
-                      );
-                    },
-                  );
-                },
+                listener: _groupsListener,
+                builder: _groupsBuilder,
               ),
             ],
           ),

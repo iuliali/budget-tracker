@@ -1,4 +1,5 @@
 import 'package:budget_tracker/domain/core/validators.dart';
+import 'package:budget_tracker/domain/debt/validators.dart';
 import 'package:dartz/dartz.dart';
 
 import '../core/failures.dart';
@@ -24,4 +25,37 @@ class GroupName extends ValueObject<String> {
   }
 
   const GroupName._(this.value);
+}
+
+class MemberId extends ValueObject<int> {
+  @override
+  final Either<ValueFailure<int>, int> value;
+
+  factory MemberId(int input) {
+    return MemberId._(right(input));
+  }
+
+  const MemberId._(this.value);
+}
+
+class MemberName extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory MemberName(String input) {
+    return MemberName._(validateStringNotEmpty(input));
+  }
+
+  const MemberName._(this.value);
+}
+
+class MemberUsername extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory MemberUsername(String input) {
+    return MemberUsername._(validateMemberUsername(input));
+  }
+
+  const MemberUsername._(this.value);
 }

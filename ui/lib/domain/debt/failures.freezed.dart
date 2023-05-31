@@ -43,26 +43,26 @@ mixin _$GroupFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Unexpected value) unexpected,
-    required TResult Function(_NotFound value) notFound,
-    required TResult Function(_UnableToUpdate value) unableToUpdate,
-    required TResult Function(_UnableToDelete value) unableToDelete,
+    required TResult Function(_GroupUnexpected value) unexpected,
+    required TResult Function(_GroupNotFound value) notFound,
+    required TResult Function(_GroupUnableToUpdate value) unableToUpdate,
+    required TResult Function(_GroupUnableToDelete value) unableToDelete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Unexpected value)? unexpected,
-    TResult? Function(_NotFound value)? notFound,
-    TResult? Function(_UnableToUpdate value)? unableToUpdate,
-    TResult? Function(_UnableToDelete value)? unableToDelete,
+    TResult? Function(_GroupUnexpected value)? unexpected,
+    TResult? Function(_GroupNotFound value)? notFound,
+    TResult? Function(_GroupUnableToUpdate value)? unableToUpdate,
+    TResult? Function(_GroupUnableToDelete value)? unableToDelete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Unexpected value)? unexpected,
-    TResult Function(_NotFound value)? notFound,
-    TResult Function(_UnableToUpdate value)? unableToUpdate,
-    TResult Function(_UnableToDelete value)? unableToDelete,
+    TResult Function(_GroupUnexpected value)? unexpected,
+    TResult Function(_GroupNotFound value)? notFound,
+    TResult Function(_GroupUnableToUpdate value)? unableToUpdate,
+    TResult Function(_GroupUnableToDelete value)? unableToDelete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -87,25 +87,25 @@ class _$GroupFailureCopyWithImpl<$Res, $Val extends GroupFailure>
 }
 
 /// @nodoc
-abstract class _$$_UnexpectedCopyWith<$Res> {
-  factory _$$_UnexpectedCopyWith(
-          _$_Unexpected value, $Res Function(_$_Unexpected) then) =
-      __$$_UnexpectedCopyWithImpl<$Res>;
+abstract class _$$_GroupUnexpectedCopyWith<$Res> {
+  factory _$$_GroupUnexpectedCopyWith(
+          _$_GroupUnexpected value, $Res Function(_$_GroupUnexpected) then) =
+      __$$_GroupUnexpectedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_UnexpectedCopyWithImpl<$Res>
-    extends _$GroupFailureCopyWithImpl<$Res, _$_Unexpected>
-    implements _$$_UnexpectedCopyWith<$Res> {
-  __$$_UnexpectedCopyWithImpl(
-      _$_Unexpected _value, $Res Function(_$_Unexpected) _then)
+class __$$_GroupUnexpectedCopyWithImpl<$Res>
+    extends _$GroupFailureCopyWithImpl<$Res, _$_GroupUnexpected>
+    implements _$$_GroupUnexpectedCopyWith<$Res> {
+  __$$_GroupUnexpectedCopyWithImpl(
+      _$_GroupUnexpected _value, $Res Function(_$_GroupUnexpected) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Unexpected implements _Unexpected {
-  const _$_Unexpected();
+class _$_GroupUnexpected implements _GroupUnexpected {
+  const _$_GroupUnexpected();
 
   @override
   String toString() {
@@ -115,7 +115,7 @@ class _$_Unexpected implements _Unexpected {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Unexpected);
+        (other.runtimeType == runtimeType && other is _$_GroupUnexpected);
   }
 
   @override
@@ -161,10 +161,10 @@ class _$_Unexpected implements _Unexpected {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Unexpected value) unexpected,
-    required TResult Function(_NotFound value) notFound,
-    required TResult Function(_UnableToUpdate value) unableToUpdate,
-    required TResult Function(_UnableToDelete value) unableToDelete,
+    required TResult Function(_GroupUnexpected value) unexpected,
+    required TResult Function(_GroupNotFound value) notFound,
+    required TResult Function(_GroupUnableToUpdate value) unableToUpdate,
+    required TResult Function(_GroupUnableToDelete value) unableToDelete,
   }) {
     return unexpected(this);
   }
@@ -172,10 +172,10 @@ class _$_Unexpected implements _Unexpected {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Unexpected value)? unexpected,
-    TResult? Function(_NotFound value)? notFound,
-    TResult? Function(_UnableToUpdate value)? unableToUpdate,
-    TResult? Function(_UnableToDelete value)? unableToDelete,
+    TResult? Function(_GroupUnexpected value)? unexpected,
+    TResult? Function(_GroupNotFound value)? notFound,
+    TResult? Function(_GroupUnableToUpdate value)? unableToUpdate,
+    TResult? Function(_GroupUnableToDelete value)? unableToDelete,
   }) {
     return unexpected?.call(this);
   }
@@ -183,10 +183,10 @@ class _$_Unexpected implements _Unexpected {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Unexpected value)? unexpected,
-    TResult Function(_NotFound value)? notFound,
-    TResult Function(_UnableToUpdate value)? unableToUpdate,
-    TResult Function(_UnableToDelete value)? unableToDelete,
+    TResult Function(_GroupUnexpected value)? unexpected,
+    TResult Function(_GroupNotFound value)? notFound,
+    TResult Function(_GroupUnableToUpdate value)? unableToUpdate,
+    TResult Function(_GroupUnableToDelete value)? unableToDelete,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -196,30 +196,30 @@ class _$_Unexpected implements _Unexpected {
   }
 }
 
-abstract class _Unexpected implements GroupFailure {
-  const factory _Unexpected() = _$_Unexpected;
+abstract class _GroupUnexpected implements GroupFailure {
+  const factory _GroupUnexpected() = _$_GroupUnexpected;
 }
 
 /// @nodoc
-abstract class _$$_NotFoundCopyWith<$Res> {
-  factory _$$_NotFoundCopyWith(
-          _$_NotFound value, $Res Function(_$_NotFound) then) =
-      __$$_NotFoundCopyWithImpl<$Res>;
+abstract class _$$_GroupNotFoundCopyWith<$Res> {
+  factory _$$_GroupNotFoundCopyWith(
+          _$_GroupNotFound value, $Res Function(_$_GroupNotFound) then) =
+      __$$_GroupNotFoundCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_NotFoundCopyWithImpl<$Res>
-    extends _$GroupFailureCopyWithImpl<$Res, _$_NotFound>
-    implements _$$_NotFoundCopyWith<$Res> {
-  __$$_NotFoundCopyWithImpl(
-      _$_NotFound _value, $Res Function(_$_NotFound) _then)
+class __$$_GroupNotFoundCopyWithImpl<$Res>
+    extends _$GroupFailureCopyWithImpl<$Res, _$_GroupNotFound>
+    implements _$$_GroupNotFoundCopyWith<$Res> {
+  __$$_GroupNotFoundCopyWithImpl(
+      _$_GroupNotFound _value, $Res Function(_$_GroupNotFound) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_NotFound implements _NotFound {
-  const _$_NotFound();
+class _$_GroupNotFound implements _GroupNotFound {
+  const _$_GroupNotFound();
 
   @override
   String toString() {
@@ -229,7 +229,7 @@ class _$_NotFound implements _NotFound {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_NotFound);
+        (other.runtimeType == runtimeType && other is _$_GroupNotFound);
   }
 
   @override
@@ -275,10 +275,10 @@ class _$_NotFound implements _NotFound {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Unexpected value) unexpected,
-    required TResult Function(_NotFound value) notFound,
-    required TResult Function(_UnableToUpdate value) unableToUpdate,
-    required TResult Function(_UnableToDelete value) unableToDelete,
+    required TResult Function(_GroupUnexpected value) unexpected,
+    required TResult Function(_GroupNotFound value) notFound,
+    required TResult Function(_GroupUnableToUpdate value) unableToUpdate,
+    required TResult Function(_GroupUnableToDelete value) unableToDelete,
   }) {
     return notFound(this);
   }
@@ -286,10 +286,10 @@ class _$_NotFound implements _NotFound {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Unexpected value)? unexpected,
-    TResult? Function(_NotFound value)? notFound,
-    TResult? Function(_UnableToUpdate value)? unableToUpdate,
-    TResult? Function(_UnableToDelete value)? unableToDelete,
+    TResult? Function(_GroupUnexpected value)? unexpected,
+    TResult? Function(_GroupNotFound value)? notFound,
+    TResult? Function(_GroupUnableToUpdate value)? unableToUpdate,
+    TResult? Function(_GroupUnableToDelete value)? unableToDelete,
   }) {
     return notFound?.call(this);
   }
@@ -297,10 +297,10 @@ class _$_NotFound implements _NotFound {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Unexpected value)? unexpected,
-    TResult Function(_NotFound value)? notFound,
-    TResult Function(_UnableToUpdate value)? unableToUpdate,
-    TResult Function(_UnableToDelete value)? unableToDelete,
+    TResult Function(_GroupUnexpected value)? unexpected,
+    TResult Function(_GroupNotFound value)? notFound,
+    TResult Function(_GroupUnableToUpdate value)? unableToUpdate,
+    TResult Function(_GroupUnableToDelete value)? unableToDelete,
     required TResult orElse(),
   }) {
     if (notFound != null) {
@@ -310,30 +310,30 @@ class _$_NotFound implements _NotFound {
   }
 }
 
-abstract class _NotFound implements GroupFailure {
-  const factory _NotFound() = _$_NotFound;
+abstract class _GroupNotFound implements GroupFailure {
+  const factory _GroupNotFound() = _$_GroupNotFound;
 }
 
 /// @nodoc
-abstract class _$$_UnableToUpdateCopyWith<$Res> {
-  factory _$$_UnableToUpdateCopyWith(
-          _$_UnableToUpdate value, $Res Function(_$_UnableToUpdate) then) =
-      __$$_UnableToUpdateCopyWithImpl<$Res>;
+abstract class _$$_GroupUnableToUpdateCopyWith<$Res> {
+  factory _$$_GroupUnableToUpdateCopyWith(_$_GroupUnableToUpdate value,
+          $Res Function(_$_GroupUnableToUpdate) then) =
+      __$$_GroupUnableToUpdateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_UnableToUpdateCopyWithImpl<$Res>
-    extends _$GroupFailureCopyWithImpl<$Res, _$_UnableToUpdate>
-    implements _$$_UnableToUpdateCopyWith<$Res> {
-  __$$_UnableToUpdateCopyWithImpl(
-      _$_UnableToUpdate _value, $Res Function(_$_UnableToUpdate) _then)
+class __$$_GroupUnableToUpdateCopyWithImpl<$Res>
+    extends _$GroupFailureCopyWithImpl<$Res, _$_GroupUnableToUpdate>
+    implements _$$_GroupUnableToUpdateCopyWith<$Res> {
+  __$$_GroupUnableToUpdateCopyWithImpl(_$_GroupUnableToUpdate _value,
+      $Res Function(_$_GroupUnableToUpdate) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_UnableToUpdate implements _UnableToUpdate {
-  const _$_UnableToUpdate();
+class _$_GroupUnableToUpdate implements _GroupUnableToUpdate {
+  const _$_GroupUnableToUpdate();
 
   @override
   String toString() {
@@ -343,7 +343,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_UnableToUpdate);
+        (other.runtimeType == runtimeType && other is _$_GroupUnableToUpdate);
   }
 
   @override
@@ -389,10 +389,10 @@ class _$_UnableToUpdate implements _UnableToUpdate {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Unexpected value) unexpected,
-    required TResult Function(_NotFound value) notFound,
-    required TResult Function(_UnableToUpdate value) unableToUpdate,
-    required TResult Function(_UnableToDelete value) unableToDelete,
+    required TResult Function(_GroupUnexpected value) unexpected,
+    required TResult Function(_GroupNotFound value) notFound,
+    required TResult Function(_GroupUnableToUpdate value) unableToUpdate,
+    required TResult Function(_GroupUnableToDelete value) unableToDelete,
   }) {
     return unableToUpdate(this);
   }
@@ -400,10 +400,10 @@ class _$_UnableToUpdate implements _UnableToUpdate {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Unexpected value)? unexpected,
-    TResult? Function(_NotFound value)? notFound,
-    TResult? Function(_UnableToUpdate value)? unableToUpdate,
-    TResult? Function(_UnableToDelete value)? unableToDelete,
+    TResult? Function(_GroupUnexpected value)? unexpected,
+    TResult? Function(_GroupNotFound value)? notFound,
+    TResult? Function(_GroupUnableToUpdate value)? unableToUpdate,
+    TResult? Function(_GroupUnableToDelete value)? unableToDelete,
   }) {
     return unableToUpdate?.call(this);
   }
@@ -411,10 +411,10 @@ class _$_UnableToUpdate implements _UnableToUpdate {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Unexpected value)? unexpected,
-    TResult Function(_NotFound value)? notFound,
-    TResult Function(_UnableToUpdate value)? unableToUpdate,
-    TResult Function(_UnableToDelete value)? unableToDelete,
+    TResult Function(_GroupUnexpected value)? unexpected,
+    TResult Function(_GroupNotFound value)? notFound,
+    TResult Function(_GroupUnableToUpdate value)? unableToUpdate,
+    TResult Function(_GroupUnableToDelete value)? unableToDelete,
     required TResult orElse(),
   }) {
     if (unableToUpdate != null) {
@@ -424,30 +424,30 @@ class _$_UnableToUpdate implements _UnableToUpdate {
   }
 }
 
-abstract class _UnableToUpdate implements GroupFailure {
-  const factory _UnableToUpdate() = _$_UnableToUpdate;
+abstract class _GroupUnableToUpdate implements GroupFailure {
+  const factory _GroupUnableToUpdate() = _$_GroupUnableToUpdate;
 }
 
 /// @nodoc
-abstract class _$$_UnableToDeleteCopyWith<$Res> {
-  factory _$$_UnableToDeleteCopyWith(
-          _$_UnableToDelete value, $Res Function(_$_UnableToDelete) then) =
-      __$$_UnableToDeleteCopyWithImpl<$Res>;
+abstract class _$$_GroupUnableToDeleteCopyWith<$Res> {
+  factory _$$_GroupUnableToDeleteCopyWith(_$_GroupUnableToDelete value,
+          $Res Function(_$_GroupUnableToDelete) then) =
+      __$$_GroupUnableToDeleteCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_UnableToDeleteCopyWithImpl<$Res>
-    extends _$GroupFailureCopyWithImpl<$Res, _$_UnableToDelete>
-    implements _$$_UnableToDeleteCopyWith<$Res> {
-  __$$_UnableToDeleteCopyWithImpl(
-      _$_UnableToDelete _value, $Res Function(_$_UnableToDelete) _then)
+class __$$_GroupUnableToDeleteCopyWithImpl<$Res>
+    extends _$GroupFailureCopyWithImpl<$Res, _$_GroupUnableToDelete>
+    implements _$$_GroupUnableToDeleteCopyWith<$Res> {
+  __$$_GroupUnableToDeleteCopyWithImpl(_$_GroupUnableToDelete _value,
+      $Res Function(_$_GroupUnableToDelete) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_UnableToDelete implements _UnableToDelete {
-  const _$_UnableToDelete();
+class _$_GroupUnableToDelete implements _GroupUnableToDelete {
+  const _$_GroupUnableToDelete();
 
   @override
   String toString() {
@@ -457,7 +457,7 @@ class _$_UnableToDelete implements _UnableToDelete {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_UnableToDelete);
+        (other.runtimeType == runtimeType && other is _$_GroupUnableToDelete);
   }
 
   @override
@@ -503,10 +503,10 @@ class _$_UnableToDelete implements _UnableToDelete {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Unexpected value) unexpected,
-    required TResult Function(_NotFound value) notFound,
-    required TResult Function(_UnableToUpdate value) unableToUpdate,
-    required TResult Function(_UnableToDelete value) unableToDelete,
+    required TResult Function(_GroupUnexpected value) unexpected,
+    required TResult Function(_GroupNotFound value) notFound,
+    required TResult Function(_GroupUnableToUpdate value) unableToUpdate,
+    required TResult Function(_GroupUnableToDelete value) unableToDelete,
   }) {
     return unableToDelete(this);
   }
@@ -514,10 +514,10 @@ class _$_UnableToDelete implements _UnableToDelete {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Unexpected value)? unexpected,
-    TResult? Function(_NotFound value)? notFound,
-    TResult? Function(_UnableToUpdate value)? unableToUpdate,
-    TResult? Function(_UnableToDelete value)? unableToDelete,
+    TResult? Function(_GroupUnexpected value)? unexpected,
+    TResult? Function(_GroupNotFound value)? notFound,
+    TResult? Function(_GroupUnableToUpdate value)? unableToUpdate,
+    TResult? Function(_GroupUnableToDelete value)? unableToDelete,
   }) {
     return unableToDelete?.call(this);
   }
@@ -525,10 +525,10 @@ class _$_UnableToDelete implements _UnableToDelete {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Unexpected value)? unexpected,
-    TResult Function(_NotFound value)? notFound,
-    TResult Function(_UnableToUpdate value)? unableToUpdate,
-    TResult Function(_UnableToDelete value)? unableToDelete,
+    TResult Function(_GroupUnexpected value)? unexpected,
+    TResult Function(_GroupNotFound value)? notFound,
+    TResult Function(_GroupUnableToUpdate value)? unableToUpdate,
+    TResult Function(_GroupUnableToDelete value)? unableToDelete,
     required TResult orElse(),
   }) {
     if (unableToDelete != null) {
@@ -538,6 +538,534 @@ class _$_UnableToDelete implements _UnableToDelete {
   }
 }
 
-abstract class _UnableToDelete implements GroupFailure {
-  const factory _UnableToDelete() = _$_UnableToDelete;
+abstract class _GroupUnableToDelete implements GroupFailure {
+  const factory _GroupUnableToDelete() = _$_GroupUnableToDelete;
+}
+
+/// @nodoc
+mixin _$MemberFailure {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() notFound,
+    required TResult Function() unableToUpdate,
+    required TResult Function() unableToDelete,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unexpected,
+    TResult? Function()? notFound,
+    TResult? Function()? unableToUpdate,
+    TResult? Function()? unableToDelete,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? notFound,
+    TResult Function()? unableToUpdate,
+    TResult Function()? unableToDelete,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_MemberUnexpected value) unexpected,
+    required TResult Function(_MemberNotFound value) notFound,
+    required TResult Function(_MemberUnableToUpdate value) unableToUpdate,
+    required TResult Function(_MemberUnableToDelete value) unableToDelete,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_MemberUnexpected value)? unexpected,
+    TResult? Function(_MemberNotFound value)? notFound,
+    TResult? Function(_MemberUnableToUpdate value)? unableToUpdate,
+    TResult? Function(_MemberUnableToDelete value)? unableToDelete,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_MemberUnexpected value)? unexpected,
+    TResult Function(_MemberNotFound value)? notFound,
+    TResult Function(_MemberUnableToUpdate value)? unableToUpdate,
+    TResult Function(_MemberUnableToDelete value)? unableToDelete,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $MemberFailureCopyWith<$Res> {
+  factory $MemberFailureCopyWith(
+          MemberFailure value, $Res Function(MemberFailure) then) =
+      _$MemberFailureCopyWithImpl<$Res, MemberFailure>;
+}
+
+/// @nodoc
+class _$MemberFailureCopyWithImpl<$Res, $Val extends MemberFailure>
+    implements $MemberFailureCopyWith<$Res> {
+  _$MemberFailureCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$_MemberUnexpectedCopyWith<$Res> {
+  factory _$$_MemberUnexpectedCopyWith(
+          _$_MemberUnexpected value, $Res Function(_$_MemberUnexpected) then) =
+      __$$_MemberUnexpectedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_MemberUnexpectedCopyWithImpl<$Res>
+    extends _$MemberFailureCopyWithImpl<$Res, _$_MemberUnexpected>
+    implements _$$_MemberUnexpectedCopyWith<$Res> {
+  __$$_MemberUnexpectedCopyWithImpl(
+      _$_MemberUnexpected _value, $Res Function(_$_MemberUnexpected) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_MemberUnexpected implements _MemberUnexpected {
+  const _$_MemberUnexpected();
+
+  @override
+  String toString() {
+    return 'MemberFailure.unexpected()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_MemberUnexpected);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() notFound,
+    required TResult Function() unableToUpdate,
+    required TResult Function() unableToDelete,
+  }) {
+    return unexpected();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unexpected,
+    TResult? Function()? notFound,
+    TResult? Function()? unableToUpdate,
+    TResult? Function()? unableToDelete,
+  }) {
+    return unexpected?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? notFound,
+    TResult Function()? unableToUpdate,
+    TResult Function()? unableToDelete,
+    required TResult orElse(),
+  }) {
+    if (unexpected != null) {
+      return unexpected();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_MemberUnexpected value) unexpected,
+    required TResult Function(_MemberNotFound value) notFound,
+    required TResult Function(_MemberUnableToUpdate value) unableToUpdate,
+    required TResult Function(_MemberUnableToDelete value) unableToDelete,
+  }) {
+    return unexpected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_MemberUnexpected value)? unexpected,
+    TResult? Function(_MemberNotFound value)? notFound,
+    TResult? Function(_MemberUnableToUpdate value)? unableToUpdate,
+    TResult? Function(_MemberUnableToDelete value)? unableToDelete,
+  }) {
+    return unexpected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_MemberUnexpected value)? unexpected,
+    TResult Function(_MemberNotFound value)? notFound,
+    TResult Function(_MemberUnableToUpdate value)? unableToUpdate,
+    TResult Function(_MemberUnableToDelete value)? unableToDelete,
+    required TResult orElse(),
+  }) {
+    if (unexpected != null) {
+      return unexpected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _MemberUnexpected implements MemberFailure {
+  const factory _MemberUnexpected() = _$_MemberUnexpected;
+}
+
+/// @nodoc
+abstract class _$$_MemberNotFoundCopyWith<$Res> {
+  factory _$$_MemberNotFoundCopyWith(
+          _$_MemberNotFound value, $Res Function(_$_MemberNotFound) then) =
+      __$$_MemberNotFoundCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_MemberNotFoundCopyWithImpl<$Res>
+    extends _$MemberFailureCopyWithImpl<$Res, _$_MemberNotFound>
+    implements _$$_MemberNotFoundCopyWith<$Res> {
+  __$$_MemberNotFoundCopyWithImpl(
+      _$_MemberNotFound _value, $Res Function(_$_MemberNotFound) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_MemberNotFound implements _MemberNotFound {
+  const _$_MemberNotFound();
+
+  @override
+  String toString() {
+    return 'MemberFailure.notFound()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_MemberNotFound);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() notFound,
+    required TResult Function() unableToUpdate,
+    required TResult Function() unableToDelete,
+  }) {
+    return notFound();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unexpected,
+    TResult? Function()? notFound,
+    TResult? Function()? unableToUpdate,
+    TResult? Function()? unableToDelete,
+  }) {
+    return notFound?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? notFound,
+    TResult Function()? unableToUpdate,
+    TResult Function()? unableToDelete,
+    required TResult orElse(),
+  }) {
+    if (notFound != null) {
+      return notFound();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_MemberUnexpected value) unexpected,
+    required TResult Function(_MemberNotFound value) notFound,
+    required TResult Function(_MemberUnableToUpdate value) unableToUpdate,
+    required TResult Function(_MemberUnableToDelete value) unableToDelete,
+  }) {
+    return notFound(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_MemberUnexpected value)? unexpected,
+    TResult? Function(_MemberNotFound value)? notFound,
+    TResult? Function(_MemberUnableToUpdate value)? unableToUpdate,
+    TResult? Function(_MemberUnableToDelete value)? unableToDelete,
+  }) {
+    return notFound?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_MemberUnexpected value)? unexpected,
+    TResult Function(_MemberNotFound value)? notFound,
+    TResult Function(_MemberUnableToUpdate value)? unableToUpdate,
+    TResult Function(_MemberUnableToDelete value)? unableToDelete,
+    required TResult orElse(),
+  }) {
+    if (notFound != null) {
+      return notFound(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _MemberNotFound implements MemberFailure {
+  const factory _MemberNotFound() = _$_MemberNotFound;
+}
+
+/// @nodoc
+abstract class _$$_MemberUnableToUpdateCopyWith<$Res> {
+  factory _$$_MemberUnableToUpdateCopyWith(_$_MemberUnableToUpdate value,
+          $Res Function(_$_MemberUnableToUpdate) then) =
+      __$$_MemberUnableToUpdateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_MemberUnableToUpdateCopyWithImpl<$Res>
+    extends _$MemberFailureCopyWithImpl<$Res, _$_MemberUnableToUpdate>
+    implements _$$_MemberUnableToUpdateCopyWith<$Res> {
+  __$$_MemberUnableToUpdateCopyWithImpl(_$_MemberUnableToUpdate _value,
+      $Res Function(_$_MemberUnableToUpdate) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_MemberUnableToUpdate implements _MemberUnableToUpdate {
+  const _$_MemberUnableToUpdate();
+
+  @override
+  String toString() {
+    return 'MemberFailure.unableToUpdate()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_MemberUnableToUpdate);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() notFound,
+    required TResult Function() unableToUpdate,
+    required TResult Function() unableToDelete,
+  }) {
+    return unableToUpdate();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unexpected,
+    TResult? Function()? notFound,
+    TResult? Function()? unableToUpdate,
+    TResult? Function()? unableToDelete,
+  }) {
+    return unableToUpdate?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? notFound,
+    TResult Function()? unableToUpdate,
+    TResult Function()? unableToDelete,
+    required TResult orElse(),
+  }) {
+    if (unableToUpdate != null) {
+      return unableToUpdate();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_MemberUnexpected value) unexpected,
+    required TResult Function(_MemberNotFound value) notFound,
+    required TResult Function(_MemberUnableToUpdate value) unableToUpdate,
+    required TResult Function(_MemberUnableToDelete value) unableToDelete,
+  }) {
+    return unableToUpdate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_MemberUnexpected value)? unexpected,
+    TResult? Function(_MemberNotFound value)? notFound,
+    TResult? Function(_MemberUnableToUpdate value)? unableToUpdate,
+    TResult? Function(_MemberUnableToDelete value)? unableToDelete,
+  }) {
+    return unableToUpdate?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_MemberUnexpected value)? unexpected,
+    TResult Function(_MemberNotFound value)? notFound,
+    TResult Function(_MemberUnableToUpdate value)? unableToUpdate,
+    TResult Function(_MemberUnableToDelete value)? unableToDelete,
+    required TResult orElse(),
+  }) {
+    if (unableToUpdate != null) {
+      return unableToUpdate(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _MemberUnableToUpdate implements MemberFailure {
+  const factory _MemberUnableToUpdate() = _$_MemberUnableToUpdate;
+}
+
+/// @nodoc
+abstract class _$$_MemberUnableToDeleteCopyWith<$Res> {
+  factory _$$_MemberUnableToDeleteCopyWith(_$_MemberUnableToDelete value,
+          $Res Function(_$_MemberUnableToDelete) then) =
+      __$$_MemberUnableToDeleteCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_MemberUnableToDeleteCopyWithImpl<$Res>
+    extends _$MemberFailureCopyWithImpl<$Res, _$_MemberUnableToDelete>
+    implements _$$_MemberUnableToDeleteCopyWith<$Res> {
+  __$$_MemberUnableToDeleteCopyWithImpl(_$_MemberUnableToDelete _value,
+      $Res Function(_$_MemberUnableToDelete) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_MemberUnableToDelete implements _MemberUnableToDelete {
+  const _$_MemberUnableToDelete();
+
+  @override
+  String toString() {
+    return 'MemberFailure.unableToDelete()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_MemberUnableToDelete);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() notFound,
+    required TResult Function() unableToUpdate,
+    required TResult Function() unableToDelete,
+  }) {
+    return unableToDelete();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unexpected,
+    TResult? Function()? notFound,
+    TResult? Function()? unableToUpdate,
+    TResult? Function()? unableToDelete,
+  }) {
+    return unableToDelete?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? notFound,
+    TResult Function()? unableToUpdate,
+    TResult Function()? unableToDelete,
+    required TResult orElse(),
+  }) {
+    if (unableToDelete != null) {
+      return unableToDelete();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_MemberUnexpected value) unexpected,
+    required TResult Function(_MemberNotFound value) notFound,
+    required TResult Function(_MemberUnableToUpdate value) unableToUpdate,
+    required TResult Function(_MemberUnableToDelete value) unableToDelete,
+  }) {
+    return unableToDelete(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_MemberUnexpected value)? unexpected,
+    TResult? Function(_MemberNotFound value)? notFound,
+    TResult? Function(_MemberUnableToUpdate value)? unableToUpdate,
+    TResult? Function(_MemberUnableToDelete value)? unableToDelete,
+  }) {
+    return unableToDelete?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_MemberUnexpected value)? unexpected,
+    TResult Function(_MemberNotFound value)? notFound,
+    TResult Function(_MemberUnableToUpdate value)? unableToUpdate,
+    TResult Function(_MemberUnableToDelete value)? unableToDelete,
+    required TResult orElse(),
+  }) {
+    if (unableToDelete != null) {
+      return unableToDelete(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _MemberUnableToDelete implements MemberFailure {
+  const factory _MemberUnableToDelete() = _$_MemberUnableToDelete;
 }

@@ -10,7 +10,7 @@ class WholeLengthButton extends StatelessWidget {
     this.disabled = false,
   }) : super(key: key);
 
-  final text;
+  final String text;
   final Function() onPressed;
   final bool filled;
   final bool disabled;
