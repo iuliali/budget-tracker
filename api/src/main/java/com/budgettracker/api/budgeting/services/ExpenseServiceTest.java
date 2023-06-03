@@ -13,6 +13,7 @@ import com.budgettracker.api.budgeting.models.Budget;
 import com.budgettracker.api.budgeting.models.Expense;
 import com.budgettracker.api.auth.models.User;
 import com.budgettracker.api.budgeting.models.UserCategory;
+import com.budgettracker.api.budgeting.repositories.BudgetRepository;
 import com.budgettracker.api.budgeting.repositories.ExpenseRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,10 +25,7 @@ import org.springframework.security.authentication.TestingAuthenticationToken;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -36,6 +34,8 @@ import static org.mockito.Mockito.*;
 class ExpenseServiceTest {
 
     private ExpenseService expenseService;
+    @Mock
+    private BudgetRepository budgetRepository;
 
     @Mock
     private ExpenseRepository expenseRepository;
@@ -63,6 +63,9 @@ class ExpenseServiceTest {
         BigInteger expenseId = BigInteger.valueOf(1);
         Expense expense = new Expense();
         expense.setId(expenseId);
+        UserCategory userCategory = new UserCategory();
+        userCategory.setId(BigInteger.valueOf(1));
+        expense.setUserCategory(userCategory);
 
         when(expenseRepository.findById(expenseId)).thenReturn(Optional.of(expense));
 
@@ -91,9 +94,11 @@ class ExpenseServiceTest {
         BigDecimal currentAmount = BigDecimal.valueOf(500);
         BigDecimal sumOfExpenses = BigDecimal.valueOf(400);
 
-        // Mock the behavior of expenseRepository
+        BudgetDTO budget = new BudgetDTO(BigInteger.TWO, BigDecimal.valueOf(100), userCategoryId, null);
+
         ExpenseRepository expenseRepository = mock(ExpenseRepository.class);
         when(expenseRepository.expensesSumByUserCategory(userCategoryId)).thenReturn(Optional.of(sumOfExpenses));
+        when(budgetService.getActiveBudget(userCategoryId)).thenReturn(budget);
 
         ExpenseService expenseService = new ExpenseService(expenseRepository, userCategoryService, userService, budgetService, authenticationFacade);
 
@@ -106,85 +111,107 @@ class ExpenseServiceTest {
 
     @Test
     void testCreateExpense() {
-        // Prepare the test data
         NewExpenseDto newExpenseDto = new NewExpenseDto();
         newExpenseDto.setTo("Expense To");
         newExpenseDto.setAmount(BigDecimal.valueOf(100));
         newExpenseDto.setCurrency(Currency.valueOf("USD"));
         newExpenseDto.setUserCategoryId(BigInteger.valueOf(1));
 
-        // Mock the behavior of the expenseRepository
+        BudgetDTO activeBudget = new BudgetDTO();
+        activeBudget.setAmount(BigDecimal.valueOf(500));
+        when(budgetService.getActiveBudget(any(BigInteger.class))).thenReturn(activeBudget);
+
+        UserCategory userCategory = new UserCategory();
+        userCategory.setId(newExpenseDto.getUserCategoryId());
+        when(userCategoryService.getUserCategoryIfExists(any(BigInteger.class))).thenReturn(Optional.of(userCategory));
+
         Expense savedExpense = new Expense();
         savedExpense.setId(BigInteger.valueOf(1));
         savedExpense.setTo(newExpenseDto.getTo());
         savedExpense.setAmount(newExpenseDto.getAmount());
         savedExpense.setCurrency(newExpenseDto.getCurrency());
         savedExpense.setRegisteredAt(LocalDateTime.now());
-        UserCategory userCategory = new UserCategory();
-        userCategory.setId(newExpenseDto.getUserCategoryId());
         savedExpense.setUserCategory(userCategory);
         when(expenseRepository.save(any(Expense.class))).thenReturn(savedExpense);
 
-        // Create an instance of ExpenseService using the existing repositories
         ExpenseService expenseService = new ExpenseService(expenseRepository, userCategoryService, userService, budgetService, authenticationFacade);
 
-        // Perform the test
         Map<String, String> result = expenseService.createExpense(newExpenseDto);
 
-        // Assert the result
         assertNotNull(result);
         assertEquals("Expense has been added successfully", result.get("message"));
         assertEquals("No warning", result.get("warning"));
 
-        // Verify the method calls
         verify(expenseRepository, times(1)).save(any(Expense.class));
     }
 
 
     @Test
     void testCreateExpense_ExpenseOverBudget() {
-        // Mock the dependencies
         NewExpenseDto expenseDto = new NewExpenseDto();
         expenseDto.setAmount(BigDecimal.valueOf(100));
         expenseDto.setUserCategoryId(BigInteger.valueOf(1));
 
         BudgetDTO budgetDTO = new BudgetDTO();
         budgetDTO.setAmount(BigDecimal.valueOf(50));
-
         when(budgetService.getActiveBudget(any(BigInteger.class))).thenReturn(budgetDTO);
+
         when(expenseRepository.expensesSumByUserCategory(any(BigInteger.class))).thenReturn(Optional.of(BigDecimal.valueOf(60)));
 
-        // Execute the method
+        UserCategory userCategory = new UserCategory();
+        userCategory.setId(expenseDto.getUserCategoryId());
+        when(userCategoryService.getUserCategoryIfExists(any(BigInteger.class))).thenReturn(Optional.of(userCategory));
+
+        ExpenseService expenseService = new ExpenseService(expenseRepository, userCategoryService, userService, budgetService, authenticationFacade);
+
         Map<String, String> result = expenseService.createExpense(expenseDto);
 
-        // Verify the result
         assertEquals("Expense has been added successfully", result.get("message"));
         assertEquals("You are over budget for this category", result.get("warning"));
 
-        // Verify the method invocations
         verify(budgetService, times(1)).getActiveBudget(any(BigInteger.class));
         verify(expenseRepository, times(1)).expensesSumByUserCategory(any(BigInteger.class));
         verify(expenseRepository, times(1)).save(any(Expense.class));
     }
 
 
-
     @Test
     void testGetExpenses() {
+        // Prepare the test data
         User user = new User();
         user.setUsername("testUser");
 
+        UserCategory userCategory = new UserCategory();
+        userCategory.setUser(user);
+
+        Expense expense = new Expense();
+        expense.setId(BigInteger.valueOf(1));
+        expense.setUserCategory(userCategory);
+
+        List<Expense> expenses = Collections.singletonList(expense);
+
+        // Mock the behavior of the expenseRepository
         when(authenticationFacade.getAuthentication()).thenReturn(new TestingAuthenticationToken(user, null));
         when(userService.getUserByUsername(user.getUsername())).thenReturn(user);
-        when(expenseRepository.findExpensesByUser(user)).thenReturn(Optional.of(new ArrayList<>()));
+        when(expenseRepository.findExpensesByUser(user)).thenReturn(Optional.of(expenses));
 
+        // Create an instance of ExpenseService using the existing repositories
+        ExpenseService expenseService = new ExpenseService(expenseRepository, userCategoryService, userService, budgetService, authenticationFacade);
+
+        // Perform the test
         List<ExpenseDto> expenseDtos = expenseService.getExpenses();
 
+        // Assert the result
         assertNotNull(expenseDtos);
-        assertEquals(0, expenseDtos.size());
+        assertEquals(1, expenseDtos.size());
+
+        // Verify the method calls
         verify(userService, times(1)).getUserByUsername(user.getUsername());
         verify(expenseRepository, times(1)).findExpensesByUser(user);
     }
+
+
+
 
     @Test
     void testGetExpensesByCategory() {
@@ -264,6 +291,8 @@ class ExpenseServiceTest {
         expense.setId(expenseId);
         UserCategory userCategory = new UserCategory();
         userCategory.setId(BigInteger.valueOf(1));
+
+        expense.setUserCategory(userCategory);
 
         when(expenseRepository.findById(expenseId)).thenReturn(Optional.of(expense));
         when(userCategoryService.getUserCategoryIfExists(expense.getUserCategory().getId()))

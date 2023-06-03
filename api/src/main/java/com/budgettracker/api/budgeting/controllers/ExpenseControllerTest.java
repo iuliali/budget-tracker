@@ -1,6 +1,7 @@
 package com.budgettracker.api.budgeting.controllers;
 
 import com.budgettracker.api.budgeting.dtos.NewExpenseDto;
+import com.budgettracker.api.budgeting.dtos.NewIncomeDto;
 import com.budgettracker.api.budgeting.services.ExpenseService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -41,7 +42,6 @@ class ExpenseControllerTest {
         assertEquals(Map.of("message", expectedResponse), response.getBody());
         verify(expenseService, times(1)).createExpense(newExpenseDto);
     }
-
     @Test
     void testGetAllExpenses() {
         when(expenseService.getExpenses()).thenReturn(Collections.emptyList());
