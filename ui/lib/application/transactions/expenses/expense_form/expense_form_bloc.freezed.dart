@@ -19,6 +19,7 @@ mixin _$ExpenseFormEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Option<Expense> initialExpenseOption) initialized,
+    required TResult Function(CategoryId categoryId) categoryIdChanged,
     required TResult Function(String recipientStr) recipientChanged,
     required TResult Function(String amountStr) amountChanged,
     required TResult Function(String currencyStr) currencyChanged,
@@ -28,6 +29,7 @@ mixin _$ExpenseFormEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Option<Expense> initialExpenseOption)? initialized,
+    TResult? Function(CategoryId categoryId)? categoryIdChanged,
     TResult? Function(String recipientStr)? recipientChanged,
     TResult? Function(String amountStr)? amountChanged,
     TResult? Function(String currencyStr)? currencyChanged,
@@ -37,6 +39,7 @@ mixin _$ExpenseFormEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Option<Expense> initialExpenseOption)? initialized,
+    TResult Function(CategoryId categoryId)? categoryIdChanged,
     TResult Function(String recipientStr)? recipientChanged,
     TResult Function(String amountStr)? amountChanged,
     TResult Function(String currencyStr)? currencyChanged,
@@ -47,6 +50,7 @@ mixin _$ExpenseFormEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initialized value) initialized,
+    required TResult Function(_CategoryIdChanged value) categoryIdChanged,
     required TResult Function(_RecipientChanged value) recipientChanged,
     required TResult Function(_AmountChanged value) amountChanged,
     required TResult Function(_CurrencyChanged value) currencyChanged,
@@ -56,6 +60,7 @@ mixin _$ExpenseFormEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initialized value)? initialized,
+    TResult? Function(_CategoryIdChanged value)? categoryIdChanged,
     TResult? Function(_RecipientChanged value)? recipientChanged,
     TResult? Function(_AmountChanged value)? amountChanged,
     TResult? Function(_CurrencyChanged value)? currencyChanged,
@@ -65,6 +70,7 @@ mixin _$ExpenseFormEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initialized value)? initialized,
+    TResult Function(_CategoryIdChanged value)? categoryIdChanged,
     TResult Function(_RecipientChanged value)? recipientChanged,
     TResult Function(_AmountChanged value)? amountChanged,
     TResult Function(_CurrencyChanged value)? currencyChanged,
@@ -158,6 +164,7 @@ class _$_Initialized implements _Initialized {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Option<Expense> initialExpenseOption) initialized,
+    required TResult Function(CategoryId categoryId) categoryIdChanged,
     required TResult Function(String recipientStr) recipientChanged,
     required TResult Function(String amountStr) amountChanged,
     required TResult Function(String currencyStr) currencyChanged,
@@ -170,6 +177,7 @@ class _$_Initialized implements _Initialized {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Option<Expense> initialExpenseOption)? initialized,
+    TResult? Function(CategoryId categoryId)? categoryIdChanged,
     TResult? Function(String recipientStr)? recipientChanged,
     TResult? Function(String amountStr)? amountChanged,
     TResult? Function(String currencyStr)? currencyChanged,
@@ -182,6 +190,7 @@ class _$_Initialized implements _Initialized {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Option<Expense> initialExpenseOption)? initialized,
+    TResult Function(CategoryId categoryId)? categoryIdChanged,
     TResult Function(String recipientStr)? recipientChanged,
     TResult Function(String amountStr)? amountChanged,
     TResult Function(String currencyStr)? currencyChanged,
@@ -198,6 +207,7 @@ class _$_Initialized implements _Initialized {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initialized value) initialized,
+    required TResult Function(_CategoryIdChanged value) categoryIdChanged,
     required TResult Function(_RecipientChanged value) recipientChanged,
     required TResult Function(_AmountChanged value) amountChanged,
     required TResult Function(_CurrencyChanged value) currencyChanged,
@@ -210,6 +220,7 @@ class _$_Initialized implements _Initialized {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initialized value)? initialized,
+    TResult? Function(_CategoryIdChanged value)? categoryIdChanged,
     TResult? Function(_RecipientChanged value)? recipientChanged,
     TResult? Function(_AmountChanged value)? amountChanged,
     TResult? Function(_CurrencyChanged value)? currencyChanged,
@@ -222,6 +233,7 @@ class _$_Initialized implements _Initialized {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initialized value)? initialized,
+    TResult Function(_CategoryIdChanged value)? categoryIdChanged,
     TResult Function(_RecipientChanged value)? recipientChanged,
     TResult Function(_AmountChanged value)? amountChanged,
     TResult Function(_CurrencyChanged value)? currencyChanged,
@@ -242,6 +254,166 @@ abstract class _Initialized implements ExpenseFormEvent {
   Option<Expense> get initialExpenseOption;
   @JsonKey(ignore: true)
   _$$_InitializedCopyWith<_$_Initialized> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_CategoryIdChangedCopyWith<$Res> {
+  factory _$$_CategoryIdChangedCopyWith(_$_CategoryIdChanged value,
+          $Res Function(_$_CategoryIdChanged) then) =
+      __$$_CategoryIdChangedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({CategoryId categoryId});
+}
+
+/// @nodoc
+class __$$_CategoryIdChangedCopyWithImpl<$Res>
+    extends _$ExpenseFormEventCopyWithImpl<$Res, _$_CategoryIdChanged>
+    implements _$$_CategoryIdChangedCopyWith<$Res> {
+  __$$_CategoryIdChangedCopyWithImpl(
+      _$_CategoryIdChanged _value, $Res Function(_$_CategoryIdChanged) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? categoryId = null,
+  }) {
+    return _then(_$_CategoryIdChanged(
+      null == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as CategoryId,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_CategoryIdChanged implements _CategoryIdChanged {
+  const _$_CategoryIdChanged(this.categoryId);
+
+  @override
+  final CategoryId categoryId;
+
+  @override
+  String toString() {
+    return 'ExpenseFormEvent.categoryIdChanged(categoryId: $categoryId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CategoryIdChanged &&
+            (identical(other.categoryId, categoryId) ||
+                other.categoryId == categoryId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, categoryId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CategoryIdChangedCopyWith<_$_CategoryIdChanged> get copyWith =>
+      __$$_CategoryIdChangedCopyWithImpl<_$_CategoryIdChanged>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Option<Expense> initialExpenseOption) initialized,
+    required TResult Function(CategoryId categoryId) categoryIdChanged,
+    required TResult Function(String recipientStr) recipientChanged,
+    required TResult Function(String amountStr) amountChanged,
+    required TResult Function(String currencyStr) currencyChanged,
+    required TResult Function() saved,
+  }) {
+    return categoryIdChanged(categoryId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Option<Expense> initialExpenseOption)? initialized,
+    TResult? Function(CategoryId categoryId)? categoryIdChanged,
+    TResult? Function(String recipientStr)? recipientChanged,
+    TResult? Function(String amountStr)? amountChanged,
+    TResult? Function(String currencyStr)? currencyChanged,
+    TResult? Function()? saved,
+  }) {
+    return categoryIdChanged?.call(categoryId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Option<Expense> initialExpenseOption)? initialized,
+    TResult Function(CategoryId categoryId)? categoryIdChanged,
+    TResult Function(String recipientStr)? recipientChanged,
+    TResult Function(String amountStr)? amountChanged,
+    TResult Function(String currencyStr)? currencyChanged,
+    TResult Function()? saved,
+    required TResult orElse(),
+  }) {
+    if (categoryIdChanged != null) {
+      return categoryIdChanged(categoryId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initialized value) initialized,
+    required TResult Function(_CategoryIdChanged value) categoryIdChanged,
+    required TResult Function(_RecipientChanged value) recipientChanged,
+    required TResult Function(_AmountChanged value) amountChanged,
+    required TResult Function(_CurrencyChanged value) currencyChanged,
+    required TResult Function(_Saved value) saved,
+  }) {
+    return categoryIdChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initialized value)? initialized,
+    TResult? Function(_CategoryIdChanged value)? categoryIdChanged,
+    TResult? Function(_RecipientChanged value)? recipientChanged,
+    TResult? Function(_AmountChanged value)? amountChanged,
+    TResult? Function(_CurrencyChanged value)? currencyChanged,
+    TResult? Function(_Saved value)? saved,
+  }) {
+    return categoryIdChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initialized value)? initialized,
+    TResult Function(_CategoryIdChanged value)? categoryIdChanged,
+    TResult Function(_RecipientChanged value)? recipientChanged,
+    TResult Function(_AmountChanged value)? amountChanged,
+    TResult Function(_CurrencyChanged value)? currencyChanged,
+    TResult Function(_Saved value)? saved,
+    required TResult orElse(),
+  }) {
+    if (categoryIdChanged != null) {
+      return categoryIdChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CategoryIdChanged implements ExpenseFormEvent {
+  const factory _CategoryIdChanged(final CategoryId categoryId) =
+      _$_CategoryIdChanged;
+
+  CategoryId get categoryId;
+  @JsonKey(ignore: true)
+  _$$_CategoryIdChangedCopyWith<_$_CategoryIdChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -311,6 +483,7 @@ class _$_RecipientChanged implements _RecipientChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Option<Expense> initialExpenseOption) initialized,
+    required TResult Function(CategoryId categoryId) categoryIdChanged,
     required TResult Function(String recipientStr) recipientChanged,
     required TResult Function(String amountStr) amountChanged,
     required TResult Function(String currencyStr) currencyChanged,
@@ -323,6 +496,7 @@ class _$_RecipientChanged implements _RecipientChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Option<Expense> initialExpenseOption)? initialized,
+    TResult? Function(CategoryId categoryId)? categoryIdChanged,
     TResult? Function(String recipientStr)? recipientChanged,
     TResult? Function(String amountStr)? amountChanged,
     TResult? Function(String currencyStr)? currencyChanged,
@@ -335,6 +509,7 @@ class _$_RecipientChanged implements _RecipientChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Option<Expense> initialExpenseOption)? initialized,
+    TResult Function(CategoryId categoryId)? categoryIdChanged,
     TResult Function(String recipientStr)? recipientChanged,
     TResult Function(String amountStr)? amountChanged,
     TResult Function(String currencyStr)? currencyChanged,
@@ -351,6 +526,7 @@ class _$_RecipientChanged implements _RecipientChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initialized value) initialized,
+    required TResult Function(_CategoryIdChanged value) categoryIdChanged,
     required TResult Function(_RecipientChanged value) recipientChanged,
     required TResult Function(_AmountChanged value) amountChanged,
     required TResult Function(_CurrencyChanged value) currencyChanged,
@@ -363,6 +539,7 @@ class _$_RecipientChanged implements _RecipientChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initialized value)? initialized,
+    TResult? Function(_CategoryIdChanged value)? categoryIdChanged,
     TResult? Function(_RecipientChanged value)? recipientChanged,
     TResult? Function(_AmountChanged value)? amountChanged,
     TResult? Function(_CurrencyChanged value)? currencyChanged,
@@ -375,6 +552,7 @@ class _$_RecipientChanged implements _RecipientChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initialized value)? initialized,
+    TResult Function(_CategoryIdChanged value)? categoryIdChanged,
     TResult Function(_RecipientChanged value)? recipientChanged,
     TResult Function(_AmountChanged value)? amountChanged,
     TResult Function(_CurrencyChanged value)? currencyChanged,
@@ -464,6 +642,7 @@ class _$_AmountChanged implements _AmountChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Option<Expense> initialExpenseOption) initialized,
+    required TResult Function(CategoryId categoryId) categoryIdChanged,
     required TResult Function(String recipientStr) recipientChanged,
     required TResult Function(String amountStr) amountChanged,
     required TResult Function(String currencyStr) currencyChanged,
@@ -476,6 +655,7 @@ class _$_AmountChanged implements _AmountChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Option<Expense> initialExpenseOption)? initialized,
+    TResult? Function(CategoryId categoryId)? categoryIdChanged,
     TResult? Function(String recipientStr)? recipientChanged,
     TResult? Function(String amountStr)? amountChanged,
     TResult? Function(String currencyStr)? currencyChanged,
@@ -488,6 +668,7 @@ class _$_AmountChanged implements _AmountChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Option<Expense> initialExpenseOption)? initialized,
+    TResult Function(CategoryId categoryId)? categoryIdChanged,
     TResult Function(String recipientStr)? recipientChanged,
     TResult Function(String amountStr)? amountChanged,
     TResult Function(String currencyStr)? currencyChanged,
@@ -504,6 +685,7 @@ class _$_AmountChanged implements _AmountChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initialized value) initialized,
+    required TResult Function(_CategoryIdChanged value) categoryIdChanged,
     required TResult Function(_RecipientChanged value) recipientChanged,
     required TResult Function(_AmountChanged value) amountChanged,
     required TResult Function(_CurrencyChanged value) currencyChanged,
@@ -516,6 +698,7 @@ class _$_AmountChanged implements _AmountChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initialized value)? initialized,
+    TResult? Function(_CategoryIdChanged value)? categoryIdChanged,
     TResult? Function(_RecipientChanged value)? recipientChanged,
     TResult? Function(_AmountChanged value)? amountChanged,
     TResult? Function(_CurrencyChanged value)? currencyChanged,
@@ -528,6 +711,7 @@ class _$_AmountChanged implements _AmountChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initialized value)? initialized,
+    TResult Function(_CategoryIdChanged value)? categoryIdChanged,
     TResult Function(_RecipientChanged value)? recipientChanged,
     TResult Function(_AmountChanged value)? amountChanged,
     TResult Function(_CurrencyChanged value)? currencyChanged,
@@ -616,6 +800,7 @@ class _$_CurrencyChanged implements _CurrencyChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Option<Expense> initialExpenseOption) initialized,
+    required TResult Function(CategoryId categoryId) categoryIdChanged,
     required TResult Function(String recipientStr) recipientChanged,
     required TResult Function(String amountStr) amountChanged,
     required TResult Function(String currencyStr) currencyChanged,
@@ -628,6 +813,7 @@ class _$_CurrencyChanged implements _CurrencyChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Option<Expense> initialExpenseOption)? initialized,
+    TResult? Function(CategoryId categoryId)? categoryIdChanged,
     TResult? Function(String recipientStr)? recipientChanged,
     TResult? Function(String amountStr)? amountChanged,
     TResult? Function(String currencyStr)? currencyChanged,
@@ -640,6 +826,7 @@ class _$_CurrencyChanged implements _CurrencyChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Option<Expense> initialExpenseOption)? initialized,
+    TResult Function(CategoryId categoryId)? categoryIdChanged,
     TResult Function(String recipientStr)? recipientChanged,
     TResult Function(String amountStr)? amountChanged,
     TResult Function(String currencyStr)? currencyChanged,
@@ -656,6 +843,7 @@ class _$_CurrencyChanged implements _CurrencyChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initialized value) initialized,
+    required TResult Function(_CategoryIdChanged value) categoryIdChanged,
     required TResult Function(_RecipientChanged value) recipientChanged,
     required TResult Function(_AmountChanged value) amountChanged,
     required TResult Function(_CurrencyChanged value) currencyChanged,
@@ -668,6 +856,7 @@ class _$_CurrencyChanged implements _CurrencyChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initialized value)? initialized,
+    TResult? Function(_CategoryIdChanged value)? categoryIdChanged,
     TResult? Function(_RecipientChanged value)? recipientChanged,
     TResult? Function(_AmountChanged value)? amountChanged,
     TResult? Function(_CurrencyChanged value)? currencyChanged,
@@ -680,6 +869,7 @@ class _$_CurrencyChanged implements _CurrencyChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initialized value)? initialized,
+    TResult Function(_CategoryIdChanged value)? categoryIdChanged,
     TResult Function(_RecipientChanged value)? recipientChanged,
     TResult Function(_AmountChanged value)? amountChanged,
     TResult Function(_CurrencyChanged value)? currencyChanged,
@@ -739,6 +929,7 @@ class _$_Saved implements _Saved {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Option<Expense> initialExpenseOption) initialized,
+    required TResult Function(CategoryId categoryId) categoryIdChanged,
     required TResult Function(String recipientStr) recipientChanged,
     required TResult Function(String amountStr) amountChanged,
     required TResult Function(String currencyStr) currencyChanged,
@@ -751,6 +942,7 @@ class _$_Saved implements _Saved {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Option<Expense> initialExpenseOption)? initialized,
+    TResult? Function(CategoryId categoryId)? categoryIdChanged,
     TResult? Function(String recipientStr)? recipientChanged,
     TResult? Function(String amountStr)? amountChanged,
     TResult? Function(String currencyStr)? currencyChanged,
@@ -763,6 +955,7 @@ class _$_Saved implements _Saved {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Option<Expense> initialExpenseOption)? initialized,
+    TResult Function(CategoryId categoryId)? categoryIdChanged,
     TResult Function(String recipientStr)? recipientChanged,
     TResult Function(String amountStr)? amountChanged,
     TResult Function(String currencyStr)? currencyChanged,
@@ -779,6 +972,7 @@ class _$_Saved implements _Saved {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initialized value) initialized,
+    required TResult Function(_CategoryIdChanged value) categoryIdChanged,
     required TResult Function(_RecipientChanged value) recipientChanged,
     required TResult Function(_AmountChanged value) amountChanged,
     required TResult Function(_CurrencyChanged value) currencyChanged,
@@ -791,6 +985,7 @@ class _$_Saved implements _Saved {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initialized value)? initialized,
+    TResult? Function(_CategoryIdChanged value)? categoryIdChanged,
     TResult? Function(_RecipientChanged value)? recipientChanged,
     TResult? Function(_AmountChanged value)? amountChanged,
     TResult? Function(_CurrencyChanged value)? currencyChanged,
@@ -803,6 +998,7 @@ class _$_Saved implements _Saved {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initialized value)? initialized,
+    TResult Function(_CategoryIdChanged value)? categoryIdChanged,
     TResult Function(_RecipientChanged value)? recipientChanged,
     TResult Function(_AmountChanged value)? amountChanged,
     TResult Function(_CurrencyChanged value)? currencyChanged,
@@ -823,6 +1019,7 @@ abstract class _Saved implements ExpenseFormEvent {
 /// @nodoc
 mixin _$ExpenseFormState {
   Option<Expense> get expense => throw _privateConstructorUsedError;
+  Option<CategoryId> get categoryId => throw _privateConstructorUsedError;
   TransactionRecipient get recipient => throw _privateConstructorUsedError;
   TransactionAmount get amount => throw _privateConstructorUsedError;
   TransactionCurrency get currency => throw _privateConstructorUsedError;
@@ -845,6 +1042,7 @@ abstract class $ExpenseFormStateCopyWith<$Res> {
   @useResult
   $Res call(
       {Option<Expense> expense,
+      Option<CategoryId> categoryId,
       TransactionRecipient recipient,
       TransactionAmount amount,
       TransactionCurrency currency,
@@ -868,6 +1066,7 @@ class _$ExpenseFormStateCopyWithImpl<$Res, $Val extends ExpenseFormState>
   @override
   $Res call({
     Object? expense = null,
+    Object? categoryId = null,
     Object? recipient = null,
     Object? amount = null,
     Object? currency = null,
@@ -881,6 +1080,10 @@ class _$ExpenseFormStateCopyWithImpl<$Res, $Val extends ExpenseFormState>
           ? _value.expense
           : expense // ignore: cast_nullable_to_non_nullable
               as Option<Expense>,
+      categoryId: null == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as Option<CategoryId>,
       recipient: null == recipient
           ? _value.recipient
           : recipient // ignore: cast_nullable_to_non_nullable
@@ -923,6 +1126,7 @@ abstract class _$$_ExpenseFormStateCopyWith<$Res>
   @useResult
   $Res call(
       {Option<Expense> expense,
+      Option<CategoryId> categoryId,
       TransactionRecipient recipient,
       TransactionAmount amount,
       TransactionCurrency currency,
@@ -944,6 +1148,7 @@ class __$$_ExpenseFormStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? expense = null,
+    Object? categoryId = null,
     Object? recipient = null,
     Object? amount = null,
     Object? currency = null,
@@ -957,6 +1162,10 @@ class __$$_ExpenseFormStateCopyWithImpl<$Res>
           ? _value.expense
           : expense // ignore: cast_nullable_to_non_nullable
               as Option<Expense>,
+      categoryId: null == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as Option<CategoryId>,
       recipient: null == recipient
           ? _value.recipient
           : recipient // ignore: cast_nullable_to_non_nullable
@@ -994,6 +1203,7 @@ class __$$_ExpenseFormStateCopyWithImpl<$Res>
 class _$_ExpenseFormState implements _ExpenseFormState {
   const _$_ExpenseFormState(
       {required this.expense,
+      required this.categoryId,
       required this.recipient,
       required this.amount,
       required this.currency,
@@ -1004,6 +1214,8 @@ class _$_ExpenseFormState implements _ExpenseFormState {
 
   @override
   final Option<Expense> expense;
+  @override
+  final Option<CategoryId> categoryId;
   @override
   final TransactionRecipient recipient;
   @override
@@ -1021,7 +1233,7 @@ class _$_ExpenseFormState implements _ExpenseFormState {
 
   @override
   String toString() {
-    return 'ExpenseFormState(expense: $expense, recipient: $recipient, amount: $amount, currency: $currency, showErrorMessages: $showErrorMessages, isSaving: $isSaving, isEditing: $isEditing, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
+    return 'ExpenseFormState(expense: $expense, categoryId: $categoryId, recipient: $recipient, amount: $amount, currency: $currency, showErrorMessages: $showErrorMessages, isSaving: $isSaving, isEditing: $isEditing, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
   }
 
   @override
@@ -1030,6 +1242,8 @@ class _$_ExpenseFormState implements _ExpenseFormState {
         (other.runtimeType == runtimeType &&
             other is _$_ExpenseFormState &&
             (identical(other.expense, expense) || other.expense == expense) &&
+            (identical(other.categoryId, categoryId) ||
+                other.categoryId == categoryId) &&
             (identical(other.recipient, recipient) ||
                 other.recipient == recipient) &&
             (identical(other.amount, amount) || other.amount == amount) &&
@@ -1051,6 +1265,7 @@ class _$_ExpenseFormState implements _ExpenseFormState {
   int get hashCode => Object.hash(
       runtimeType,
       expense,
+      categoryId,
       recipient,
       amount,
       currency,
@@ -1069,6 +1284,7 @@ class _$_ExpenseFormState implements _ExpenseFormState {
 abstract class _ExpenseFormState implements ExpenseFormState {
   const factory _ExpenseFormState(
       {required final Option<Expense> expense,
+      required final Option<CategoryId> categoryId,
       required final TransactionRecipient recipient,
       required final TransactionAmount amount,
       required final TransactionCurrency currency,
@@ -1080,6 +1296,8 @@ abstract class _ExpenseFormState implements ExpenseFormState {
 
   @override
   Option<Expense> get expense;
+  @override
+  Option<CategoryId> get categoryId;
   @override
   TransactionRecipient get recipient;
   @override

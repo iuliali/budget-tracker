@@ -3,11 +3,14 @@ import 'package:budget_tracker/presentation/core/widgets/buttons/whole_length_bu
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../application/categories/categories_bloc.dart';
 import '../../../application/categories/category_form/category_form_bloc.dart';
-import '../../core/routing/router.dart';
+import '../../../domain/categories/entities/category.dart';
 
 class CategoryForm extends StatelessWidget {
-  const CategoryForm({Key? key}) : super(key: key);
+  const CategoryForm({Key? key, this.category}) : super(key: key);
+
+  final Category? category;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,9 @@ class CategoryForm extends StatelessWidget {
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
             },
             (_) {
-              context.router.popAndPush(const CategoriesRoute());
+              BlocProvider.of<CategoriesBloc>(context)
+                  .add(const CategoriesEvent.fetch());
+              context.router.pop();
             },
           ),
         );
@@ -48,6 +53,7 @@ class CategoryForm extends StatelessWidget {
                     labelText: 'Name',
                   ),
                   autocorrect: false,
+                  initialValue: category?.name.getOrElse(""),
                   onChanged: (value) => context
                       .read<CategoryFormBloc>()
                       .add(CategoryFormEvent.nameChanged(value)),
@@ -69,6 +75,30 @@ class CategoryForm extends StatelessWidget {
                                 (_) => null,
                               ),
                             ));
+                  },
+                ),
+                const SizedBox(height: 20),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: 'Budget',
+                  ),
+                  autocorrect: false,
+                  initialValue: category?.budget?.amount.getOrElse(0).toString(),
+                  keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true, signed: false),
+                  onChanged: (value) => context
+                      .read<CategoryFormBloc>()
+                      .add(CategoryFormEvent.amountChanged(value)),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (_) {
+                    return state.amount.fold(() => null, (a) => a.value.fold(
+                          (f) => f.maybeMap(
+                            empty: (_) => 'Budget cannot be empty',
+                            negativeBudgetAmount: (_) => 'Budget cannot be negative',
+                            orElse: () => null,
+                          ),
+                          (_) => null,
+                        ));
                   },
                 ),
                 const SizedBox(height: 20),

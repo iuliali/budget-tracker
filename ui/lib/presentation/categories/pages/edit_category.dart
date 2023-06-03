@@ -33,16 +33,15 @@ class EditCategoryPage extends StatelessWidget {
         ),
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(32),
+            padding: const EdgeInsets.symmetric(horizontal: 32),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Spacer(),
-                HeaderWidget(
+                const HeaderWidget(
                   title: "Edit Category",
-                  subtitle: "Current Name: ${category.name.getOrElse("")}",
                 ),
-                const CategoryForm(),
+                CategoryForm(category: category),
               ],
             ),
           ),

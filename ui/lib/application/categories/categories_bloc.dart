@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:collection/collection.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -19,11 +20,12 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
   final ICategoryRepository _categoryFacade;
 
   CategoriesBloc(this._categoryFacade) : super(CategoriesState.initial()) {
-    on<FetchCategories>(_onFetchCategories);
+    on<FetchCategories>(_onFetch);
+    on<SelectCategory>(_onSelectCategory);
     on<DeleteCategory>(_onDeleteCategory);
   }
 
-  Future _onFetchCategories(FetchCategories event, Emitter<CategoriesState> emit) async {
+  Future _onFetch(FetchCategories event, Emitter<CategoriesState> emit) async {
     if (state.isFetching) return;
     emit(state.copyWith(
       isFetching: true,
@@ -38,14 +40,39 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
     ));
   }
 
-  Future _onDeleteCategory(DeleteCategory event, Emitter<CategoriesState> emit) async {
+  Future _onSelectCategory(
+      SelectCategory event, Emitter<CategoriesState> emit) async {
+    final categories = state.failureOrCategories.fold(
+          () => null,
+          (a) => a.fold(
+            (l) => null,
+            (r) => r.firstWhereOrNull((element) => element.id == event.categoryId),
+      ),
+    );
+    if (categories == null) await _onFetch(const FetchCategories(), emit);
+    final category = state.failureOrCategories.fold(
+          () => null,
+          (a) => a.fold(
+            (l) => null,
+            (r) => r.firstWhereOrNull((element) => element.id == event.categoryId),
+      ),
+    );
+
+    emit(state.copyWith(
+      selectedCategory: category != null ? some(category) : none(),
+    ));
+  }
+
+  Future _onDeleteCategory(
+      DeleteCategory event, Emitter<CategoriesState> emit) async {
     if (state.isDeleting) return;
     emit(state.copyWith(
       isDeleting: true,
       failureOrCategories: none(),
     ));
 
-    final failureOrSuccess = await _categoryFacade.delete(categoryId: event.categoryId);
+    final failureOrSuccess =
+        await _categoryFacade.delete(categoryId: event.categoryId);
     if (failureOrSuccess.isRight()) {
       final failureOrCategories = await _categoryFacade.getAll();
       emit(state.copyWith(
@@ -56,6 +83,4 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
       isDeleting: false,
     ));
   }
-
-
 }

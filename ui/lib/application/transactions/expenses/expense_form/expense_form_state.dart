@@ -4,6 +4,7 @@ part of 'expense_form_bloc.dart';
 abstract class ExpenseFormState with _$ExpenseFormState {
   const factory ExpenseFormState({
     required Option<Expense> expense,
+    required Option<CategoryId> categoryId,
     required TransactionRecipient recipient,
     required TransactionAmount amount,
     required TransactionCurrency currency,
@@ -15,6 +16,7 @@ abstract class ExpenseFormState with _$ExpenseFormState {
 
   factory ExpenseFormState.initial() => ExpenseFormState(
         expense: none(),
+        categoryId: none(),
         recipient: TransactionRecipient(''),
         amount: TransactionAmount(0),
         currency: TransactionCurrency('RON'),

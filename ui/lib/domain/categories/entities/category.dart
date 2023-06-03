@@ -1,16 +1,19 @@
+import 'budget.dart';
 import '../value_objects.dart';
 
 class Category {
   final CategoryId id;
   CategoryName name;
+  Budget? budget;
 
   Category({
     required this.id,
     required this.name,
+    this.budget,
   });
 
-  void setName(CategoryName name) {
-    this.name = name;
+  set setBudget(Budget budget) {
+    this.budget = budget;
   }
 
   @override

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import "package:flutter/material.dart";
 import '../../../domain/categories/entities/category.dart';
+import '../../../domain/categories/value_objects.dart';
 import '../../../domain/transactions/entities/expense.dart';
 import '../../../domain/transactions/entities/income.dart';
 import '../../../domain/debt/entities/group.dart';
@@ -11,7 +12,6 @@ import '../../categories/pages/categories.dart';
 import '../../categories/pages/category.dart';
 import '../../categories/pages/add_category.dart';
 import '../../categories/pages/edit_category.dart';
-import '../../budget/pages/budget.dart';
 import '../../budget/pages/add_budget.dart';
 import '../../budget/pages/edit_budget.dart';
 import '../../transactions/pages/incomes.dart';
@@ -46,7 +46,6 @@ class AppRouter extends _$AppRouter {
     AutoRoute(page: EditCategoryRoute.page, path: '/categories/:categoryId(int)/edit'),
 
     // Budget
-    AutoRoute(page: BudgetRoute.page, path: '/budget/:categoryId(int)'),
     AutoRoute(page: AddBudgetRoute.page, path: '/budget/:categoryId(int)/add'),
     AutoRoute(page: EditBudgetRoute.page, path: '/budget/:categoryId(int)/edit'),
 

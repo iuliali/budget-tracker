@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:budget_tracker/domain/categories/value_objects.dart';
 import 'package:budget_tracker/domain/transactions/value_objects.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -18,6 +19,7 @@ class ExpenseFormBloc extends Bloc<ExpenseFormEvent, ExpenseFormState> {
 
   ExpenseFormBloc(this._expenseRepository) : super(ExpenseFormState.initial()) {
     on<_Initialized>(_onInitialized);
+    on<_CategoryIdChanged>(_onCategoryIdChanged);
     on<_RecipientChanged>(_onRecipientChanged);
     on<_AmountChanged>(_onAmountChanged);
     on<_CurrencyChanged>(_onCurrencyChanged);
@@ -34,6 +36,13 @@ class ExpenseFormBloc extends Bloc<ExpenseFormEvent, ExpenseFormState> {
         ));
       },
     );
+  }
+
+  void _onCategoryIdChanged(_CategoryIdChanged event, Emitter<ExpenseFormState> emit) {
+    emit(state.copyWith(
+      categoryId: some(event.categoryId),
+      saveFailureOrSuccessOption: none(),
+    ));
   }
 
   void _onRecipientChanged(_RecipientChanged event, Emitter<ExpenseFormState> emit) {
@@ -58,6 +67,14 @@ class ExpenseFormBloc extends Bloc<ExpenseFormEvent, ExpenseFormState> {
   }
 
   void _onSaved(_Saved event, Emitter<ExpenseFormState> emit) async {
+    if (state.categoryId.isNone()) {
+      emit(state.copyWith(
+          showErrorMessages: true,
+          saveFailureOrSuccessOption: optionOf(left(const ExpenseFailure.categoryNotSelected()))
+      ));
+      return;
+    }
+
     emit(state.copyWith(
       isSaving: true,
       saveFailureOrSuccessOption: none(),
@@ -65,6 +82,7 @@ class ExpenseFormBloc extends Bloc<ExpenseFormEvent, ExpenseFormState> {
 
     final expense = Expense(
       id: state.expense.fold(() => ExpenseId(0), (a) => a.id),
+      categoryId: state.categoryId.getOrElse(() => CategoryId(0)),
       recipient: state.recipient,
       amount: state.amount,
       currency: state.currency,

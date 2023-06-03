@@ -18,38 +18,44 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CategoriesEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchCategories,
+    required TResult Function() fetch,
+    required TResult Function(CategoryId categoryId) selectCategory,
     required TResult Function(CategoryId categoryId) deleteCategory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchCategories,
+    TResult? Function()? fetch,
+    TResult? Function(CategoryId categoryId)? selectCategory,
     TResult? Function(CategoryId categoryId)? deleteCategory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchCategories,
+    TResult Function()? fetch,
+    TResult Function(CategoryId categoryId)? selectCategory,
     TResult Function(CategoryId categoryId)? deleteCategory,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(FetchCategories value) fetchCategories,
+    required TResult Function(FetchCategories value) fetch,
+    required TResult Function(SelectCategory value) selectCategory,
     required TResult Function(DeleteCategory value) deleteCategory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FetchCategories value)? fetchCategories,
+    TResult? Function(FetchCategories value)? fetch,
+    TResult? Function(SelectCategory value)? selectCategory,
     TResult? Function(DeleteCategory value)? deleteCategory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(FetchCategories value)? fetchCategories,
+    TResult Function(FetchCategories value)? fetch,
+    TResult Function(SelectCategory value)? selectCategory,
     TResult Function(DeleteCategory value)? deleteCategory,
     required TResult orElse(),
   }) =>
@@ -97,7 +103,7 @@ class _$FetchCategories implements FetchCategories {
 
   @override
   String toString() {
-    return 'CategoriesEvent.fetchCategories()';
+    return 'CategoriesEvent.fetch()';
   }
 
   @override
@@ -112,30 +118,33 @@ class _$FetchCategories implements FetchCategories {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchCategories,
+    required TResult Function() fetch,
+    required TResult Function(CategoryId categoryId) selectCategory,
     required TResult Function(CategoryId categoryId) deleteCategory,
   }) {
-    return fetchCategories();
+    return fetch();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchCategories,
+    TResult? Function()? fetch,
+    TResult? Function(CategoryId categoryId)? selectCategory,
     TResult? Function(CategoryId categoryId)? deleteCategory,
   }) {
-    return fetchCategories?.call();
+    return fetch?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchCategories,
+    TResult Function()? fetch,
+    TResult Function(CategoryId categoryId)? selectCategory,
     TResult Function(CategoryId categoryId)? deleteCategory,
     required TResult orElse(),
   }) {
-    if (fetchCategories != null) {
-      return fetchCategories();
+    if (fetch != null) {
+      return fetch();
     }
     return orElse();
   }
@@ -143,30 +152,33 @@ class _$FetchCategories implements FetchCategories {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(FetchCategories value) fetchCategories,
+    required TResult Function(FetchCategories value) fetch,
+    required TResult Function(SelectCategory value) selectCategory,
     required TResult Function(DeleteCategory value) deleteCategory,
   }) {
-    return fetchCategories(this);
+    return fetch(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FetchCategories value)? fetchCategories,
+    TResult? Function(FetchCategories value)? fetch,
+    TResult? Function(SelectCategory value)? selectCategory,
     TResult? Function(DeleteCategory value)? deleteCategory,
   }) {
-    return fetchCategories?.call(this);
+    return fetch?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(FetchCategories value)? fetchCategories,
+    TResult Function(FetchCategories value)? fetch,
+    TResult Function(SelectCategory value)? selectCategory,
     TResult Function(DeleteCategory value)? deleteCategory,
     required TResult orElse(),
   }) {
-    if (fetchCategories != null) {
-      return fetchCategories(this);
+    if (fetch != null) {
+      return fetch(this);
     }
     return orElse();
   }
@@ -174,6 +186,147 @@ class _$FetchCategories implements FetchCategories {
 
 abstract class FetchCategories implements CategoriesEvent {
   const factory FetchCategories() = _$FetchCategories;
+}
+
+/// @nodoc
+abstract class _$$SelectCategoryCopyWith<$Res> {
+  factory _$$SelectCategoryCopyWith(
+          _$SelectCategory value, $Res Function(_$SelectCategory) then) =
+      __$$SelectCategoryCopyWithImpl<$Res>;
+  @useResult
+  $Res call({CategoryId categoryId});
+}
+
+/// @nodoc
+class __$$SelectCategoryCopyWithImpl<$Res>
+    extends _$CategoriesEventCopyWithImpl<$Res, _$SelectCategory>
+    implements _$$SelectCategoryCopyWith<$Res> {
+  __$$SelectCategoryCopyWithImpl(
+      _$SelectCategory _value, $Res Function(_$SelectCategory) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? categoryId = null,
+  }) {
+    return _then(_$SelectCategory(
+      categoryId: null == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as CategoryId,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectCategory implements SelectCategory {
+  const _$SelectCategory({required this.categoryId});
+
+  @override
+  final CategoryId categoryId;
+
+  @override
+  String toString() {
+    return 'CategoriesEvent.selectCategory(categoryId: $categoryId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectCategory &&
+            (identical(other.categoryId, categoryId) ||
+                other.categoryId == categoryId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, categoryId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectCategoryCopyWith<_$SelectCategory> get copyWith =>
+      __$$SelectCategoryCopyWithImpl<_$SelectCategory>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function(CategoryId categoryId) selectCategory,
+    required TResult Function(CategoryId categoryId) deleteCategory,
+  }) {
+    return selectCategory(categoryId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function(CategoryId categoryId)? selectCategory,
+    TResult? Function(CategoryId categoryId)? deleteCategory,
+  }) {
+    return selectCategory?.call(categoryId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function(CategoryId categoryId)? selectCategory,
+    TResult Function(CategoryId categoryId)? deleteCategory,
+    required TResult orElse(),
+  }) {
+    if (selectCategory != null) {
+      return selectCategory(categoryId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FetchCategories value) fetch,
+    required TResult Function(SelectCategory value) selectCategory,
+    required TResult Function(DeleteCategory value) deleteCategory,
+  }) {
+    return selectCategory(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FetchCategories value)? fetch,
+    TResult? Function(SelectCategory value)? selectCategory,
+    TResult? Function(DeleteCategory value)? deleteCategory,
+  }) {
+    return selectCategory?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FetchCategories value)? fetch,
+    TResult Function(SelectCategory value)? selectCategory,
+    TResult Function(DeleteCategory value)? deleteCategory,
+    required TResult orElse(),
+  }) {
+    if (selectCategory != null) {
+      return selectCategory(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SelectCategory implements CategoriesEvent {
+  const factory SelectCategory({required final CategoryId categoryId}) =
+      _$SelectCategory;
+
+  CategoryId get categoryId;
+  @JsonKey(ignore: true)
+  _$$SelectCategoryCopyWith<_$SelectCategory> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -241,7 +394,8 @@ class _$DeleteCategory implements DeleteCategory {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchCategories,
+    required TResult Function() fetch,
+    required TResult Function(CategoryId categoryId) selectCategory,
     required TResult Function(CategoryId categoryId) deleteCategory,
   }) {
     return deleteCategory(categoryId);
@@ -250,7 +404,8 @@ class _$DeleteCategory implements DeleteCategory {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchCategories,
+    TResult? Function()? fetch,
+    TResult? Function(CategoryId categoryId)? selectCategory,
     TResult? Function(CategoryId categoryId)? deleteCategory,
   }) {
     return deleteCategory?.call(categoryId);
@@ -259,7 +414,8 @@ class _$DeleteCategory implements DeleteCategory {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchCategories,
+    TResult Function()? fetch,
+    TResult Function(CategoryId categoryId)? selectCategory,
     TResult Function(CategoryId categoryId)? deleteCategory,
     required TResult orElse(),
   }) {
@@ -272,7 +428,8 @@ class _$DeleteCategory implements DeleteCategory {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(FetchCategories value) fetchCategories,
+    required TResult Function(FetchCategories value) fetch,
+    required TResult Function(SelectCategory value) selectCategory,
     required TResult Function(DeleteCategory value) deleteCategory,
   }) {
     return deleteCategory(this);
@@ -281,7 +438,8 @@ class _$DeleteCategory implements DeleteCategory {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FetchCategories value)? fetchCategories,
+    TResult? Function(FetchCategories value)? fetch,
+    TResult? Function(SelectCategory value)? selectCategory,
     TResult? Function(DeleteCategory value)? deleteCategory,
   }) {
     return deleteCategory?.call(this);
@@ -290,7 +448,8 @@ class _$DeleteCategory implements DeleteCategory {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(FetchCategories value)? fetchCategories,
+    TResult Function(FetchCategories value)? fetch,
+    TResult Function(SelectCategory value)? selectCategory,
     TResult Function(DeleteCategory value)? deleteCategory,
     required TResult orElse(),
   }) {
@@ -315,6 +474,7 @@ abstract class DeleteCategory implements CategoriesEvent {
 mixin _$CategoriesState {
   Option<Either<CategoryFailure, List<Category>>> get failureOrCategories =>
       throw _privateConstructorUsedError;
+  Option<Category> get selectedCategory => throw _privateConstructorUsedError;
   bool get showErrorMessages => throw _privateConstructorUsedError;
   bool get isFetching => throw _privateConstructorUsedError;
   bool get isDeleting => throw _privateConstructorUsedError;
@@ -332,6 +492,7 @@ abstract class $CategoriesStateCopyWith<$Res> {
   @useResult
   $Res call(
       {Option<Either<CategoryFailure, List<Category>>> failureOrCategories,
+      Option<Category> selectedCategory,
       bool showErrorMessages,
       bool isFetching,
       bool isDeleting});
@@ -351,6 +512,7 @@ class _$CategoriesStateCopyWithImpl<$Res, $Val extends CategoriesState>
   @override
   $Res call({
     Object? failureOrCategories = null,
+    Object? selectedCategory = null,
     Object? showErrorMessages = null,
     Object? isFetching = null,
     Object? isDeleting = null,
@@ -360,6 +522,10 @@ class _$CategoriesStateCopyWithImpl<$Res, $Val extends CategoriesState>
           ? _value.failureOrCategories
           : failureOrCategories // ignore: cast_nullable_to_non_nullable
               as Option<Either<CategoryFailure, List<Category>>>,
+      selectedCategory: null == selectedCategory
+          ? _value.selectedCategory
+          : selectedCategory // ignore: cast_nullable_to_non_nullable
+              as Option<Category>,
       showErrorMessages: null == showErrorMessages
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
@@ -386,6 +552,7 @@ abstract class _$$_CategoriesListStateCopyWith<$Res>
   @useResult
   $Res call(
       {Option<Either<CategoryFailure, List<Category>>> failureOrCategories,
+      Option<Category> selectedCategory,
       bool showErrorMessages,
       bool isFetching,
       bool isDeleting});
@@ -403,6 +570,7 @@ class __$$_CategoriesListStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? failureOrCategories = null,
+    Object? selectedCategory = null,
     Object? showErrorMessages = null,
     Object? isFetching = null,
     Object? isDeleting = null,
@@ -412,6 +580,10 @@ class __$$_CategoriesListStateCopyWithImpl<$Res>
           ? _value.failureOrCategories
           : failureOrCategories // ignore: cast_nullable_to_non_nullable
               as Option<Either<CategoryFailure, List<Category>>>,
+      selectedCategory: null == selectedCategory
+          ? _value.selectedCategory
+          : selectedCategory // ignore: cast_nullable_to_non_nullable
+              as Option<Category>,
       showErrorMessages: null == showErrorMessages
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
@@ -433,12 +605,15 @@ class __$$_CategoriesListStateCopyWithImpl<$Res>
 class _$_CategoriesListState implements _CategoriesListState {
   const _$_CategoriesListState(
       {required this.failureOrCategories,
+      required this.selectedCategory,
       required this.showErrorMessages,
       required this.isFetching,
       required this.isDeleting});
 
   @override
   final Option<Either<CategoryFailure, List<Category>>> failureOrCategories;
+  @override
+  final Option<Category> selectedCategory;
   @override
   final bool showErrorMessages;
   @override
@@ -448,7 +623,7 @@ class _$_CategoriesListState implements _CategoriesListState {
 
   @override
   String toString() {
-    return 'CategoriesState(failureOrCategories: $failureOrCategories, showErrorMessages: $showErrorMessages, isFetching: $isFetching, isDeleting: $isDeleting)';
+    return 'CategoriesState(failureOrCategories: $failureOrCategories, selectedCategory: $selectedCategory, showErrorMessages: $showErrorMessages, isFetching: $isFetching, isDeleting: $isDeleting)';
   }
 
   @override
@@ -458,6 +633,8 @@ class _$_CategoriesListState implements _CategoriesListState {
             other is _$_CategoriesListState &&
             (identical(other.failureOrCategories, failureOrCategories) ||
                 other.failureOrCategories == failureOrCategories) &&
+            (identical(other.selectedCategory, selectedCategory) ||
+                other.selectedCategory == selectedCategory) &&
             (identical(other.showErrorMessages, showErrorMessages) ||
                 other.showErrorMessages == showErrorMessages) &&
             (identical(other.isFetching, isFetching) ||
@@ -468,7 +645,7 @@ class _$_CategoriesListState implements _CategoriesListState {
 
   @override
   int get hashCode => Object.hash(runtimeType, failureOrCategories,
-      showErrorMessages, isFetching, isDeleting);
+      selectedCategory, showErrorMessages, isFetching, isDeleting);
 
   @JsonKey(ignore: true)
   @override
@@ -482,12 +659,15 @@ abstract class _CategoriesListState implements CategoriesState {
   const factory _CategoriesListState(
       {required final Option<Either<CategoryFailure, List<Category>>>
           failureOrCategories,
+      required final Option<Category> selectedCategory,
       required final bool showErrorMessages,
       required final bool isFetching,
       required final bool isDeleting}) = _$_CategoriesListState;
 
   @override
   Option<Either<CategoryFailure, List<Category>>> get failureOrCategories;
+  @override
+  Option<Category> get selectedCategory;
   @override
   bool get showErrorMessages;
   @override

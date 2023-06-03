@@ -30,7 +30,7 @@ class AddCategoryPage extends StatelessWidget {
         ),
         body: const SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(32),
+            padding: EdgeInsets.symmetric(horizontal: 32),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

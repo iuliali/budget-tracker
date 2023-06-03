@@ -20,6 +20,7 @@ mixin _$CategoryFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
     required TResult Function() serverError,
+    required TResult Function() budgetAlreadySet,
     required TResult Function() categoryAlreadyExists,
     required TResult Function() categoryNotFound,
   }) =>
@@ -28,6 +29,7 @@ mixin _$CategoryFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unexpected,
     TResult? Function()? serverError,
+    TResult? Function()? budgetAlreadySet,
     TResult? Function()? categoryAlreadyExists,
     TResult? Function()? categoryNotFound,
   }) =>
@@ -36,6 +38,7 @@ mixin _$CategoryFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? serverError,
+    TResult Function()? budgetAlreadySet,
     TResult Function()? categoryAlreadyExists,
     TResult Function()? categoryNotFound,
     required TResult orElse(),
@@ -45,6 +48,7 @@ mixin _$CategoryFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
     required TResult Function(_ServerError value) serverError,
+    required TResult Function(_BudgetAlreadySet value) budgetAlreadySet,
     required TResult Function(_CategoryAlreadyExists value)
         categoryAlreadyExists,
     required TResult Function(_CategoryNotFound value) categoryNotFound,
@@ -54,6 +58,7 @@ mixin _$CategoryFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Unexpected value)? unexpected,
     TResult? Function(_ServerError value)? serverError,
+    TResult? Function(_BudgetAlreadySet value)? budgetAlreadySet,
     TResult? Function(_CategoryAlreadyExists value)? categoryAlreadyExists,
     TResult? Function(_CategoryNotFound value)? categoryNotFound,
   }) =>
@@ -62,6 +67,7 @@ mixin _$CategoryFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_BudgetAlreadySet value)? budgetAlreadySet,
     TResult Function(_CategoryAlreadyExists value)? categoryAlreadyExists,
     TResult Function(_CategoryNotFound value)? categoryNotFound,
     required TResult orElse(),
@@ -127,6 +133,7 @@ class _$_Unexpected implements _Unexpected {
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
     required TResult Function() serverError,
+    required TResult Function() budgetAlreadySet,
     required TResult Function() categoryAlreadyExists,
     required TResult Function() categoryNotFound,
   }) {
@@ -138,6 +145,7 @@ class _$_Unexpected implements _Unexpected {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unexpected,
     TResult? Function()? serverError,
+    TResult? Function()? budgetAlreadySet,
     TResult? Function()? categoryAlreadyExists,
     TResult? Function()? categoryNotFound,
   }) {
@@ -149,6 +157,7 @@ class _$_Unexpected implements _Unexpected {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? serverError,
+    TResult Function()? budgetAlreadySet,
     TResult Function()? categoryAlreadyExists,
     TResult Function()? categoryNotFound,
     required TResult orElse(),
@@ -164,6 +173,7 @@ class _$_Unexpected implements _Unexpected {
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
     required TResult Function(_ServerError value) serverError,
+    required TResult Function(_BudgetAlreadySet value) budgetAlreadySet,
     required TResult Function(_CategoryAlreadyExists value)
         categoryAlreadyExists,
     required TResult Function(_CategoryNotFound value) categoryNotFound,
@@ -176,6 +186,7 @@ class _$_Unexpected implements _Unexpected {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Unexpected value)? unexpected,
     TResult? Function(_ServerError value)? serverError,
+    TResult? Function(_BudgetAlreadySet value)? budgetAlreadySet,
     TResult? Function(_CategoryAlreadyExists value)? categoryAlreadyExists,
     TResult? Function(_CategoryNotFound value)? categoryNotFound,
   }) {
@@ -187,6 +198,7 @@ class _$_Unexpected implements _Unexpected {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_BudgetAlreadySet value)? budgetAlreadySet,
     TResult Function(_CategoryAlreadyExists value)? categoryAlreadyExists,
     TResult Function(_CategoryNotFound value)? categoryNotFound,
     required TResult orElse(),
@@ -242,6 +254,7 @@ class _$_ServerError implements _ServerError {
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
     required TResult Function() serverError,
+    required TResult Function() budgetAlreadySet,
     required TResult Function() categoryAlreadyExists,
     required TResult Function() categoryNotFound,
   }) {
@@ -253,6 +266,7 @@ class _$_ServerError implements _ServerError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unexpected,
     TResult? Function()? serverError,
+    TResult? Function()? budgetAlreadySet,
     TResult? Function()? categoryAlreadyExists,
     TResult? Function()? categoryNotFound,
   }) {
@@ -264,6 +278,7 @@ class _$_ServerError implements _ServerError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? serverError,
+    TResult Function()? budgetAlreadySet,
     TResult Function()? categoryAlreadyExists,
     TResult Function()? categoryNotFound,
     required TResult orElse(),
@@ -279,6 +294,7 @@ class _$_ServerError implements _ServerError {
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
     required TResult Function(_ServerError value) serverError,
+    required TResult Function(_BudgetAlreadySet value) budgetAlreadySet,
     required TResult Function(_CategoryAlreadyExists value)
         categoryAlreadyExists,
     required TResult Function(_CategoryNotFound value) categoryNotFound,
@@ -291,6 +307,7 @@ class _$_ServerError implements _ServerError {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Unexpected value)? unexpected,
     TResult? Function(_ServerError value)? serverError,
+    TResult? Function(_BudgetAlreadySet value)? budgetAlreadySet,
     TResult? Function(_CategoryAlreadyExists value)? categoryAlreadyExists,
     TResult? Function(_CategoryNotFound value)? categoryNotFound,
   }) {
@@ -302,6 +319,7 @@ class _$_ServerError implements _ServerError {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_BudgetAlreadySet value)? budgetAlreadySet,
     TResult Function(_CategoryAlreadyExists value)? categoryAlreadyExists,
     TResult Function(_CategoryNotFound value)? categoryNotFound,
     required TResult orElse(),
@@ -315,6 +333,127 @@ class _$_ServerError implements _ServerError {
 
 abstract class _ServerError implements CategoryFailure {
   const factory _ServerError() = _$_ServerError;
+}
+
+/// @nodoc
+abstract class _$$_BudgetAlreadySetCopyWith<$Res> {
+  factory _$$_BudgetAlreadySetCopyWith(
+          _$_BudgetAlreadySet value, $Res Function(_$_BudgetAlreadySet) then) =
+      __$$_BudgetAlreadySetCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_BudgetAlreadySetCopyWithImpl<$Res>
+    extends _$CategoryFailureCopyWithImpl<$Res, _$_BudgetAlreadySet>
+    implements _$$_BudgetAlreadySetCopyWith<$Res> {
+  __$$_BudgetAlreadySetCopyWithImpl(
+      _$_BudgetAlreadySet _value, $Res Function(_$_BudgetAlreadySet) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_BudgetAlreadySet implements _BudgetAlreadySet {
+  const _$_BudgetAlreadySet();
+
+  @override
+  String toString() {
+    return 'CategoryFailure.budgetAlreadySet()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_BudgetAlreadySet);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() serverError,
+    required TResult Function() budgetAlreadySet,
+    required TResult Function() categoryAlreadyExists,
+    required TResult Function() categoryNotFound,
+  }) {
+    return budgetAlreadySet();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unexpected,
+    TResult? Function()? serverError,
+    TResult? Function()? budgetAlreadySet,
+    TResult? Function()? categoryAlreadyExists,
+    TResult? Function()? categoryNotFound,
+  }) {
+    return budgetAlreadySet?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? serverError,
+    TResult Function()? budgetAlreadySet,
+    TResult Function()? categoryAlreadyExists,
+    TResult Function()? categoryNotFound,
+    required TResult orElse(),
+  }) {
+    if (budgetAlreadySet != null) {
+      return budgetAlreadySet();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_ServerError value) serverError,
+    required TResult Function(_BudgetAlreadySet value) budgetAlreadySet,
+    required TResult Function(_CategoryAlreadyExists value)
+        categoryAlreadyExists,
+    required TResult Function(_CategoryNotFound value) categoryNotFound,
+  }) {
+    return budgetAlreadySet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Unexpected value)? unexpected,
+    TResult? Function(_ServerError value)? serverError,
+    TResult? Function(_BudgetAlreadySet value)? budgetAlreadySet,
+    TResult? Function(_CategoryAlreadyExists value)? categoryAlreadyExists,
+    TResult? Function(_CategoryNotFound value)? categoryNotFound,
+  }) {
+    return budgetAlreadySet?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_BudgetAlreadySet value)? budgetAlreadySet,
+    TResult Function(_CategoryAlreadyExists value)? categoryAlreadyExists,
+    TResult Function(_CategoryNotFound value)? categoryNotFound,
+    required TResult orElse(),
+  }) {
+    if (budgetAlreadySet != null) {
+      return budgetAlreadySet(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _BudgetAlreadySet implements CategoryFailure {
+  const factory _BudgetAlreadySet() = _$_BudgetAlreadySet;
 }
 
 /// @nodoc
@@ -357,6 +496,7 @@ class _$_CategoryAlreadyExists implements _CategoryAlreadyExists {
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
     required TResult Function() serverError,
+    required TResult Function() budgetAlreadySet,
     required TResult Function() categoryAlreadyExists,
     required TResult Function() categoryNotFound,
   }) {
@@ -368,6 +508,7 @@ class _$_CategoryAlreadyExists implements _CategoryAlreadyExists {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unexpected,
     TResult? Function()? serverError,
+    TResult? Function()? budgetAlreadySet,
     TResult? Function()? categoryAlreadyExists,
     TResult? Function()? categoryNotFound,
   }) {
@@ -379,6 +520,7 @@ class _$_CategoryAlreadyExists implements _CategoryAlreadyExists {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? serverError,
+    TResult Function()? budgetAlreadySet,
     TResult Function()? categoryAlreadyExists,
     TResult Function()? categoryNotFound,
     required TResult orElse(),
@@ -394,6 +536,7 @@ class _$_CategoryAlreadyExists implements _CategoryAlreadyExists {
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
     required TResult Function(_ServerError value) serverError,
+    required TResult Function(_BudgetAlreadySet value) budgetAlreadySet,
     required TResult Function(_CategoryAlreadyExists value)
         categoryAlreadyExists,
     required TResult Function(_CategoryNotFound value) categoryNotFound,
@@ -406,6 +549,7 @@ class _$_CategoryAlreadyExists implements _CategoryAlreadyExists {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Unexpected value)? unexpected,
     TResult? Function(_ServerError value)? serverError,
+    TResult? Function(_BudgetAlreadySet value)? budgetAlreadySet,
     TResult? Function(_CategoryAlreadyExists value)? categoryAlreadyExists,
     TResult? Function(_CategoryNotFound value)? categoryNotFound,
   }) {
@@ -417,6 +561,7 @@ class _$_CategoryAlreadyExists implements _CategoryAlreadyExists {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_BudgetAlreadySet value)? budgetAlreadySet,
     TResult Function(_CategoryAlreadyExists value)? categoryAlreadyExists,
     TResult Function(_CategoryNotFound value)? categoryNotFound,
     required TResult orElse(),
@@ -472,6 +617,7 @@ class _$_CategoryNotFound implements _CategoryNotFound {
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
     required TResult Function() serverError,
+    required TResult Function() budgetAlreadySet,
     required TResult Function() categoryAlreadyExists,
     required TResult Function() categoryNotFound,
   }) {
@@ -483,6 +629,7 @@ class _$_CategoryNotFound implements _CategoryNotFound {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unexpected,
     TResult? Function()? serverError,
+    TResult? Function()? budgetAlreadySet,
     TResult? Function()? categoryAlreadyExists,
     TResult? Function()? categoryNotFound,
   }) {
@@ -494,6 +641,7 @@ class _$_CategoryNotFound implements _CategoryNotFound {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? serverError,
+    TResult Function()? budgetAlreadySet,
     TResult Function()? categoryAlreadyExists,
     TResult Function()? categoryNotFound,
     required TResult orElse(),
@@ -509,6 +657,7 @@ class _$_CategoryNotFound implements _CategoryNotFound {
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
     required TResult Function(_ServerError value) serverError,
+    required TResult Function(_BudgetAlreadySet value) budgetAlreadySet,
     required TResult Function(_CategoryAlreadyExists value)
         categoryAlreadyExists,
     required TResult Function(_CategoryNotFound value) categoryNotFound,
@@ -521,6 +670,7 @@ class _$_CategoryNotFound implements _CategoryNotFound {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Unexpected value)? unexpected,
     TResult? Function(_ServerError value)? serverError,
+    TResult? Function(_BudgetAlreadySet value)? budgetAlreadySet,
     TResult? Function(_CategoryAlreadyExists value)? categoryAlreadyExists,
     TResult? Function(_CategoryNotFound value)? categoryNotFound,
   }) {
@@ -532,6 +682,7 @@ class _$_CategoryNotFound implements _CategoryNotFound {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_BudgetAlreadySet value)? budgetAlreadySet,
     TResult Function(_CategoryAlreadyExists value)? categoryAlreadyExists,
     TResult Function(_CategoryNotFound value)? categoryNotFound,
     required TResult orElse(),

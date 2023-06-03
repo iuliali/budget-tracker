@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:budget_tracker/domain/categories/value_objects.dart';
 import 'package:budget_tracker/domain/transactions/value_objects.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -18,6 +19,7 @@ class IncomeFormBloc extends Bloc<IncomeFormEvent, IncomeFormState> {
 
   IncomeFormBloc(this._incomeRepository) : super(IncomeFormState.initial()) {
     on<_Initialized>(_onInitialized);
+    on<_CategoryIdChanged>(_onCategoryIdChanged);
     on<_SenderChanged>(_onSenderChanged);
     on<_AmountChanged>(_onAmountChanged);
     on<_CurrencyChanged>(_onCurrencyChanged);
@@ -34,6 +36,13 @@ class IncomeFormBloc extends Bloc<IncomeFormEvent, IncomeFormState> {
         ));
       },
     );
+  }
+
+  void _onCategoryIdChanged(_CategoryIdChanged event, Emitter<IncomeFormState> emit) {
+    emit(state.copyWith(
+      categoryId: some(event.categoryId),
+      saveFailureOrSuccessOption: none(),
+    ));
   }
 
   void _onSenderChanged(_SenderChanged event, Emitter<IncomeFormState> emit) {
@@ -58,6 +67,14 @@ class IncomeFormBloc extends Bloc<IncomeFormEvent, IncomeFormState> {
   }
 
   void _onSaved(_Saved event, Emitter<IncomeFormState> emit) async {
+    if (state.categoryId.isNone()) {
+      emit(state.copyWith(
+        showErrorMessages: true,
+        saveFailureOrSuccessOption: optionOf(left(const IncomeFailure.categoryNotSelected()))
+      ));
+      return;
+    }
+
     emit(state.copyWith(
       isSaving: true,
       saveFailureOrSuccessOption: none(),
@@ -65,6 +82,7 @@ class IncomeFormBloc extends Bloc<IncomeFormEvent, IncomeFormState> {
 
     final income = Income(
       id: state.income.fold(() => IncomeId(0), (a) => a.id),
+      categoryId: state.categoryId.getOrElse(() => CategoryId(0)),
       sender: state.sender,
       amount: state.amount,
       currency: state.currency,

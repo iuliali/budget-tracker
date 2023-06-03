@@ -30,3 +30,23 @@ class CategoryId extends ValueObject<int> {
     return CategoryId._(right(input));
   }
 }
+
+@immutable
+class BudgetAmount extends ValueObject<double> {
+  @override
+  final Either<ValueFailure<double>, double> value;
+
+  const BudgetAmount._(this.value);
+
+  factory BudgetAmount(double input) {
+    return BudgetAmount._(
+      validateBudgetAmount(input),
+    );
+  }
+
+  factory BudgetAmount.fromString(String input) {
+    return BudgetAmount._(
+      validateBudgetAmount(double.parse(input)),
+    );
+  }
+}

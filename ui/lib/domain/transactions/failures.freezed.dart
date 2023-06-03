@@ -20,6 +20,7 @@ mixin _$ExpenseFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
     required TResult Function() notFound,
+    required TResult Function() categoryNotSelected,
     required TResult Function() serverError,
   }) =>
       throw _privateConstructorUsedError;
@@ -27,6 +28,7 @@ mixin _$ExpenseFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unexpected,
     TResult? Function()? notFound,
+    TResult? Function()? categoryNotSelected,
     TResult? Function()? serverError,
   }) =>
       throw _privateConstructorUsedError;
@@ -34,6 +36,7 @@ mixin _$ExpenseFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? notFound,
+    TResult Function()? categoryNotSelected,
     TResult Function()? serverError,
     required TResult orElse(),
   }) =>
@@ -42,6 +45,8 @@ mixin _$ExpenseFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_ExpenseUnexpected value) unexpected,
     required TResult Function(_ExpenseNotFound value) notFound,
+    required TResult Function(_ExpenseCategoryNotSelected value)
+        categoryNotSelected,
     required TResult Function(_ExpenseServerError value) serverError,
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +54,7 @@ mixin _$ExpenseFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ExpenseUnexpected value)? unexpected,
     TResult? Function(_ExpenseNotFound value)? notFound,
+    TResult? Function(_ExpenseCategoryNotSelected value)? categoryNotSelected,
     TResult? Function(_ExpenseServerError value)? serverError,
   }) =>
       throw _privateConstructorUsedError;
@@ -56,6 +62,7 @@ mixin _$ExpenseFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ExpenseUnexpected value)? unexpected,
     TResult Function(_ExpenseNotFound value)? notFound,
+    TResult Function(_ExpenseCategoryNotSelected value)? categoryNotSelected,
     TResult Function(_ExpenseServerError value)? serverError,
     required TResult orElse(),
   }) =>
@@ -120,6 +127,7 @@ class _$_ExpenseUnexpected implements _ExpenseUnexpected {
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
     required TResult Function() notFound,
+    required TResult Function() categoryNotSelected,
     required TResult Function() serverError,
   }) {
     return unexpected();
@@ -130,6 +138,7 @@ class _$_ExpenseUnexpected implements _ExpenseUnexpected {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unexpected,
     TResult? Function()? notFound,
+    TResult? Function()? categoryNotSelected,
     TResult? Function()? serverError,
   }) {
     return unexpected?.call();
@@ -140,6 +149,7 @@ class _$_ExpenseUnexpected implements _ExpenseUnexpected {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? notFound,
+    TResult Function()? categoryNotSelected,
     TResult Function()? serverError,
     required TResult orElse(),
   }) {
@@ -154,6 +164,8 @@ class _$_ExpenseUnexpected implements _ExpenseUnexpected {
   TResult map<TResult extends Object?>({
     required TResult Function(_ExpenseUnexpected value) unexpected,
     required TResult Function(_ExpenseNotFound value) notFound,
+    required TResult Function(_ExpenseCategoryNotSelected value)
+        categoryNotSelected,
     required TResult Function(_ExpenseServerError value) serverError,
   }) {
     return unexpected(this);
@@ -164,6 +176,7 @@ class _$_ExpenseUnexpected implements _ExpenseUnexpected {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ExpenseUnexpected value)? unexpected,
     TResult? Function(_ExpenseNotFound value)? notFound,
+    TResult? Function(_ExpenseCategoryNotSelected value)? categoryNotSelected,
     TResult? Function(_ExpenseServerError value)? serverError,
   }) {
     return unexpected?.call(this);
@@ -174,6 +187,7 @@ class _$_ExpenseUnexpected implements _ExpenseUnexpected {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ExpenseUnexpected value)? unexpected,
     TResult Function(_ExpenseNotFound value)? notFound,
+    TResult Function(_ExpenseCategoryNotSelected value)? categoryNotSelected,
     TResult Function(_ExpenseServerError value)? serverError,
     required TResult orElse(),
   }) {
@@ -228,6 +242,7 @@ class _$_ExpenseNotFound implements _ExpenseNotFound {
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
     required TResult Function() notFound,
+    required TResult Function() categoryNotSelected,
     required TResult Function() serverError,
   }) {
     return notFound();
@@ -238,6 +253,7 @@ class _$_ExpenseNotFound implements _ExpenseNotFound {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unexpected,
     TResult? Function()? notFound,
+    TResult? Function()? categoryNotSelected,
     TResult? Function()? serverError,
   }) {
     return notFound?.call();
@@ -248,6 +264,7 @@ class _$_ExpenseNotFound implements _ExpenseNotFound {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? notFound,
+    TResult Function()? categoryNotSelected,
     TResult Function()? serverError,
     required TResult orElse(),
   }) {
@@ -262,6 +279,8 @@ class _$_ExpenseNotFound implements _ExpenseNotFound {
   TResult map<TResult extends Object?>({
     required TResult Function(_ExpenseUnexpected value) unexpected,
     required TResult Function(_ExpenseNotFound value) notFound,
+    required TResult Function(_ExpenseCategoryNotSelected value)
+        categoryNotSelected,
     required TResult Function(_ExpenseServerError value) serverError,
   }) {
     return notFound(this);
@@ -272,6 +291,7 @@ class _$_ExpenseNotFound implements _ExpenseNotFound {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ExpenseUnexpected value)? unexpected,
     TResult? Function(_ExpenseNotFound value)? notFound,
+    TResult? Function(_ExpenseCategoryNotSelected value)? categoryNotSelected,
     TResult? Function(_ExpenseServerError value)? serverError,
   }) {
     return notFound?.call(this);
@@ -282,6 +302,7 @@ class _$_ExpenseNotFound implements _ExpenseNotFound {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ExpenseUnexpected value)? unexpected,
     TResult Function(_ExpenseNotFound value)? notFound,
+    TResult Function(_ExpenseCategoryNotSelected value)? categoryNotSelected,
     TResult Function(_ExpenseServerError value)? serverError,
     required TResult orElse(),
   }) {
@@ -294,6 +315,124 @@ class _$_ExpenseNotFound implements _ExpenseNotFound {
 
 abstract class _ExpenseNotFound implements ExpenseFailure {
   const factory _ExpenseNotFound() = _$_ExpenseNotFound;
+}
+
+/// @nodoc
+abstract class _$$_ExpenseCategoryNotSelectedCopyWith<$Res> {
+  factory _$$_ExpenseCategoryNotSelectedCopyWith(
+          _$_ExpenseCategoryNotSelected value,
+          $Res Function(_$_ExpenseCategoryNotSelected) then) =
+      __$$_ExpenseCategoryNotSelectedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ExpenseCategoryNotSelectedCopyWithImpl<$Res>
+    extends _$ExpenseFailureCopyWithImpl<$Res, _$_ExpenseCategoryNotSelected>
+    implements _$$_ExpenseCategoryNotSelectedCopyWith<$Res> {
+  __$$_ExpenseCategoryNotSelectedCopyWithImpl(
+      _$_ExpenseCategoryNotSelected _value,
+      $Res Function(_$_ExpenseCategoryNotSelected) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_ExpenseCategoryNotSelected implements _ExpenseCategoryNotSelected {
+  const _$_ExpenseCategoryNotSelected();
+
+  @override
+  String toString() {
+    return 'ExpenseFailure.categoryNotSelected()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ExpenseCategoryNotSelected);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() notFound,
+    required TResult Function() categoryNotSelected,
+    required TResult Function() serverError,
+  }) {
+    return categoryNotSelected();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unexpected,
+    TResult? Function()? notFound,
+    TResult? Function()? categoryNotSelected,
+    TResult? Function()? serverError,
+  }) {
+    return categoryNotSelected?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? notFound,
+    TResult Function()? categoryNotSelected,
+    TResult Function()? serverError,
+    required TResult orElse(),
+  }) {
+    if (categoryNotSelected != null) {
+      return categoryNotSelected();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ExpenseUnexpected value) unexpected,
+    required TResult Function(_ExpenseNotFound value) notFound,
+    required TResult Function(_ExpenseCategoryNotSelected value)
+        categoryNotSelected,
+    required TResult Function(_ExpenseServerError value) serverError,
+  }) {
+    return categoryNotSelected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ExpenseUnexpected value)? unexpected,
+    TResult? Function(_ExpenseNotFound value)? notFound,
+    TResult? Function(_ExpenseCategoryNotSelected value)? categoryNotSelected,
+    TResult? Function(_ExpenseServerError value)? serverError,
+  }) {
+    return categoryNotSelected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ExpenseUnexpected value)? unexpected,
+    TResult Function(_ExpenseNotFound value)? notFound,
+    TResult Function(_ExpenseCategoryNotSelected value)? categoryNotSelected,
+    TResult Function(_ExpenseServerError value)? serverError,
+    required TResult orElse(),
+  }) {
+    if (categoryNotSelected != null) {
+      return categoryNotSelected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ExpenseCategoryNotSelected implements ExpenseFailure {
+  const factory _ExpenseCategoryNotSelected() = _$_ExpenseCategoryNotSelected;
 }
 
 /// @nodoc
@@ -336,6 +475,7 @@ class _$_ExpenseServerError implements _ExpenseServerError {
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
     required TResult Function() notFound,
+    required TResult Function() categoryNotSelected,
     required TResult Function() serverError,
   }) {
     return serverError();
@@ -346,6 +486,7 @@ class _$_ExpenseServerError implements _ExpenseServerError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unexpected,
     TResult? Function()? notFound,
+    TResult? Function()? categoryNotSelected,
     TResult? Function()? serverError,
   }) {
     return serverError?.call();
@@ -356,6 +497,7 @@ class _$_ExpenseServerError implements _ExpenseServerError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? notFound,
+    TResult Function()? categoryNotSelected,
     TResult Function()? serverError,
     required TResult orElse(),
   }) {
@@ -370,6 +512,8 @@ class _$_ExpenseServerError implements _ExpenseServerError {
   TResult map<TResult extends Object?>({
     required TResult Function(_ExpenseUnexpected value) unexpected,
     required TResult Function(_ExpenseNotFound value) notFound,
+    required TResult Function(_ExpenseCategoryNotSelected value)
+        categoryNotSelected,
     required TResult Function(_ExpenseServerError value) serverError,
   }) {
     return serverError(this);
@@ -380,6 +524,7 @@ class _$_ExpenseServerError implements _ExpenseServerError {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ExpenseUnexpected value)? unexpected,
     TResult? Function(_ExpenseNotFound value)? notFound,
+    TResult? Function(_ExpenseCategoryNotSelected value)? categoryNotSelected,
     TResult? Function(_ExpenseServerError value)? serverError,
   }) {
     return serverError?.call(this);
@@ -390,6 +535,7 @@ class _$_ExpenseServerError implements _ExpenseServerError {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ExpenseUnexpected value)? unexpected,
     TResult Function(_ExpenseNotFound value)? notFound,
+    TResult Function(_ExpenseCategoryNotSelected value)? categoryNotSelected,
     TResult Function(_ExpenseServerError value)? serverError,
     required TResult orElse(),
   }) {
@@ -410,6 +556,7 @@ mixin _$IncomeFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
     required TResult Function() notFound,
+    required TResult Function() categoryNotSelected,
     required TResult Function() serverError,
   }) =>
       throw _privateConstructorUsedError;
@@ -417,6 +564,7 @@ mixin _$IncomeFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unexpected,
     TResult? Function()? notFound,
+    TResult? Function()? categoryNotSelected,
     TResult? Function()? serverError,
   }) =>
       throw _privateConstructorUsedError;
@@ -424,6 +572,7 @@ mixin _$IncomeFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? notFound,
+    TResult Function()? categoryNotSelected,
     TResult Function()? serverError,
     required TResult orElse(),
   }) =>
@@ -432,6 +581,8 @@ mixin _$IncomeFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_IncomeUnexpected value) unexpected,
     required TResult Function(_IncomeNotFound value) notFound,
+    required TResult Function(_IncomeCategoryNotSelected value)
+        categoryNotSelected,
     required TResult Function(_IncomeServerError value) serverError,
   }) =>
       throw _privateConstructorUsedError;
@@ -439,6 +590,7 @@ mixin _$IncomeFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_IncomeUnexpected value)? unexpected,
     TResult? Function(_IncomeNotFound value)? notFound,
+    TResult? Function(_IncomeCategoryNotSelected value)? categoryNotSelected,
     TResult? Function(_IncomeServerError value)? serverError,
   }) =>
       throw _privateConstructorUsedError;
@@ -446,6 +598,7 @@ mixin _$IncomeFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_IncomeUnexpected value)? unexpected,
     TResult Function(_IncomeNotFound value)? notFound,
+    TResult Function(_IncomeCategoryNotSelected value)? categoryNotSelected,
     TResult Function(_IncomeServerError value)? serverError,
     required TResult orElse(),
   }) =>
@@ -510,6 +663,7 @@ class _$_IncomeUnexpected implements _IncomeUnexpected {
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
     required TResult Function() notFound,
+    required TResult Function() categoryNotSelected,
     required TResult Function() serverError,
   }) {
     return unexpected();
@@ -520,6 +674,7 @@ class _$_IncomeUnexpected implements _IncomeUnexpected {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unexpected,
     TResult? Function()? notFound,
+    TResult? Function()? categoryNotSelected,
     TResult? Function()? serverError,
   }) {
     return unexpected?.call();
@@ -530,6 +685,7 @@ class _$_IncomeUnexpected implements _IncomeUnexpected {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? notFound,
+    TResult Function()? categoryNotSelected,
     TResult Function()? serverError,
     required TResult orElse(),
   }) {
@@ -544,6 +700,8 @@ class _$_IncomeUnexpected implements _IncomeUnexpected {
   TResult map<TResult extends Object?>({
     required TResult Function(_IncomeUnexpected value) unexpected,
     required TResult Function(_IncomeNotFound value) notFound,
+    required TResult Function(_IncomeCategoryNotSelected value)
+        categoryNotSelected,
     required TResult Function(_IncomeServerError value) serverError,
   }) {
     return unexpected(this);
@@ -554,6 +712,7 @@ class _$_IncomeUnexpected implements _IncomeUnexpected {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_IncomeUnexpected value)? unexpected,
     TResult? Function(_IncomeNotFound value)? notFound,
+    TResult? Function(_IncomeCategoryNotSelected value)? categoryNotSelected,
     TResult? Function(_IncomeServerError value)? serverError,
   }) {
     return unexpected?.call(this);
@@ -564,6 +723,7 @@ class _$_IncomeUnexpected implements _IncomeUnexpected {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_IncomeUnexpected value)? unexpected,
     TResult Function(_IncomeNotFound value)? notFound,
+    TResult Function(_IncomeCategoryNotSelected value)? categoryNotSelected,
     TResult Function(_IncomeServerError value)? serverError,
     required TResult orElse(),
   }) {
@@ -618,6 +778,7 @@ class _$_IncomeNotFound implements _IncomeNotFound {
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
     required TResult Function() notFound,
+    required TResult Function() categoryNotSelected,
     required TResult Function() serverError,
   }) {
     return notFound();
@@ -628,6 +789,7 @@ class _$_IncomeNotFound implements _IncomeNotFound {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unexpected,
     TResult? Function()? notFound,
+    TResult? Function()? categoryNotSelected,
     TResult? Function()? serverError,
   }) {
     return notFound?.call();
@@ -638,6 +800,7 @@ class _$_IncomeNotFound implements _IncomeNotFound {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? notFound,
+    TResult Function()? categoryNotSelected,
     TResult Function()? serverError,
     required TResult orElse(),
   }) {
@@ -652,6 +815,8 @@ class _$_IncomeNotFound implements _IncomeNotFound {
   TResult map<TResult extends Object?>({
     required TResult Function(_IncomeUnexpected value) unexpected,
     required TResult Function(_IncomeNotFound value) notFound,
+    required TResult Function(_IncomeCategoryNotSelected value)
+        categoryNotSelected,
     required TResult Function(_IncomeServerError value) serverError,
   }) {
     return notFound(this);
@@ -662,6 +827,7 @@ class _$_IncomeNotFound implements _IncomeNotFound {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_IncomeUnexpected value)? unexpected,
     TResult? Function(_IncomeNotFound value)? notFound,
+    TResult? Function(_IncomeCategoryNotSelected value)? categoryNotSelected,
     TResult? Function(_IncomeServerError value)? serverError,
   }) {
     return notFound?.call(this);
@@ -672,6 +838,7 @@ class _$_IncomeNotFound implements _IncomeNotFound {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_IncomeUnexpected value)? unexpected,
     TResult Function(_IncomeNotFound value)? notFound,
+    TResult Function(_IncomeCategoryNotSelected value)? categoryNotSelected,
     TResult Function(_IncomeServerError value)? serverError,
     required TResult orElse(),
   }) {
@@ -684,6 +851,124 @@ class _$_IncomeNotFound implements _IncomeNotFound {
 
 abstract class _IncomeNotFound implements IncomeFailure {
   const factory _IncomeNotFound() = _$_IncomeNotFound;
+}
+
+/// @nodoc
+abstract class _$$_IncomeCategoryNotSelectedCopyWith<$Res> {
+  factory _$$_IncomeCategoryNotSelectedCopyWith(
+          _$_IncomeCategoryNotSelected value,
+          $Res Function(_$_IncomeCategoryNotSelected) then) =
+      __$$_IncomeCategoryNotSelectedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_IncomeCategoryNotSelectedCopyWithImpl<$Res>
+    extends _$IncomeFailureCopyWithImpl<$Res, _$_IncomeCategoryNotSelected>
+    implements _$$_IncomeCategoryNotSelectedCopyWith<$Res> {
+  __$$_IncomeCategoryNotSelectedCopyWithImpl(
+      _$_IncomeCategoryNotSelected _value,
+      $Res Function(_$_IncomeCategoryNotSelected) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_IncomeCategoryNotSelected implements _IncomeCategoryNotSelected {
+  const _$_IncomeCategoryNotSelected();
+
+  @override
+  String toString() {
+    return 'IncomeFailure.categoryNotSelected()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_IncomeCategoryNotSelected);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() notFound,
+    required TResult Function() categoryNotSelected,
+    required TResult Function() serverError,
+  }) {
+    return categoryNotSelected();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unexpected,
+    TResult? Function()? notFound,
+    TResult? Function()? categoryNotSelected,
+    TResult? Function()? serverError,
+  }) {
+    return categoryNotSelected?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? notFound,
+    TResult Function()? categoryNotSelected,
+    TResult Function()? serverError,
+    required TResult orElse(),
+  }) {
+    if (categoryNotSelected != null) {
+      return categoryNotSelected();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_IncomeUnexpected value) unexpected,
+    required TResult Function(_IncomeNotFound value) notFound,
+    required TResult Function(_IncomeCategoryNotSelected value)
+        categoryNotSelected,
+    required TResult Function(_IncomeServerError value) serverError,
+  }) {
+    return categoryNotSelected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_IncomeUnexpected value)? unexpected,
+    TResult? Function(_IncomeNotFound value)? notFound,
+    TResult? Function(_IncomeCategoryNotSelected value)? categoryNotSelected,
+    TResult? Function(_IncomeServerError value)? serverError,
+  }) {
+    return categoryNotSelected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_IncomeUnexpected value)? unexpected,
+    TResult Function(_IncomeNotFound value)? notFound,
+    TResult Function(_IncomeCategoryNotSelected value)? categoryNotSelected,
+    TResult Function(_IncomeServerError value)? serverError,
+    required TResult orElse(),
+  }) {
+    if (categoryNotSelected != null) {
+      return categoryNotSelected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _IncomeCategoryNotSelected implements IncomeFailure {
+  const factory _IncomeCategoryNotSelected() = _$_IncomeCategoryNotSelected;
 }
 
 /// @nodoc
@@ -726,6 +1011,7 @@ class _$_IncomeServerError implements _IncomeServerError {
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
     required TResult Function() notFound,
+    required TResult Function() categoryNotSelected,
     required TResult Function() serverError,
   }) {
     return serverError();
@@ -736,6 +1022,7 @@ class _$_IncomeServerError implements _IncomeServerError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unexpected,
     TResult? Function()? notFound,
+    TResult? Function()? categoryNotSelected,
     TResult? Function()? serverError,
   }) {
     return serverError?.call();
@@ -746,6 +1033,7 @@ class _$_IncomeServerError implements _IncomeServerError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? notFound,
+    TResult Function()? categoryNotSelected,
     TResult Function()? serverError,
     required TResult orElse(),
   }) {
@@ -760,6 +1048,8 @@ class _$_IncomeServerError implements _IncomeServerError {
   TResult map<TResult extends Object?>({
     required TResult Function(_IncomeUnexpected value) unexpected,
     required TResult Function(_IncomeNotFound value) notFound,
+    required TResult Function(_IncomeCategoryNotSelected value)
+        categoryNotSelected,
     required TResult Function(_IncomeServerError value) serverError,
   }) {
     return serverError(this);
@@ -770,6 +1060,7 @@ class _$_IncomeServerError implements _IncomeServerError {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_IncomeUnexpected value)? unexpected,
     TResult? Function(_IncomeNotFound value)? notFound,
+    TResult? Function(_IncomeCategoryNotSelected value)? categoryNotSelected,
     TResult? Function(_IncomeServerError value)? serverError,
   }) {
     return serverError?.call(this);
@@ -780,6 +1071,7 @@ class _$_IncomeServerError implements _IncomeServerError {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_IncomeUnexpected value)? unexpected,
     TResult Function(_IncomeNotFound value)? notFound,
+    TResult Function(_IncomeCategoryNotSelected value)? categoryNotSelected,
     TResult Function(_IncomeServerError value)? serverError,
     required TResult orElse(),
   }) {

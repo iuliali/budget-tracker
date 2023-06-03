@@ -6,6 +6,7 @@ part 'failures.freezed.dart';
 abstract class CategoryFailure with _$CategoryFailure {
   const factory CategoryFailure.unexpected() = _Unexpected;
   const factory CategoryFailure.serverError() = _ServerError;
+  const factory CategoryFailure.budgetAlreadySet() = _BudgetAlreadySet;
   const factory CategoryFailure.categoryAlreadyExists() = _CategoryAlreadyExists;
   const factory CategoryFailure.categoryNotFound() = _CategoryNotFound;
 }

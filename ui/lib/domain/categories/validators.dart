@@ -8,3 +8,10 @@ Either<ValueFailure<String>, String> validateCategoryName(String input) {
   }
   return right(input);
 }
+
+Either<ValueFailure<double>, double> validateBudgetAmount(double input) {
+  if (input < 0) {
+    return left(ValueFailure.negativeBudgetAmount(failedValue: input));
+  }
+  return right(input);
+}

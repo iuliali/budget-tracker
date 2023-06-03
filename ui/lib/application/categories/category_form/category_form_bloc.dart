@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../domain/categories/entities/budget.dart';
 import '../../../domain/categories/entities/category.dart';
 import '../../../domain/categories/failures.dart';
 import '../../../domain/categories/repository.dart';
@@ -20,6 +21,7 @@ class CategoryFormBloc extends Bloc<CategoryFormEvent, CategoryFormState> {
   CategoryFormBloc(this._categoryRepository) : super(CategoryFormState.initial()) {
     on<Initialized>(_onInitialized);
     on<NameChanged>(_onNameChanged);
+    on<AmountChanged>(_onAmountChanged);
     on<Saved>(_onSaved);
   }
 
@@ -29,6 +31,20 @@ class CategoryFormBloc extends Bloc<CategoryFormEvent, CategoryFormState> {
   ) async {
     emit(state.copyWith(
       category: event.initialCategoryOption,
+      name: event.initialCategoryOption.fold(
+        () => CategoryName(''),
+        (a) => a.name,
+      ),
+      amount: event.initialCategoryOption.fold(
+        () => none(),
+        (a) {
+          if (a.budget == null) {
+            return none();
+          } else {
+            return some(a.budget!.amount);
+          }
+        },
+      ),
       showErrorMessages: false,
       isEditing: event.initialCategoryOption.isSome(),
     ));
@@ -44,7 +60,17 @@ class CategoryFormBloc extends Bloc<CategoryFormEvent, CategoryFormState> {
     ));
   }
 
-void _onSaved(
+  void _onAmountChanged(
+    AmountChanged event,
+    Emitter<CategoryFormState> emit,
+  ) async {
+    emit(state.copyWith(
+      amount: some(BudgetAmount.fromString(event.amountStr)),
+      saveFailureOrSuccessOption: none(),
+    ));
+  }
+
+  void _onSaved(
     Saved event,
     Emitter<CategoryFormState> emit,
   ) async {
@@ -58,9 +84,16 @@ void _onSaved(
       final category = Category(
         name: state.name,
         id: state.category.fold(() => CategoryId(0), (a) => a.id),
+        budget: state.category.fold(() => null, (a) => a.budget),
       );
+
+      final budget = state.amount.fold(() => null, (a) => Budget(
+          amount: a,
+          categoryId: state.category.fold(() => CategoryId(0), (a) => a.id)
+      ));
+
       failureOrSuccess = state.isEditing
-          ? await _categoryRepository.update(category: category)
+          ? await _categoryRepository.update(category: category, budget: budget)
           : await _categoryRepository.create(categoryName: state.name);
     }
     emit(state.copyWith(

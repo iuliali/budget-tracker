@@ -5,6 +5,7 @@ abstract class CategoryFormState with _$CategoryFormState {
   const factory CategoryFormState({
     required Option<Category> category,
     required CategoryName name,
+    required Option<BudgetAmount> amount,
     required bool showErrorMessages,
     required bool isEditing,
     required bool isSaving,
@@ -14,6 +15,7 @@ abstract class CategoryFormState with _$CategoryFormState {
   factory CategoryFormState.initial() => CategoryFormState(
         category: none(),
         name: CategoryName(''),
+        amount: none(),
         showErrorMessages: false,
         isEditing: false,
         isSaving: false,

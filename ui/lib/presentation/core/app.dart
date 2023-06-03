@@ -3,6 +3,7 @@ import 'package:budget_tracker/presentation/core/routing/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../application/categories/categories_bloc.dart';
 import '../../injection.dart';
 import 'colors.dart';
 
@@ -17,9 +18,12 @@ class AppWidget extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (_) =>
-          getIt<AuthBloc>()
-            ..add(const AuthEvent.authCheckRequested()),
-        )
+              getIt<AuthBloc>()..add(const AuthEvent.authCheckRequested()),
+        ),
+        BlocProvider(
+          create: (_) =>
+              getIt<CategoriesBloc>()..add(const CategoriesEvent.fetch()),
+        ),
       ],
       child: MaterialApp.router(
         title: 'Expense Tracker',

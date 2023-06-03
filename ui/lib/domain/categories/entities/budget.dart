@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 
-import '../../categories/value_objects.dart';
 import '../value_objects.dart';
 
 class Budget extends Equatable {

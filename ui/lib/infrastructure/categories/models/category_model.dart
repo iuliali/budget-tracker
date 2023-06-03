@@ -1,3 +1,4 @@
+import '../../../domain/categories/entities/budget.dart';
 import '../../../domain/categories/entities/category.dart';
 import '../../../domain/categories/value_objects.dart';
 
@@ -24,10 +25,11 @@ class CategoryModel {
     };
   }
 
-  Category toDomain() {
+  Category toDomain({Budget? budget}) {
     return Category(
       id: CategoryId(id),
       name: CategoryName(name),
+      budget: budget,
     );
   }
 }

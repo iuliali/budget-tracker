@@ -1,8 +1,11 @@
 import 'package:budget_tracker/domain/transactions/entities/expense.dart';
 import 'package:budget_tracker/domain/transactions/value_objects.dart';
 
+import '../../../domain/categories/value_objects.dart';
+
 class ExpenseModel {
   final int id;
+  final int categoryId;
   final String recipient;
   final double amount;
   final String currency;
@@ -10,6 +13,7 @@ class ExpenseModel {
 
   ExpenseModel({
     required this.id,
+    required this.categoryId,
     required this.recipient,
     required this.amount,
     required this.currency,
@@ -19,6 +23,7 @@ class ExpenseModel {
   factory ExpenseModel.fromJson(Map<String, dynamic> json) {
     return ExpenseModel(
       id: json['id'],
+      categoryId: json['userCategoryId'],
       recipient: json['to'],
       amount: json['amount'],
       currency: json['currency'],
@@ -29,6 +34,7 @@ class ExpenseModel {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
+      "userCategoryId": categoryId,
       'to': recipient,
       'amount': amount,
       'currency': currency,
@@ -39,6 +45,7 @@ class ExpenseModel {
   Expense toDomain() {
     return Expense(
       id: ExpenseId(id),
+      categoryId: CategoryId(categoryId),
       recipient: TransactionRecipient(recipient),
       amount: TransactionAmount(amount),
       currency: TransactionCurrency(currency),
@@ -49,6 +56,7 @@ class ExpenseModel {
   factory ExpenseModel.fromDomain(Expense expense) {
     return ExpenseModel(
       id: expense.id.getOrElse(0),
+      categoryId: expense.categoryId.getOrCrash(),
       recipient: expense.recipient.getOrCrash(),
       amount: expense.amount.getOrCrash(),
       currency: expense.currency.getOrCrash(),

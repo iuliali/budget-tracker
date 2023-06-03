@@ -21,6 +21,7 @@ mixin _$CategoryFormEvent {
     required TResult Function(Option<Category> initialCategoryOption)
         initialized,
     required TResult Function(String nameStr) nameChanged,
+    required TResult Function(String amountStr) amountChanged,
     required TResult Function() saved,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,6 +29,7 @@ mixin _$CategoryFormEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Option<Category> initialCategoryOption)? initialized,
     TResult? Function(String nameStr)? nameChanged,
+    TResult? Function(String amountStr)? amountChanged,
     TResult? Function()? saved,
   }) =>
       throw _privateConstructorUsedError;
@@ -35,6 +37,7 @@ mixin _$CategoryFormEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Option<Category> initialCategoryOption)? initialized,
     TResult Function(String nameStr)? nameChanged,
+    TResult Function(String amountStr)? amountChanged,
     TResult Function()? saved,
     required TResult orElse(),
   }) =>
@@ -43,6 +46,7 @@ mixin _$CategoryFormEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(Initialized value) initialized,
     required TResult Function(NameChanged value) nameChanged,
+    required TResult Function(AmountChanged value) amountChanged,
     required TResult Function(Saved value) saved,
   }) =>
       throw _privateConstructorUsedError;
@@ -50,6 +54,7 @@ mixin _$CategoryFormEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Initialized value)? initialized,
     TResult? Function(NameChanged value)? nameChanged,
+    TResult? Function(AmountChanged value)? amountChanged,
     TResult? Function(Saved value)? saved,
   }) =>
       throw _privateConstructorUsedError;
@@ -57,6 +62,7 @@ mixin _$CategoryFormEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initialized value)? initialized,
     TResult Function(NameChanged value)? nameChanged,
+    TResult Function(AmountChanged value)? amountChanged,
     TResult Function(Saved value)? saved,
     required TResult orElse(),
   }) =>
@@ -149,6 +155,7 @@ class _$Initialized implements Initialized {
     required TResult Function(Option<Category> initialCategoryOption)
         initialized,
     required TResult Function(String nameStr) nameChanged,
+    required TResult Function(String amountStr) amountChanged,
     required TResult Function() saved,
   }) {
     return initialized(initialCategoryOption);
@@ -159,6 +166,7 @@ class _$Initialized implements Initialized {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Option<Category> initialCategoryOption)? initialized,
     TResult? Function(String nameStr)? nameChanged,
+    TResult? Function(String amountStr)? amountChanged,
     TResult? Function()? saved,
   }) {
     return initialized?.call(initialCategoryOption);
@@ -169,6 +177,7 @@ class _$Initialized implements Initialized {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Option<Category> initialCategoryOption)? initialized,
     TResult Function(String nameStr)? nameChanged,
+    TResult Function(String amountStr)? amountChanged,
     TResult Function()? saved,
     required TResult orElse(),
   }) {
@@ -183,6 +192,7 @@ class _$Initialized implements Initialized {
   TResult map<TResult extends Object?>({
     required TResult Function(Initialized value) initialized,
     required TResult Function(NameChanged value) nameChanged,
+    required TResult Function(AmountChanged value) amountChanged,
     required TResult Function(Saved value) saved,
   }) {
     return initialized(this);
@@ -193,6 +203,7 @@ class _$Initialized implements Initialized {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Initialized value)? initialized,
     TResult? Function(NameChanged value)? nameChanged,
+    TResult? Function(AmountChanged value)? amountChanged,
     TResult? Function(Saved value)? saved,
   }) {
     return initialized?.call(this);
@@ -203,6 +214,7 @@ class _$Initialized implements Initialized {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initialized value)? initialized,
     TResult Function(NameChanged value)? nameChanged,
+    TResult Function(AmountChanged value)? amountChanged,
     TResult Function(Saved value)? saved,
     required TResult orElse(),
   }) {
@@ -290,6 +302,7 @@ class _$NameChanged implements NameChanged {
     required TResult Function(Option<Category> initialCategoryOption)
         initialized,
     required TResult Function(String nameStr) nameChanged,
+    required TResult Function(String amountStr) amountChanged,
     required TResult Function() saved,
   }) {
     return nameChanged(nameStr);
@@ -300,6 +313,7 @@ class _$NameChanged implements NameChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Option<Category> initialCategoryOption)? initialized,
     TResult? Function(String nameStr)? nameChanged,
+    TResult? Function(String amountStr)? amountChanged,
     TResult? Function()? saved,
   }) {
     return nameChanged?.call(nameStr);
@@ -310,6 +324,7 @@ class _$NameChanged implements NameChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Option<Category> initialCategoryOption)? initialized,
     TResult Function(String nameStr)? nameChanged,
+    TResult Function(String amountStr)? amountChanged,
     TResult Function()? saved,
     required TResult orElse(),
   }) {
@@ -324,6 +339,7 @@ class _$NameChanged implements NameChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(Initialized value) initialized,
     required TResult Function(NameChanged value) nameChanged,
+    required TResult Function(AmountChanged value) amountChanged,
     required TResult Function(Saved value) saved,
   }) {
     return nameChanged(this);
@@ -334,6 +350,7 @@ class _$NameChanged implements NameChanged {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Initialized value)? initialized,
     TResult? Function(NameChanged value)? nameChanged,
+    TResult? Function(AmountChanged value)? amountChanged,
     TResult? Function(Saved value)? saved,
   }) {
     return nameChanged?.call(this);
@@ -344,6 +361,7 @@ class _$NameChanged implements NameChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initialized value)? initialized,
     TResult Function(NameChanged value)? nameChanged,
+    TResult Function(AmountChanged value)? amountChanged,
     TResult Function(Saved value)? saved,
     required TResult orElse(),
   }) {
@@ -360,6 +378,153 @@ abstract class NameChanged implements CategoryFormEvent {
   String get nameStr;
   @JsonKey(ignore: true)
   _$$NameChangedCopyWith<_$NameChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AmountChangedCopyWith<$Res> {
+  factory _$$AmountChangedCopyWith(
+          _$AmountChanged value, $Res Function(_$AmountChanged) then) =
+      __$$AmountChangedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String amountStr});
+}
+
+/// @nodoc
+class __$$AmountChangedCopyWithImpl<$Res>
+    extends _$CategoryFormEventCopyWithImpl<$Res, _$AmountChanged>
+    implements _$$AmountChangedCopyWith<$Res> {
+  __$$AmountChangedCopyWithImpl(
+      _$AmountChanged _value, $Res Function(_$AmountChanged) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? amountStr = null,
+  }) {
+    return _then(_$AmountChanged(
+      null == amountStr
+          ? _value.amountStr
+          : amountStr // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AmountChanged implements AmountChanged {
+  const _$AmountChanged(this.amountStr);
+
+  @override
+  final String amountStr;
+
+  @override
+  String toString() {
+    return 'CategoryFormEvent.amountChanged(amountStr: $amountStr)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AmountChanged &&
+            (identical(other.amountStr, amountStr) ||
+                other.amountStr == amountStr));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, amountStr);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AmountChangedCopyWith<_$AmountChanged> get copyWith =>
+      __$$AmountChangedCopyWithImpl<_$AmountChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Option<Category> initialCategoryOption)
+        initialized,
+    required TResult Function(String nameStr) nameChanged,
+    required TResult Function(String amountStr) amountChanged,
+    required TResult Function() saved,
+  }) {
+    return amountChanged(amountStr);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Option<Category> initialCategoryOption)? initialized,
+    TResult? Function(String nameStr)? nameChanged,
+    TResult? Function(String amountStr)? amountChanged,
+    TResult? Function()? saved,
+  }) {
+    return amountChanged?.call(amountStr);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Option<Category> initialCategoryOption)? initialized,
+    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String amountStr)? amountChanged,
+    TResult Function()? saved,
+    required TResult orElse(),
+  }) {
+    if (amountChanged != null) {
+      return amountChanged(amountStr);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initialized value) initialized,
+    required TResult Function(NameChanged value) nameChanged,
+    required TResult Function(AmountChanged value) amountChanged,
+    required TResult Function(Saved value) saved,
+  }) {
+    return amountChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Initialized value)? initialized,
+    TResult? Function(NameChanged value)? nameChanged,
+    TResult? Function(AmountChanged value)? amountChanged,
+    TResult? Function(Saved value)? saved,
+  }) {
+    return amountChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initialized value)? initialized,
+    TResult Function(NameChanged value)? nameChanged,
+    TResult Function(AmountChanged value)? amountChanged,
+    TResult Function(Saved value)? saved,
+    required TResult orElse(),
+  }) {
+    if (amountChanged != null) {
+      return amountChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AmountChanged implements CategoryFormEvent {
+  const factory AmountChanged(final String amountStr) = _$AmountChanged;
+
+  String get amountStr;
+  @JsonKey(ignore: true)
+  _$$AmountChangedCopyWith<_$AmountChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -402,6 +567,7 @@ class _$Saved implements Saved {
     required TResult Function(Option<Category> initialCategoryOption)
         initialized,
     required TResult Function(String nameStr) nameChanged,
+    required TResult Function(String amountStr) amountChanged,
     required TResult Function() saved,
   }) {
     return saved();
@@ -412,6 +578,7 @@ class _$Saved implements Saved {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Option<Category> initialCategoryOption)? initialized,
     TResult? Function(String nameStr)? nameChanged,
+    TResult? Function(String amountStr)? amountChanged,
     TResult? Function()? saved,
   }) {
     return saved?.call();
@@ -422,6 +589,7 @@ class _$Saved implements Saved {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Option<Category> initialCategoryOption)? initialized,
     TResult Function(String nameStr)? nameChanged,
+    TResult Function(String amountStr)? amountChanged,
     TResult Function()? saved,
     required TResult orElse(),
   }) {
@@ -436,6 +604,7 @@ class _$Saved implements Saved {
   TResult map<TResult extends Object?>({
     required TResult Function(Initialized value) initialized,
     required TResult Function(NameChanged value) nameChanged,
+    required TResult Function(AmountChanged value) amountChanged,
     required TResult Function(Saved value) saved,
   }) {
     return saved(this);
@@ -446,6 +615,7 @@ class _$Saved implements Saved {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Initialized value)? initialized,
     TResult? Function(NameChanged value)? nameChanged,
+    TResult? Function(AmountChanged value)? amountChanged,
     TResult? Function(Saved value)? saved,
   }) {
     return saved?.call(this);
@@ -456,6 +626,7 @@ class _$Saved implements Saved {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initialized value)? initialized,
     TResult Function(NameChanged value)? nameChanged,
+    TResult Function(AmountChanged value)? amountChanged,
     TResult Function(Saved value)? saved,
     required TResult orElse(),
   }) {
@@ -474,6 +645,7 @@ abstract class Saved implements CategoryFormEvent {
 mixin _$CategoryFormState {
   Option<Category> get category => throw _privateConstructorUsedError;
   CategoryName get name => throw _privateConstructorUsedError;
+  Option<BudgetAmount> get amount => throw _privateConstructorUsedError;
   bool get showErrorMessages => throw _privateConstructorUsedError;
   bool get isEditing => throw _privateConstructorUsedError;
   bool get isSaving => throw _privateConstructorUsedError;
@@ -494,6 +666,7 @@ abstract class $CategoryFormStateCopyWith<$Res> {
   $Res call(
       {Option<Category> category,
       CategoryName name,
+      Option<BudgetAmount> amount,
       bool showErrorMessages,
       bool isEditing,
       bool isSaving,
@@ -515,6 +688,7 @@ class _$CategoryFormStateCopyWithImpl<$Res, $Val extends CategoryFormState>
   $Res call({
     Object? category = null,
     Object? name = null,
+    Object? amount = null,
     Object? showErrorMessages = null,
     Object? isEditing = null,
     Object? isSaving = null,
@@ -529,6 +703,10 @@ class _$CategoryFormStateCopyWithImpl<$Res, $Val extends CategoryFormState>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as CategoryName,
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as Option<BudgetAmount>,
       showErrorMessages: null == showErrorMessages
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
@@ -560,6 +738,7 @@ abstract class _$$_CategoryFormStateCopyWith<$Res>
   $Res call(
       {Option<Category> category,
       CategoryName name,
+      Option<BudgetAmount> amount,
       bool showErrorMessages,
       bool isEditing,
       bool isSaving,
@@ -579,6 +758,7 @@ class __$$_CategoryFormStateCopyWithImpl<$Res>
   $Res call({
     Object? category = null,
     Object? name = null,
+    Object? amount = null,
     Object? showErrorMessages = null,
     Object? isEditing = null,
     Object? isSaving = null,
@@ -593,6 +773,10 @@ class __$$_CategoryFormStateCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as CategoryName,
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as Option<BudgetAmount>,
       showErrorMessages: null == showErrorMessages
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
@@ -619,6 +803,7 @@ class _$_CategoryFormState implements _CategoryFormState {
   const _$_CategoryFormState(
       {required this.category,
       required this.name,
+      required this.amount,
       required this.showErrorMessages,
       required this.isEditing,
       required this.isSaving,
@@ -628,6 +813,8 @@ class _$_CategoryFormState implements _CategoryFormState {
   final Option<Category> category;
   @override
   final CategoryName name;
+  @override
+  final Option<BudgetAmount> amount;
   @override
   final bool showErrorMessages;
   @override
@@ -639,7 +826,7 @@ class _$_CategoryFormState implements _CategoryFormState {
 
   @override
   String toString() {
-    return 'CategoryFormState(category: $category, name: $name, showErrorMessages: $showErrorMessages, isEditing: $isEditing, isSaving: $isSaving, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
+    return 'CategoryFormState(category: $category, name: $name, amount: $amount, showErrorMessages: $showErrorMessages, isEditing: $isEditing, isSaving: $isSaving, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
   }
 
   @override
@@ -650,6 +837,7 @@ class _$_CategoryFormState implements _CategoryFormState {
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.showErrorMessages, showErrorMessages) ||
                 other.showErrorMessages == showErrorMessages) &&
             (identical(other.isEditing, isEditing) ||
@@ -663,7 +851,7 @@ class _$_CategoryFormState implements _CategoryFormState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, category, name,
+  int get hashCode => Object.hash(runtimeType, category, name, amount,
       showErrorMessages, isEditing, isSaving, saveFailureOrSuccessOption);
 
   @JsonKey(ignore: true)
@@ -678,6 +866,7 @@ abstract class _CategoryFormState implements CategoryFormState {
   const factory _CategoryFormState(
       {required final Option<Category> category,
       required final CategoryName name,
+      required final Option<BudgetAmount> amount,
       required final bool showErrorMessages,
       required final bool isEditing,
       required final bool isSaving,
@@ -688,6 +877,8 @@ abstract class _CategoryFormState implements CategoryFormState {
   Option<Category> get category;
   @override
   CategoryName get name;
+  @override
+  Option<BudgetAmount> get amount;
   @override
   bool get showErrorMessages;
   @override

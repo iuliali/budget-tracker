@@ -37,6 +37,12 @@ public class UserCategoryService {
     protected boolean checkIfDeleted(UserCategory userCategory){
         return userCategory.getDeletedAt() != null;
     }
+    protected boolean checkIfActiveCategoryWithTheSameName(BigInteger id, String name, User user){
+        return userCategoryRepository.findActiveByName(name, user).filter(
+                userCategory -> !userCategory.getId().equals(id)
+        ).isPresent();
+    }
+
     protected boolean checkIfActiveCategoryWithTheSameName(String name, User user){
         return userCategoryRepository.findActiveByName(name, user).isPresent();
     }
@@ -104,7 +110,7 @@ public class UserCategoryService {
         if(checkIfDeleted(userCategory)){
             throw new CategoryIsDeletedException();
         }
-        if(checkIfActiveCategoryWithTheSameName(userCategoryDto.getName(), user)){
+        if(checkIfActiveCategoryWithTheSameName(id, userCategoryDto.getName(), user)){
             throw new UserCategoryNameAlreadyExistsException();
         }
         userCategory.setName(userCategoryDto.getName());

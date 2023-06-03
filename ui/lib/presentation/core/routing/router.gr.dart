@@ -143,12 +143,6 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const CategoriesPage(),
       );
     },
-    BudgetRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const BudgetPage(),
-      );
-    },
     AddBudgetRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -473,7 +467,7 @@ class EditCategoryRouteArgs {
 class CategoryRoute extends PageRouteInfo<CategoryRouteArgs> {
   CategoryRoute({
     Key? key,
-    required int categoryId,
+    required CategoryId categoryId,
     List<PageRouteInfo>? children,
   }) : super(
           CategoryRoute.name,
@@ -498,7 +492,7 @@ class CategoryRouteArgs {
 
   final Key? key;
 
-  final int categoryId;
+  final CategoryId categoryId;
 
   @override
   String toString() {
@@ -530,20 +524,6 @@ class CategoriesRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'CategoriesRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [BudgetPage]
-class BudgetRoute extends PageRouteInfo<void> {
-  const BudgetRoute({List<PageRouteInfo>? children})
-      : super(
-          BudgetRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'BudgetRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
