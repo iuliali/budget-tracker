@@ -1,7 +1,6 @@
-package com.budgettracker.api.budgeting.controllers;
-
+package com.budgettracker.api.budgeting.unit.controllers;
+import com.budgettracker.api.budgeting.controllers.ExpenseController;
 import com.budgettracker.api.budgeting.dtos.NewExpenseDto;
-import com.budgettracker.api.budgeting.dtos.NewIncomeDto;
 import com.budgettracker.api.budgeting.services.ExpenseService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,18 +29,19 @@ class ExpenseControllerTest {
         MockitoAnnotations.initMocks(this);
     }
 
+
     @Test
-    void testCreateExpense() {
+    void createExpense_ShouldReturnOkResponse() {
         NewExpenseDto newExpenseDto = new NewExpenseDto();
-        String expectedResponse = "Expense created";
-        when(expenseService.createExpense(newExpenseDto)).thenReturn((Map<String, String>) ResponseEntity.ok(Map.of("message", expectedResponse)));
+        when(expenseService.createExpense(newExpenseDto)).thenReturn(Map.of("message", "Expense created"));
 
         ResponseEntity<?> response = expenseController.createExpense(newExpenseDto);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(Map.of("message", expectedResponse), response.getBody());
+        assertEquals(Map.of("message", "Expense created"), response.getBody());
         verify(expenseService, times(1)).createExpense(newExpenseDto);
     }
+
     @Test
     void testGetAllExpenses() {
         when(expenseService.getExpenses()).thenReturn(Collections.emptyList());

@@ -1,5 +1,6 @@
-package com.budgettracker.api.budgeting.controllers;
+package com.budgettracker.api.budgeting.unit.controllers;
 
+import com.budgettracker.api.budgeting.controllers.IncomeController;
 import com.budgettracker.api.budgeting.dtos.NewIncomeDto;
 import com.budgettracker.api.budgeting.services.IncomeService;
 import org.junit.jupiter.api.BeforeEach;

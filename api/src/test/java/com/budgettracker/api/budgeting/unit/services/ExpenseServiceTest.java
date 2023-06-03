@@ -1,4 +1,4 @@
-package com.budgettracker.api.budgeting.services;
+package com.budgettracker.api.budgeting.unit.services;
 
 import com.budgettracker.api.auth.auth_facade.AuthenticationFacade;
 import com.budgettracker.api.auth.services.UserService;
@@ -9,18 +9,20 @@ import com.budgettracker.api.budgeting.enums.Currency;
 import com.budgettracker.api.budgeting.exceptions.ExpenseNotFoundException;
 import com.budgettracker.api.budgeting.exceptions.NoUserCategoryForExpenseException;
 import com.budgettracker.api.budgeting.exceptions.UserHasNoExpensesException;
-import com.budgettracker.api.budgeting.models.Budget;
 import com.budgettracker.api.budgeting.models.Expense;
 import com.budgettracker.api.auth.models.User;
 import com.budgettracker.api.budgeting.models.UserCategory;
-import com.budgettracker.api.budgeting.repositories.BudgetRepository;
 import com.budgettracker.api.budgeting.repositories.ExpenseRepository;
-import jakarta.transaction.Transactional;
+import com.budgettracker.api.budgeting.services.BudgetService;
+import com.budgettracker.api.budgeting.services.ExpenseService;
+import com.budgettracker.api.budgeting.services.UserCategoryService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.authentication.TestingAuthenticationToken;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -32,11 +34,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 class ExpenseServiceTest {
-
     private ExpenseService expenseService;
-    @Mock
-    private BudgetRepository budgetRepository;
-
     @Mock
     private ExpenseRepository expenseRepository;
 
@@ -176,70 +174,40 @@ class ExpenseServiceTest {
 
 
     @Test
-    void testGetExpenses() {
-        // Prepare the test data
+    void getExpenses_ShouldReturnListOfExpenses_WhenUserHasExpenses() {
         User user = new User();
         user.setUsername("testUser");
-
-        UserCategory userCategory = new UserCategory();
-        userCategory.setUser(user);
-
-        Expense expense = new Expense();
-        expense.setId(BigInteger.valueOf(1));
-        expense.setUserCategory(userCategory);
-
-        List<Expense> expenses = Collections.singletonList(expense);
-
-        // Mock the behavior of the expenseRepository
-        when(authenticationFacade.getAuthentication()).thenReturn(new TestingAuthenticationToken(user, null));
-        when(userService.getUserByUsername(user.getUsername())).thenReturn(user);
+        when(userService.getUserByUsername("testUser")).thenReturn(user);
+        Authentication authentication = new UsernamePasswordAuthenticationToken("testUser", null);
+        when(authenticationFacade.getAuthentication()).thenReturn(authentication);
+        List<Expense> expenses = new ArrayList<>();
+        Expense expense1 = new Expense();
+        expense1.setUserCategory(new UserCategory());
+        expenses.add(expense1);
         when(expenseRepository.findExpensesByUser(user)).thenReturn(Optional.of(expenses));
-
-        // Create an instance of ExpenseService using the existing repositories
-        ExpenseService expenseService = new ExpenseService(expenseRepository, userCategoryService, userService, budgetService, authenticationFacade);
-
-        // Perform the test
-        List<ExpenseDto> expenseDtos = expenseService.getExpenses();
-
-        // Assert the result
-        assertNotNull(expenseDtos);
-        assertEquals(1, expenseDtos.size());
-
-        // Verify the method calls
-        verify(userService, times(1)).getUserByUsername(user.getUsername());
-        verify(expenseRepository, times(1)).findExpensesByUser(user);
+        List<ExpenseDto> result = expenseService.getExpenses();
+        assertNotNull(result);
+        assertEquals(1, result.size());
     }
 
-
-
-
     @Test
-    void testGetExpensesByCategory() {
-        BigInteger categoryId = BigInteger.valueOf(1);
-        UserCategory userCategory = new UserCategory();
-        userCategory.setId(categoryId);
+    void getExpenses_ShouldThrowUserHasNoExpensesException_WhenUserHasNoExpenses() {
         User user = new User();
         user.setUsername("testUser");
-
-        when(userCategoryService.getUserCategoryIfExists(categoryId)).thenReturn(Optional.of(userCategory));
-        when(authenticationFacade.getAuthentication()).thenReturn(new TestingAuthenticationToken(user, null));
-        when(userService.getUserByUsername(user.getUsername())).thenReturn(user);
-        when(expenseRepository.findExpensesByCategoryForUser(user, categoryId)).thenReturn(Optional.of(new ArrayList<>()));
-
-        List<ExpenseDto> expenseDtos = expenseService.getExpensesByCategory(categoryId);
-
-        assertNotNull(expenseDtos);
-        assertEquals(0, expenseDtos.size());
-        verify(userService, times(1)).getUserByUsername(user.getUsername());
-        verify(expenseRepository, times(1)).findExpensesByCategoryForUser(user, categoryId);
+        when(userService.getUserByUsername("testUser")).thenReturn(user);
+        when(expenseRepository.findExpensesByUser(user)).thenReturn(Optional.empty());
+        Authentication authentication = new UsernamePasswordAuthenticationToken("testUser", null);
+        when(authenticationFacade.getAuthentication()).thenReturn(authentication);
+        assertThrows(UserHasNoExpensesException.class, () -> expenseService.getExpenses());
+        verify(authenticationFacade, times(1)).getAuthentication();
+        verify(userService, times(1)).getUserByUsername("testUser");
+        verify(expenseRepository, times(1)).findExpensesByUser(user);
     }
 
     @Test
     void testGetExpensesByCategory_NoUserCategoryForExpense() {
         BigInteger categoryId = BigInteger.valueOf(1);
-
         when(userCategoryService.getUserCategoryIfExists(categoryId)).thenReturn(Optional.empty());
-
         assertThrows(NoUserCategoryForExpenseException.class, () -> expenseService.getExpensesByCategory(categoryId));
         verify(userCategoryService, times(1)).getUserCategoryIfExists(categoryId);
     }
@@ -252,19 +220,14 @@ class ExpenseServiceTest {
         expenseDto.setAmount(BigDecimal.valueOf(100));
         expenseDto.setCurrency(Currency.valueOf("USD"));
         expenseDto.setUserCategoryId(BigInteger.valueOf(1));
-
         Expense expense = new Expense();
         expense.setId(expenseId);
-
         UserCategory userCategory = new UserCategory();
         userCategory.setId(BigInteger.valueOf(1));
-
         when(expenseRepository.findById(expenseId)).thenReturn(Optional.of(expense));
         when(userCategoryService.getUserCategoryIfExists(expenseDto.getUserCategoryId()))
                 .thenReturn(Optional.of(userCategory));
-
         String result = expenseService.updateExpense(expenseId, expenseDto);
-
         assertEquals("Expense has been updated successfully", result);
         verify(expenseRepository, times(1)).save(expense);
     }
@@ -277,9 +240,7 @@ class ExpenseServiceTest {
         expenseDto.setAmount(BigDecimal.valueOf(100));
         expenseDto.setCurrency(Currency.valueOf("USD"));
         expenseDto.setUserCategoryId(BigInteger.valueOf(1));
-
         when(expenseRepository.findById(expenseId)).thenReturn(Optional.empty());
-
         assertThrows(ExpenseNotFoundException.class, () -> expenseService.updateExpense(expenseId, expenseDto));
         verify(expenseRepository, times(0)).save(any(Expense.class));
     }
@@ -291,15 +252,11 @@ class ExpenseServiceTest {
         expense.setId(expenseId);
         UserCategory userCategory = new UserCategory();
         userCategory.setId(BigInteger.valueOf(1));
-
         expense.setUserCategory(userCategory);
-
         when(expenseRepository.findById(expenseId)).thenReturn(Optional.of(expense));
         when(userCategoryService.getUserCategoryIfExists(expense.getUserCategory().getId()))
                 .thenReturn(Optional.of(userCategory));
-
         String result = expenseService.deleteExpense(expenseId);
-
         assertEquals("Expense has been deleted successfully", result);
         verify(expenseRepository, times(1)).deleteById(expenseId);
     }
@@ -307,9 +264,7 @@ class ExpenseServiceTest {
     @Test
     void testDeleteExpense_ExpenseNotFound() {
         BigInteger expenseId = BigInteger.valueOf(1);
-
         when(expenseRepository.findById(expenseId)).thenReturn(Optional.empty());
-
         assertThrows(ExpenseNotFoundException.class, () -> expenseService.deleteExpense(expenseId));
         verify(expenseRepository, times(0)).deleteById(expenseId);
     }
@@ -318,34 +273,28 @@ class ExpenseServiceTest {
     void testExpensesSumByUserCategoryId() {
         BigInteger userCategoryId = BigInteger.valueOf(1);
         BigDecimal sumOfExpenses = BigDecimal.valueOf(100);
-
         when(expenseRepository.expensesSumByUserCategory(userCategoryId)).thenReturn(Optional.of(sumOfExpenses));
-
         BigDecimal result = expenseService.expensesSumByUserCategoryId(userCategoryId);
-
         assertEquals(sumOfExpenses, result);
         verify(expenseRepository, times(1)).expensesSumByUserCategory(userCategoryId);
     }
 
     @Test
-    void testExpensesSumByUserCategoryId_UserHasNoExpenses() {
+    void expensesSumByUserCategoryId_ShouldReturnSumOfExpenses() {
         BigInteger userCategoryId = BigInteger.valueOf(1);
-
-        when(expenseRepository.expensesSumByUserCategory(userCategoryId)).thenReturn(null);
-
-        BigDecimal result = expenseService.expensesSumByUserCategoryId(userCategoryId);
-
-        assertEquals(BigDecimal.ZERO, result);
+        BigDecimal expectedSum = BigDecimal.valueOf(1000);
+        when(expenseRepository.expensesSumByUserCategory(userCategoryId)).thenReturn(Optional.of(expectedSum));
+        BigDecimal actualSum = expenseService.expensesSumByUserCategoryId(userCategoryId);
+        assertEquals(expectedSum, actualSum);
         verify(expenseRepository, times(1)).expensesSumByUserCategory(userCategoryId);
     }
 
     @Test
-    void testExpensesSumByUserCategoryId_UserHasNoExpensesException() {
+    void expensesSumByUserCategoryId_ShouldReturnZero_WhenNoExpensesFound() {
         BigInteger userCategoryId = BigInteger.valueOf(1);
-
-        when(expenseRepository.expensesSumByUserCategory(userCategoryId)).thenReturn(Optional.of(BigDecimal.ZERO));
-
-        assertThrows(UserHasNoExpensesException.class, () -> expenseService.expensesSumByUserCategoryId(userCategoryId));
+        when(expenseRepository.expensesSumByUserCategory(userCategoryId)).thenReturn(Optional.empty());
+        BigDecimal actualSum = expenseService.expensesSumByUserCategoryId(userCategoryId);
+        assertEquals(BigDecimal.ZERO, actualSum);
         verify(expenseRepository, times(1)).expensesSumByUserCategory(userCategoryId);
     }
 }

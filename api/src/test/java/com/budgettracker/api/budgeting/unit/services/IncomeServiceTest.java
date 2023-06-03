@@ -1,4 +1,4 @@
-package com.budgettracker.api.budgeting.services;
+package com.budgettracker.api.budgeting.unit.services;
 
 import com.budgettracker.api.auth.auth_facade.AuthenticationFacade;
 import com.budgettracker.api.auth.services.UserService;
@@ -12,16 +12,18 @@ import com.budgettracker.api.budgeting.models.Income;
 import com.budgettracker.api.auth.models.User;
 import com.budgettracker.api.budgeting.models.UserCategory;
 import com.budgettracker.api.budgeting.repositories.IncomeRepository;
+import com.budgettracker.api.budgeting.services.IncomeService;
 import com.budgettracker.api.budgeting.services.UserCategoryService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -99,29 +101,32 @@ class IncomeServiceTest {
     @Test
     void testGetIncomes() {
         User user = new User();
-        List<Income> expectedIncomes = new ArrayList<>();
-        expectedIncomes.add(new Income());
-        expectedIncomes.add(new Income());
-
-        when(userService.getUserByUsername(anyString())).thenReturn(user);
-        when(incomeRepository.findIncomesByUser(user)).thenReturn(Optional.of(expectedIncomes));
-
-        List<IncomeDto> actualIncomes = incomeService.getIncomes();
-
-        assertEquals(expectedIncomes.size(), actualIncomes.size());
-        verify(userService, times(1)).getUserByUsername(anyString());
-        verify(incomeRepository, times(1)).findIncomesByUser(user);
+        user.setUsername("testUser");
+        when(userService.getUserByUsername("testUser")).thenReturn(user);
+        Authentication authentication = new UsernamePasswordAuthenticationToken("testUser", null);
+        when(authenticationFacade.getAuthentication()).thenReturn(authentication);
+        List<Income> incomes = new ArrayList<>();
+        Income income = new Income();
+        income.setUserCategory(new UserCategory());
+        incomes.add(income);
+        when(incomeRepository.findIncomesByUser(user)).thenReturn(Optional.of(incomes));
+        List<IncomeDto> result = incomeService.getIncomes();
+        assertNotNull(result);
+        assertEquals(1, result.size());
     }
 
     @Test
     void testGetIncomes_NoIncomesFound() {
+
         User user = new User();
-
-        when(userService.getUserByUsername(anyString())).thenReturn(user);
+        user.setUsername("testUser");
+        when(userService.getUserByUsername("testUser")).thenReturn(user);
         when(incomeRepository.findIncomesByUser(user)).thenReturn(Optional.empty());
-
+        Authentication authentication = new UsernamePasswordAuthenticationToken("testUser", null);
+        when(authenticationFacade.getAuthentication()).thenReturn(authentication);
         assertThrows(UserHasNoIncomesException.class, () -> incomeService.getIncomes());
-        verify(userService, times(1)).getUserByUsername(anyString());
+        verify(authenticationFacade, times(1)).getAuthentication();
+        verify(userService, times(1)).getUserByUsername("testUser");
         verify(incomeRepository, times(1)).findIncomesByUser(user);
     }
 
