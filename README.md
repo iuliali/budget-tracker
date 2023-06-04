@@ -13,7 +13,7 @@ The app has been developed with the Flutter framework (Dart) for frontend and th
 
 ## 1. User stories and backlog
 We have used Jira to monitor the progress of the project and to keep track of the user stories and backlog. The issues are marked as in progress because Jira archives them if we mark them as completed.
-![Unfortunately the image did not load :(](images/Jira.png "Jira")
+![Unfortunately the image did not load :(](images/Jira.PNG "Jira")
 ## 2. Diagrams
 ### WORKFLOW DIAGRAM
 ![Unfortunately the image did not load :(](images/FlowChart.drawio.png "WORKFLOW diagram")
