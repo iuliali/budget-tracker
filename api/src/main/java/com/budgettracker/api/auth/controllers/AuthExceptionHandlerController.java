@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.util.Map;
 
 @ControllerAdvice
-@Order(Ordered.HIGHEST_PRECEDENCE)
+@Order(value = Ordered.HIGHEST_PRECEDENCE)
 public class AuthExceptionHandlerController extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = {UsernameAlreadyExistsException.class})

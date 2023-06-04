@@ -1,4 +1,4 @@
-package com.budgettracker.api.budgeting.tests.unitests.services;
+package com.budgettracker.api.budgeting.unit.services;
 
 import com.budgettracker.api.auth.auth_facade.AuthenticationFacade;
 import com.budgettracker.api.auth.models.User;

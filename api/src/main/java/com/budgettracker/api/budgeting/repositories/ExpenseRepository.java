@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,4 +25,7 @@ public interface ExpenseRepository extends JpaRepository<Expense, BigInteger> {
 
     @Query("SELECT SUM(expe.amount) FROM expense expe WHERE expe.userCategory.id = :userCategoryId")
     Optional<BigDecimal> expensesSumByUserCategory(BigInteger userCategoryId);
+
+    @Query("SELECT SUM(expe.amount) FROM expense expe WHERE expe.userCategory.id = :userCategoryId AND expe.registeredAt >= :startDate AND expe.registeredAt <= :endDate")
+    Optional<BigDecimal> expensesSumByUserCategoryBetweenDates(BigInteger userCategoryId, LocalDateTime startDate, LocalDateTime endDate);
 }

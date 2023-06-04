@@ -23,6 +23,7 @@ public class IncomeDto {
     private BigDecimal amount;
     private Currency currency;
     private LocalDateTime registeredAt;
+    private BigInteger userCategoryId;
 
     public IncomeDto(Income income) {
         this.id = income.getId();
@@ -31,5 +32,6 @@ public class IncomeDto {
         this.amount = income.getAmount();
         this.currency = income.getCurrency();
         this.registeredAt = income.getRegisteredAt();
+        this.userCategoryId = income.getUserCategory().getId();
     }
 }
