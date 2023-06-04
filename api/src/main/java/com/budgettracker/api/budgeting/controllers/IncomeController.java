@@ -23,7 +23,7 @@ public class IncomeController {
 
     @PostMapping("/create")
     @Operation(summary = "Add a new income for the logged in user")
-    public ResponseEntity<?> createCategory(@Valid @RequestBody NewIncomeDto newIncomeDto) {
+    public ResponseEntity<?> createIncome(@Valid @RequestBody NewIncomeDto newIncomeDto) {
         return ResponseEntity.ok(Map.of("message", incomeService.createIncome(newIncomeDto)));
     }
 

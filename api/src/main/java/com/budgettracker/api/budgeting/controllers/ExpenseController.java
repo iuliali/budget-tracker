@@ -23,7 +23,7 @@ public class ExpenseController {
 
     @PostMapping("/create")
     @Operation(summary = "Add a new expense for the logged in user")
-    public ResponseEntity<?> createCategory(@Valid @RequestBody NewExpenseDto newExpenseDto) {
+    public ResponseEntity<?> createExpense(@Valid @RequestBody NewExpenseDto newExpenseDto) {
         return ResponseEntity.ok(expenseService.createExpense(newExpenseDto));
     }
 

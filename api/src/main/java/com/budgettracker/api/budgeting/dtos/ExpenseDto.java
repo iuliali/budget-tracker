@@ -21,6 +21,7 @@ public class ExpenseDto {
     private BigDecimal amount;
     private Currency currency;
     private LocalDateTime registeredAt;
+    private BigInteger userCategoryId;
 
     public ExpenseDto(Expense expense) {
         this.id = expense.getId();
@@ -28,5 +29,6 @@ public class ExpenseDto {
         this.amount = expense.getAmount();
         this.currency = expense.getCurrency();
         this.registeredAt = expense.getRegisteredAt();
+        this.userCategoryId = expense.getUserCategory().getId();
     }
 }
