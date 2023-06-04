@@ -112,7 +112,7 @@ class ExpensesPage extends StatelessWidget {
                         child: ListTile(
                           onTap: () {
                             context.router.navigate(
-                              ExpenseRoute(expense: item),
+                              ExpenseRoute(expenseId: item.id),
                             );
                           },
                           title: Column(

@@ -20,6 +20,16 @@ class ExpensesBloc extends Bloc<ExpensesEvent, ExpensesState> {
     on<_GetExpenses>(_onGetExpenses);
   }
 
+  Option<Expense> getExpense(ExpenseId expenseId) {
+    return state.failureOrExpenses.fold(
+      () => none(),
+      (a) => a.fold(
+        (l) => none(),
+        (r) => optionOf(r.firstWhere((e) => e.id == expenseId)),
+      ),
+    );
+  }
+
   Future<void> _onGetExpenses(_GetExpenses event, Emitter<ExpensesState> emit) async {
     emit(ExpensesState.loading());
     final failureOrExpenses = await _expenseRepository.getAll();

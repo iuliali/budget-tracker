@@ -23,4 +23,9 @@ public class UserController {
         return ResponseEntity.ok(userService.getAuthenticatedUserDetails());
     }
 
+    @Operation(summary = "Get all users")
+    @GetMapping(value = "/all")
+    public ResponseEntity<?> getAllUsers() {
+        return ResponseEntity.ok(userService.getAllUsersDto());
+    }
 }

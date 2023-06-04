@@ -134,6 +134,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public List<UserDto> getAllUsersDto(){
+        return userRepository.findAll().stream().map(UserDto::new).toList();
+    }
+
     private String buildEmail(String name, String link) {
         return "<div style=\"font-family:Helvetica,Arial,sans-serif;font-size:16px;margin:0;color:#0b0c0c\">\n" +
                 "\n" +

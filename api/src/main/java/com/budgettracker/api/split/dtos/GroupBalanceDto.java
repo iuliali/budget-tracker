@@ -6,12 +6,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class GroupBalanceDto {
-    private String groupName;
+    private BigInteger id;
+    private String name;
     private BigDecimal balance;
 }

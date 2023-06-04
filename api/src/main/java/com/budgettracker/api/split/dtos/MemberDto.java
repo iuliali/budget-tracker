@@ -18,7 +18,7 @@ import java.math.BigInteger;
 @NoArgsConstructor
 public class MemberDto {
 
-    private BigInteger memberId;
+    private BigInteger id;
     private BigInteger userId;
     private String userName;
 

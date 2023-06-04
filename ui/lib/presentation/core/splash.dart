@@ -14,7 +14,7 @@ class SplashPage extends StatelessWidget {
         listener: (context, state) {
           state.user.fold(
             () => context.router.replace(const LoginRoute()),
-            (_) => context.router.replace(const ExpensesRoute()),
+            (_) => context.router.replace(const CategoriesRoute()),
           );
         },
         child: const Scaffold(

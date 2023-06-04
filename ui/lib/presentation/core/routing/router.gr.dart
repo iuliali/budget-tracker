@@ -79,7 +79,7 @@ abstract class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: ExpensePage(
           key: args.key,
-          expense: args.expense,
+          expenseId: args.expenseId,
         ),
       );
     },
@@ -312,13 +312,13 @@ class AddIncomeRoute extends PageRouteInfo<void> {
 class ExpenseRoute extends PageRouteInfo<ExpenseRouteArgs> {
   ExpenseRoute({
     Key? key,
-    required Expense expense,
+    required ExpenseId expenseId,
     List<PageRouteInfo>? children,
   }) : super(
           ExpenseRoute.name,
           args: ExpenseRouteArgs(
             key: key,
-            expense: expense,
+            expenseId: expenseId,
           ),
           initialChildren: children,
         );
@@ -332,16 +332,16 @@ class ExpenseRoute extends PageRouteInfo<ExpenseRouteArgs> {
 class ExpenseRouteArgs {
   const ExpenseRouteArgs({
     this.key,
-    required this.expense,
+    required this.expenseId,
   });
 
   final Key? key;
 
-  final Expense expense;
+  final ExpenseId expenseId;
 
   @override
   String toString() {
-    return 'ExpenseRouteArgs{key: $key, expense: $expense}';
+    return 'ExpenseRouteArgs{key: $key, expenseId: $expenseId}';
   }
 }
 

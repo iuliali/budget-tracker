@@ -14,6 +14,7 @@ class IncomeForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
     return BlocConsumer<IncomeFormBloc, IncomeFormState>(
       listener: (context, state) {
         state.saveFailureOrSuccessOption.fold(
@@ -32,7 +33,7 @@ class IncomeForm extends StatelessWidget {
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
             },
             (_) {
-              context.router.popAndPush(const CategoriesRoute());
+              context.router.popAndPush(const IncomesRoute());
             },
           ),
         );
@@ -108,8 +109,10 @@ class IncomeForm extends StatelessWidget {
                           validator: (_) {
                             return state.currency.value.fold(
                                 (f) => f.maybeMap(
+                                      empty: (_) =>
+                                          'Income currency cannot be empty',
                                       invalidTransactionCurrency: (_) =>
-                                          'Invalid currency',
+                                          'Income currency is invalid',
                                       orElse: () => null,
                                     ),
                                 (_) => null);
@@ -136,6 +139,20 @@ class IncomeForm extends StatelessWidget {
                 const SizedBox(height: 20),
                 BlocBuilder<CategoriesBloc, CategoriesState>(
                   builder: (contextCategories, stateCategories) {
+                    final currentCategoryId = state.categoryId.fold(
+                      () => stateCategories.failureOrCategories.fold(
+                        () => null,
+                        (a) => a.fold(
+                            (l) => null, (categories) => categories.first.id),
+                      ),
+                      (a) => a,
+                    );
+                    if (currentCategoryId != null) {
+                      context.read<IncomeFormBloc>().add(
+                          IncomeFormEvent.categoryIdChanged(
+                              currentCategoryId));
+                    }
+
                     return DropdownButtonFormField(
                       decoration: const InputDecoration(
                         labelText: 'Category',
@@ -143,15 +160,13 @@ class IncomeForm extends StatelessWidget {
                       value: state.categoryId.fold(
                           () => stateCategories.failureOrCategories.fold(
                                 () => null,
-                                (a) => a.fold(
-                                    (l) => null,
-                                    (categories) =>
-                                        categories.first.id),
+                                (a) => a.fold((l) => null,
+                                    (categories) => categories.first.id),
                               ),
                           (a) => a),
-                      onChanged: (value) => context
-                          .read<IncomeFormBloc>()
-                          .add(IncomeFormEvent.categoryIdChanged(value as CategoryId)),
+                      onChanged: (value) => context.read<IncomeFormBloc>().add(
+                          IncomeFormEvent.categoryIdChanged(
+                              value as CategoryId)),
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       items: stateCategories.failureOrCategories.fold(
                         () => null,

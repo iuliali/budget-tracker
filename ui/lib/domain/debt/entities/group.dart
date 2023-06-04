@@ -1,14 +1,16 @@
 import '../value_objects.dart';
-import 'member.dart';
+import 'debt.dart';
 
 class Group {
   final GroupId id;
   final GroupName name;
-  final List<Member> members;
+  final DebtAmount balance;
+  final List<Debt> debts;
 
   Group({
     required this.id,
     required this.name,
-    required this.members,
+    required this.balance,
+    required this.debts,
   });
 }

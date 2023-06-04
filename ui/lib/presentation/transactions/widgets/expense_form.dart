@@ -17,22 +17,22 @@ class ExpenseForm extends StatelessWidget {
     return BlocConsumer<ExpenseFormBloc, ExpenseFormState>(
       listener: (context, state) {
         state.saveFailureOrSuccessOption.fold(
-              () {},
-              (either) => either.fold(
-                (failure) {
+          () {},
+          (either) => either.fold(
+            (failure) {
               final snackBar = SnackBar(
                 content: Text(
                   failure.maybeMap(
                     unexpected: (_) =>
-                    'Unexpected error occurred, please contact support.',
+                        'Unexpected error occurred, please contact support.',
                     orElse: () => "Couldn't save the expense.",
                   ),
                 ),
               );
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
             },
-                (_) {
-              context.router.popAndPush(const CategoriesRoute());
+            (_) {
+              context.router.popAndPush(const ExpensesRoute());
             },
           ),
         );
@@ -52,14 +52,15 @@ class ExpenseForm extends StatelessWidget {
                       .read<ExpenseFormBloc>()
                       .add(ExpenseFormEvent.recipientChanged(value)),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: (_)  {
+                  validator: (_) {
                     return state.recipient.value.fold(
-                            (f) => f.maybeMap(
-                          empty: (_) => 'Expense recipient cannot be empty',
-                          shortString: (_) =>
-                          'Expense recipient is too short',
-                          orElse: () => null,
-                        ), (_) => null);
+                      (f) => f.maybeMap(
+                        empty: (_) => 'Expense recipient cannot be empty',
+                        shortString: (_) => 'Expense recipient is too short',
+                        orElse: () => null,
+                      ),
+                      (_) => null,
+                    );
                   },
                 ),
                 const SizedBox(height: 20),
@@ -72,8 +73,8 @@ class ExpenseForm extends StatelessWidget {
                           decoration: const InputDecoration(
                             labelText: 'Amount',
                           ),
-                          keyboardType:
-                            const TextInputType.numberWithOptions(decimal: true, signed: false),
+                          keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true, signed: false),
                           autocorrect: false,
                           onChanged: (value) => context
                               .read<ExpenseFormBloc>()
@@ -81,12 +82,14 @@ class ExpenseForm extends StatelessWidget {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (_) {
                             return state.amount.value.fold(
-                                    (f) => f.maybeMap(
-                                  empty: (_) => 'Expense amount cannot be empty',
-                                  negativeTransactionAmount: (_) =>
-                                  'Expense amount cannot be negative',
-                                  orElse: () => null,
-                                ), (_) => null);
+                                (f) => f.maybeMap(
+                                      empty: (_) =>
+                                          'Expense amount cannot be empty',
+                                      negativeTransactionAmount: (_) =>
+                                          'Expense amount cannot be negative',
+                                      orElse: () => null,
+                                    ),
+                                (_) => null);
                           },
                         ),
                       ),
@@ -100,14 +103,17 @@ class ExpenseForm extends StatelessWidget {
                           value: state.currency.value.getOrElse(() => 'RON'),
                           onChanged: (value) => context
                               .read<ExpenseFormBloc>()
-                              .add(ExpenseFormEvent.currencyChanged(value ?? 'RON')),
+                              .add(ExpenseFormEvent.currencyChanged(
+                                  value ?? 'RON')),
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (_) {
                             return state.currency.value.fold(
-                                    (f) => f.maybeMap(
-                                  invalidTransactionCurrency: (_) => 'Invalid currency',
-                                  orElse: () => null,
-                                ), (_) => null);
+                                (f) => f.maybeMap(
+                                      invalidTransactionCurrency: (_) =>
+                                          'Invalid currency',
+                                      orElse: () => null,
+                                    ),
+                                (_) => null);
                           },
                           items: const [
                             DropdownMenuItem(
@@ -136,29 +142,27 @@ class ExpenseForm extends StatelessWidget {
                         labelText: 'Category',
                       ),
                       value: state.categoryId.fold(
-                              () => stateCategories.failureOrCategories.fold(
+                          () => stateCategories.failureOrCategories.fold(
                                 () => null,
-                                (a) => a.fold(
-                                    (l) => null,
-                                    (categories) =>
-                                categories.first.id),
-                          ),
-                              (a) => a),
-                      onChanged: (value) => context
-                          .read<ExpenseFormBloc>()
-                          .add(ExpenseFormEvent.categoryIdChanged(value as CategoryId)),
+                                (a) => a.fold((l) => null,
+                                    (categories) => categories.first.id),
+                              ),
+                          (a) => a),
+                      onChanged: (value) => context.read<ExpenseFormBloc>().add(
+                          ExpenseFormEvent.categoryIdChanged(
+                              value as CategoryId)),
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       items: stateCategories.failureOrCategories.fold(
-                            () => null,
-                            (a) => a.fold(
-                              (l) => null,
-                              (categories) => categories
+                        () => null,
+                        (a) => a.fold(
+                          (l) => null,
+                          (categories) => categories
                               .map(
                                 (category) => DropdownMenuItem(
-                              value: category.id,
-                              child: Text(category.name.getOrCrash()),
-                            ),
-                          )
+                                  value: category.id,
+                                  child: Text(category.name.getOrCrash()),
+                                ),
+                              )
                               .toList(),
                         ),
                       ),

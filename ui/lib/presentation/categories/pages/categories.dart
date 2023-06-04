@@ -16,6 +16,7 @@ class CategoriesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<CategoriesBloc>(context).add(const CategoriesEvent.fetch());
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: generateAppBarWidget(context),

@@ -27,6 +27,17 @@ class GroupName extends ValueObject<String> {
   const GroupName._(this.value);
 }
 
+class DebtAmount extends ValueObject<double> {
+  @override
+  final Either<ValueFailure<double>, double> value;
+
+  factory DebtAmount(double input) {
+    return DebtAmount._(right(input));
+  }
+
+  const DebtAmount._(this.value);
+}
+
 class MemberId extends ValueObject<int> {
   @override
   final Either<ValueFailure<int>, int> value;
@@ -36,6 +47,17 @@ class MemberId extends ValueObject<int> {
   }
 
   const MemberId._(this.value);
+}
+
+class UserId extends ValueObject<int> {
+  @override
+  final Either<ValueFailure<int>, int> value;
+
+  factory UserId(int input) {
+    return UserId._(right(input));
+  }
+
+  const UserId._(this.value);
 }
 
 class MemberName extends ValueObject<String> {

@@ -17,29 +17,31 @@ class RegisterForm extends StatelessWidget {
       listener: (context, state) {
         state.authFailureOrSuccessOption.fold(
           () => null,
-          (either) => either.fold((failure) {
-            final bool criticalFailure = failure.maybeMap(
-              serverError: (_) => true,
-              orElse: () => false,
-            );
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                backgroundColor: criticalFailure
-                    ? Theme.of(context).colorScheme.error
-                    : Theme.of(context).colorScheme.error.withOpacity(0.7),
-                content: Text(
-                    failure.maybeMap(
-                      usernameAlreadyInUse: (_) => 'Username already in use',
-                      emailAlreadyInUse: (_) => 'Email already in use',
-                      serverError: (_) => 'Server error',
-                      orElse: () => 'Something went wrong',
-                    ),
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.onError)),
-              ),
-            );
-          },
-              (_) => context.navigateTo(const VerifyEmailRoute())),
+          (either) => either.fold(
+            (failure) {
+              final bool criticalFailure = failure.maybeMap(
+                serverError: (_) => true,
+                orElse: () => false,
+              );
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: criticalFailure
+                      ? Theme.of(context).colorScheme.error
+                      : Theme.of(context).colorScheme.error.withOpacity(0.7),
+                  content: Text(
+                      failure.maybeMap(
+                        usernameAlreadyInUse: (_) => 'Username already in use',
+                        emailAlreadyInUse: (_) => 'Email already in use',
+                        serverError: (_) => 'Server error',
+                        orElse: () => 'Something went wrong',
+                      ),
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.onError)),
+                ),
+              );
+            },
+            (_) => context.router.navigate(const VerifyEmailRoute()),
+          ),
         );
       },
       builder: (context, state) {
@@ -204,7 +206,6 @@ class RegisterForm extends StatelessWidget {
                     context
                         .read<RegisterFormBloc>()
                         .add(const RegisterFormEvent.registerPressed());
-                    context.navigateTo(const VerifyEmailRoute());
                   }
                 },
               )

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
+import '../../../application/auth/auth_bloc.dart';
 import '../../../application/auth/login_form/login_form_bloc.dart';
 import '../../core/routing/router.dart';
 import '../../core/colors.dart';
@@ -39,7 +40,10 @@ class LoginForm extends StatelessWidget {
                 ),
               );
             },
-            (_) => context.navigateTo(const ExpensesRoute()),
+            (_) {
+              BlocProvider.of<AuthBloc>(context).add(const AuthEvent.authCheckRequested());
+              return context.router.replace(const CategoriesRoute());
+            },
           ),
         );
       },

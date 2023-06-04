@@ -92,15 +92,15 @@ class VerifyEmailPage extends StatelessWidget {
                           ),
                           const Spacer(),
                           TryAgainButton(
-                            onPressed: () => context
-                                .read<RegisterFormBloc>()
-                                .add(const RegisterFormEvent.registerAgain()),
+                            onPressed: () {
+                              context.navigateTo(const RegisterRoute());
+                            },
                           ),
                           WholeLengthButton(
                             text: 'Login',
                             filled: false,
                             onPressed: () => context
-                                .navigateTo(const LoginRoute()),
+                                .router.replace(const LoginRoute()),
                           ),
                         ],
                       );

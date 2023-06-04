@@ -115,7 +115,7 @@ public class SplitService {
             List<SplitResult> splitResults = runSplitExpenseAlgorithm(group.getId());
             BigDecimal totalPlus = getTotalPlus(splitResults, member.getId());
             BigDecimal totalMinus = getTotalMinus(splitResults, member.getId());
-            groupBalanceList.add(new GroupBalanceDto(group.getGroupName(),
+            groupBalanceList.add(new GroupBalanceDto(group.getId(), group.getGroupName(),
                                                         totalPlus.subtract(totalMinus)));
         }
         return groupBalanceList;

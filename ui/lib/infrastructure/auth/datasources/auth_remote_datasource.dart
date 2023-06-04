@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:budget_tracker/application/auth/auth_bloc.dart';
 import 'package:budget_tracker/injection.dart';
 import 'package:dio/dio.dart';
@@ -75,7 +74,8 @@ class AuthApiDataSourceImpl implements AuthRemoteDataSource {
     required String firstName,
     required String lastName,
   }) async {
-    final response = await client.post(
+    try {
+      final response = await client.post(
       "/auth/register",
       data: {
         'username': username,
@@ -83,20 +83,22 @@ class AuthApiDataSourceImpl implements AuthRemoteDataSource {
         'email': email,
         'firstName': firstName,
         'lastName': lastName,
-      },
+      }
     );
-    if (response.statusCode == 200) {
-      return true;
-    } else if (response.statusCode == 409) {
-      final body = jsonDecode(response.data);
-      if (body['message'] == EMAIL_ALREADY_USED_MESSAGE) {
-        throw EmailAlreadyUsedException();
-      } else if (body['message'] == USERNAME_ALREADY_USED_MESSAGE) {
-        throw UsernameAlreadyUsedException();
-      } else {
+    return true;
+    } on DioError catch (error) {
+      final body = error.response?.data;
+      if (body == null) {
         throw AuthServerException();
       }
-    } else {
+      if (body['message'] == EMAIL_ALREADY_USED_MESSAGE) {
+        throw EmailAlreadyUsedException();
+      }
+      if (body['message'] == USERNAME_ALREADY_USED_MESSAGE) {
+        throw UsernameAlreadyUsedException();
+      }
+      throw AuthServerException();
+    } catch (_) {
       throw AuthServerException();
     }
   }

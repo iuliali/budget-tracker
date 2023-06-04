@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 public class SplitDto {
 
     public MemberDto memberFrom;
-    public  MemberDto memberTo;
+    public MemberDto memberTo;
     public BigDecimal debt;
 
 
