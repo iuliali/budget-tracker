@@ -3,6 +3,7 @@ package com.budgettracker.api.budgeting.controllers;
 import com.budgettracker.api.budgeting.dtos.NewUserCategoryDto;
 import com.budgettracker.api.budgeting.services.UserCategoryService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import java.util.Map;
 @RequestMapping("/api/v1/categories")
 @RequiredArgsConstructor
 @Secured({"ADMIN", "USER"})
+@Tag(name = "User Category Controller", description = "Create, update and delete user categories.")
 public class UserCategoryController {
     private final UserCategoryService userCategoryService;
 
