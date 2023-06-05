@@ -1069,3 +1069,713 @@ class _$_MemberUnableToDelete implements _MemberUnableToDelete {
 abstract class _MemberUnableToDelete implements MemberFailure {
   const factory _MemberUnableToDelete() = _$_MemberUnableToDelete;
 }
+
+/// @nodoc
+mixin _$SplitFailure {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() serverError,
+    required TResult Function() notFound,
+    required TResult Function() insufficientParticipants,
+    required TResult Function() debtSumNotEqualAmount,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unexpected,
+    TResult? Function()? serverError,
+    TResult? Function()? notFound,
+    TResult? Function()? insufficientParticipants,
+    TResult? Function()? debtSumNotEqualAmount,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? serverError,
+    TResult Function()? notFound,
+    TResult Function()? insufficientParticipants,
+    TResult Function()? debtSumNotEqualAmount,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SplitUnexpected value) unexpected,
+    required TResult Function(_SplitServerError value) serverError,
+    required TResult Function(_SplitNotFound value) notFound,
+    required TResult Function(_SplitInsufficientParticipants value)
+        insufficientParticipants,
+    required TResult Function(_SplitDebtSumNotEqualAmount value)
+        debtSumNotEqualAmount,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SplitUnexpected value)? unexpected,
+    TResult? Function(_SplitServerError value)? serverError,
+    TResult? Function(_SplitNotFound value)? notFound,
+    TResult? Function(_SplitInsufficientParticipants value)?
+        insufficientParticipants,
+    TResult? Function(_SplitDebtSumNotEqualAmount value)? debtSumNotEqualAmount,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SplitUnexpected value)? unexpected,
+    TResult Function(_SplitServerError value)? serverError,
+    TResult Function(_SplitNotFound value)? notFound,
+    TResult Function(_SplitInsufficientParticipants value)?
+        insufficientParticipants,
+    TResult Function(_SplitDebtSumNotEqualAmount value)? debtSumNotEqualAmount,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SplitFailureCopyWith<$Res> {
+  factory $SplitFailureCopyWith(
+          SplitFailure value, $Res Function(SplitFailure) then) =
+      _$SplitFailureCopyWithImpl<$Res, SplitFailure>;
+}
+
+/// @nodoc
+class _$SplitFailureCopyWithImpl<$Res, $Val extends SplitFailure>
+    implements $SplitFailureCopyWith<$Res> {
+  _$SplitFailureCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$_SplitUnexpectedCopyWith<$Res> {
+  factory _$$_SplitUnexpectedCopyWith(
+          _$_SplitUnexpected value, $Res Function(_$_SplitUnexpected) then) =
+      __$$_SplitUnexpectedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_SplitUnexpectedCopyWithImpl<$Res>
+    extends _$SplitFailureCopyWithImpl<$Res, _$_SplitUnexpected>
+    implements _$$_SplitUnexpectedCopyWith<$Res> {
+  __$$_SplitUnexpectedCopyWithImpl(
+      _$_SplitUnexpected _value, $Res Function(_$_SplitUnexpected) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_SplitUnexpected implements _SplitUnexpected {
+  const _$_SplitUnexpected();
+
+  @override
+  String toString() {
+    return 'SplitFailure.unexpected()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_SplitUnexpected);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() serverError,
+    required TResult Function() notFound,
+    required TResult Function() insufficientParticipants,
+    required TResult Function() debtSumNotEqualAmount,
+  }) {
+    return unexpected();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unexpected,
+    TResult? Function()? serverError,
+    TResult? Function()? notFound,
+    TResult? Function()? insufficientParticipants,
+    TResult? Function()? debtSumNotEqualAmount,
+  }) {
+    return unexpected?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? serverError,
+    TResult Function()? notFound,
+    TResult Function()? insufficientParticipants,
+    TResult Function()? debtSumNotEqualAmount,
+    required TResult orElse(),
+  }) {
+    if (unexpected != null) {
+      return unexpected();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SplitUnexpected value) unexpected,
+    required TResult Function(_SplitServerError value) serverError,
+    required TResult Function(_SplitNotFound value) notFound,
+    required TResult Function(_SplitInsufficientParticipants value)
+        insufficientParticipants,
+    required TResult Function(_SplitDebtSumNotEqualAmount value)
+        debtSumNotEqualAmount,
+  }) {
+    return unexpected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SplitUnexpected value)? unexpected,
+    TResult? Function(_SplitServerError value)? serverError,
+    TResult? Function(_SplitNotFound value)? notFound,
+    TResult? Function(_SplitInsufficientParticipants value)?
+        insufficientParticipants,
+    TResult? Function(_SplitDebtSumNotEqualAmount value)? debtSumNotEqualAmount,
+  }) {
+    return unexpected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SplitUnexpected value)? unexpected,
+    TResult Function(_SplitServerError value)? serverError,
+    TResult Function(_SplitNotFound value)? notFound,
+    TResult Function(_SplitInsufficientParticipants value)?
+        insufficientParticipants,
+    TResult Function(_SplitDebtSumNotEqualAmount value)? debtSumNotEqualAmount,
+    required TResult orElse(),
+  }) {
+    if (unexpected != null) {
+      return unexpected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SplitUnexpected implements SplitFailure {
+  const factory _SplitUnexpected() = _$_SplitUnexpected;
+}
+
+/// @nodoc
+abstract class _$$_SplitServerErrorCopyWith<$Res> {
+  factory _$$_SplitServerErrorCopyWith(
+          _$_SplitServerError value, $Res Function(_$_SplitServerError) then) =
+      __$$_SplitServerErrorCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_SplitServerErrorCopyWithImpl<$Res>
+    extends _$SplitFailureCopyWithImpl<$Res, _$_SplitServerError>
+    implements _$$_SplitServerErrorCopyWith<$Res> {
+  __$$_SplitServerErrorCopyWithImpl(
+      _$_SplitServerError _value, $Res Function(_$_SplitServerError) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_SplitServerError implements _SplitServerError {
+  const _$_SplitServerError();
+
+  @override
+  String toString() {
+    return 'SplitFailure.serverError()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_SplitServerError);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() serverError,
+    required TResult Function() notFound,
+    required TResult Function() insufficientParticipants,
+    required TResult Function() debtSumNotEqualAmount,
+  }) {
+    return serverError();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unexpected,
+    TResult? Function()? serverError,
+    TResult? Function()? notFound,
+    TResult? Function()? insufficientParticipants,
+    TResult? Function()? debtSumNotEqualAmount,
+  }) {
+    return serverError?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? serverError,
+    TResult Function()? notFound,
+    TResult Function()? insufficientParticipants,
+    TResult Function()? debtSumNotEqualAmount,
+    required TResult orElse(),
+  }) {
+    if (serverError != null) {
+      return serverError();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SplitUnexpected value) unexpected,
+    required TResult Function(_SplitServerError value) serverError,
+    required TResult Function(_SplitNotFound value) notFound,
+    required TResult Function(_SplitInsufficientParticipants value)
+        insufficientParticipants,
+    required TResult Function(_SplitDebtSumNotEqualAmount value)
+        debtSumNotEqualAmount,
+  }) {
+    return serverError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SplitUnexpected value)? unexpected,
+    TResult? Function(_SplitServerError value)? serverError,
+    TResult? Function(_SplitNotFound value)? notFound,
+    TResult? Function(_SplitInsufficientParticipants value)?
+        insufficientParticipants,
+    TResult? Function(_SplitDebtSumNotEqualAmount value)? debtSumNotEqualAmount,
+  }) {
+    return serverError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SplitUnexpected value)? unexpected,
+    TResult Function(_SplitServerError value)? serverError,
+    TResult Function(_SplitNotFound value)? notFound,
+    TResult Function(_SplitInsufficientParticipants value)?
+        insufficientParticipants,
+    TResult Function(_SplitDebtSumNotEqualAmount value)? debtSumNotEqualAmount,
+    required TResult orElse(),
+  }) {
+    if (serverError != null) {
+      return serverError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SplitServerError implements SplitFailure {
+  const factory _SplitServerError() = _$_SplitServerError;
+}
+
+/// @nodoc
+abstract class _$$_SplitNotFoundCopyWith<$Res> {
+  factory _$$_SplitNotFoundCopyWith(
+          _$_SplitNotFound value, $Res Function(_$_SplitNotFound) then) =
+      __$$_SplitNotFoundCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_SplitNotFoundCopyWithImpl<$Res>
+    extends _$SplitFailureCopyWithImpl<$Res, _$_SplitNotFound>
+    implements _$$_SplitNotFoundCopyWith<$Res> {
+  __$$_SplitNotFoundCopyWithImpl(
+      _$_SplitNotFound _value, $Res Function(_$_SplitNotFound) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_SplitNotFound implements _SplitNotFound {
+  const _$_SplitNotFound();
+
+  @override
+  String toString() {
+    return 'SplitFailure.notFound()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_SplitNotFound);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() serverError,
+    required TResult Function() notFound,
+    required TResult Function() insufficientParticipants,
+    required TResult Function() debtSumNotEqualAmount,
+  }) {
+    return notFound();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unexpected,
+    TResult? Function()? serverError,
+    TResult? Function()? notFound,
+    TResult? Function()? insufficientParticipants,
+    TResult? Function()? debtSumNotEqualAmount,
+  }) {
+    return notFound?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? serverError,
+    TResult Function()? notFound,
+    TResult Function()? insufficientParticipants,
+    TResult Function()? debtSumNotEqualAmount,
+    required TResult orElse(),
+  }) {
+    if (notFound != null) {
+      return notFound();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SplitUnexpected value) unexpected,
+    required TResult Function(_SplitServerError value) serverError,
+    required TResult Function(_SplitNotFound value) notFound,
+    required TResult Function(_SplitInsufficientParticipants value)
+        insufficientParticipants,
+    required TResult Function(_SplitDebtSumNotEqualAmount value)
+        debtSumNotEqualAmount,
+  }) {
+    return notFound(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SplitUnexpected value)? unexpected,
+    TResult? Function(_SplitServerError value)? serverError,
+    TResult? Function(_SplitNotFound value)? notFound,
+    TResult? Function(_SplitInsufficientParticipants value)?
+        insufficientParticipants,
+    TResult? Function(_SplitDebtSumNotEqualAmount value)? debtSumNotEqualAmount,
+  }) {
+    return notFound?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SplitUnexpected value)? unexpected,
+    TResult Function(_SplitServerError value)? serverError,
+    TResult Function(_SplitNotFound value)? notFound,
+    TResult Function(_SplitInsufficientParticipants value)?
+        insufficientParticipants,
+    TResult Function(_SplitDebtSumNotEqualAmount value)? debtSumNotEqualAmount,
+    required TResult orElse(),
+  }) {
+    if (notFound != null) {
+      return notFound(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SplitNotFound implements SplitFailure {
+  const factory _SplitNotFound() = _$_SplitNotFound;
+}
+
+/// @nodoc
+abstract class _$$_SplitInsufficientParticipantsCopyWith<$Res> {
+  factory _$$_SplitInsufficientParticipantsCopyWith(
+          _$_SplitInsufficientParticipants value,
+          $Res Function(_$_SplitInsufficientParticipants) then) =
+      __$$_SplitInsufficientParticipantsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_SplitInsufficientParticipantsCopyWithImpl<$Res>
+    extends _$SplitFailureCopyWithImpl<$Res, _$_SplitInsufficientParticipants>
+    implements _$$_SplitInsufficientParticipantsCopyWith<$Res> {
+  __$$_SplitInsufficientParticipantsCopyWithImpl(
+      _$_SplitInsufficientParticipants _value,
+      $Res Function(_$_SplitInsufficientParticipants) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_SplitInsufficientParticipants
+    implements _SplitInsufficientParticipants {
+  const _$_SplitInsufficientParticipants();
+
+  @override
+  String toString() {
+    return 'SplitFailure.insufficientParticipants()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SplitInsufficientParticipants);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() serverError,
+    required TResult Function() notFound,
+    required TResult Function() insufficientParticipants,
+    required TResult Function() debtSumNotEqualAmount,
+  }) {
+    return insufficientParticipants();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unexpected,
+    TResult? Function()? serverError,
+    TResult? Function()? notFound,
+    TResult? Function()? insufficientParticipants,
+    TResult? Function()? debtSumNotEqualAmount,
+  }) {
+    return insufficientParticipants?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? serverError,
+    TResult Function()? notFound,
+    TResult Function()? insufficientParticipants,
+    TResult Function()? debtSumNotEqualAmount,
+    required TResult orElse(),
+  }) {
+    if (insufficientParticipants != null) {
+      return insufficientParticipants();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SplitUnexpected value) unexpected,
+    required TResult Function(_SplitServerError value) serverError,
+    required TResult Function(_SplitNotFound value) notFound,
+    required TResult Function(_SplitInsufficientParticipants value)
+        insufficientParticipants,
+    required TResult Function(_SplitDebtSumNotEqualAmount value)
+        debtSumNotEqualAmount,
+  }) {
+    return insufficientParticipants(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SplitUnexpected value)? unexpected,
+    TResult? Function(_SplitServerError value)? serverError,
+    TResult? Function(_SplitNotFound value)? notFound,
+    TResult? Function(_SplitInsufficientParticipants value)?
+        insufficientParticipants,
+    TResult? Function(_SplitDebtSumNotEqualAmount value)? debtSumNotEqualAmount,
+  }) {
+    return insufficientParticipants?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SplitUnexpected value)? unexpected,
+    TResult Function(_SplitServerError value)? serverError,
+    TResult Function(_SplitNotFound value)? notFound,
+    TResult Function(_SplitInsufficientParticipants value)?
+        insufficientParticipants,
+    TResult Function(_SplitDebtSumNotEqualAmount value)? debtSumNotEqualAmount,
+    required TResult orElse(),
+  }) {
+    if (insufficientParticipants != null) {
+      return insufficientParticipants(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SplitInsufficientParticipants implements SplitFailure {
+  const factory _SplitInsufficientParticipants() =
+      _$_SplitInsufficientParticipants;
+}
+
+/// @nodoc
+abstract class _$$_SplitDebtSumNotEqualAmountCopyWith<$Res> {
+  factory _$$_SplitDebtSumNotEqualAmountCopyWith(
+          _$_SplitDebtSumNotEqualAmount value,
+          $Res Function(_$_SplitDebtSumNotEqualAmount) then) =
+      __$$_SplitDebtSumNotEqualAmountCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_SplitDebtSumNotEqualAmountCopyWithImpl<$Res>
+    extends _$SplitFailureCopyWithImpl<$Res, _$_SplitDebtSumNotEqualAmount>
+    implements _$$_SplitDebtSumNotEqualAmountCopyWith<$Res> {
+  __$$_SplitDebtSumNotEqualAmountCopyWithImpl(
+      _$_SplitDebtSumNotEqualAmount _value,
+      $Res Function(_$_SplitDebtSumNotEqualAmount) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_SplitDebtSumNotEqualAmount implements _SplitDebtSumNotEqualAmount {
+  const _$_SplitDebtSumNotEqualAmount();
+
+  @override
+  String toString() {
+    return 'SplitFailure.debtSumNotEqualAmount()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SplitDebtSumNotEqualAmount);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() serverError,
+    required TResult Function() notFound,
+    required TResult Function() insufficientParticipants,
+    required TResult Function() debtSumNotEqualAmount,
+  }) {
+    return debtSumNotEqualAmount();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unexpected,
+    TResult? Function()? serverError,
+    TResult? Function()? notFound,
+    TResult? Function()? insufficientParticipants,
+    TResult? Function()? debtSumNotEqualAmount,
+  }) {
+    return debtSumNotEqualAmount?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? serverError,
+    TResult Function()? notFound,
+    TResult Function()? insufficientParticipants,
+    TResult Function()? debtSumNotEqualAmount,
+    required TResult orElse(),
+  }) {
+    if (debtSumNotEqualAmount != null) {
+      return debtSumNotEqualAmount();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SplitUnexpected value) unexpected,
+    required TResult Function(_SplitServerError value) serverError,
+    required TResult Function(_SplitNotFound value) notFound,
+    required TResult Function(_SplitInsufficientParticipants value)
+        insufficientParticipants,
+    required TResult Function(_SplitDebtSumNotEqualAmount value)
+        debtSumNotEqualAmount,
+  }) {
+    return debtSumNotEqualAmount(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SplitUnexpected value)? unexpected,
+    TResult? Function(_SplitServerError value)? serverError,
+    TResult? Function(_SplitNotFound value)? notFound,
+    TResult? Function(_SplitInsufficientParticipants value)?
+        insufficientParticipants,
+    TResult? Function(_SplitDebtSumNotEqualAmount value)? debtSumNotEqualAmount,
+  }) {
+    return debtSumNotEqualAmount?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SplitUnexpected value)? unexpected,
+    TResult Function(_SplitServerError value)? serverError,
+    TResult Function(_SplitNotFound value)? notFound,
+    TResult Function(_SplitInsufficientParticipants value)?
+        insufficientParticipants,
+    TResult Function(_SplitDebtSumNotEqualAmount value)? debtSumNotEqualAmount,
+    required TResult orElse(),
+  }) {
+    if (debtSumNotEqualAmount != null) {
+      return debtSumNotEqualAmount(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SplitDebtSumNotEqualAmount implements SplitFailure {
+  const factory _SplitDebtSumNotEqualAmount() = _$_SplitDebtSumNotEqualAmount;
+}

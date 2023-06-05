@@ -16,6 +16,9 @@ abstract class ValueFailure<T> with _$ValueFailure<T>{
   const factory ValueFailure.shortString({
     required T failedValue,
   }) = ShortString<T>;
+  const factory ValueFailure.invalidDouble({
+    required T failedValue,
+  }) = InvalidDouble<T>;
 
   // Auth Failures
   const factory ValueFailure.invalidEmail({

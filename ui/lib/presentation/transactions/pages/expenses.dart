@@ -26,6 +26,9 @@ class ExpensesPage extends StatelessWidget {
         appBar: generateAppBarWidget(context),
         drawer: const Drawer(child: MenuWidget()),
         floatingActionButton: FloatingActionButton(
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(15.0))
+          ),
           onPressed: () => context.router.navigate(const AddExpenseRoute()),
           backgroundColor: Theme.of(context).colorScheme.primary,
           child: const Icon(Icons.add),
@@ -87,7 +90,7 @@ class ExpensesPage extends StatelessWidget {
                               ExpensesEvent.deleteExpense(item.id));
                         },
                         background: Container(
-                          color: Colors.red,
+                          color: cRedColor,
                           alignment: Alignment.center,
                           child: const Row(
                             children: [
@@ -95,7 +98,7 @@ class ExpensesPage extends StatelessWidget {
                                 padding: EdgeInsets.all(8.0),
                                 child: Icon(
                                   Icons.delete,
-                                  color: Colors.white,
+                                  color: cWhiteColor,
                                 ),
                               ),
                               Spacer(),
@@ -103,7 +106,7 @@ class ExpensesPage extends StatelessWidget {
                                 padding: EdgeInsets.all(8.0),
                                 child: Icon(
                                   Icons.delete,
-                                  color: Colors.white,
+                                  color: cWhiteColor,
                                 ),
                               ),
                             ],

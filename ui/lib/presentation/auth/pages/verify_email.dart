@@ -66,36 +66,24 @@ class VerifyEmailPage extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 16.0),
-                                child: FilledButton(
-                                  style: TextButton.styleFrom(
-                                    backgroundColor: cLightBlueColor,
-                                    foregroundColor: cWhiteGreyColor,
-                                    side: const BorderSide(
-                                        color: cLightBlueColor),
-                                  ),
+                                child: WholeLengthButton(
                                   onPressed: () => openMail(url),
-                                  child: const SizedBox(
-                                    width: double.infinity,
-                                    child: Text(
-                                      'Verify email',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
+                                  text: 'Verify email',
                                 ),
                               ),
                               const SizedBox(height: 20),
                             ],
                           ),
                           const Spacer(),
-                          TryAgainButton(
+                          WholeLengthButton(
                             onPressed: () {
                               context.navigateTo(const RegisterRoute());
                             },
+                            text: 'Try again',
+                            filled: false,
+                            color: cBlackColor,
                           ),
+                          const SizedBox(height: 20),
                           WholeLengthButton(
                             text: 'Login',
                             filled: false,

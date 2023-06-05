@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:budget_tracker/presentation/core/widgets/buttons/whole_length_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -200,14 +201,14 @@ class RegisterForm extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 16),
-              RegisterButton(
+              WholeLengthButton(
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     context
                         .read<RegisterFormBloc>()
                         .add(const RegisterFormEvent.registerPressed());
                   }
-                },
+                }, text: 'Register', filled: true,
               )
             ],
           ),

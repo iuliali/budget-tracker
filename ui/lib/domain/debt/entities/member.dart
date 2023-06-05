@@ -1,14 +1,16 @@
 import 'package:budget_tracker/domain/debt/value_objects.dart';
 
+import '../../auth/value_objects.dart';
+
 class Member {
   final MemberId id;
-  final MemberName name;
-  final MemberUsername username;
+  final UserId userId;
+  final FirstName firstName;
 
   Member({
     required this.id,
-    required this.name,
-    required this.username,
+    required this.userId,
+    required this.firstName,
   });
 
 }

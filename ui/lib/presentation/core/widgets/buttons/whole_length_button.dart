@@ -8,21 +8,26 @@ class WholeLengthButton extends StatelessWidget {
     required this.onPressed,
     this.filled = true,
     this.disabled = false,
+    this.color = cLightBlueColor,
   }) : super(key: key);
 
   final String text;
   final Function() onPressed;
   final bool filled;
   final bool disabled;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
-    final accentColor = cLightBlueColor.withAlpha(disabled ? 100 : 255);
+    final accentColor = color.withAlpha(disabled ? 100 : 255);
     return FilledButton(
       style: FilledButton.styleFrom(
         backgroundColor: filled ? accentColor : Colors.transparent,
-        foregroundColor: filled ? cWhiteGreyColor : cLightBlueColor,
+        foregroundColor: filled ? cWhiteGreyColor : color,
         side: BorderSide(color: accentColor),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
       ),
       onPressed: disabled ? () {} : onPressed,
       child: SizedBox(

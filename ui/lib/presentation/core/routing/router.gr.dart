@@ -56,9 +56,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     SplitRoute.name: (routeData) {
+      final args = routeData.argsAs<SplitRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const SplitPage(),
+        child: SplitPage(
+          key: args.key,
+          group: args.group,
+        ),
       );
     },
     AddGroupRoute.name: (routeData) {
@@ -267,16 +271,39 @@ class GroupsRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [SplitPage]
-class SplitRoute extends PageRouteInfo<void> {
-  const SplitRoute({List<PageRouteInfo>? children})
-      : super(
+class SplitRoute extends PageRouteInfo<SplitRouteArgs> {
+  SplitRoute({
+    Key? key,
+    required Group group,
+    List<PageRouteInfo>? children,
+  }) : super(
           SplitRoute.name,
+          args: SplitRouteArgs(
+            key: key,
+            group: group,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'SplitRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<SplitRouteArgs> page = PageInfo<SplitRouteArgs>(name);
+}
+
+class SplitRouteArgs {
+  const SplitRouteArgs({
+    this.key,
+    required this.group,
+  });
+
+  final Key? key;
+
+  final Group group;
+
+  @override
+  String toString() {
+    return 'SplitRouteArgs{key: $key, group: $group}';
+  }
 }
 
 /// generated route for

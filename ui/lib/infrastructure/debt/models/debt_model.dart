@@ -6,19 +6,19 @@ import '../../../domain/debt/value_objects.dart';
 class DebtModel {
   final MemberModel creditor;
   final MemberModel debtor;
-  final double balance;
+  final double debt;
 
   DebtModel({
     required this.creditor,
     required this.debtor,
-    required this.balance,
+    required this.debt,
   });
 
   factory DebtModel.fromJson(Map<String, dynamic> json) {
     return DebtModel(
       creditor: MemberModel.fromJson(json['memberTo']),
       debtor: MemberModel.fromJson(json['memberFrom']),
-      balance: json['balance'],
+      debt: json['debt'],
     );
   }
 
@@ -26,7 +26,7 @@ class DebtModel {
     return {
       'memberTo': creditor.toJson(),
       'memberFrom': debtor.toJson(),
-      'balance': balance,
+      'debt': debt,
     };
   }
 
@@ -38,7 +38,7 @@ class DebtModel {
     return DebtModel(
       creditor: MemberModel.fromDomain(debt.creditor),
       debtor: MemberModel.fromDomain(debt.debtor),
-      balance: debt.balance.value.getOrElse(() => 0),
+      debt: debt.debt.value.getOrElse(() => 0),
     );
   }
 
@@ -46,7 +46,7 @@ class DebtModel {
     return Debt(
       creditor: creditor.toDomain(),
       debtor: debtor.toDomain(),
-      balance: DebtAmount(balance),
+      debt: DebtAmount(debt),
     );
   }
 

@@ -5,12 +5,12 @@ import 'member.dart';
 class Debt {
   final Member debtor;
   final Member creditor;
-  final DebtAmount balance;
+  final DebtAmount debt;
 
   Debt({
     required this.debtor,
     required this.creditor,
-    required this.balance,
+    required this.debt,
   });
 
 }

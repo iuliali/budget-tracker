@@ -49,6 +49,15 @@ class AppWidget extends StatelessWidget {
             secondary: cGreyColor,
             background: cBackgroundColor,
           ),
+          buttonTheme: const ButtonThemeData(
+            buttonColor: cAccentColor,
+            textTheme: ButtonTextTheme.primary,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(8),
+              ),
+            ),
+          ),
           inputDecorationTheme: InputDecorationTheme(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),

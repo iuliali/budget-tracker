@@ -17,3 +17,12 @@ abstract class MemberFailure with _$MemberFailure {
   const factory MemberFailure.unableToUpdate() = _MemberUnableToUpdate;
   const factory MemberFailure.unableToDelete() = _MemberUnableToDelete;
 }
+
+@freezed
+abstract class SplitFailure with _$SplitFailure {
+  const factory SplitFailure.unexpected() = _SplitUnexpected;
+  const factory SplitFailure.serverError() = _SplitServerError;
+  const factory SplitFailure.notFound() = _SplitNotFound;
+  const factory SplitFailure.insufficientParticipants() = _SplitInsufficientParticipants;
+  const factory SplitFailure.debtSumNotEqualAmount() = _SplitDebtSumNotEqualAmount;
+}

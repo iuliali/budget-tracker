@@ -12,3 +12,13 @@ Either<ValueFailure<String>, String> validateStringNotEmpty(String input) {
   }
   return right(input);
 }
+
+Either<ValueFailure<double>, double> validateDouble(String input) {
+  if (input.length.toString().isEmpty) {
+    return left(const ValueFailure.empty(failedValue: 0.0));
+  }
+  if (double.tryParse(input) == null) {
+    return left(const ValueFailure.invalidDouble(failedValue: 0.0));
+  }
+  return right(double.parse(input));
+}

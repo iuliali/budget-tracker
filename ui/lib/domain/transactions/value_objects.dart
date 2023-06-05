@@ -64,6 +64,10 @@ class TransactionAmount extends ValueObject<double> {
   factory TransactionAmount(double input) {
     return TransactionAmount._(validateAmount(input));
   }
+
+  factory TransactionAmount.fromString(String input) {
+    return TransactionAmount._(validateDouble(input));
+  }
 }
 
 @immutable

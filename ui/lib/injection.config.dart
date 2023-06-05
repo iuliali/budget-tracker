@@ -17,39 +17,42 @@ import 'package:internet_connection_checker/internet_connection_checker.dart'
     as _i9;
 import 'package:shared_preferences/shared_preferences.dart' as _i10;
 
-import 'application/auth/auth_bloc.dart' as _i32;
-import 'application/auth/login_form/login_form_bloc.dart' as _i35;
-import 'application/auth/register_form/register_form_bloc.dart' as _i31;
-import 'application/categories/categories_bloc.dart' as _i33;
-import 'application/categories/category_form/category_form_bloc.dart' as _i34;
+import 'application/auth/auth_bloc.dart' as _i35;
+import 'application/auth/login_form/login_form_bloc.dart' as _i38;
+import 'application/auth/register_form/register_form_bloc.dart' as _i34;
+import 'application/categories/categories_bloc.dart' as _i36;
+import 'application/categories/category_form/category_form_bloc.dart' as _i37;
 import 'application/core/network_info.dart' as _i22;
-import 'application/dept/groups/groups_bloc.dart' as _i26;
+import 'application/dept/groups/groups_bloc.dart' as _i29;
+import 'application/dept/split_form/split_form_bloc.dart' as _i28;
 import 'application/transactions/expenses/expense_form/expense_form_bloc.dart'
     as _i16;
 import 'application/transactions/expenses/expenses_bloc.dart' as _i17;
 import 'application/transactions/incomes/income_form/income_form_bloc.dart'
-    as _i24;
-import 'application/transactions/incomes/incomes_bloc.dart' as _i25;
-import 'domain/auth/facade.dart' as _i27;
-import 'domain/categories/repository.dart' as _i29;
+    as _i26;
+import 'application/transactions/incomes/incomes_bloc.dart' as _i27;
+import 'domain/auth/facade.dart' as _i30;
+import 'domain/categories/repository.dart' as _i32;
 import 'domain/debt/repositories/group.dart' as _i18;
+import 'domain/debt/repositories/split.dart' as _i24;
 import 'domain/transactions/repositories/expense.dart' as _i6;
 import 'domain/transactions/repositories/income.dart' as _i20;
 import 'infrastructure/auth/datasources/auth_local_datasource.dart' as _i11;
 import 'infrastructure/auth/datasources/auth_remote_datasource.dart' as _i12;
-import 'infrastructure/auth/facade.dart' as _i28;
+import 'infrastructure/auth/facade.dart' as _i31;
 import 'infrastructure/categories/datasources/budget_remote_datasource.dart'
     as _i13;
 import 'infrastructure/categories/datasources/category_remote_datasource.dart'
     as _i14;
-import 'infrastructure/categories/repository.dart' as _i30;
-import 'infrastructure/core/injectable_modules/dio.dart' as _i36;
-import 'infrastructure/core/injectable_modules/http.dart' as _i39;
-import 'infrastructure/core/injectable_modules/internet_checker.dart' as _i38;
-import 'infrastructure/core/injectable_modules/shared_preferences.dart' as _i37;
+import 'infrastructure/categories/repository.dart' as _i33;
+import 'infrastructure/core/injectable_modules/dio.dart' as _i39;
+import 'infrastructure/core/injectable_modules/http.dart' as _i42;
+import 'infrastructure/core/injectable_modules/internet_checker.dart' as _i41;
+import 'infrastructure/core/injectable_modules/shared_preferences.dart' as _i40;
 import 'infrastructure/core/network/network_info.dart' as _i23;
 import 'infrastructure/debt/datasources/debt_remote_datasource.dart' as _i15;
 import 'infrastructure/debt/repositories/group.dart' as _i19;
+import 'infrastructure/debt/repositories/split.dart' as _i25;
 import 'infrastructure/transactions/datasources/expense_remote_datasource.dart'
     as _i5;
 import 'infrastructure/transactions/datasources/income_remote_datasource.dart'
@@ -109,42 +112,46 @@ extension GetItInjectableX on _i1.GetIt {
         remoteDatasource: gh<_i8.IncomeRemoteDatasource>()));
     gh.lazySingleton<_i22.INetworkInfo>(() => _i23.NetworkInfoImpl(
         connectionChecker: gh<_i9.InternetConnectionChecker>()));
-    gh.factory<_i24.IncomeFormBloc>(
-        () => _i24.IncomeFormBloc(gh<_i20.IIncomeRepository>()));
-    gh.factory<_i25.IncomesBloc>(
-        () => _i25.IncomesBloc(gh<_i20.IIncomeRepository>()));
-    gh.factory<_i26.GroupsBloc>(
-        () => _i26.GroupsBloc(gh<_i18.IGroupRepository>()));
-    gh.singleton<_i27.IAuthFacade>(_i28.AuthFacade(
+    gh.lazySingleton<_i24.ISplitRepository>(
+        () => _i25.SplitRepository(gh<_i15.DebtRemoteDataSource>()));
+    gh.factory<_i26.IncomeFormBloc>(
+        () => _i26.IncomeFormBloc(gh<_i20.IIncomeRepository>()));
+    gh.factory<_i27.IncomesBloc>(
+        () => _i27.IncomesBloc(gh<_i20.IIncomeRepository>()));
+    gh.factory<_i28.SplitFormBloc>(
+        () => _i28.SplitFormBloc(gh<_i24.ISplitRepository>()));
+    gh.factory<_i29.GroupsBloc>(
+        () => _i29.GroupsBloc(gh<_i18.IGroupRepository>()));
+    gh.singleton<_i30.IAuthFacade>(_i31.AuthFacade(
       remoteDataSource: gh<_i12.AuthRemoteDataSource>(),
       localDataSource: gh<_i11.AuthLocalDataSource>(),
       networkInfo: gh<_i22.INetworkInfo>(),
       dio: gh<_i4.Dio>(),
     ));
-    gh.singleton<_i29.ICategoryRepository>(_i30.CategoryRepository(
+    gh.singleton<_i32.ICategoryRepository>(_i33.CategoryRepository(
       networkInfo: gh<_i22.INetworkInfo>(),
       remoteDataSource: gh<_i14.CategoryRemoteDataSource>(),
       budgetRemoteDataSource: gh<_i13.BudgetRemoteDataSource>(),
     ));
-    gh.factory<_i31.RegisterFormBloc>(
-        () => _i31.RegisterFormBloc(gh<_i27.IAuthFacade>()));
-    gh.factory<_i32.AuthBloc>(() => _i32.AuthBloc(gh<_i27.IAuthFacade>()));
-    gh.factory<_i33.CategoriesBloc>(
-        () => _i33.CategoriesBloc(gh<_i29.ICategoryRepository>()));
-    gh.factory<_i34.CategoryFormBloc>(
-        () => _i34.CategoryFormBloc(gh<_i29.ICategoryRepository>()));
-    gh.factory<_i35.LoginFormBloc>(() => _i35.LoginFormBloc(
-          gh<_i27.IAuthFacade>(),
-          gh<_i32.AuthBloc>(),
+    gh.factory<_i34.RegisterFormBloc>(
+        () => _i34.RegisterFormBloc(gh<_i30.IAuthFacade>()));
+    gh.factory<_i35.AuthBloc>(() => _i35.AuthBloc(gh<_i30.IAuthFacade>()));
+    gh.factory<_i36.CategoriesBloc>(
+        () => _i36.CategoriesBloc(gh<_i32.ICategoryRepository>()));
+    gh.factory<_i37.CategoryFormBloc>(
+        () => _i37.CategoryFormBloc(gh<_i32.ICategoryRepository>()));
+    gh.factory<_i38.LoginFormBloc>(() => _i38.LoginFormBloc(
+          gh<_i30.IAuthFacade>(),
+          gh<_i35.AuthBloc>(),
         ));
     return this;
   }
 }
 
-class _$DioInjectableModule extends _i36.DioInjectableModule {}
+class _$DioInjectableModule extends _i39.DioInjectableModule {}
 
-class _$SharedPrefsModule extends _i37.SharedPrefsModule {}
+class _$SharedPrefsModule extends _i40.SharedPrefsModule {}
 
-class _$NetworkInfoInjectableModule extends _i38.NetworkInfoInjectableModule {}
+class _$NetworkInfoInjectableModule extends _i41.NetworkInfoInjectableModule {}
 
-class _$HttpInjectableModule extends _i39.HttpInjectableModule {}
+class _$HttpInjectableModule extends _i42.HttpInjectableModule {}

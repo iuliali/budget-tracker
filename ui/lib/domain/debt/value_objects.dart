@@ -35,6 +35,10 @@ class DebtAmount extends ValueObject<double> {
     return DebtAmount._(right(input));
   }
 
+  factory DebtAmount.fromString(String input) {
+    return DebtAmount._(validateDouble(input));
+  }
+
   const DebtAmount._(this.value);
 }
 

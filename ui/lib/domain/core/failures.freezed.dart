@@ -22,6 +22,7 @@ mixin _$ValueFailure<T> {
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) shortString,
+    required TResult Function(T failedValue) invalidDouble,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -41,6 +42,7 @@ mixin _$ValueFailure<T> {
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
     TResult? Function(T failedValue)? shortString,
+    TResult? Function(T failedValue)? invalidDouble,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -60,6 +62,7 @@ mixin _$ValueFailure<T> {
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? shortString,
+    TResult Function(T failedValue)? invalidDouble,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -80,6 +83,7 @@ mixin _$ValueFailure<T> {
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(ShortString<T> value) shortString,
+    required TResult Function(InvalidDouble<T> value) invalidDouble,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -104,6 +108,7 @@ mixin _$ValueFailure<T> {
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
     TResult? Function(ShortString<T> value)? shortString,
+    TResult? Function(InvalidDouble<T> value)? invalidDouble,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -127,6 +132,7 @@ mixin _$ValueFailure<T> {
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
     TResult Function(ShortString<T> value)? shortString,
+    TResult Function(InvalidDouble<T> value)? invalidDouble,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -264,6 +270,7 @@ class _$Unexpected<T> with DiagnosticableTreeMixin implements Unexpected<T> {
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) shortString,
+    required TResult Function(T failedValue) invalidDouble,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -286,6 +293,7 @@ class _$Unexpected<T> with DiagnosticableTreeMixin implements Unexpected<T> {
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
     TResult? Function(T failedValue)? shortString,
+    TResult? Function(T failedValue)? invalidDouble,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -308,6 +316,7 @@ class _$Unexpected<T> with DiagnosticableTreeMixin implements Unexpected<T> {
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? shortString,
+    TResult Function(T failedValue)? invalidDouble,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -334,6 +343,7 @@ class _$Unexpected<T> with DiagnosticableTreeMixin implements Unexpected<T> {
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(ShortString<T> value) shortString,
+    required TResult Function(InvalidDouble<T> value) invalidDouble,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -361,6 +371,7 @@ class _$Unexpected<T> with DiagnosticableTreeMixin implements Unexpected<T> {
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
     TResult? Function(ShortString<T> value)? shortString,
+    TResult? Function(InvalidDouble<T> value)? invalidDouble,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -387,6 +398,7 @@ class _$Unexpected<T> with DiagnosticableTreeMixin implements Unexpected<T> {
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
     TResult Function(ShortString<T> value)? shortString,
+    TResult Function(InvalidDouble<T> value)? invalidDouble,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -500,6 +512,7 @@ class _$Empty<T> with DiagnosticableTreeMixin implements Empty<T> {
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) shortString,
+    required TResult Function(T failedValue) invalidDouble,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -522,6 +535,7 @@ class _$Empty<T> with DiagnosticableTreeMixin implements Empty<T> {
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
     TResult? Function(T failedValue)? shortString,
+    TResult? Function(T failedValue)? invalidDouble,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -544,6 +558,7 @@ class _$Empty<T> with DiagnosticableTreeMixin implements Empty<T> {
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? shortString,
+    TResult Function(T failedValue)? invalidDouble,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -570,6 +585,7 @@ class _$Empty<T> with DiagnosticableTreeMixin implements Empty<T> {
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(ShortString<T> value) shortString,
+    required TResult Function(InvalidDouble<T> value) invalidDouble,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -597,6 +613,7 @@ class _$Empty<T> with DiagnosticableTreeMixin implements Empty<T> {
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
     TResult? Function(ShortString<T> value)? shortString,
+    TResult? Function(InvalidDouble<T> value)? invalidDouble,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -623,6 +640,7 @@ class _$Empty<T> with DiagnosticableTreeMixin implements Empty<T> {
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
     TResult Function(ShortString<T> value)? shortString,
+    TResult Function(InvalidDouble<T> value)? invalidDouble,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -738,6 +756,7 @@ class _$ShortString<T> with DiagnosticableTreeMixin implements ShortString<T> {
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) shortString,
+    required TResult Function(T failedValue) invalidDouble,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -760,6 +779,7 @@ class _$ShortString<T> with DiagnosticableTreeMixin implements ShortString<T> {
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
     TResult? Function(T failedValue)? shortString,
+    TResult? Function(T failedValue)? invalidDouble,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -782,6 +802,7 @@ class _$ShortString<T> with DiagnosticableTreeMixin implements ShortString<T> {
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? shortString,
+    TResult Function(T failedValue)? invalidDouble,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -808,6 +829,7 @@ class _$ShortString<T> with DiagnosticableTreeMixin implements ShortString<T> {
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(ShortString<T> value) shortString,
+    required TResult Function(InvalidDouble<T> value) invalidDouble,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -835,6 +857,7 @@ class _$ShortString<T> with DiagnosticableTreeMixin implements ShortString<T> {
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
     TResult? Function(ShortString<T> value)? shortString,
+    TResult? Function(InvalidDouble<T> value)? invalidDouble,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -861,6 +884,7 @@ class _$ShortString<T> with DiagnosticableTreeMixin implements ShortString<T> {
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
     TResult Function(ShortString<T> value)? shortString,
+    TResult Function(InvalidDouble<T> value)? invalidDouble,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -894,6 +918,253 @@ abstract class ShortString<T> implements ValueFailure<T> {
   @override
   @JsonKey(ignore: true)
   _$$ShortStringCopyWith<T, _$ShortString<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$InvalidDoubleCopyWith<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  factory _$$InvalidDoubleCopyWith(
+          _$InvalidDouble<T> value, $Res Function(_$InvalidDouble<T>) then) =
+      __$$InvalidDoubleCopyWithImpl<T, $Res>;
+  @override
+  @useResult
+  $Res call({T failedValue});
+}
+
+/// @nodoc
+class __$$InvalidDoubleCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res, _$InvalidDouble<T>>
+    implements _$$InvalidDoubleCopyWith<T, $Res> {
+  __$$InvalidDoubleCopyWithImpl(
+      _$InvalidDouble<T> _value, $Res Function(_$InvalidDouble<T>) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+  }) {
+    return _then(_$InvalidDouble<T>(
+      failedValue: freezed == failedValue
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as T,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InvalidDouble<T>
+    with DiagnosticableTreeMixin
+    implements InvalidDouble<T> {
+  const _$InvalidDouble({required this.failedValue});
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ValueFailure<$T>.invalidDouble(failedValue: $failedValue)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ValueFailure<$T>.invalidDouble'))
+      ..add(DiagnosticsProperty('failedValue', failedValue));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InvalidDouble<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(failedValue));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InvalidDoubleCopyWith<T, _$InvalidDouble<T>> get copyWith =>
+      __$$InvalidDoubleCopyWithImpl<T, _$InvalidDouble<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedValue) unexpected,
+    required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) shortString,
+    required TResult Function(T failedValue) invalidDouble,
+    required TResult Function(T failedValue) invalidEmail,
+    required TResult Function(T failedValue) shortPassword,
+    required TResult Function(T failedValue) passwordNotMatch,
+    required TResult Function(T failedValue) shortUsername,
+    required TResult Function(T failedValue) shortFirstName,
+    required TResult Function(T failedValue) shortLastName,
+    required TResult Function(T failedValue) shortCategoryName,
+    required TResult Function(T failedValue) negativeBudgetAmount,
+    required TResult Function(T failedValue) negativeTransactionAmount,
+    required TResult Function(T failedValue) invalidTransactionCurrency,
+    required TResult Function(T failedValue) invalidTransactionRecipient,
+    required TResult Function(T failedValue) invalidTransactionSender,
+  }) {
+    return invalidDouble(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(T failedValue)? unexpected,
+    TResult? Function(T failedValue)? empty,
+    TResult? Function(T failedValue)? shortString,
+    TResult? Function(T failedValue)? invalidDouble,
+    TResult? Function(T failedValue)? invalidEmail,
+    TResult? Function(T failedValue)? shortPassword,
+    TResult? Function(T failedValue)? passwordNotMatch,
+    TResult? Function(T failedValue)? shortUsername,
+    TResult? Function(T failedValue)? shortFirstName,
+    TResult? Function(T failedValue)? shortLastName,
+    TResult? Function(T failedValue)? shortCategoryName,
+    TResult? Function(T failedValue)? negativeBudgetAmount,
+    TResult? Function(T failedValue)? negativeTransactionAmount,
+    TResult? Function(T failedValue)? invalidTransactionCurrency,
+    TResult? Function(T failedValue)? invalidTransactionRecipient,
+    TResult? Function(T failedValue)? invalidTransactionSender,
+  }) {
+    return invalidDouble?.call(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedValue)? unexpected,
+    TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? shortString,
+    TResult Function(T failedValue)? invalidDouble,
+    TResult Function(T failedValue)? invalidEmail,
+    TResult Function(T failedValue)? shortPassword,
+    TResult Function(T failedValue)? passwordNotMatch,
+    TResult Function(T failedValue)? shortUsername,
+    TResult Function(T failedValue)? shortFirstName,
+    TResult Function(T failedValue)? shortLastName,
+    TResult Function(T failedValue)? shortCategoryName,
+    TResult Function(T failedValue)? negativeBudgetAmount,
+    TResult Function(T failedValue)? negativeTransactionAmount,
+    TResult Function(T failedValue)? invalidTransactionCurrency,
+    TResult Function(T failedValue)? invalidTransactionRecipient,
+    TResult Function(T failedValue)? invalidTransactionSender,
+    required TResult orElse(),
+  }) {
+    if (invalidDouble != null) {
+      return invalidDouble(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Unexpected<T> value) unexpected,
+    required TResult Function(Empty<T> value) empty,
+    required TResult Function(ShortString<T> value) shortString,
+    required TResult Function(InvalidDouble<T> value) invalidDouble,
+    required TResult Function(InvalidEmail<T> value) invalidEmail,
+    required TResult Function(ShortPassword<T> value) shortPassword,
+    required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
+    required TResult Function(ShortUsername<T> value) shortUsername,
+    required TResult Function(ShortFirstName<T> value) shortFirstName,
+    required TResult Function(ShortLastName<T> value) shortLastName,
+    required TResult Function(ShortCategoryName<T> value) shortCategoryName,
+    required TResult Function(NegativeBudgetAmount<T> value)
+        negativeBudgetAmount,
+    required TResult Function(NegativeTransactionAmount<T> value)
+        negativeTransactionAmount,
+    required TResult Function(InvalidTransactionCurrency<T> value)
+        invalidTransactionCurrency,
+    required TResult Function(InvalidTransactionRecipient<T> value)
+        invalidTransactionRecipient,
+    required TResult Function(InvalidTransactionSender<T> value)
+        invalidTransactionSender,
+  }) {
+    return invalidDouble(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Unexpected<T> value)? unexpected,
+    TResult? Function(Empty<T> value)? empty,
+    TResult? Function(ShortString<T> value)? shortString,
+    TResult? Function(InvalidDouble<T> value)? invalidDouble,
+    TResult? Function(InvalidEmail<T> value)? invalidEmail,
+    TResult? Function(ShortPassword<T> value)? shortPassword,
+    TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
+    TResult? Function(ShortUsername<T> value)? shortUsername,
+    TResult? Function(ShortFirstName<T> value)? shortFirstName,
+    TResult? Function(ShortLastName<T> value)? shortLastName,
+    TResult? Function(ShortCategoryName<T> value)? shortCategoryName,
+    TResult? Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult? Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult? Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult? Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult? Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
+  }) {
+    return invalidDouble?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Unexpected<T> value)? unexpected,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(ShortString<T> value)? shortString,
+    TResult Function(InvalidDouble<T> value)? invalidDouble,
+    TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortPassword<T> value)? shortPassword,
+    TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
+    TResult Function(ShortUsername<T> value)? shortUsername,
+    TResult Function(ShortFirstName<T> value)? shortFirstName,
+    TResult Function(ShortLastName<T> value)? shortLastName,
+    TResult Function(ShortCategoryName<T> value)? shortCategoryName,
+    TResult Function(NegativeBudgetAmount<T> value)? negativeBudgetAmount,
+    TResult Function(NegativeTransactionAmount<T> value)?
+        negativeTransactionAmount,
+    TResult Function(InvalidTransactionCurrency<T> value)?
+        invalidTransactionCurrency,
+    TResult Function(InvalidTransactionRecipient<T> value)?
+        invalidTransactionRecipient,
+    TResult Function(InvalidTransactionSender<T> value)?
+        invalidTransactionSender,
+    required TResult orElse(),
+  }) {
+    if (invalidDouble != null) {
+      return invalidDouble(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InvalidDouble<T> implements ValueFailure<T> {
+  const factory InvalidDouble({required final T failedValue}) =
+      _$InvalidDouble<T>;
+
+  @override
+  T get failedValue;
+  @override
+  @JsonKey(ignore: true)
+  _$$InvalidDoubleCopyWith<T, _$InvalidDouble<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -978,6 +1249,7 @@ class _$InvalidEmail<T>
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) shortString,
+    required TResult Function(T failedValue) invalidDouble,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -1000,6 +1272,7 @@ class _$InvalidEmail<T>
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
     TResult? Function(T failedValue)? shortString,
+    TResult? Function(T failedValue)? invalidDouble,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -1022,6 +1295,7 @@ class _$InvalidEmail<T>
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? shortString,
+    TResult Function(T failedValue)? invalidDouble,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -1048,6 +1322,7 @@ class _$InvalidEmail<T>
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(ShortString<T> value) shortString,
+    required TResult Function(InvalidDouble<T> value) invalidDouble,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -1075,6 +1350,7 @@ class _$InvalidEmail<T>
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
     TResult? Function(ShortString<T> value)? shortString,
+    TResult? Function(InvalidDouble<T> value)? invalidDouble,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -1101,6 +1377,7 @@ class _$InvalidEmail<T>
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
     TResult Function(ShortString<T> value)? shortString,
+    TResult Function(InvalidDouble<T> value)? invalidDouble,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -1219,6 +1496,7 @@ class _$ShortPassword<T>
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) shortString,
+    required TResult Function(T failedValue) invalidDouble,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -1241,6 +1519,7 @@ class _$ShortPassword<T>
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
     TResult? Function(T failedValue)? shortString,
+    TResult? Function(T failedValue)? invalidDouble,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -1263,6 +1542,7 @@ class _$ShortPassword<T>
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? shortString,
+    TResult Function(T failedValue)? invalidDouble,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -1289,6 +1569,7 @@ class _$ShortPassword<T>
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(ShortString<T> value) shortString,
+    required TResult Function(InvalidDouble<T> value) invalidDouble,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -1316,6 +1597,7 @@ class _$ShortPassword<T>
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
     TResult? Function(ShortString<T> value)? shortString,
+    TResult? Function(InvalidDouble<T> value)? invalidDouble,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -1342,6 +1624,7 @@ class _$ShortPassword<T>
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
     TResult Function(ShortString<T> value)? shortString,
+    TResult Function(InvalidDouble<T> value)? invalidDouble,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -1461,6 +1744,7 @@ class _$PasswordsNotMatch<T>
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) shortString,
+    required TResult Function(T failedValue) invalidDouble,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -1483,6 +1767,7 @@ class _$PasswordsNotMatch<T>
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
     TResult? Function(T failedValue)? shortString,
+    TResult? Function(T failedValue)? invalidDouble,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -1505,6 +1790,7 @@ class _$PasswordsNotMatch<T>
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? shortString,
+    TResult Function(T failedValue)? invalidDouble,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -1531,6 +1817,7 @@ class _$PasswordsNotMatch<T>
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(ShortString<T> value) shortString,
+    required TResult Function(InvalidDouble<T> value) invalidDouble,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -1558,6 +1845,7 @@ class _$PasswordsNotMatch<T>
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
     TResult? Function(ShortString<T> value)? shortString,
+    TResult? Function(InvalidDouble<T> value)? invalidDouble,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -1584,6 +1872,7 @@ class _$PasswordsNotMatch<T>
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
     TResult Function(ShortString<T> value)? shortString,
+    TResult Function(InvalidDouble<T> value)? invalidDouble,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -1702,6 +1991,7 @@ class _$ShortUsername<T>
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) shortString,
+    required TResult Function(T failedValue) invalidDouble,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -1724,6 +2014,7 @@ class _$ShortUsername<T>
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
     TResult? Function(T failedValue)? shortString,
+    TResult? Function(T failedValue)? invalidDouble,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -1746,6 +2037,7 @@ class _$ShortUsername<T>
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? shortString,
+    TResult Function(T failedValue)? invalidDouble,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -1772,6 +2064,7 @@ class _$ShortUsername<T>
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(ShortString<T> value) shortString,
+    required TResult Function(InvalidDouble<T> value) invalidDouble,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -1799,6 +2092,7 @@ class _$ShortUsername<T>
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
     TResult? Function(ShortString<T> value)? shortString,
+    TResult? Function(InvalidDouble<T> value)? invalidDouble,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -1825,6 +2119,7 @@ class _$ShortUsername<T>
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
     TResult Function(ShortString<T> value)? shortString,
+    TResult Function(InvalidDouble<T> value)? invalidDouble,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -1943,6 +2238,7 @@ class _$ShortFirstName<T>
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) shortString,
+    required TResult Function(T failedValue) invalidDouble,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -1965,6 +2261,7 @@ class _$ShortFirstName<T>
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
     TResult? Function(T failedValue)? shortString,
+    TResult? Function(T failedValue)? invalidDouble,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -1987,6 +2284,7 @@ class _$ShortFirstName<T>
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? shortString,
+    TResult Function(T failedValue)? invalidDouble,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -2013,6 +2311,7 @@ class _$ShortFirstName<T>
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(ShortString<T> value) shortString,
+    required TResult Function(InvalidDouble<T> value) invalidDouble,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -2040,6 +2339,7 @@ class _$ShortFirstName<T>
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
     TResult? Function(ShortString<T> value)? shortString,
+    TResult? Function(InvalidDouble<T> value)? invalidDouble,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -2066,6 +2366,7 @@ class _$ShortFirstName<T>
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
     TResult Function(ShortString<T> value)? shortString,
+    TResult Function(InvalidDouble<T> value)? invalidDouble,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -2184,6 +2485,7 @@ class _$ShortLastName<T>
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) shortString,
+    required TResult Function(T failedValue) invalidDouble,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -2206,6 +2508,7 @@ class _$ShortLastName<T>
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
     TResult? Function(T failedValue)? shortString,
+    TResult? Function(T failedValue)? invalidDouble,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -2228,6 +2531,7 @@ class _$ShortLastName<T>
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? shortString,
+    TResult Function(T failedValue)? invalidDouble,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -2254,6 +2558,7 @@ class _$ShortLastName<T>
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(ShortString<T> value) shortString,
+    required TResult Function(InvalidDouble<T> value) invalidDouble,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -2281,6 +2586,7 @@ class _$ShortLastName<T>
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
     TResult? Function(ShortString<T> value)? shortString,
+    TResult? Function(InvalidDouble<T> value)? invalidDouble,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -2307,6 +2613,7 @@ class _$ShortLastName<T>
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
     TResult Function(ShortString<T> value)? shortString,
+    TResult Function(InvalidDouble<T> value)? invalidDouble,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -2426,6 +2733,7 @@ class _$ShortCategoryName<T>
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) shortString,
+    required TResult Function(T failedValue) invalidDouble,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -2448,6 +2756,7 @@ class _$ShortCategoryName<T>
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
     TResult? Function(T failedValue)? shortString,
+    TResult? Function(T failedValue)? invalidDouble,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -2470,6 +2779,7 @@ class _$ShortCategoryName<T>
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? shortString,
+    TResult Function(T failedValue)? invalidDouble,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -2496,6 +2806,7 @@ class _$ShortCategoryName<T>
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(ShortString<T> value) shortString,
+    required TResult Function(InvalidDouble<T> value) invalidDouble,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -2523,6 +2834,7 @@ class _$ShortCategoryName<T>
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
     TResult? Function(ShortString<T> value)? shortString,
+    TResult? Function(InvalidDouble<T> value)? invalidDouble,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -2549,6 +2861,7 @@ class _$ShortCategoryName<T>
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
     TResult Function(ShortString<T> value)? shortString,
+    TResult Function(InvalidDouble<T> value)? invalidDouble,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -2669,6 +2982,7 @@ class _$NegativeBudgetAmount<T>
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) shortString,
+    required TResult Function(T failedValue) invalidDouble,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -2691,6 +3005,7 @@ class _$NegativeBudgetAmount<T>
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
     TResult? Function(T failedValue)? shortString,
+    TResult? Function(T failedValue)? invalidDouble,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -2713,6 +3028,7 @@ class _$NegativeBudgetAmount<T>
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? shortString,
+    TResult Function(T failedValue)? invalidDouble,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -2739,6 +3055,7 @@ class _$NegativeBudgetAmount<T>
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(ShortString<T> value) shortString,
+    required TResult Function(InvalidDouble<T> value) invalidDouble,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -2766,6 +3083,7 @@ class _$NegativeBudgetAmount<T>
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
     TResult? Function(ShortString<T> value)? shortString,
+    TResult? Function(InvalidDouble<T> value)? invalidDouble,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -2792,6 +3110,7 @@ class _$NegativeBudgetAmount<T>
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
     TResult Function(ShortString<T> value)? shortString,
+    TResult Function(InvalidDouble<T> value)? invalidDouble,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -2914,6 +3233,7 @@ class _$NegativeTransactionAmount<T>
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) shortString,
+    required TResult Function(T failedValue) invalidDouble,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -2936,6 +3256,7 @@ class _$NegativeTransactionAmount<T>
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
     TResult? Function(T failedValue)? shortString,
+    TResult? Function(T failedValue)? invalidDouble,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -2958,6 +3279,7 @@ class _$NegativeTransactionAmount<T>
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? shortString,
+    TResult Function(T failedValue)? invalidDouble,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -2984,6 +3306,7 @@ class _$NegativeTransactionAmount<T>
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(ShortString<T> value) shortString,
+    required TResult Function(InvalidDouble<T> value) invalidDouble,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -3011,6 +3334,7 @@ class _$NegativeTransactionAmount<T>
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
     TResult? Function(ShortString<T> value)? shortString,
+    TResult? Function(InvalidDouble<T> value)? invalidDouble,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -3037,6 +3361,7 @@ class _$NegativeTransactionAmount<T>
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
     TResult Function(ShortString<T> value)? shortString,
+    TResult Function(InvalidDouble<T> value)? invalidDouble,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -3159,6 +3484,7 @@ class _$InvalidTransactionCurrency<T>
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) shortString,
+    required TResult Function(T failedValue) invalidDouble,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -3181,6 +3507,7 @@ class _$InvalidTransactionCurrency<T>
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
     TResult? Function(T failedValue)? shortString,
+    TResult? Function(T failedValue)? invalidDouble,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -3203,6 +3530,7 @@ class _$InvalidTransactionCurrency<T>
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? shortString,
+    TResult Function(T failedValue)? invalidDouble,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -3229,6 +3557,7 @@ class _$InvalidTransactionCurrency<T>
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(ShortString<T> value) shortString,
+    required TResult Function(InvalidDouble<T> value) invalidDouble,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -3256,6 +3585,7 @@ class _$InvalidTransactionCurrency<T>
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
     TResult? Function(ShortString<T> value)? shortString,
+    TResult? Function(InvalidDouble<T> value)? invalidDouble,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -3282,6 +3612,7 @@ class _$InvalidTransactionCurrency<T>
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
     TResult Function(ShortString<T> value)? shortString,
+    TResult Function(InvalidDouble<T> value)? invalidDouble,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -3405,6 +3736,7 @@ class _$InvalidTransactionRecipient<T>
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) shortString,
+    required TResult Function(T failedValue) invalidDouble,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -3427,6 +3759,7 @@ class _$InvalidTransactionRecipient<T>
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
     TResult? Function(T failedValue)? shortString,
+    TResult? Function(T failedValue)? invalidDouble,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -3449,6 +3782,7 @@ class _$InvalidTransactionRecipient<T>
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? shortString,
+    TResult Function(T failedValue)? invalidDouble,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -3475,6 +3809,7 @@ class _$InvalidTransactionRecipient<T>
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(ShortString<T> value) shortString,
+    required TResult Function(InvalidDouble<T> value) invalidDouble,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -3502,6 +3837,7 @@ class _$InvalidTransactionRecipient<T>
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
     TResult? Function(ShortString<T> value)? shortString,
+    TResult? Function(InvalidDouble<T> value)? invalidDouble,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -3528,6 +3864,7 @@ class _$InvalidTransactionRecipient<T>
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
     TResult Function(ShortString<T> value)? shortString,
+    TResult Function(InvalidDouble<T> value)? invalidDouble,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -3649,6 +3986,7 @@ class _$InvalidTransactionSender<T>
     required TResult Function(T failedValue) unexpected,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) shortString,
+    required TResult Function(T failedValue) invalidDouble,
     required TResult Function(T failedValue) invalidEmail,
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) passwordNotMatch,
@@ -3671,6 +4009,7 @@ class _$InvalidTransactionSender<T>
     TResult? Function(T failedValue)? unexpected,
     TResult? Function(T failedValue)? empty,
     TResult? Function(T failedValue)? shortString,
+    TResult? Function(T failedValue)? invalidDouble,
     TResult? Function(T failedValue)? invalidEmail,
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? passwordNotMatch,
@@ -3693,6 +4032,7 @@ class _$InvalidTransactionSender<T>
     TResult Function(T failedValue)? unexpected,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? shortString,
+    TResult Function(T failedValue)? invalidDouble,
     TResult Function(T failedValue)? invalidEmail,
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? passwordNotMatch,
@@ -3719,6 +4059,7 @@ class _$InvalidTransactionSender<T>
     required TResult Function(Unexpected<T> value) unexpected,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(ShortString<T> value) shortString,
+    required TResult Function(InvalidDouble<T> value) invalidDouble,
     required TResult Function(InvalidEmail<T> value) invalidEmail,
     required TResult Function(ShortPassword<T> value) shortPassword,
     required TResult Function(PasswordsNotMatch<T> value) passwordNotMatch,
@@ -3746,6 +4087,7 @@ class _$InvalidTransactionSender<T>
     TResult? Function(Unexpected<T> value)? unexpected,
     TResult? Function(Empty<T> value)? empty,
     TResult? Function(ShortString<T> value)? shortString,
+    TResult? Function(InvalidDouble<T> value)? invalidDouble,
     TResult? Function(InvalidEmail<T> value)? invalidEmail,
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(PasswordsNotMatch<T> value)? passwordNotMatch,
@@ -3772,6 +4114,7 @@ class _$InvalidTransactionSender<T>
     TResult Function(Unexpected<T> value)? unexpected,
     TResult Function(Empty<T> value)? empty,
     TResult Function(ShortString<T> value)? shortString,
+    TResult Function(InvalidDouble<T> value)? invalidDouble,
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(PasswordsNotMatch<T> value)? passwordNotMatch,

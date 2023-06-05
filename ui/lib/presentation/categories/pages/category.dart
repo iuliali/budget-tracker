@@ -33,6 +33,17 @@ class CategoryPage extends StatelessWidget {
             backgroundColor: Theme.of(context).colorScheme.background,
             elevation: 0,
           ),
+          floatingActionButton: state.selectedCategory.fold(
+            () => null,
+            (category) => FloatingActionButton(
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15.0))),
+              onPressed: () => context.router.navigate(
+                  EditCategoryRoute(category: category)),
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              child: const Icon(Icons.edit),
+            ),
+          ),
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -58,14 +69,6 @@ class CategoryPage extends StatelessWidget {
                     ),
                     HeaderFunctions(
                       buttons: [
-                        FunctionButton(
-                          onPressed: () => context.router
-                              .navigate(EditCategoryRoute(category: category)),
-                          child: const Icon(
-                            Icons.edit,
-                            color: cWhiteColor,
-                          ),
-                        ),
                         category.budget == null
                             ? FunctionButton(
                                 style: ButtonStyle(

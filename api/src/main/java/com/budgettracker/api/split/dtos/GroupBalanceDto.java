@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.List;
 
 @Setter
 @Getter
@@ -16,4 +17,5 @@ public class GroupBalanceDto {
     private BigInteger id;
     private String name;
     private BigDecimal balance;
+    private List<MemberDto> members;
 }

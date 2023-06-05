@@ -1,3 +1,4 @@
+import 'package:budget_tracker/domain/transactions/value_objects.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
@@ -8,12 +9,12 @@ import '../exceptions.dart';
 
 abstract class DebtRemoteDataSource {
   Future<List<GroupModel>> getGroups();
-  Future<List<DebtModel>> getDebts(GroupId groupId);
+  Future<List<DebtModel>> getDebts(int groupId);
   Future<void> createGroup(GroupName name, List<UserId> userIds);
   Future<void> addMembers(GroupId groupId, List<UserId> userIds);
   Future<void> settleDebt(
       GroupId groupId, MemberId memberId, DebtAmount amount);
-  Future<void> addGroupExpense(GroupId groupId, DebtAmount amount,
+  Future<void> addGroupExpense(GroupId groupId, TransactionAmount amount,
       List<MemberId> memberIds, List<DebtAmount> amounts);
 }
 
@@ -48,10 +49,10 @@ class DebtRemoteDataSourceImpl implements DebtRemoteDataSource {
   }
 
   @override
-  Future<List<DebtModel>> getDebts(GroupId groupId) async {
+  Future<List<DebtModel>> getDebts(int groupId) async {
     try {
       final response =
-          await client.get('/group/split/${groupId.getOrCrash()}');
+          await client.get('/group/split/$groupId');
       return DebtModel.fromJsonList(response.data["message"]);
     } on DioError {
       throw DebtServerException;
@@ -64,6 +65,11 @@ class DebtRemoteDataSourceImpl implements DebtRemoteDataSource {
       final response = await client.get('/group/split/');
       final List<GroupModel> groups =
           GroupModel.fromJsonList(response.data["message"]);
+      final debtsResults = await Future.wait(groups.map((e) => getDebts(e.id)));
+      groups.asMap().forEach((index, element) {
+        final List<DebtModel> debts = debtsResults[index];
+        element.debts = debts;
+      });
       return groups;
     } on DioError catch (_) {
       throw GroupServerException;
@@ -92,7 +98,7 @@ class DebtRemoteDataSourceImpl implements DebtRemoteDataSource {
   @override
   Future<void> addGroupExpense(
     GroupId groupId,
-    DebtAmount amount,
+    TransactionAmount amount,
     List<MemberId> memberIds,
     List<DebtAmount> amounts,
   ) async {

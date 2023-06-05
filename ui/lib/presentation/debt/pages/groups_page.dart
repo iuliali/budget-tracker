@@ -110,8 +110,8 @@ class GroupsPage extends StatelessWidget {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: item.balance.getOrElse(0) < 0
-                        ? Colors.red
-                        : Colors.green,
+                        ? cRedColor
+                        : cBlackColor,
                   ),
                 ),
               ],
@@ -133,6 +133,9 @@ class GroupsPage extends StatelessWidget {
         appBar: generateAppBarWidget(context),
         drawer: const Drawer(child: MenuWidget()),
         floatingActionButton: FloatingActionButton(
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(15.0))
+          ),
           onPressed: () => context.router.navigate(const AddGroupRoute()),
           backgroundColor: Theme.of(context).colorScheme.primary,
           child: const Icon(Icons.add),

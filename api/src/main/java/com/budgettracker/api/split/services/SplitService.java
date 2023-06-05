@@ -62,10 +62,10 @@ public class SplitService {
         for(SplitResult splitResult: filteredResults) {
             MemberDto memberFrom = new MemberDto(splitResult.getFrom(),
                     groupService.findMemberById(splitResult.getFrom()).getUser().getId(),
-                    groupService.findMemberById(splitResult.getFrom()).getUser().getUsername());
+                    groupService.findMemberById(splitResult.getFrom()).getUser().getFirstName());
             MemberDto memberTo = new MemberDto(splitResult.getTo(),
                     groupService.findMemberById(splitResult.getTo()).getUser().getId(),
-                    groupService.findMemberById(splitResult.getTo()).getUser().getUsername());
+                    groupService.findMemberById(splitResult.getTo()).getUser().getFirstName());
             splitDtos.add(new SplitDto(memberFrom, memberTo, splitResult.getDebt()));
 
         }
@@ -115,8 +115,12 @@ public class SplitService {
             List<SplitResult> splitResults = runSplitExpenseAlgorithm(group.getId());
             BigDecimal totalPlus = getTotalPlus(splitResults, member.getId());
             BigDecimal totalMinus = getTotalMinus(splitResults, member.getId());
-            groupBalanceList.add(new GroupBalanceDto(group.getId(), group.getGroupName(),
-                                                        totalPlus.subtract(totalMinus)));
+            groupBalanceList.add(new GroupBalanceDto(
+                    group.getId(),
+                    group.getGroupName(),
+                    totalPlus.subtract(totalMinus),
+                    group.getMembers().stream().map(MemberDto::new).toList())
+            );
         }
         return groupBalanceList;
     }

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:budget_tracker/presentation/core/colors.dart';
+import 'package:budget_tracker/presentation/core/widgets/buttons/whole_length_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -58,10 +59,11 @@ class LoginPage extends StatelessWidget {
                           children: [
                             const LoginForm(),
                             const SizedBox(height: 16),
-                            RegisterButton(
+                            WholeLengthButton(
                               filled: false,
                               onPressed: () =>
                                   context.navigateTo(const RegisterRoute()),
+                              text: 'Register',
                             ),
                           ],
                         ),
