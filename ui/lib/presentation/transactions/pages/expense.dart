@@ -11,6 +11,7 @@ import '../../../domain/transactions/entities/expense.dart';
 import '../../../domain/transactions/value_objects.dart';
 import '../../../injection.dart';
 import '../../core/colors.dart';
+import '../../core/routing/router.dart';
 import '../../core/widgets/function_button.dart';
 import '../../core/widgets/header.dart';
 import '../../core/widgets/header_functions.dart';
@@ -103,7 +104,9 @@ class ExpensePage extends StatelessWidget {
                             HeaderFunctions(
                               buttons: [
                                 FunctionButton(
-                                  onPressed: () {},
+                                  onPressed: () => context.router.navigate(
+                                    EditExpenseRoute(expense: expense),
+                                  ),
                                   child: const Icon(
                                     Icons.edit,
                                     color: cWhiteColor,

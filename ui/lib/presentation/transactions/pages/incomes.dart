@@ -115,7 +115,7 @@ class IncomesPage extends StatelessWidget {
                         child: ListTile(
                           onTap: () {
                             context.router.navigate(
-                              IncomeRoute(income: item),
+                              EditIncomeRoute(income: item),
                             );
                           },
                           title: Column(

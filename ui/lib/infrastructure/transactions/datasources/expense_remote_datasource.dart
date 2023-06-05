@@ -62,7 +62,7 @@ class ExpenseRemoteDatasourceImpl implements ExpenseRemoteDatasource {
   @override
   Future<void> update(Expense expense) async {
     final response = await client.put(
-      "/expenses/update",
+      "/expenses/update/${expense.id.getOrCrash()}",
       data: ExpenseModel.fromDomain(expense).toJson(),
     );
     if (response.statusCode == 200) {

@@ -5,11 +5,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../application/categories/categories_bloc.dart';
 import '../../../application/transactions/expenses/expense_form/expense_form_bloc.dart';
+import '../../../application/transactions/expenses/expenses_bloc.dart';
 import '../../../domain/categories/value_objects.dart';
+import '../../../domain/transactions/entities/expense.dart';
 import '../../core/routing/router.dart';
 
 class ExpenseForm extends StatelessWidget {
-  const ExpenseForm({Key? key}) : super(key: key);
+  const ExpenseForm({Key? key, this.expense}) : super(key: key);
+
+  final Expense? expense;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +36,14 @@ class ExpenseForm extends StatelessWidget {
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
             },
             (_) {
-              context.router.popAndPush(const ExpensesRoute());
+              BlocProvider.of<ExpensesBloc>(context)
+                  .add(const ExpensesEvent.getExpenses());
+              return state.expense.fold(
+                () => context.router.popAndPush(const ExpensesRoute()),
+                (expense) => context.router.navigate(
+                  ExpenseRoute(expenseId: expense.id),
+                ),
+              );
             },
           ),
         );
@@ -52,6 +63,7 @@ class ExpenseForm extends StatelessWidget {
                       .read<ExpenseFormBloc>()
                       .add(ExpenseFormEvent.recipientChanged(value)),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
+                  initialValue: expense?.recipient.getOrElse(""),
                   validator: (_) {
                     return state.recipient.value.fold(
                       (f) => f.maybeMap(
@@ -80,6 +92,7 @@ class ExpenseForm extends StatelessWidget {
                               .read<ExpenseFormBloc>()
                               .add(ExpenseFormEvent.amountChanged(value)),
                           autovalidateMode: AutovalidateMode.onUserInteraction,
+                          initialValue: expense?.amount.getOrCrash().toString(),
                           validator: (_) {
                             return state.amount.value.fold(
                                 (f) => f.maybeMap(
@@ -100,7 +113,9 @@ class ExpenseForm extends StatelessWidget {
                           decoration: const InputDecoration(
                             labelText: 'Currency',
                           ),
-                          value: state.currency.value.getOrElse(() => 'RON'),
+                          value:
+                              expense?.currency.value.getOrElse(() => 'RON') ??
+                                  'RON',
                           onChanged: (value) => context
                               .read<ExpenseFormBloc>()
                               .add(ExpenseFormEvent.currencyChanged(
@@ -144,8 +159,10 @@ class ExpenseForm extends StatelessWidget {
                       value: state.categoryId.fold(
                           () => stateCategories.failureOrCategories.fold(
                                 () => null,
-                                (a) => a.fold((l) => null,
-                                    (categories) => categories.first.id),
+                                (a) => a.fold(
+                                  (l) => null,
+                                  (categories) => categories.first.id,
+                                ),
                               ),
                           (a) => a),
                       onChanged: (value) => context.read<ExpenseFormBloc>().add(
@@ -180,7 +197,6 @@ class ExpenseForm extends StatelessWidget {
                   },
                   text: 'Save',
                 ),
-                const Expanded(flex: 2, child: SizedBox()),
               ],
             ),
           ),

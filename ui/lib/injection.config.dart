@@ -18,11 +18,12 @@ import 'package:internet_connection_checker/internet_connection_checker.dart'
 import 'package:shared_preferences/shared_preferences.dart' as _i10;
 
 import 'application/auth/auth_bloc.dart' as _i35;
-import 'application/auth/login_form/login_form_bloc.dart' as _i38;
+import 'application/auth/login_form/login_form_bloc.dart' as _i39;
 import 'application/auth/register_form/register_form_bloc.dart' as _i34;
 import 'application/categories/categories_bloc.dart' as _i36;
 import 'application/categories/category_form/category_form_bloc.dart' as _i37;
 import 'application/core/network_info.dart' as _i22;
+import 'application/dept/group_form/group_form_bloc.dart' as _i38;
 import 'application/dept/groups/groups_bloc.dart' as _i29;
 import 'application/dept/split_form/split_form_bloc.dart' as _i28;
 import 'application/transactions/expenses/expense_form/expense_form_bloc.dart'
@@ -45,10 +46,10 @@ import 'infrastructure/categories/datasources/budget_remote_datasource.dart'
 import 'infrastructure/categories/datasources/category_remote_datasource.dart'
     as _i14;
 import 'infrastructure/categories/repository.dart' as _i33;
-import 'infrastructure/core/injectable_modules/dio.dart' as _i39;
-import 'infrastructure/core/injectable_modules/http.dart' as _i42;
-import 'infrastructure/core/injectable_modules/internet_checker.dart' as _i41;
-import 'infrastructure/core/injectable_modules/shared_preferences.dart' as _i40;
+import 'infrastructure/core/injectable_modules/dio.dart' as _i40;
+import 'infrastructure/core/injectable_modules/http.dart' as _i43;
+import 'infrastructure/core/injectable_modules/internet_checker.dart' as _i42;
+import 'infrastructure/core/injectable_modules/shared_preferences.dart' as _i41;
 import 'infrastructure/core/network/network_info.dart' as _i23;
 import 'infrastructure/debt/datasources/debt_remote_datasource.dart' as _i15;
 import 'infrastructure/debt/repositories/group.dart' as _i19;
@@ -140,7 +141,11 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i36.CategoriesBloc(gh<_i32.ICategoryRepository>()));
     gh.factory<_i37.CategoryFormBloc>(
         () => _i37.CategoryFormBloc(gh<_i32.ICategoryRepository>()));
-    gh.factory<_i38.LoginFormBloc>(() => _i38.LoginFormBloc(
+    gh.factory<_i38.GroupFormBloc>(() => _i38.GroupFormBloc(
+          gh<_i18.IGroupRepository>(),
+          gh<_i30.IAuthFacade>(),
+        ));
+    gh.factory<_i39.LoginFormBloc>(() => _i39.LoginFormBloc(
           gh<_i30.IAuthFacade>(),
           gh<_i35.AuthBloc>(),
         ));
@@ -148,10 +153,10 @@ extension GetItInjectableX on _i1.GetIt {
   }
 }
 
-class _$DioInjectableModule extends _i39.DioInjectableModule {}
+class _$DioInjectableModule extends _i40.DioInjectableModule {}
 
-class _$SharedPrefsModule extends _i40.SharedPrefsModule {}
+class _$SharedPrefsModule extends _i41.SharedPrefsModule {}
 
-class _$NetworkInfoInjectableModule extends _i41.NetworkInfoInjectableModule {}
+class _$NetworkInfoInjectableModule extends _i42.NetworkInfoInjectableModule {}
 
-class _$HttpInjectableModule extends _i42.HttpInjectableModule {}
+class _$HttpInjectableModule extends _i43.HttpInjectableModule {}

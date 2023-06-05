@@ -18,6 +18,8 @@ class CategoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<CategoriesBloc>(context)
+        .add(const CategoriesEvent.fetch());
     return BlocBuilder<CategoriesBloc, CategoriesState>(
       builder: (context, state) {
         context

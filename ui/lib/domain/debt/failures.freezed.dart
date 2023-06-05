@@ -20,6 +20,7 @@ mixin _$GroupFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
     required TResult Function() notFound,
+    required TResult Function() groupAlreadyExists,
     required TResult Function() unableToUpdate,
     required TResult Function() unableToDelete,
   }) =>
@@ -28,6 +29,7 @@ mixin _$GroupFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unexpected,
     TResult? Function()? notFound,
+    TResult? Function()? groupAlreadyExists,
     TResult? Function()? unableToUpdate,
     TResult? Function()? unableToDelete,
   }) =>
@@ -36,6 +38,7 @@ mixin _$GroupFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? notFound,
+    TResult Function()? groupAlreadyExists,
     TResult Function()? unableToUpdate,
     TResult Function()? unableToDelete,
     required TResult orElse(),
@@ -45,6 +48,7 @@ mixin _$GroupFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_GroupUnexpected value) unexpected,
     required TResult Function(_GroupNotFound value) notFound,
+    required TResult Function(_GroupAlreadyExists value) groupAlreadyExists,
     required TResult Function(_GroupUnableToUpdate value) unableToUpdate,
     required TResult Function(_GroupUnableToDelete value) unableToDelete,
   }) =>
@@ -53,6 +57,7 @@ mixin _$GroupFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GroupUnexpected value)? unexpected,
     TResult? Function(_GroupNotFound value)? notFound,
+    TResult? Function(_GroupAlreadyExists value)? groupAlreadyExists,
     TResult? Function(_GroupUnableToUpdate value)? unableToUpdate,
     TResult? Function(_GroupUnableToDelete value)? unableToDelete,
   }) =>
@@ -61,6 +66,7 @@ mixin _$GroupFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GroupUnexpected value)? unexpected,
     TResult Function(_GroupNotFound value)? notFound,
+    TResult Function(_GroupAlreadyExists value)? groupAlreadyExists,
     TResult Function(_GroupUnableToUpdate value)? unableToUpdate,
     TResult Function(_GroupUnableToDelete value)? unableToDelete,
     required TResult orElse(),
@@ -126,6 +132,7 @@ class _$_GroupUnexpected implements _GroupUnexpected {
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
     required TResult Function() notFound,
+    required TResult Function() groupAlreadyExists,
     required TResult Function() unableToUpdate,
     required TResult Function() unableToDelete,
   }) {
@@ -137,6 +144,7 @@ class _$_GroupUnexpected implements _GroupUnexpected {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unexpected,
     TResult? Function()? notFound,
+    TResult? Function()? groupAlreadyExists,
     TResult? Function()? unableToUpdate,
     TResult? Function()? unableToDelete,
   }) {
@@ -148,6 +156,7 @@ class _$_GroupUnexpected implements _GroupUnexpected {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? notFound,
+    TResult Function()? groupAlreadyExists,
     TResult Function()? unableToUpdate,
     TResult Function()? unableToDelete,
     required TResult orElse(),
@@ -163,6 +172,7 @@ class _$_GroupUnexpected implements _GroupUnexpected {
   TResult map<TResult extends Object?>({
     required TResult Function(_GroupUnexpected value) unexpected,
     required TResult Function(_GroupNotFound value) notFound,
+    required TResult Function(_GroupAlreadyExists value) groupAlreadyExists,
     required TResult Function(_GroupUnableToUpdate value) unableToUpdate,
     required TResult Function(_GroupUnableToDelete value) unableToDelete,
   }) {
@@ -174,6 +184,7 @@ class _$_GroupUnexpected implements _GroupUnexpected {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GroupUnexpected value)? unexpected,
     TResult? Function(_GroupNotFound value)? notFound,
+    TResult? Function(_GroupAlreadyExists value)? groupAlreadyExists,
     TResult? Function(_GroupUnableToUpdate value)? unableToUpdate,
     TResult? Function(_GroupUnableToDelete value)? unableToDelete,
   }) {
@@ -185,6 +196,7 @@ class _$_GroupUnexpected implements _GroupUnexpected {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GroupUnexpected value)? unexpected,
     TResult Function(_GroupNotFound value)? notFound,
+    TResult Function(_GroupAlreadyExists value)? groupAlreadyExists,
     TResult Function(_GroupUnableToUpdate value)? unableToUpdate,
     TResult Function(_GroupUnableToDelete value)? unableToDelete,
     required TResult orElse(),
@@ -240,6 +252,7 @@ class _$_GroupNotFound implements _GroupNotFound {
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
     required TResult Function() notFound,
+    required TResult Function() groupAlreadyExists,
     required TResult Function() unableToUpdate,
     required TResult Function() unableToDelete,
   }) {
@@ -251,6 +264,7 @@ class _$_GroupNotFound implements _GroupNotFound {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unexpected,
     TResult? Function()? notFound,
+    TResult? Function()? groupAlreadyExists,
     TResult? Function()? unableToUpdate,
     TResult? Function()? unableToDelete,
   }) {
@@ -262,6 +276,7 @@ class _$_GroupNotFound implements _GroupNotFound {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? notFound,
+    TResult Function()? groupAlreadyExists,
     TResult Function()? unableToUpdate,
     TResult Function()? unableToDelete,
     required TResult orElse(),
@@ -277,6 +292,7 @@ class _$_GroupNotFound implements _GroupNotFound {
   TResult map<TResult extends Object?>({
     required TResult Function(_GroupUnexpected value) unexpected,
     required TResult Function(_GroupNotFound value) notFound,
+    required TResult Function(_GroupAlreadyExists value) groupAlreadyExists,
     required TResult Function(_GroupUnableToUpdate value) unableToUpdate,
     required TResult Function(_GroupUnableToDelete value) unableToDelete,
   }) {
@@ -288,6 +304,7 @@ class _$_GroupNotFound implements _GroupNotFound {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GroupUnexpected value)? unexpected,
     TResult? Function(_GroupNotFound value)? notFound,
+    TResult? Function(_GroupAlreadyExists value)? groupAlreadyExists,
     TResult? Function(_GroupUnableToUpdate value)? unableToUpdate,
     TResult? Function(_GroupUnableToDelete value)? unableToDelete,
   }) {
@@ -299,6 +316,7 @@ class _$_GroupNotFound implements _GroupNotFound {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GroupUnexpected value)? unexpected,
     TResult Function(_GroupNotFound value)? notFound,
+    TResult Function(_GroupAlreadyExists value)? groupAlreadyExists,
     TResult Function(_GroupUnableToUpdate value)? unableToUpdate,
     TResult Function(_GroupUnableToDelete value)? unableToDelete,
     required TResult orElse(),
@@ -312,6 +330,126 @@ class _$_GroupNotFound implements _GroupNotFound {
 
 abstract class _GroupNotFound implements GroupFailure {
   const factory _GroupNotFound() = _$_GroupNotFound;
+}
+
+/// @nodoc
+abstract class _$$_GroupAlreadyExistsCopyWith<$Res> {
+  factory _$$_GroupAlreadyExistsCopyWith(_$_GroupAlreadyExists value,
+          $Res Function(_$_GroupAlreadyExists) then) =
+      __$$_GroupAlreadyExistsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_GroupAlreadyExistsCopyWithImpl<$Res>
+    extends _$GroupFailureCopyWithImpl<$Res, _$_GroupAlreadyExists>
+    implements _$$_GroupAlreadyExistsCopyWith<$Res> {
+  __$$_GroupAlreadyExistsCopyWithImpl(
+      _$_GroupAlreadyExists _value, $Res Function(_$_GroupAlreadyExists) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_GroupAlreadyExists implements _GroupAlreadyExists {
+  const _$_GroupAlreadyExists();
+
+  @override
+  String toString() {
+    return 'GroupFailure.groupAlreadyExists()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_GroupAlreadyExists);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() notFound,
+    required TResult Function() groupAlreadyExists,
+    required TResult Function() unableToUpdate,
+    required TResult Function() unableToDelete,
+  }) {
+    return groupAlreadyExists();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unexpected,
+    TResult? Function()? notFound,
+    TResult? Function()? groupAlreadyExists,
+    TResult? Function()? unableToUpdate,
+    TResult? Function()? unableToDelete,
+  }) {
+    return groupAlreadyExists?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? notFound,
+    TResult Function()? groupAlreadyExists,
+    TResult Function()? unableToUpdate,
+    TResult Function()? unableToDelete,
+    required TResult orElse(),
+  }) {
+    if (groupAlreadyExists != null) {
+      return groupAlreadyExists();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GroupUnexpected value) unexpected,
+    required TResult Function(_GroupNotFound value) notFound,
+    required TResult Function(_GroupAlreadyExists value) groupAlreadyExists,
+    required TResult Function(_GroupUnableToUpdate value) unableToUpdate,
+    required TResult Function(_GroupUnableToDelete value) unableToDelete,
+  }) {
+    return groupAlreadyExists(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GroupUnexpected value)? unexpected,
+    TResult? Function(_GroupNotFound value)? notFound,
+    TResult? Function(_GroupAlreadyExists value)? groupAlreadyExists,
+    TResult? Function(_GroupUnableToUpdate value)? unableToUpdate,
+    TResult? Function(_GroupUnableToDelete value)? unableToDelete,
+  }) {
+    return groupAlreadyExists?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GroupUnexpected value)? unexpected,
+    TResult Function(_GroupNotFound value)? notFound,
+    TResult Function(_GroupAlreadyExists value)? groupAlreadyExists,
+    TResult Function(_GroupUnableToUpdate value)? unableToUpdate,
+    TResult Function(_GroupUnableToDelete value)? unableToDelete,
+    required TResult orElse(),
+  }) {
+    if (groupAlreadyExists != null) {
+      return groupAlreadyExists(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GroupAlreadyExists implements GroupFailure {
+  const factory _GroupAlreadyExists() = _$_GroupAlreadyExists;
 }
 
 /// @nodoc
@@ -354,6 +492,7 @@ class _$_GroupUnableToUpdate implements _GroupUnableToUpdate {
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
     required TResult Function() notFound,
+    required TResult Function() groupAlreadyExists,
     required TResult Function() unableToUpdate,
     required TResult Function() unableToDelete,
   }) {
@@ -365,6 +504,7 @@ class _$_GroupUnableToUpdate implements _GroupUnableToUpdate {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unexpected,
     TResult? Function()? notFound,
+    TResult? Function()? groupAlreadyExists,
     TResult? Function()? unableToUpdate,
     TResult? Function()? unableToDelete,
   }) {
@@ -376,6 +516,7 @@ class _$_GroupUnableToUpdate implements _GroupUnableToUpdate {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? notFound,
+    TResult Function()? groupAlreadyExists,
     TResult Function()? unableToUpdate,
     TResult Function()? unableToDelete,
     required TResult orElse(),
@@ -391,6 +532,7 @@ class _$_GroupUnableToUpdate implements _GroupUnableToUpdate {
   TResult map<TResult extends Object?>({
     required TResult Function(_GroupUnexpected value) unexpected,
     required TResult Function(_GroupNotFound value) notFound,
+    required TResult Function(_GroupAlreadyExists value) groupAlreadyExists,
     required TResult Function(_GroupUnableToUpdate value) unableToUpdate,
     required TResult Function(_GroupUnableToDelete value) unableToDelete,
   }) {
@@ -402,6 +544,7 @@ class _$_GroupUnableToUpdate implements _GroupUnableToUpdate {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GroupUnexpected value)? unexpected,
     TResult? Function(_GroupNotFound value)? notFound,
+    TResult? Function(_GroupAlreadyExists value)? groupAlreadyExists,
     TResult? Function(_GroupUnableToUpdate value)? unableToUpdate,
     TResult? Function(_GroupUnableToDelete value)? unableToDelete,
   }) {
@@ -413,6 +556,7 @@ class _$_GroupUnableToUpdate implements _GroupUnableToUpdate {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GroupUnexpected value)? unexpected,
     TResult Function(_GroupNotFound value)? notFound,
+    TResult Function(_GroupAlreadyExists value)? groupAlreadyExists,
     TResult Function(_GroupUnableToUpdate value)? unableToUpdate,
     TResult Function(_GroupUnableToDelete value)? unableToDelete,
     required TResult orElse(),
@@ -468,6 +612,7 @@ class _$_GroupUnableToDelete implements _GroupUnableToDelete {
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
     required TResult Function() notFound,
+    required TResult Function() groupAlreadyExists,
     required TResult Function() unableToUpdate,
     required TResult Function() unableToDelete,
   }) {
@@ -479,6 +624,7 @@ class _$_GroupUnableToDelete implements _GroupUnableToDelete {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unexpected,
     TResult? Function()? notFound,
+    TResult? Function()? groupAlreadyExists,
     TResult? Function()? unableToUpdate,
     TResult? Function()? unableToDelete,
   }) {
@@ -490,6 +636,7 @@ class _$_GroupUnableToDelete implements _GroupUnableToDelete {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? notFound,
+    TResult Function()? groupAlreadyExists,
     TResult Function()? unableToUpdate,
     TResult Function()? unableToDelete,
     required TResult orElse(),
@@ -505,6 +652,7 @@ class _$_GroupUnableToDelete implements _GroupUnableToDelete {
   TResult map<TResult extends Object?>({
     required TResult Function(_GroupUnexpected value) unexpected,
     required TResult Function(_GroupNotFound value) notFound,
+    required TResult Function(_GroupAlreadyExists value) groupAlreadyExists,
     required TResult Function(_GroupUnableToUpdate value) unableToUpdate,
     required TResult Function(_GroupUnableToDelete value) unableToDelete,
   }) {
@@ -516,6 +664,7 @@ class _$_GroupUnableToDelete implements _GroupUnableToDelete {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GroupUnexpected value)? unexpected,
     TResult? Function(_GroupNotFound value)? notFound,
+    TResult? Function(_GroupAlreadyExists value)? groupAlreadyExists,
     TResult? Function(_GroupUnableToUpdate value)? unableToUpdate,
     TResult? Function(_GroupUnableToDelete value)? unableToDelete,
   }) {
@@ -527,6 +676,7 @@ class _$_GroupUnableToDelete implements _GroupUnableToDelete {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GroupUnexpected value)? unexpected,
     TResult Function(_GroupNotFound value)? notFound,
+    TResult Function(_GroupAlreadyExists value)? groupAlreadyExists,
     TResult Function(_GroupUnableToUpdate value)? unableToUpdate,
     TResult Function(_GroupUnableToDelete value)? unableToDelete,
     required TResult orElse(),

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import "package:flutter/material.dart";
 import '../../../domain/categories/entities/category.dart';
 import '../../../domain/categories/value_objects.dart';
+import '../../../domain/transactions/entities/expense.dart';
 import '../../../domain/transactions/entities/income.dart';
 import '../../../domain/debt/entities/group.dart';
 import '../../../domain/transactions/value_objects.dart';
@@ -14,6 +15,8 @@ import '../../categories/pages/add_category.dart';
 import '../../categories/pages/edit_category.dart';
 import '../../budget/pages/add_budget.dart';
 import '../../budget/pages/edit_budget.dart';
+import '../../transactions/pages/edit_expense.dart';
+import '../../transactions/pages/edit_income.dart';
 import '../../transactions/pages/incomes.dart';
 import '../../transactions/pages/income.dart';
 import '../../transactions/pages/expenses.dart';
@@ -53,9 +56,11 @@ class AppRouter extends _$AppRouter {
     AutoRoute(page: ExpensesRoute.page),
     AutoRoute(page: ExpenseRoute.page),
     AutoRoute(page: AddExpenseRoute.page),
+    AutoRoute(page: EditExpenseRoute.page, path: '/expenses/:expenseId(int)/edit'),
     AutoRoute(page: IncomesRoute.page),
     AutoRoute(page: IncomeRoute.page),
     AutoRoute(page: AddIncomeRoute.page),
+    AutoRoute(page: EditIncomeRoute.page, path: '/incomes/:incomeId(int)/edit'),
 
     // Debt
     AutoRoute(page: AddGroupRoute.page),

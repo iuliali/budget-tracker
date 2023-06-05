@@ -32,6 +32,10 @@ class ExpenseFormBloc extends Bloc<ExpenseFormEvent, ExpenseFormState> {
       (initialExpense) {
         emit(state.copyWith(
           expense: some(initialExpense),
+          categoryId: some(initialExpense.categoryId),
+          recipient: initialExpense.recipient,
+          amount: initialExpense.amount,
+          currency: initialExpense.currency,
           isEditing: true,
         ));
       },

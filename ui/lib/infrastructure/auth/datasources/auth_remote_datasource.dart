@@ -35,6 +35,8 @@ abstract class AuthRemoteDataSource {
   ///
   /// Throws [ServerException] for all error codes.
   Future<UserModel> getUser();
+
+  Future<List<UserModel>> getUsers();
 }
 
 const USERNAME_ALREADY_USED_MESSAGE = "A user is already registered with this username. ";
@@ -75,7 +77,7 @@ class AuthApiDataSourceImpl implements AuthRemoteDataSource {
     required String lastName,
   }) async {
     try {
-      final response = await client.post(
+      await client.post(
       "/auth/register",
       data: {
         'username': username,
@@ -100,6 +102,23 @@ class AuthApiDataSourceImpl implements AuthRemoteDataSource {
       throw AuthServerException();
     } catch (_) {
       throw AuthServerException();
+    }
+  }
+
+
+  @override
+  Future<List<UserModel>> getUsers() {
+    try {
+      final response = client.get(
+        "/user/all",
+      );
+      return response.then((value) => value.data.map<UserModel>((e) => UserModel.fromJson(e)).toList());
+    } on DioError catch (e) {
+      if (e.response?.statusCode == 401) {
+        throw InvalidCredentialsException();
+      } else {
+        throw AuthServerException();
+      }
     }
   }
 

@@ -159,6 +159,26 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const EditBudgetPage(),
       );
     },
+    EditExpenseRoute.name: (routeData) {
+      final args = routeData.argsAs<EditExpenseRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: EditExpensePage(
+          key: args.key,
+          expense: args.expense,
+        ),
+      );
+    },
+    EditIncomeRoute.name: (routeData) {
+      final args = routeData.argsAs<EditIncomeRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: EditIncomePage(
+          key: args.key,
+          income: args.income,
+        ),
+      );
+    },
   };
 }
 
@@ -581,4 +601,80 @@ class EditBudgetRoute extends PageRouteInfo<void> {
   static const String name = 'EditBudgetRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [EditExpensePage]
+class EditExpenseRoute extends PageRouteInfo<EditExpenseRouteArgs> {
+  EditExpenseRoute({
+    Key? key,
+    required Expense expense,
+    List<PageRouteInfo>? children,
+  }) : super(
+          EditExpenseRoute.name,
+          args: EditExpenseRouteArgs(
+            key: key,
+            expense: expense,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'EditExpenseRoute';
+
+  static const PageInfo<EditExpenseRouteArgs> page =
+      PageInfo<EditExpenseRouteArgs>(name);
+}
+
+class EditExpenseRouteArgs {
+  const EditExpenseRouteArgs({
+    this.key,
+    required this.expense,
+  });
+
+  final Key? key;
+
+  final Expense expense;
+
+  @override
+  String toString() {
+    return 'EditExpenseRouteArgs{key: $key, expense: $expense}';
+  }
+}
+
+/// generated route for
+/// [EditIncomePage]
+class EditIncomeRoute extends PageRouteInfo<EditIncomeRouteArgs> {
+  EditIncomeRoute({
+    Key? key,
+    required Income income,
+    List<PageRouteInfo>? children,
+  }) : super(
+          EditIncomeRoute.name,
+          args: EditIncomeRouteArgs(
+            key: key,
+            income: income,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'EditIncomeRoute';
+
+  static const PageInfo<EditIncomeRouteArgs> page =
+      PageInfo<EditIncomeRouteArgs>(name);
+}
+
+class EditIncomeRouteArgs {
+  const EditIncomeRouteArgs({
+    this.key,
+    required this.income,
+  });
+
+  final Key? key;
+
+  final Income income;
+
+  @override
+  String toString() {
+    return 'EditIncomeRouteArgs{key: $key, income: $income}';
+  }
 }

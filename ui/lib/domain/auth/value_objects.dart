@@ -5,6 +5,16 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../core/failures.dart';
 import '../core/value_object.dart';
 
+class UserId extends ValueObject<int> {
+  @override
+  final Either<ValueFailure<int>, int> value;
+
+  factory UserId(int input) {
+    return UserId._(right(input));
+  }
+
+  const UserId._(this.value);
+}
 
 @immutable
 class EmailAddress extends ValueObject<String> {

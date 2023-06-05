@@ -1,25 +1,26 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:budget_tracker/presentation/core/widgets/header.dart';
+import 'package:budget_tracker/presentation/transactions/widgets/income_form.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../application/dept/group_form/group_form_bloc.dart';
+import '../../../application/transactions/incomes/income_form/income_form_bloc.dart';
+import '../../../domain/transactions/entities/income.dart';
 import '../../../injection.dart';
 import '../../core/colors.dart';
-import '../../core/widgets/header.dart';
-import '../widgets/add_members.dart';
-import '../widgets/group_form.dart';
 
 @RoutePage()
-class AddGroupPage extends StatelessWidget {
-  const AddGroupPage({Key? key}) : super(key: key);
+class EditIncomePage extends StatelessWidget {
+  const EditIncomePage({Key? key, required this.income}) : super(key: key);
+
+  final Income income;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          getIt<GroupFormBloc>()..add(GroupFormEvent.initialized(none())),
+      create: (context) => getIt<IncomeFormBloc>()
+        ..add(IncomeFormEvent.initialized(some(income))),
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
@@ -30,19 +31,17 @@ class AddGroupPage extends StatelessWidget {
           backgroundColor: Theme.of(context).colorScheme.background,
           elevation: 0,
         ),
-        body: const SafeArea(
+        body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 32),
+            padding: const EdgeInsets.all(32),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                HeaderWidget(
-                  title: "Add Group",
-                  subtitle: "Create a new group and invite your friends",
+                const Spacer(),
+                const HeaderWidget(
+                  title: "Edit Income",
                 ),
-                Spacer(),
-                AddMembersForm(),
-                GroupForm(),
+                IncomeForm(income: income)
               ],
             ),
           ),

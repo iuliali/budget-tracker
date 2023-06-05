@@ -20,4 +20,6 @@ abstract class IAuthFacade {
 
   Future<Option<User>> getSignedInUser();
   Future<void> signOut();
+
+  Future<Either<AuthFailure, List<User>>> getUsers();
 }

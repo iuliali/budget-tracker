@@ -32,6 +32,10 @@ class IncomeFormBloc extends Bloc<IncomeFormEvent, IncomeFormState> {
       (initialIncome) {
         emit(state.copyWith(
           income: some(initialIncome),
+          categoryId: some(initialIncome.categoryId),
+          sender: initialIncome.sender,
+          amount: initialIncome.amount,
+          currency: initialIncome.currency,
           isEditing: true,
         ));
       },

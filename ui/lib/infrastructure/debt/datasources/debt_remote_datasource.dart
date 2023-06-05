@@ -2,6 +2,7 @@ import 'package:budget_tracker/domain/transactions/value_objects.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../domain/auth/value_objects.dart';
 import '../../../domain/debt/value_objects.dart';
 import '../models/group_model.dart';
 import '../models/debt_model.dart';
@@ -11,6 +12,7 @@ abstract class DebtRemoteDataSource {
   Future<List<GroupModel>> getGroups();
   Future<List<DebtModel>> getDebts(int groupId);
   Future<void> createGroup(GroupName name, List<UserId> userIds);
+  Future<void> deleteGroup(GroupId groupId);
   Future<void> addMembers(GroupId groupId, List<UserId> userIds);
   Future<void> settleDebt(
       GroupId groupId, MemberId memberId, DebtAmount amount);
@@ -116,5 +118,11 @@ class DebtRemoteDataSourceImpl implements DebtRemoteDataSource {
       throw GroupServerException;
     }
 
+  }
+
+  @override
+  Future<void> deleteGroup(GroupId groupId) {
+    // TODO: implement deleteGroup
+    throw UnimplementedError();
   }
 }

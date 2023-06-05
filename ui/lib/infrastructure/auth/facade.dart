@@ -102,4 +102,14 @@ class AuthFacade implements IAuthFacade {
   Future<void> signOut() {
     return localDataSource.deleteCachedAccessToken();
   }
+
+  @override
+  Future<Either<AuthFailure, List<User>>> getUsers() async {
+    try {
+      final userModels = await remoteDataSource.getUsers();
+      return right(userModels.map((userModel) => userModel.toDomain()).toList());
+    } catch (_) {
+      return const Left(AuthFailure.serverError());
+    }
+  }
 }

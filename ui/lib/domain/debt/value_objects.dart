@@ -53,17 +53,6 @@ class MemberId extends ValueObject<int> {
   const MemberId._(this.value);
 }
 
-class UserId extends ValueObject<int> {
-  @override
-  final Either<ValueFailure<int>, int> value;
-
-  factory UserId(int input) {
-    return UserId._(right(input));
-  }
-
-  const UserId._(this.value);
-}
-
 class MemberName extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:budget_tracker/presentation/core/routing/router.dart';
 import 'package:budget_tracker/presentation/core/widgets/buttons/whole_length_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,10 +7,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../application/categories/categories_bloc.dart';
 import '../../../application/transactions/incomes/income_form/income_form_bloc.dart';
 import '../../../domain/categories/value_objects.dart';
-import '../../core/routing/router.dart';
+import '../../../domain/transactions/entities/income.dart';
 
 class IncomeForm extends StatelessWidget {
-  const IncomeForm({Key? key}) : super(key: key);
+  const IncomeForm({Key? key, this.income}) : super(key: key);
+
+  final Income? income;
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +35,12 @@ class IncomeForm extends StatelessWidget {
               );
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
             },
-            (_) {
-              context.router.popAndPush(const IncomesRoute());
-            },
+            (_) => state.categoryId.fold(
+                  () => context.router.popAndPush(const CategoriesRoute()),
+                  (categoryId) => context.router.popAndPush(
+                        CategoryRoute(categoryId: categoryId),
+                      )
+              ),
           ),
         );
       },
@@ -53,6 +59,7 @@ class IncomeForm extends StatelessWidget {
                       .read<IncomeFormBloc>()
                       .add(IncomeFormEvent.senderChanged(value)),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
+                  initialValue: income?.sender.getOrElse(""),
                   validator: (_) {
                     return state.sender.value.fold(
                         (f) => f.maybeMap(
@@ -79,6 +86,7 @@ class IncomeForm extends StatelessWidget {
                           onChanged: (value) => context
                               .read<IncomeFormBloc>()
                               .add(IncomeFormEvent.amountChanged(value)),
+                          initialValue: income?.amount.getOrCrash().toString(),
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (_) {
                             return state.amount.value.fold(
@@ -100,7 +108,8 @@ class IncomeForm extends StatelessWidget {
                           decoration: const InputDecoration(
                             labelText: 'Currency',
                           ),
-                          value: state.currency.value.getOrElse(() => 'RON'),
+                          value: income?.currency.getOrCrash() ??
+                              state.currency.value.getOrElse(() => 'RON'),
                           onChanged: (value) => context
                               .read<IncomeFormBloc>()
                               .add(IncomeFormEvent.currencyChanged(
@@ -149,8 +158,7 @@ class IncomeForm extends StatelessWidget {
                     );
                     if (currentCategoryId != null) {
                       context.read<IncomeFormBloc>().add(
-                          IncomeFormEvent.categoryIdChanged(
-                              currentCategoryId));
+                          IncomeFormEvent.categoryIdChanged(currentCategoryId));
                     }
 
                     return DropdownButtonFormField(
@@ -160,8 +168,10 @@ class IncomeForm extends StatelessWidget {
                       value: state.categoryId.fold(
                           () => stateCategories.failureOrCategories.fold(
                                 () => null,
-                                (a) => a.fold((l) => null,
-                                    (categories) => categories.first.id),
+                                (a) => a.fold(
+                                  (l) => null,
+                                  (categories) => categories.first.id,
+                                ),
                               ),
                           (a) => a),
                       onChanged: (value) => context.read<IncomeFormBloc>().add(

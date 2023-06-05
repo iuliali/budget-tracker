@@ -62,7 +62,7 @@ class IncomeRemoteDatasourceImpl implements IncomeRemoteDatasource {
   @override
   Future<void> update(Income income) async {
     final response = await client.put(
-      "/incomes/update",
+      "/incomes/update/${income.id.getOrCrash()}",
       data: IncomeModel.fromDomain(income).toJson(),
     );
     if (response.statusCode == 200) {

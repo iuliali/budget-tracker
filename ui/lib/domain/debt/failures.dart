@@ -6,6 +6,7 @@ part 'failures.freezed.dart';
 abstract class GroupFailure with _$GroupFailure {
   const factory GroupFailure.unexpected() = _GroupUnexpected;
   const factory GroupFailure.notFound() = _GroupNotFound;
+  const factory GroupFailure.groupAlreadyExists() = _GroupAlreadyExists;
   const factory GroupFailure.unableToUpdate() = _GroupUnableToUpdate;
   const factory GroupFailure.unableToDelete() = _GroupUnableToDelete;
 }
