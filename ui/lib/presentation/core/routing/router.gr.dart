@@ -122,6 +122,7 @@ abstract class _$AppRouter extends RootStackRouter {
         child: EditCategoryPage(
           key: args.key,
           category: args.category,
+          budgeting: args.budgeting,
         ),
       );
     },
@@ -477,12 +478,14 @@ class EditCategoryRoute extends PageRouteInfo<EditCategoryRouteArgs> {
   EditCategoryRoute({
     Key? key,
     required Category category,
+    required bool budgeting,
     List<PageRouteInfo>? children,
   }) : super(
           EditCategoryRoute.name,
           args: EditCategoryRouteArgs(
             key: key,
             category: category,
+            budgeting: budgeting,
           ),
           initialChildren: children,
         );
@@ -497,15 +500,18 @@ class EditCategoryRouteArgs {
   const EditCategoryRouteArgs({
     this.key,
     required this.category,
+    required this.budgeting,
   });
 
   final Key? key;
 
   final Category category;
 
+  final bool budgeting;
+
   @override
   String toString() {
-    return 'EditCategoryRouteArgs{key: $key, category: $category}';
+    return 'EditCategoryRouteArgs{key: $key, category: $category, budgeting: $budgeting}';
   }
 }
 

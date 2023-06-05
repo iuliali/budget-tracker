@@ -53,15 +53,12 @@ class AddMembersForm extends StatelessWidget {
             }),
         const SizedBox(height: 16),
         TextFormField(
-
           decoration: const InputDecoration(
             prefixIcon: Icon(Icons.search),
             suffixIcon: Icon(Icons.person),
             labelText: 'Search Users',
           ),
           autocorrect: false,
-          keyboardType: const TextInputType.numberWithOptions(
-              decimal: true, signed: false),
           onChanged: (value) => context
               .read<GroupFormBloc>()
               .add(GroupFormEvent.findUserByUsername(value)),

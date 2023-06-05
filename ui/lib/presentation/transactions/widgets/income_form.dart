@@ -35,12 +35,7 @@ class IncomeForm extends StatelessWidget {
               );
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
             },
-            (_) => state.categoryId.fold(
-                  () => context.router.popAndPush(const CategoriesRoute()),
-                  (categoryId) => context.router.popAndPush(
-                        CategoryRoute(categoryId: categoryId),
-                      )
-              ),
+            (_) =>context.router.popAndPush(const IncomesRoute()),
           ),
         );
       },

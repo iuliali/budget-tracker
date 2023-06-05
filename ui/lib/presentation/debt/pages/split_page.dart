@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../domain/debt/entities/group.dart';
 import '../../../injection.dart';
 import '../../core/colors.dart';
+import '../../core/routing/router.dart';
 import '../../core/widgets/header.dart';
 import '../widgets/split_equally_form.dart';
 
@@ -53,7 +54,7 @@ class SplitPage extends StatelessWidget {
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     },
                     (_) {
-                      context.router.pop();
+                      context.router.popAndPush(GroupRoute(group: group));
                     },
                   ),
                 );

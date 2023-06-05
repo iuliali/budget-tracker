@@ -12,9 +12,10 @@ import '../widgets/category_form.dart';
 
 @RoutePage()
 class EditCategoryPage extends StatelessWidget {
-  const EditCategoryPage({Key? key, required this.category}) : super(key: key);
+  const EditCategoryPage({Key? key, required this.category, required this.budgeting}) : super(key: key);
 
   final Category category;
+  final bool budgeting;
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +39,10 @@ class EditCategoryPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Spacer(),
-                const HeaderWidget(
-                  title: "Edit Category",
+                HeaderWidget(
+                  title: budgeting ? "Set budget" : "Edit Category",
                 ),
-                CategoryForm(category: category),
+                CategoryForm(category: category, budgeting: budgeting),
               ],
             ),
           ),

@@ -56,7 +56,7 @@ class DebtRemoteDataSourceImpl implements DebtRemoteDataSource {
       final response =
           await client.get('/group/split/$groupId');
       return DebtModel.fromJsonList(response.data["message"]);
-    } on DioError {
+    } on DioError catch (_) {
       throw DebtServerException;
     }
   }
@@ -114,7 +114,7 @@ class DebtRemoteDataSourceImpl implements DebtRemoteDataSource {
           "amounts": amounts.map((e) => e.getOrCrash()).toList(),
         },
       );
-    } on DioError {
+    } on DioError catch(_) {
       throw GroupServerException;
     }
 

@@ -41,7 +41,7 @@ class CategoryPage extends StatelessWidget {
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(15.0))),
               onPressed: () => context.router.navigate(
-                  EditCategoryRoute(category: category)),
+                  EditCategoryRoute(category: category, budgeting: false)),
               backgroundColor: Theme.of(context).colorScheme.primary,
               child: const Icon(Icons.edit),
             ),
@@ -78,7 +78,7 @@ class CategoryPage extends StatelessWidget {
                                       MaterialStateProperty.all(cGreenColor),
                                 ),
                                 onPressed: () => context.router.navigate(
-                                    EditCategoryRoute(category: category)),
+                                    EditCategoryRoute(category: category, budgeting: true)),
                                 child: const Row(
                                   children: [
                                     Text("Set Budget"),
@@ -102,7 +102,7 @@ class CategoryPage extends StatelessWidget {
                                   ],
                                 ),
                                 onPressed: () => context.router.navigate(
-                                    EditCategoryRoute(category: category)),
+                                    EditCategoryRoute(category: category, budgeting: true)),
                               ),
                       ],
                     ),

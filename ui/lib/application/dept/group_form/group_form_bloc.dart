@@ -82,7 +82,7 @@ class GroupFormBloc extends Bloc<GroupFormEvent, GroupFormState> {
       (f) => [],
       (users) => users
           .where((user) => (user.username
-              .getOrCrash()
+              .getOrElse(" ")
               .toLowerCase()
               .contains(event.usernameStr.toLowerCase())) || (state.members.contains(user.id)))
           .toList(),

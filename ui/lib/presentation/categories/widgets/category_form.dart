@@ -8,9 +8,10 @@ import '../../../application/categories/category_form/category_form_bloc.dart';
 import '../../../domain/categories/entities/category.dart';
 
 class CategoryForm extends StatelessWidget {
-  const CategoryForm({Key? key, this.category}) : super(key: key);
+  const CategoryForm({Key? key, this.category, this.budgeting = false}) : super(key: key);
 
   final Category? category;
+  final bool budgeting;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +49,7 @@ class CategoryForm extends StatelessWidget {
           child: IntrinsicHeight(
             child: Column(
               children: [
-                TextFormField(
+                !budgeting ? TextFormField(
                   decoration: const InputDecoration(
                     labelText: 'Name',
                   ),
@@ -76,9 +77,9 @@ class CategoryForm extends StatelessWidget {
                               ),
                             ));
                   },
-                ),
+                ) : Container(),
                 const SizedBox(height: 20),
-                TextFormField(
+                budgeting ? TextFormField(
                   decoration: const InputDecoration(
                     labelText: 'Budget',
                   ),
@@ -100,7 +101,7 @@ class CategoryForm extends StatelessWidget {
                           (_) => null,
                         ));
                   },
-                ),
+                ) : Container(),
                 const SizedBox(height: 20),
                 WholeLengthButton(
                   onPressed: () {
@@ -112,7 +113,6 @@ class CategoryForm extends StatelessWidget {
                   },
                   text: 'Save',
                 ),
-                const Expanded(flex: 2, child: SizedBox()),
               ],
             ),
           ),
