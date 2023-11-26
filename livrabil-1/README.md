@@ -1,18 +1,9 @@
 
 
 # Budget Tracket App *[livrabil 1]*
+**26-11-2023**
 
-#### Rules for adding your work:
-- create a new branch named `your-name/your-work`
-- add changes requested in next steps
-- identify the section you worked on down below
-- add text in section you worked on
-- add needed diagrams/ screenshots in dedicated folder `./diagrams-screenshots/`
-- add link to diagrams/ screenshots added with markdown code: `![<suggestive-description>](<path-to-image>)`
-- push your new branch and create a pull request
-- ping a team member to review and approve your request
-___
-#### Team
+#### Team (all of us are members of group 334)
 - Daria Clem
 - Valentin Maftei 
 - Victor Mura
@@ -135,8 +126,11 @@ THEN I CAN SET THE DEFAULT CURRENCY.
 
 - GIVEN  I AM LOGGED IN MY ACCOUNT,\
 WHEN I ACCESS STATISTICS PAGE,\
-THEN I CAN SEE MY STATISTICS IN MY DEFAULT CURRENCY\
-AND ALSO CHANGE STATISTICS CURRENCY IN CURRENT VIEW.
+THEN I CAN SEE MY STATISTICS IN MY DEFAULT CURRENCY.
+
+- GIVEN  I AM LOGGED IN MY ACCOUNT,\
+WHEN I ACCESS STATISTICS PAGE,\
+THEN I CAN CHANGE STATISTICS CURRENCY IN CURRENT VIEW.
 
 ___
 ### Prioritized Product Backlog
