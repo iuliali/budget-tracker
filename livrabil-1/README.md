@@ -38,8 +38,6 @@ For a better quality of the items check the [Figma link.](https://www.figma.com/
 
 #### Integration Points
 ![Integration Points](./diagrams-screenshots/integration_points.png)
-___
-### Non-functional requirements
 
 ___
 ### Customer Journey
@@ -53,6 +51,19 @@ ___
 ___
 ### Activity Diagram
 ![activity_diagram](./diagrams-screenshots/activity_diagram.jpg)
+
+---
+### Non-functional requirements
+- **Performance**\
+Achieve a response time of 1 second or less for user interactions, such as adding an expense or viewing a budget report for at least 100 simultaneous requests.
+- **Reliability**\
+Maintain an availability rate of 99.5% yearly, allowing for scheduled maintenance windows.
+- **Security**\
+Implement secure user authentication with strong password policies at least 8 characters upper and lower case characters and at least a symbol and password hashing with bcrypt algorithm.
+- **Usability**\
+Maintain an intuitive and user-friendly interface for managing budgets without extensive training, with a maximum 4 actions/user interactions to achieve any functionality.
+- **Compatibility**\
+Ensure smooth operation on phone devices with iOS 8 and higher and Android 10 and higher operation systems.
 
 ___
 ### User Stories
