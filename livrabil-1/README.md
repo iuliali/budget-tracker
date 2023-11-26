@@ -44,6 +44,8 @@ ___
 ___
 ### Customer Journey
 #### User personas
+![User personas](./diagrams-screenshots/student.png)
+![User personas](./diagrams-screenshots/product-owner.png)
 
 #### User journey map
 ![User journey map](./diagrams-screenshots/user_journey_map.png)
