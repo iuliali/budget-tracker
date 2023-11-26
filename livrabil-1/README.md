@@ -26,7 +26,7 @@ ___
 
 ___
 ### Product Vision
-
+For anyone who wants to monitor their budget and achieve financial stability, the Budget Tracker is an app that helps people manage their incomes, expenses and debts to other users while gaining a clear overview of their spending habits through graphical reviews. Unlike other budgeting apps, our product facilitates the management of collective costs by allowing users to join groups and properly split their shared expenses.
 ___
 ### Product features and functionalities
 For a better quality of the items check the [Figma link.](https://www.figma.com/file/t1Nv4sIAPO4dklhro59N56/Budget-Tracker?type=whiteboard&node-id=0%3A1&t=k0Irlfbz6AjT8F5K-1)
