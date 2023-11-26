@@ -52,6 +52,7 @@ ___
 
 ___
 ### Activity Diagram
+![activity_diagram](./diagrams-screenshots/activity_diagram.jpg)
 
 ___
 ### User Stories
