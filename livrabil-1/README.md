@@ -1,3 +1,5 @@
+
+
 # Budget Tracket App *[livrabil 1]*
 
 #### Rules for adding your work:
@@ -8,7 +10,7 @@
 - add needed diagrams/ screenshots in dedicated folder `./diagrams-screenshots/`
 - add link to diagrams/ screenshots added with markdown code: `![<suggestive-description>](<path-to-image>)`
 - push your new branch and create a pull request
-- ping a teammember to review and approve your request
+- ping a team member to review and approve your request
 ___
 #### Team
 - Daria Clem
@@ -17,17 +19,34 @@ ___
 - Raluca Rogoza
 - Eduard Sabău
 - Iulia-Georgiana Talpalariu
+
+___
+### Documenting existing MDS application
+[Link to the documentation pdf](./mds_existing_app.pdf)
+
 ___
 ### Product Vision
 
 ___
 ### Product features and functionalities
+For a better quality of the items check the [Figma link.](https://www.figma.com/file/t1Nv4sIAPO4dklhro59N56/Budget-Tracker?type=whiteboard&node-id=0%3A1&t=k0Irlfbz6AjT8F5K-1)
+#### Feature Mindmap
+![Feature Mindmap](./diagrams-screenshots/feature_mindmap.jpg)
 
+#### Product Roadmap
+![Product Roadmap](./diagrams-screenshots/roadmap.png)
+
+#### Integration Points
+![Integration Points](./diagrams-screenshots/integration_points.png)
 ___
 ### Non-functional requirements
 
 ___
 ### Customer Journey
+#### User personas
+
+#### User journey map
+![User journey map](./diagrams-screenshots/user_journey_map.png)
 
 ___
 ### Activity Diagram
