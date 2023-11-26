@@ -34,6 +34,87 @@ ___
 
 ___
 ### User Stories
+#### + Acceptance Criteria
+
+1. As a student, I want to see an overview of my recent spending habits, in order to set bugets for categories of expenses I spend the most. *[3 story points]*
+
+- GIVEN I OPEN THE APP BEING LOGGED IN INTO MY ACCOUNT,\
+WHEN I GO TO STATISTICS PAGE,\
+THEN I SEE MY TOTAL OF EXPENSE AND CATEGORY WHICH I SPENT THE MOST.
+
+- GIVEN I OPEN THE APP BEING LOGGED IN INTO MY ACCOUNT AND HAVE NEVER REGISTERED AN EXPENSE OR INCOME,\
+WHEN I GO TO STATISTICS PAGE,\
+THEN I SEE AN ERROR MESSAGE.
+
+2. As a young person, I want to see a screen with concise summary of last month expenses/incomes in order to see which bugets should I limit in the next period of time. *[3 story points]*
+
+- GIVEN I AM LOGGED IN MY ACCOUNT AND ON THE STATISTICS PAGE,\
+WHEN I GO TO EXPENSES SECTION,\
+THEN I PERCIEVE IN A GRAPHICAL FORM MY TOTAL OF LAST MONTH REGISTERED EXPENSES BY CATEGORIES.
+
+- GIVEN I AM LOGGED IN MY ACCOUNT AND ON THE STATISTICS PAGE,\
+WHEN I GO TO EXPENSES SECTION,\
+THEN I PERCIEVE IN A GRAPHICAL FORM MY TOTAL OF LAST MONTH-REGISTERED EXPENSES WITH CATEGORIES I EXCEEDED MY BUDGETS HIGHLIGHTED.
+
+- GIVEN I AM LOGGED IN MY ACCOUNT AND ON THE STATISTICS PAGE,\
+WHEN I GO TO INCOMES SECTION,\
+THEN I PERCIEVE IN A GRAPHICAL FORM MY TOTAL OF LAST MONTH REGISTERED INCOMES BY CATEGORIES.
+
+3. As a mom, I want to have a page from where to quickly access last year expenses/incomes so that I can realize where I am related to my financial goals and buget limits.*[5 story points]*
+
+- GIVEN I AM LOGGED IN MY ACCOUNT AND ON THE STATISTICS PAGE,\
+WHEN I GO TO EXPENSES SECTION, \
+THEN I PERCIEVE IN A GRAPHICAL FORM MY TOTAL OF LAST YEAR-REGISTERED EXPENSES BY MONTHS.
+
+- GIVEN I AM LOGGED IN MY ACCOUNT AND ON THE STATISTICS PAGE,\
+WHEN I GO TO EXPENSES SECTION, \
+THEN I PERCIEVE IN A GRAPHICAL FORM MY TOTAL OF LAST YEAR-REGISTERED EXPENSES BY CATEGORIES.
+
+- GIVEN I AM LOGGED IN MY ACCOUNT AND ON THE STATISTICS PAGE,\
+WHEN I GO TO EXPENSES SECTION,\
+THEN I PERCIEVE IN A GRAPHICAL FORM MY TOTAL OF LAST YEAR-REGISTERED EXPENSES WITH MONTHS I EXCEEDED MY BUDGETS HIGHLIGHTED.
+
+- GIVEN I AM LOGGED IN MY ACCOUNT AND ON THE STATISTICS PAGE,\
+WHEN I GO TO INCOMES SECTION, \
+THEN I PERCIEVE IN A GRAPHICAL FORM MY TOTAL OF LAST YEAR-REGISTERED INCOMES BY MONTHS.
+
+- GIVEN I AM LOGGED IN MY ACCOUNT AND ON THE STATISTICS PAGE,\
+WHEN I GO TO INCOMES SECTION, \
+THEN I PERCIEVE IN A GRAPHICAL FORM MY TOTAL OF LAST YEAR-REGISTERED INCOMES BY CATEGORIES.
+
+4. As a traveler, I want to register my expenses and incomes in various currencies in order to keep track of them.  *[3 story points]*
+
+- GIVEN  I AM LOGGED IN MY ACCOUNT,\
+WHEN I OPEN ADD AN EXPENSE OPTION,\
+THEN I CAN CHOOSE THE CURRENCY IN WHICH TO REGISTER IT.
+
+- GIVEN  I AM LOGGED IN MY ACCOUNT,\
+WHEN I OPEN ADD AN INCOME OPTION,\
+THEN I CAN CHOOSE THE CURRENCY IN WHICH TO REGISTER IT.
+
+5. As a traveller, I want to set my default currency in order to have it already selected for adding expenses. *[2 story points]*
+
+- GIVEN  I AM LOGGED IN MY ACCOUNT,\
+WHEN I ACCESS PAGE FOR BUDGET ACCOUNT SETTINGS,\
+THEN I CAN SET THE DEFAULT CURRENCY.
+
+6. As a trip lover, I want to see my statistics in my default currency and change it while looking at them in order to have a better view of my spending habits. *[3 story points]*
+
+- GIVEN  I AM LOGGED IN MY ACCOUNT,\
+WHEN I ACCESS STATISTICS PAGE,\
+THEN I CAN SEE MY STATISTICS IN MY DEFAULT CURRENCY\
+AND ALSO CHANGE STATISTICS CURRENCY IN CURRENT VIEW.
 
 ___
 ### Prioritized Product Backlog
+#### Selected User Stories for first sprint (+ estimated)
+![Selected User Stories for first sprint](./diagrams-screenshots/backlog-first-sprint.png)
+#### User Story 1
+![User Story 1](./diagrams-screenshots/backlog_first_user_story_sprin1.png)
+#### User Story 2
+![User Story 2](./diagrams-screenshots/backlog_2nd_user_story_sprint1.png)
+#### User Story 3
+![User Story 3](./diagrams-screenshots/backlog_3rd_user_story_sprint1.png)
+___
+#### Rest of Backlog
+![Rest of Backlog](./diagrams-screenshots/rest-of-backlog.png)
