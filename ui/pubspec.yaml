@@ -1,0 +1,71 @@
+name: budget_tracker
+description: Budget Tracker UI
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.6 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Project
+  ## Functional programming thingies
+  dartz: ^0.10.0-nullsafety.2
+  collection: ^1.15.0
+  freezed_annotation: ^2.2.0
+  ## Value equality
+  equatable: ^2.0.3
+  ## Service locator
+  get_it: ^7.2.0
+  injectable: ^2.1.1
+
+  # Application
+  ## Bloc state management
+  flutter_bloc: ^8.1.2
+  bloc: ^8.0.1
+
+  # Infrastructure
+  ## Remote API
+  internet_connection_checker: ^1.0.0+1
+  http: ^0.13.3
+  dio: ^5.1.2
+  ## Local storage
+  shared_preferences: ^2.0.6
+  ## JWT
+  jwt_decoder: ^2.0.1
+
+  # Presentation
+  flutter_svg: ^2.0.5
+  google_fonts: ^4.0.3
+  url_launcher: ^6.0.9
+  auto_route: ^7.1.0
+
+  # DateFormatting
+  intl: 0.18.1
+
+dev_dependencies:
+  # Code generation
+  build_runner:
+  freezed: ^2.3.2
+  auto_route_generator: ^7.0.0
+
+  # Test dependencies
+  mocktail: ^0.3.0
+  flutter_test:
+    sdk: flutter
+
+  # Injection
+  injectable_generator: ^2.0.0
+  # Linting
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/
