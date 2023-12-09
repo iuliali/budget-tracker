@@ -8,7 +8,6 @@ import '../../../application/auth/login_form/login_form_bloc.dart';
 import '../../../injection.dart';
 import '../../core/routing/router.dart';
 import '../widgets/login_form.dart';
-import '../widgets/register_button.dart';
 
 @RoutePage()
 class LoginPage extends StatelessWidget {

@@ -1,6 +1,5 @@
 import '../../../domain/auth/entities/user.dart';
 import '../../../domain/auth/value_objects.dart';
-import '../../../domain/debt/value_objects.dart';
 
 class UserModel {
   final int id;

@@ -33,7 +33,7 @@ class AuthFacade implements IAuthFacade {
     final usernameStr = username.getOrCrash();
     final passwordStr = password.getOrCrash();
 
-    if (await networkInfo.isConnected) {
+    // if (await networkInfo.isConnected) {
       try {
         final remoteAccessToken = await remoteDataSource.login(
           username: usernameStr,
@@ -48,8 +48,8 @@ class AuthFacade implements IAuthFacade {
       } catch (_) {
         return const Left(AuthFailure.serverError());
       }
-    }
-    return const Left(AuthFailure.connectionError());
+    // }
+    // return const Left(AuthFailure.connectionError());
   }
 
   @override

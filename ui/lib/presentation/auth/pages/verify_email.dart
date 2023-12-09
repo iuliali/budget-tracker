@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:budget_tracker/presentation/auth/widgets/try_again_button.dart';
 import 'package:budget_tracker/presentation/core/widgets/header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

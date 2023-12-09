@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../application/auth/register_form/register_form_bloc.dart';
 import '../../../domain/auth/validators.dart';
 import '../../core/routing/router.dart';
-import 'register_button.dart';
 
 class RegisterForm extends StatelessWidget {
   const RegisterForm({Key? key}) : super(key: key);
