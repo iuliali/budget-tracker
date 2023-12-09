@@ -1,6 +1,7 @@
 package com.budgettracker.api.budgeting.services;
 
 import com.budgettracker.api.auth.auth_facade.AuthenticationFacade;
+import com.budgettracker.api.auth.models.User;
 import com.budgettracker.api.auth.services.UserService;
 import com.budgettracker.api.budgeting.dtos.NewUserCategoryDto;
 import com.budgettracker.api.budgeting.dtos.UserCategoryDto;
@@ -8,9 +9,9 @@ import com.budgettracker.api.budgeting.exceptions.CategoryIsDeletedException;
 import com.budgettracker.api.budgeting.exceptions.CategoryNotFoundException;
 import com.budgettracker.api.budgeting.exceptions.UserCategoryNameAlreadyExistsException;
 import com.budgettracker.api.budgeting.exceptions.UserHasNoActiveCategoriesException;
-import com.budgettracker.api.auth.models.User;
 import com.budgettracker.api.budgeting.models.UserCategory;
 import com.budgettracker.api.budgeting.repositories.UserCategoryRepository;
+import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,16 +20,29 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 
+import static com.budgettracker.api.constants.Constants.SPLIT_PAYMENTS_USER_CATEGORY_NAME;
+
 @Service
 @RequiredArgsConstructor
 public class UserCategoryService {
     private final UserCategoryRepository userCategoryRepository;
     private final UserService userService;
     private final AuthenticationFacade authenticationFacade;
+    @PostConstruct
+    private void addDefaultUserCategories() {
+        List<User> users = userService.getAllUsers();
+        users.forEach(this::createUserCategory);
+    }
 
     protected boolean checkIfDeleted(UserCategory userCategory){
         return userCategory.getDeletedAt() != null;
     }
+    protected boolean checkIfActiveCategoryWithTheSameName(BigInteger id, String name, User user){
+        return userCategoryRepository.findActiveByName(name, user).filter(
+                userCategory -> !userCategory.getId().equals(id)
+        ).isPresent();
+    }
+
     protected boolean checkIfActiveCategoryWithTheSameName(String name, User user){
         return userCategoryRepository.findActiveByName(name, user).isPresent();
     }
@@ -49,6 +63,12 @@ public class UserCategoryService {
         );
     }
 
+    public UserCategory getUserCategoryByName(String name, BigInteger userId) {
+        return userCategoryRepository.findByNameAndUserId(name, userId).orElseThrow(
+                CategoryNotFoundException::new
+        );
+    }
+
     public String createUserCategory(NewUserCategoryDto userCategoryDto){
         User user = userService.getUserByUsername(authenticationFacade.getAuthentication().getName());
         if(checkIfActiveCategoryWithTheSameName(userCategoryDto.getName(), user)){
@@ -59,6 +79,16 @@ public class UserCategoryService {
         userCategory.setUser(user);
         userCategoryRepository.save(userCategory);
         return "Category has been created successfully";
+    }
+
+    public void createUserCategory(User user){
+        if(checkIfActiveCategoryWithTheSameName(SPLIT_PAYMENTS_USER_CATEGORY_NAME, user)){
+            return;
+        }
+        UserCategory userCategory = new UserCategory();
+        userCategory.setName(SPLIT_PAYMENTS_USER_CATEGORY_NAME);
+        userCategory.setUser(user);
+        userCategoryRepository.save(userCategory);
     }
     public List<UserCategoryDto> getUserCategories(){
         User user = userService.getUserByUsername(authenticationFacade.getAuthentication().getName());
@@ -80,7 +110,7 @@ public class UserCategoryService {
         if(checkIfDeleted(userCategory)){
             throw new CategoryIsDeletedException();
         }
-        if(checkIfActiveCategoryWithTheSameName(userCategoryDto.getName(), user)){
+        if(checkIfActiveCategoryWithTheSameName(id, userCategoryDto.getName(), user)){
             throw new UserCategoryNameAlreadyExistsException();
         }
         userCategory.setName(userCategoryDto.getName());

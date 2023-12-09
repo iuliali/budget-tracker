@@ -94,13 +94,4 @@ public class AuthExceptionHandlerController extends ResponseEntityExceptionHandl
                 HttpStatus.BAD_REQUEST);
     }
 
-    // This catches all other exceptions
-    @ExceptionHandler(value = {Exception.class, Error.class})
-    public ResponseEntity<?> handleOtherExceptions (Throwable exception,
-                                                             WebRequest request) {
-
-        logger.error(exception.getMessage(), exception);
-        return new ResponseEntity<>(Map.of("message", "An unexpected exception occurred"), HttpStatus.I_AM_A_TEAPOT);
-    }
-
 }

@@ -1,3 +1,7 @@
+# Demo
+- [Video](https://www.youtube.com/watch?v=2b3N1HEDWNo)
+- [Presentation](https://docs.google.com/presentation/d/1vsKsg4AnW17Hh1Ow2E_wmBP_yCJIc-RE851LN4SygGg/edit?usp=sharing)
+
 # Description
 The budgeting aspect of finances is oftentimes overlooked by many people because they find it tedious. Seeing how important it is to have discipline when spending, to prioritize categories and to get an outlook on your habits in order to correct them, we have developed this app, that will be available on the Web, IOS and Android in order to help more people get into budgeting by providing a sleek and intuitive user interface that makes budget tracking a breeze. It ensures a seamless experience for both people that are new to budgeting and more experienced users that were not happy with the current options on the market.
 

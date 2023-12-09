@@ -17,18 +17,18 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class ExpenseDto {
     private BigInteger id;
+    private BigInteger userCategoryId;
     private String to;
     private BigDecimal amount;
     private Currency currency;
     private LocalDateTime registeredAt;
-    private BigInteger userCategoryId;
 
     public ExpenseDto(Expense expense) {
         this.id = expense.getId();
+        this.userCategoryId = expense.getUserCategory().getId();
         this.to = expense.getTo();
         this.amount = expense.getAmount();
         this.currency = expense.getCurrency();
         this.registeredAt = expense.getRegisteredAt();
-        this.userCategoryId = expense.getUserCategory().getId();
     }
 }

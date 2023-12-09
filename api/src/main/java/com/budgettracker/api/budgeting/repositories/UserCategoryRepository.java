@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigInteger;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,4 +26,7 @@ public interface UserCategoryRepository extends JpaRepository<UserCategory, BigI
     @Modifying
     @Query("UPDATE userCategory uc SET uc.deletedAt = CURRENT_TIMESTAMP WHERE uc.id = :id AND uc.user = :user")
     void deleteById(BigInteger id, User user);
+
+    @Query("SELECT uc FROM userCategory uc WHERE uc.name=:name AND uc.user.id =:userId AND uc.deletedAt IS NULL")
+    Optional<UserCategory> findByNameAndUserId(String name, BigInteger userId);
 }

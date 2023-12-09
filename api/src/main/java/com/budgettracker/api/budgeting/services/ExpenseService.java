@@ -50,6 +50,12 @@ public class ExpenseService {
         if (checkIfNewExpenseIsOverBudget(expenseDto.getAmount(), expenseDto.getUserCategoryId()))
             warning = "You are over budget for this category";
 
+        Expense expense = addNewExpense(expenseDto);
+
+        return Map.of("message", "Expense has been added successfully", "warning", warning);
+    }
+
+    public Expense addNewExpense(NewExpenseDto expenseDto){
         Expense expense = new Expense();
         expense.setTo(expenseDto.getTo());
         expense.setAmount(expenseDto.getAmount());
@@ -61,8 +67,7 @@ public class ExpenseService {
                 );
         expense.setUserCategory(userCategory);
         expenseRepository.save(expense);
-
-        return Map.of("message", "Expense has been added successfully", "warning", warning);
+        return expense;
     }
 
     public List<ExpenseDto> getExpenses(){
