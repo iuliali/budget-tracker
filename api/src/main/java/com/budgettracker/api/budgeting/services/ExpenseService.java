@@ -138,4 +138,10 @@ public class ExpenseService {
         return sum.orElseGet(() -> BigDecimal.valueOf(0));
 
     }
+
+    public BigDecimal getSumOfExpenses(){
+        User user = userService.getUserByUsername(authenticationFacade.getAuthentication().getName());
+        Optional<BigDecimal> sum = expenseRepository.sumOfExpensesByUser(user);
+        return sum.orElseGet(() -> BigDecimal.valueOf(0));
+    }
 }
