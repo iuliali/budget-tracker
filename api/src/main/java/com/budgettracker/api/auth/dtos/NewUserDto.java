@@ -2,8 +2,9 @@ package com.budgettracker.api.auth.dtos;
 
 import com.budgettracker.api.auth.enums.Role;
 import com.budgettracker.api.auth.models.User;
+import com.budgettracker.api.budgeting.enums.Currency;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.NotBlank;
+import javax.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -35,6 +36,10 @@ public class NewUserDto {
     @Schema(example = "Martin")
     private String lastName;
 
+    @NotBlank
+    @Schema(example = "EUR")
+    private Currency defaultCurrency;
+
     public static User toUser(NewUserDto newUserDto) {
         var newUser = new User();
         newUser.setUsername(newUserDto.getUsername());
@@ -42,6 +47,7 @@ public class NewUserDto {
         newUser.setRole(Role.USER);
         newUser.setFirstName(newUserDto.getFirstName());
         newUser.setLastName(newUserDto.getLastName());
+        newUser.setDefaultCurrency(newUserDto.getDefaultCurrency());
         return newUser;
     }
 }

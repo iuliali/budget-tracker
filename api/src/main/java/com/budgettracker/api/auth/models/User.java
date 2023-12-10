@@ -1,14 +1,12 @@
 package com.budgettracker.api.auth.models;
 
 import com.budgettracker.api.auth.enums.Role;
+import com.budgettracker.api.budgeting.enums.Currency;
 import com.budgettracker.api.budgeting.models.UserCategory;
 import jakarta.persistence.*;
 import lombok.*;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -41,6 +39,10 @@ public class User {
 
     @NotBlank
     private String lastName;
+
+    @Column(nullable = false)
+    @NotBlank
+    private Currency defaultCurrency;
 
     @NonNull
     private Role role;
