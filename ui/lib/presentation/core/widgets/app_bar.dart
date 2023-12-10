@@ -34,12 +34,17 @@ PreferredSizeWidget generateAppBarWidget(BuildContext context) {
         );
       },
     ),
-    actions: const <Widget>[
+    actions: <Widget>[
       Padding(
         padding: EdgeInsets.all(8.0),
-        child: CircleAvatar(
-          radius: 16,
-          backgroundImage: AssetImage("assets/images/profile.webp"),
+        child: GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, '/user_details');
+          },
+          child: CircleAvatar(
+            radius: 16,
+            backgroundImage: AssetImage("assets/images/profile.webp"),
+          ),
         ),
       ),
     ],
