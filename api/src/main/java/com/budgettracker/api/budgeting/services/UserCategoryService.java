@@ -28,7 +28,6 @@ public class UserCategoryService {
     private final UserCategoryRepository userCategoryRepository;
     private final UserService userService;
     private final AuthenticationFacade authenticationFacade;
-    @PostConstruct
     private void addDefaultUserCategories() {
         List<User> users = userService.getAllUsers();
         users.forEach(this::createUserCategory);
@@ -48,6 +47,7 @@ public class UserCategoryService {
     }
 
     public Optional<UserCategory> getUserCategoryIfExists(BigInteger id){
+        this.addDefaultUserCategories(); // adds default split payments category to all user if not existing yet
         User user = userService.getUserByUsername(authenticationFacade.getAuthentication().getName());
         UserCategory userCategory = getUserCategoryById(id);
         if(userCategory.getUser() == user){
