@@ -1,3 +1,44 @@
+# Work policy
+Warning! This repo is a merged repo containing history from [here](https://github.com/iuliali/budget-tracker) and from [here](https://github.com/inginerie-software-2023-2024/proiect-inginerie-software-budget-tracker). We will have one local repo and 2 remotes.
+### If you have already the [MDS project](https://github.com/iuliali/budget-tracker) on your local machine, what you need to do is:
+- go to the folder with the repo, and enter the repo in terminal
+- `git remote -v` command to display the current remote
+- `git remote add origin2 git@github.com:inginerie-software-2023-2024/proiect-inginerie-software-budget-tracker.git` ( this will create another remote with name origin2, so when you want to push on this remote you just `git push origin2 <your-branch-name>`, same for pull : `git push origin2 <your-branch-name>`)
+- `git remote -v` command to display list of remotes and you should see the newly added too:
+```
+origin  https://github.com/iuliali/budget-tracker (fetch)
+origin  https://github.com/iuliali/budget-tracker (push)
+origin2 git@github.com:inginerie-software-2023-2024/proiect-inginerie-software-budget-tracker.git (fetch)
+origin2 git@github.com:inginerie-software-2023-2024/proiect-inginerie-software-budget-tracker.git (push)
+```
+
+### If you have already the [IS project](https://github.com/inginerie-software-2023-2024/proiect-inginerie-software-budget-tracker) on your local machine AND YOU DON'T HAVE MDS PROJECT what you need to do is:
+- go to the folder with the repo, and enter the repo in terminal
+- `git status` -> see current branch
+- on branch `main` -> `git pull origin main`
+###### If you intend to also push on MDS remote repo you will need to add a second remote
+- `git remote -v` to see current remote
+- `git remote add origin2 https://github.com/iuliali/budget-tracker` ( this will create another remote with name origin2, so when you want to push on this remote you just `git push origin2 <your-branch-name>`, same for pull : `git push origin2 <your-branch-name>`)
+- it's more important to push on [IS project](https://github.com/inginerie-software-2023-2024/proiect-inginerie-software-budget-tracker), pushing on MDS repo can be done just for main by only a single person 
+- `git remote -v` command to display list of remotes and you should see the newly added too
+____
+See your task in JIRA!
+
+Follow this steps:
+1. Understand your task
+2. Run the project before starting your task in order to understand where to add your code
+3. Go on `main` branch
+4. Take latest changes from remote `git pull origin main` (CAREFUL IF YOUR REMOTE IS `origin2` instead of `origin`!)
+5. Create a new branch from it called `<your-name>/<jira-token-for-your-task>-<additional-short-description>` (you can do this in terminal by command: `git checkout -b <new-branch-name>`)
+6. Be sure you are on your branch (you will not be able to push on `main`) with : `git status`
+7. Start working, make commits
+8. Push your work on your branch `git push <your-remote-name> <your-branch-name>` (where your-remote-name can be `origin` or `origin2`)
+9. When ready, create a pull request to `main` - the title of the pull request MUST CONTAIN Jira token of your task !
+10. Contact anyone for help, but respect sleep and free time and do your work in time.
+
+____
+
+  
 # Demo
 - [Video](https://www.youtube.com/watch?v=2b3N1HEDWNo)
 - [Presentation](https://docs.google.com/presentation/d/1vsKsg4AnW17Hh1Ow2E_wmBP_yCJIc-RE851LN4SygGg/edit?usp=sharing)
