@@ -47,5 +47,9 @@ public class UserCategoryController {
         return ResponseEntity.ok(Map.of("message", userCategoryService.deleteUserCategory(id)));
     }
 
-
+    @GetMapping("/highest-expense")
+    @Operation(summary = "Get the category with the highest expense")
+    public ResponseEntity<?> getCategoryWithHighestExpense() {
+        return ResponseEntity.ok(Map.of("categories", userCategoryService.getCategoriesWithHighestExpense()));
+    }
 }
