@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
-class UserDetailsPage extends StatelessWidget {
+class UserDetailsPage extends StatefulWidget {
   const UserDetailsPage({Key? key}) : super(key: key);
 
   @override
+  State<UserDetailsPage> createState() => _UserDetailsPageState();
+}
+
+class _UserDetailsPageState extends State<UserDetailsPage> {
+  String dropdownValue = 'USD';
+
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
         child: DropdownButton<String>(
           value: dropdownValue,
