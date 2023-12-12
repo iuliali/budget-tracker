@@ -4,8 +4,7 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_lambdas
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: type=lint
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
@@ -46,10 +45,10 @@ import 'infrastructure/categories/datasources/budget_remote_datasource.dart'
 import 'infrastructure/categories/datasources/category_remote_datasource.dart'
     as _i14;
 import 'infrastructure/categories/repository.dart' as _i33;
-import 'infrastructure/core/injectable_modules/dio.dart' as _i40;
-import 'infrastructure/core/injectable_modules/http.dart' as _i43;
+import 'infrastructure/core/injectable_modules/dio.dart' as _i41;
+import 'infrastructure/core/injectable_modules/http.dart' as _i40;
 import 'infrastructure/core/injectable_modules/internet_checker.dart' as _i42;
-import 'infrastructure/core/injectable_modules/shared_preferences.dart' as _i41;
+import 'infrastructure/core/injectable_modules/shared_preferences.dart' as _i43;
 import 'infrastructure/core/network/network_info.dart' as _i23;
 import 'infrastructure/debt/datasources/debt_remote_datasource.dart' as _i15;
 import 'infrastructure/debt/repositories/group.dart' as _i19;
@@ -64,7 +63,7 @@ import 'infrastructure/transactions/repositories/income_repository.dart'
     as _i21;
 
 extension GetItInjectableX on _i1.GetIt {
-  // initializes the registration of main-scope dependencies inside of GetIt
+// initializes the registration of main-scope dependencies inside of GetIt
   Future<_i1.GetIt> init({
     String? environment,
     _i2.EnvironmentFilter? environmentFilter,
@@ -153,10 +152,10 @@ extension GetItInjectableX on _i1.GetIt {
   }
 }
 
-class _$DioInjectableModule extends _i40.DioInjectableModule {}
+class _$HttpInjectableModule extends _i40.HttpInjectableModule {}
 
-class _$SharedPrefsModule extends _i41.SharedPrefsModule {}
+class _$DioInjectableModule extends _i41.DioInjectableModule {}
 
 class _$NetworkInfoInjectableModule extends _i42.NetworkInfoInjectableModule {}
 
-class _$HttpInjectableModule extends _i43.HttpInjectableModule {}
+class _$SharedPrefsModule extends _i43.SharedPrefsModule {}

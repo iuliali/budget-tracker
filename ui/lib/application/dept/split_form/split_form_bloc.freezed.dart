@@ -113,20 +113,20 @@ class _$SplitFormEventCopyWithImpl<$Res, $Val extends SplitFormEvent>
 }
 
 /// @nodoc
-abstract class _$$InitializedCopyWith<$Res> {
-  factory _$$InitializedCopyWith(
-          _$Initialized value, $Res Function(_$Initialized) then) =
-      __$$InitializedCopyWithImpl<$Res>;
+abstract class _$$InitializedImplCopyWith<$Res> {
+  factory _$$InitializedImplCopyWith(
+          _$InitializedImpl value, $Res Function(_$InitializedImpl) then) =
+      __$$InitializedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Group group, Option<Expense> initialExpenseOption});
 }
 
 /// @nodoc
-class __$$InitializedCopyWithImpl<$Res>
-    extends _$SplitFormEventCopyWithImpl<$Res, _$Initialized>
-    implements _$$InitializedCopyWith<$Res> {
-  __$$InitializedCopyWithImpl(
-      _$Initialized _value, $Res Function(_$Initialized) _then)
+class __$$InitializedImplCopyWithImpl<$Res>
+    extends _$SplitFormEventCopyWithImpl<$Res, _$InitializedImpl>
+    implements _$$InitializedImplCopyWith<$Res> {
+  __$$InitializedImplCopyWithImpl(
+      _$InitializedImpl _value, $Res Function(_$InitializedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -135,7 +135,7 @@ class __$$InitializedCopyWithImpl<$Res>
     Object? group = null,
     Object? initialExpenseOption = null,
   }) {
-    return _then(_$Initialized(
+    return _then(_$InitializedImpl(
       null == group
           ? _value.group
           : group // ignore: cast_nullable_to_non_nullable
@@ -150,8 +150,8 @@ class __$$InitializedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Initialized implements Initialized {
-  const _$Initialized(this.group, this.initialExpenseOption);
+class _$InitializedImpl implements Initialized {
+  const _$InitializedImpl(this.group, this.initialExpenseOption);
 
   @override
   final Group group;
@@ -167,7 +167,7 @@ class _$Initialized implements Initialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Initialized &&
+            other is _$InitializedImpl &&
             (identical(other.group, group) || other.group == group) &&
             (identical(other.initialExpenseOption, initialExpenseOption) ||
                 other.initialExpenseOption == initialExpenseOption));
@@ -179,8 +179,8 @@ class _$Initialized implements Initialized {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$InitializedCopyWith<_$Initialized> get copyWith =>
-      __$$InitializedCopyWithImpl<_$Initialized>(this, _$identity);
+  _$$InitializedImplCopyWith<_$InitializedImpl> get copyWith =>
+      __$$InitializedImplCopyWithImpl<_$InitializedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -286,30 +286,30 @@ class _$Initialized implements Initialized {
 abstract class Initialized implements SplitFormEvent {
   const factory Initialized(
           final Group group, final Option<Expense> initialExpenseOption) =
-      _$Initialized;
+      _$InitializedImpl;
 
   Group get group;
   Option<Expense> get initialExpenseOption;
   @JsonKey(ignore: true)
-  _$$InitializedCopyWith<_$Initialized> get copyWith =>
+  _$$InitializedImplCopyWith<_$InitializedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AmountChangedCopyWith<$Res> {
-  factory _$$AmountChangedCopyWith(
-          _$AmountChanged value, $Res Function(_$AmountChanged) then) =
-      __$$AmountChangedCopyWithImpl<$Res>;
+abstract class _$$AmountChangedImplCopyWith<$Res> {
+  factory _$$AmountChangedImplCopyWith(
+          _$AmountChangedImpl value, $Res Function(_$AmountChangedImpl) then) =
+      __$$AmountChangedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String amountStr});
 }
 
 /// @nodoc
-class __$$AmountChangedCopyWithImpl<$Res>
-    extends _$SplitFormEventCopyWithImpl<$Res, _$AmountChanged>
-    implements _$$AmountChangedCopyWith<$Res> {
-  __$$AmountChangedCopyWithImpl(
-      _$AmountChanged _value, $Res Function(_$AmountChanged) _then)
+class __$$AmountChangedImplCopyWithImpl<$Res>
+    extends _$SplitFormEventCopyWithImpl<$Res, _$AmountChangedImpl>
+    implements _$$AmountChangedImplCopyWith<$Res> {
+  __$$AmountChangedImplCopyWithImpl(
+      _$AmountChangedImpl _value, $Res Function(_$AmountChangedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -317,7 +317,7 @@ class __$$AmountChangedCopyWithImpl<$Res>
   $Res call({
     Object? amountStr = null,
   }) {
-    return _then(_$AmountChanged(
+    return _then(_$AmountChangedImpl(
       null == amountStr
           ? _value.amountStr
           : amountStr // ignore: cast_nullable_to_non_nullable
@@ -328,8 +328,8 @@ class __$$AmountChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AmountChanged implements AmountChanged {
-  const _$AmountChanged(this.amountStr);
+class _$AmountChangedImpl implements AmountChanged {
+  const _$AmountChangedImpl(this.amountStr);
 
   @override
   final String amountStr;
@@ -343,7 +343,7 @@ class _$AmountChanged implements AmountChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AmountChanged &&
+            other is _$AmountChangedImpl &&
             (identical(other.amountStr, amountStr) ||
                 other.amountStr == amountStr));
   }
@@ -354,8 +354,8 @@ class _$AmountChanged implements AmountChanged {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AmountChangedCopyWith<_$AmountChanged> get copyWith =>
-      __$$AmountChangedCopyWithImpl<_$AmountChanged>(this, _$identity);
+  _$$AmountChangedImplCopyWith<_$AmountChangedImpl> get copyWith =>
+      __$$AmountChangedImplCopyWithImpl<_$AmountChangedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -459,29 +459,29 @@ class _$AmountChanged implements AmountChanged {
 }
 
 abstract class AmountChanged implements SplitFormEvent {
-  const factory AmountChanged(final String amountStr) = _$AmountChanged;
+  const factory AmountChanged(final String amountStr) = _$AmountChangedImpl;
 
   String get amountStr;
   @JsonKey(ignore: true)
-  _$$AmountChangedCopyWith<_$AmountChanged> get copyWith =>
+  _$$AmountChangedImplCopyWith<_$AmountChangedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DeptAmountChangedCopyWith<$Res> {
-  factory _$$DeptAmountChangedCopyWith(
-          _$DeptAmountChanged value, $Res Function(_$DeptAmountChanged) then) =
-      __$$DeptAmountChangedCopyWithImpl<$Res>;
+abstract class _$$DeptAmountChangedImplCopyWith<$Res> {
+  factory _$$DeptAmountChangedImplCopyWith(_$DeptAmountChangedImpl value,
+          $Res Function(_$DeptAmountChangedImpl) then) =
+      __$$DeptAmountChangedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({MemberId memberId, String debtAmountStr});
 }
 
 /// @nodoc
-class __$$DeptAmountChangedCopyWithImpl<$Res>
-    extends _$SplitFormEventCopyWithImpl<$Res, _$DeptAmountChanged>
-    implements _$$DeptAmountChangedCopyWith<$Res> {
-  __$$DeptAmountChangedCopyWithImpl(
-      _$DeptAmountChanged _value, $Res Function(_$DeptAmountChanged) _then)
+class __$$DeptAmountChangedImplCopyWithImpl<$Res>
+    extends _$SplitFormEventCopyWithImpl<$Res, _$DeptAmountChangedImpl>
+    implements _$$DeptAmountChangedImplCopyWith<$Res> {
+  __$$DeptAmountChangedImplCopyWithImpl(_$DeptAmountChangedImpl _value,
+      $Res Function(_$DeptAmountChangedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -490,7 +490,7 @@ class __$$DeptAmountChangedCopyWithImpl<$Res>
     Object? memberId = null,
     Object? debtAmountStr = null,
   }) {
-    return _then(_$DeptAmountChanged(
+    return _then(_$DeptAmountChangedImpl(
       null == memberId
           ? _value.memberId
           : memberId // ignore: cast_nullable_to_non_nullable
@@ -505,8 +505,8 @@ class __$$DeptAmountChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DeptAmountChanged implements DeptAmountChanged {
-  const _$DeptAmountChanged(this.memberId, this.debtAmountStr);
+class _$DeptAmountChangedImpl implements DeptAmountChanged {
+  const _$DeptAmountChangedImpl(this.memberId, this.debtAmountStr);
 
   @override
   final MemberId memberId;
@@ -522,7 +522,7 @@ class _$DeptAmountChanged implements DeptAmountChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DeptAmountChanged &&
+            other is _$DeptAmountChangedImpl &&
             (identical(other.memberId, memberId) ||
                 other.memberId == memberId) &&
             (identical(other.debtAmountStr, debtAmountStr) ||
@@ -535,8 +535,9 @@ class _$DeptAmountChanged implements DeptAmountChanged {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DeptAmountChangedCopyWith<_$DeptAmountChanged> get copyWith =>
-      __$$DeptAmountChangedCopyWithImpl<_$DeptAmountChanged>(this, _$identity);
+  _$$DeptAmountChangedImplCopyWith<_$DeptAmountChangedImpl> get copyWith =>
+      __$$DeptAmountChangedImplCopyWithImpl<_$DeptAmountChangedImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -642,30 +643,30 @@ class _$DeptAmountChanged implements DeptAmountChanged {
 abstract class DeptAmountChanged implements SplitFormEvent {
   const factory DeptAmountChanged(
           final MemberId memberId, final String debtAmountStr) =
-      _$DeptAmountChanged;
+      _$DeptAmountChangedImpl;
 
   MemberId get memberId;
   String get debtAmountStr;
   @JsonKey(ignore: true)
-  _$$DeptAmountChangedCopyWith<_$DeptAmountChanged> get copyWith =>
+  _$$DeptAmountChangedImplCopyWith<_$DeptAmountChangedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AddParticipantCopyWith<$Res> {
-  factory _$$AddParticipantCopyWith(
-          _$AddParticipant value, $Res Function(_$AddParticipant) then) =
-      __$$AddParticipantCopyWithImpl<$Res>;
+abstract class _$$AddParticipantImplCopyWith<$Res> {
+  factory _$$AddParticipantImplCopyWith(_$AddParticipantImpl value,
+          $Res Function(_$AddParticipantImpl) then) =
+      __$$AddParticipantImplCopyWithImpl<$Res>;
   @useResult
   $Res call({MemberId memberId});
 }
 
 /// @nodoc
-class __$$AddParticipantCopyWithImpl<$Res>
-    extends _$SplitFormEventCopyWithImpl<$Res, _$AddParticipant>
-    implements _$$AddParticipantCopyWith<$Res> {
-  __$$AddParticipantCopyWithImpl(
-      _$AddParticipant _value, $Res Function(_$AddParticipant) _then)
+class __$$AddParticipantImplCopyWithImpl<$Res>
+    extends _$SplitFormEventCopyWithImpl<$Res, _$AddParticipantImpl>
+    implements _$$AddParticipantImplCopyWith<$Res> {
+  __$$AddParticipantImplCopyWithImpl(
+      _$AddParticipantImpl _value, $Res Function(_$AddParticipantImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -673,7 +674,7 @@ class __$$AddParticipantCopyWithImpl<$Res>
   $Res call({
     Object? memberId = null,
   }) {
-    return _then(_$AddParticipant(
+    return _then(_$AddParticipantImpl(
       null == memberId
           ? _value.memberId
           : memberId // ignore: cast_nullable_to_non_nullable
@@ -684,8 +685,8 @@ class __$$AddParticipantCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AddParticipant implements AddParticipant {
-  const _$AddParticipant(this.memberId);
+class _$AddParticipantImpl implements AddParticipant {
+  const _$AddParticipantImpl(this.memberId);
 
   @override
   final MemberId memberId;
@@ -699,7 +700,7 @@ class _$AddParticipant implements AddParticipant {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AddParticipant &&
+            other is _$AddParticipantImpl &&
             (identical(other.memberId, memberId) ||
                 other.memberId == memberId));
   }
@@ -710,8 +711,9 @@ class _$AddParticipant implements AddParticipant {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AddParticipantCopyWith<_$AddParticipant> get copyWith =>
-      __$$AddParticipantCopyWithImpl<_$AddParticipant>(this, _$identity);
+  _$$AddParticipantImplCopyWith<_$AddParticipantImpl> get copyWith =>
+      __$$AddParticipantImplCopyWithImpl<_$AddParticipantImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -815,29 +817,29 @@ class _$AddParticipant implements AddParticipant {
 }
 
 abstract class AddParticipant implements SplitFormEvent {
-  const factory AddParticipant(final MemberId memberId) = _$AddParticipant;
+  const factory AddParticipant(final MemberId memberId) = _$AddParticipantImpl;
 
   MemberId get memberId;
   @JsonKey(ignore: true)
-  _$$AddParticipantCopyWith<_$AddParticipant> get copyWith =>
+  _$$AddParticipantImplCopyWith<_$AddParticipantImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$RemoveParticipantCopyWith<$Res> {
-  factory _$$RemoveParticipantCopyWith(
-          _$RemoveParticipant value, $Res Function(_$RemoveParticipant) then) =
-      __$$RemoveParticipantCopyWithImpl<$Res>;
+abstract class _$$RemoveParticipantImplCopyWith<$Res> {
+  factory _$$RemoveParticipantImplCopyWith(_$RemoveParticipantImpl value,
+          $Res Function(_$RemoveParticipantImpl) then) =
+      __$$RemoveParticipantImplCopyWithImpl<$Res>;
   @useResult
   $Res call({MemberId memberId});
 }
 
 /// @nodoc
-class __$$RemoveParticipantCopyWithImpl<$Res>
-    extends _$SplitFormEventCopyWithImpl<$Res, _$RemoveParticipant>
-    implements _$$RemoveParticipantCopyWith<$Res> {
-  __$$RemoveParticipantCopyWithImpl(
-      _$RemoveParticipant _value, $Res Function(_$RemoveParticipant) _then)
+class __$$RemoveParticipantImplCopyWithImpl<$Res>
+    extends _$SplitFormEventCopyWithImpl<$Res, _$RemoveParticipantImpl>
+    implements _$$RemoveParticipantImplCopyWith<$Res> {
+  __$$RemoveParticipantImplCopyWithImpl(_$RemoveParticipantImpl _value,
+      $Res Function(_$RemoveParticipantImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -845,7 +847,7 @@ class __$$RemoveParticipantCopyWithImpl<$Res>
   $Res call({
     Object? memberId = null,
   }) {
-    return _then(_$RemoveParticipant(
+    return _then(_$RemoveParticipantImpl(
       null == memberId
           ? _value.memberId
           : memberId // ignore: cast_nullable_to_non_nullable
@@ -856,8 +858,8 @@ class __$$RemoveParticipantCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RemoveParticipant implements RemoveParticipant {
-  const _$RemoveParticipant(this.memberId);
+class _$RemoveParticipantImpl implements RemoveParticipant {
+  const _$RemoveParticipantImpl(this.memberId);
 
   @override
   final MemberId memberId;
@@ -871,7 +873,7 @@ class _$RemoveParticipant implements RemoveParticipant {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RemoveParticipant &&
+            other is _$RemoveParticipantImpl &&
             (identical(other.memberId, memberId) ||
                 other.memberId == memberId));
   }
@@ -882,8 +884,9 @@ class _$RemoveParticipant implements RemoveParticipant {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$RemoveParticipantCopyWith<_$RemoveParticipant> get copyWith =>
-      __$$RemoveParticipantCopyWithImpl<_$RemoveParticipant>(this, _$identity);
+  _$$RemoveParticipantImplCopyWith<_$RemoveParticipantImpl> get copyWith =>
+      __$$RemoveParticipantImplCopyWithImpl<_$RemoveParticipantImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -988,29 +991,31 @@ class _$RemoveParticipant implements RemoveParticipant {
 
 abstract class RemoveParticipant implements SplitFormEvent {
   const factory RemoveParticipant(final MemberId memberId) =
-      _$RemoveParticipant;
+      _$RemoveParticipantImpl;
 
   MemberId get memberId;
   @JsonKey(ignore: true)
-  _$$RemoveParticipantCopyWith<_$RemoveParticipant> get copyWith =>
+  _$$RemoveParticipantImplCopyWith<_$RemoveParticipantImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$IsEquallyDividedChangedCopyWith<$Res> {
-  factory _$$IsEquallyDividedChangedCopyWith(_$IsEquallyDividedChanged value,
-          $Res Function(_$IsEquallyDividedChanged) then) =
-      __$$IsEquallyDividedChangedCopyWithImpl<$Res>;
+abstract class _$$IsEquallyDividedChangedImplCopyWith<$Res> {
+  factory _$$IsEquallyDividedChangedImplCopyWith(
+          _$IsEquallyDividedChangedImpl value,
+          $Res Function(_$IsEquallyDividedChangedImpl) then) =
+      __$$IsEquallyDividedChangedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({bool isEquallyDividedBool});
 }
 
 /// @nodoc
-class __$$IsEquallyDividedChangedCopyWithImpl<$Res>
-    extends _$SplitFormEventCopyWithImpl<$Res, _$IsEquallyDividedChanged>
-    implements _$$IsEquallyDividedChangedCopyWith<$Res> {
-  __$$IsEquallyDividedChangedCopyWithImpl(_$IsEquallyDividedChanged _value,
-      $Res Function(_$IsEquallyDividedChanged) _then)
+class __$$IsEquallyDividedChangedImplCopyWithImpl<$Res>
+    extends _$SplitFormEventCopyWithImpl<$Res, _$IsEquallyDividedChangedImpl>
+    implements _$$IsEquallyDividedChangedImplCopyWith<$Res> {
+  __$$IsEquallyDividedChangedImplCopyWithImpl(
+      _$IsEquallyDividedChangedImpl _value,
+      $Res Function(_$IsEquallyDividedChangedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1018,7 +1023,7 @@ class __$$IsEquallyDividedChangedCopyWithImpl<$Res>
   $Res call({
     Object? isEquallyDividedBool = null,
   }) {
-    return _then(_$IsEquallyDividedChanged(
+    return _then(_$IsEquallyDividedChangedImpl(
       null == isEquallyDividedBool
           ? _value.isEquallyDividedBool
           : isEquallyDividedBool // ignore: cast_nullable_to_non_nullable
@@ -1029,8 +1034,8 @@ class __$$IsEquallyDividedChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$IsEquallyDividedChanged implements IsEquallyDividedChanged {
-  const _$IsEquallyDividedChanged(this.isEquallyDividedBool);
+class _$IsEquallyDividedChangedImpl implements IsEquallyDividedChanged {
+  const _$IsEquallyDividedChangedImpl(this.isEquallyDividedBool);
 
   @override
   final bool isEquallyDividedBool;
@@ -1044,7 +1049,7 @@ class _$IsEquallyDividedChanged implements IsEquallyDividedChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$IsEquallyDividedChanged &&
+            other is _$IsEquallyDividedChangedImpl &&
             (identical(other.isEquallyDividedBool, isEquallyDividedBool) ||
                 other.isEquallyDividedBool == isEquallyDividedBool));
   }
@@ -1055,9 +1060,9 @@ class _$IsEquallyDividedChanged implements IsEquallyDividedChanged {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$IsEquallyDividedChangedCopyWith<_$IsEquallyDividedChanged> get copyWith =>
-      __$$IsEquallyDividedChangedCopyWithImpl<_$IsEquallyDividedChanged>(
-          this, _$identity);
+  _$$IsEquallyDividedChangedImplCopyWith<_$IsEquallyDividedChangedImpl>
+      get copyWith => __$$IsEquallyDividedChangedImplCopyWithImpl<
+          _$IsEquallyDividedChangedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1162,32 +1167,34 @@ class _$IsEquallyDividedChanged implements IsEquallyDividedChanged {
 
 abstract class IsEquallyDividedChanged implements SplitFormEvent {
   const factory IsEquallyDividedChanged(final bool isEquallyDividedBool) =
-      _$IsEquallyDividedChanged;
+      _$IsEquallyDividedChangedImpl;
 
   bool get isEquallyDividedBool;
   @JsonKey(ignore: true)
-  _$$IsEquallyDividedChangedCopyWith<_$IsEquallyDividedChanged> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$IsEquallyDividedChangedImplCopyWith<_$IsEquallyDividedChangedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SavedCopyWith<$Res> {
-  factory _$$SavedCopyWith(_$Saved value, $Res Function(_$Saved) then) =
-      __$$SavedCopyWithImpl<$Res>;
+abstract class _$$SavedImplCopyWith<$Res> {
+  factory _$$SavedImplCopyWith(
+          _$SavedImpl value, $Res Function(_$SavedImpl) then) =
+      __$$SavedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SavedCopyWithImpl<$Res>
-    extends _$SplitFormEventCopyWithImpl<$Res, _$Saved>
-    implements _$$SavedCopyWith<$Res> {
-  __$$SavedCopyWithImpl(_$Saved _value, $Res Function(_$Saved) _then)
+class __$$SavedImplCopyWithImpl<$Res>
+    extends _$SplitFormEventCopyWithImpl<$Res, _$SavedImpl>
+    implements _$$SavedImplCopyWith<$Res> {
+  __$$SavedImplCopyWithImpl(
+      _$SavedImpl _value, $Res Function(_$SavedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$Saved implements Saved {
-  const _$Saved();
+class _$SavedImpl implements Saved {
+  const _$SavedImpl();
 
   @override
   String toString() {
@@ -1197,7 +1204,7 @@ class _$Saved implements Saved {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Saved);
+        (other.runtimeType == runtimeType && other is _$SavedImpl);
   }
 
   @override
@@ -1305,7 +1312,7 @@ class _$Saved implements Saved {
 }
 
 abstract class Saved implements SplitFormEvent {
-  const factory Saved() = _$Saved;
+  const factory Saved() = _$SavedImpl;
 }
 
 /// @nodoc
@@ -1396,11 +1403,11 @@ class _$SplitFormStateCopyWithImpl<$Res, $Val extends SplitFormState>
 }
 
 /// @nodoc
-abstract class _$$_SplitFormStateCopyWith<$Res>
+abstract class _$$SplitFormStateImplCopyWith<$Res>
     implements $SplitFormStateCopyWith<$Res> {
-  factory _$$_SplitFormStateCopyWith(
-          _$_SplitFormState value, $Res Function(_$_SplitFormState) then) =
-      __$$_SplitFormStateCopyWithImpl<$Res>;
+  factory _$$SplitFormStateImplCopyWith(_$SplitFormStateImpl value,
+          $Res Function(_$SplitFormStateImpl) then) =
+      __$$SplitFormStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1414,11 +1421,11 @@ abstract class _$$_SplitFormStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_SplitFormStateCopyWithImpl<$Res>
-    extends _$SplitFormStateCopyWithImpl<$Res, _$_SplitFormState>
-    implements _$$_SplitFormStateCopyWith<$Res> {
-  __$$_SplitFormStateCopyWithImpl(
-      _$_SplitFormState _value, $Res Function(_$_SplitFormState) _then)
+class __$$SplitFormStateImplCopyWithImpl<$Res>
+    extends _$SplitFormStateCopyWithImpl<$Res, _$SplitFormStateImpl>
+    implements _$$SplitFormStateImplCopyWith<$Res> {
+  __$$SplitFormStateImplCopyWithImpl(
+      _$SplitFormStateImpl _value, $Res Function(_$SplitFormStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1432,7 +1439,7 @@ class __$$_SplitFormStateCopyWithImpl<$Res>
     Object? isEquallyDivided = null,
     Object? saveFailureOrSuccessOption = null,
   }) {
-    return _then(_$_SplitFormState(
+    return _then(_$SplitFormStateImpl(
       groupOption: null == groupOption
           ? _value.groupOption
           : groupOption // ignore: cast_nullable_to_non_nullable
@@ -1467,8 +1474,8 @@ class __$$_SplitFormStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SplitFormState implements _SplitFormState {
-  const _$_SplitFormState(
+class _$SplitFormStateImpl implements _SplitFormState {
+  const _$SplitFormStateImpl(
       {required this.groupOption,
       required this.amount,
       required final List<Map<MemberId, DebtAmount>> deptAmounts,
@@ -1508,7 +1515,7 @@ class _$_SplitFormState implements _SplitFormState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SplitFormState &&
+            other is _$SplitFormStateImpl &&
             (identical(other.groupOption, groupOption) ||
                 other.groupOption == groupOption) &&
             (identical(other.amount, amount) || other.amount == amount) &&
@@ -1540,8 +1547,9 @@ class _$_SplitFormState implements _SplitFormState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SplitFormStateCopyWith<_$_SplitFormState> get copyWith =>
-      __$$_SplitFormStateCopyWithImpl<_$_SplitFormState>(this, _$identity);
+  _$$SplitFormStateImplCopyWith<_$SplitFormStateImpl> get copyWith =>
+      __$$SplitFormStateImplCopyWithImpl<_$SplitFormStateImpl>(
+          this, _$identity);
 }
 
 abstract class _SplitFormState implements SplitFormState {
@@ -1553,7 +1561,7 @@ abstract class _SplitFormState implements SplitFormState {
       required final bool isSaving,
       required final bool isEquallyDivided,
       required final Option<Either<SplitFailure, Unit>>
-          saveFailureOrSuccessOption}) = _$_SplitFormState;
+          saveFailureOrSuccessOption}) = _$SplitFormStateImpl;
 
   @override
   Option<Group> get groupOption;
@@ -1571,6 +1579,6 @@ abstract class _SplitFormState implements SplitFormState {
   Option<Either<SplitFailure, Unit>> get saveFailureOrSuccessOption;
   @override
   @JsonKey(ignore: true)
-  _$$_SplitFormStateCopyWith<_$_SplitFormState> get copyWith =>
+  _$$SplitFormStateImplCopyWith<_$SplitFormStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

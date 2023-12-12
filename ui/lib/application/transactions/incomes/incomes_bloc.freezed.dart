@@ -75,20 +75,20 @@ class _$IncomesEventCopyWithImpl<$Res, $Val extends IncomesEvent>
 }
 
 /// @nodoc
-abstract class _$$_DeleteIncomeCopyWith<$Res> {
-  factory _$$_DeleteIncomeCopyWith(
-          _$_DeleteIncome value, $Res Function(_$_DeleteIncome) then) =
-      __$$_DeleteIncomeCopyWithImpl<$Res>;
+abstract class _$$DeleteIncomeImplCopyWith<$Res> {
+  factory _$$DeleteIncomeImplCopyWith(
+          _$DeleteIncomeImpl value, $Res Function(_$DeleteIncomeImpl) then) =
+      __$$DeleteIncomeImplCopyWithImpl<$Res>;
   @useResult
   $Res call({IncomeId incomeId});
 }
 
 /// @nodoc
-class __$$_DeleteIncomeCopyWithImpl<$Res>
-    extends _$IncomesEventCopyWithImpl<$Res, _$_DeleteIncome>
-    implements _$$_DeleteIncomeCopyWith<$Res> {
-  __$$_DeleteIncomeCopyWithImpl(
-      _$_DeleteIncome _value, $Res Function(_$_DeleteIncome) _then)
+class __$$DeleteIncomeImplCopyWithImpl<$Res>
+    extends _$IncomesEventCopyWithImpl<$Res, _$DeleteIncomeImpl>
+    implements _$$DeleteIncomeImplCopyWith<$Res> {
+  __$$DeleteIncomeImplCopyWithImpl(
+      _$DeleteIncomeImpl _value, $Res Function(_$DeleteIncomeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -96,7 +96,7 @@ class __$$_DeleteIncomeCopyWithImpl<$Res>
   $Res call({
     Object? incomeId = null,
   }) {
-    return _then(_$_DeleteIncome(
+    return _then(_$DeleteIncomeImpl(
       null == incomeId
           ? _value.incomeId
           : incomeId // ignore: cast_nullable_to_non_nullable
@@ -107,8 +107,8 @@ class __$$_DeleteIncomeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DeleteIncome implements _DeleteIncome {
-  const _$_DeleteIncome(this.incomeId);
+class _$DeleteIncomeImpl implements _DeleteIncome {
+  const _$DeleteIncomeImpl(this.incomeId);
 
   @override
   final IncomeId incomeId;
@@ -122,7 +122,7 @@ class _$_DeleteIncome implements _DeleteIncome {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DeleteIncome &&
+            other is _$DeleteIncomeImpl &&
             (identical(other.incomeId, incomeId) ||
                 other.incomeId == incomeId));
   }
@@ -133,8 +133,8 @@ class _$_DeleteIncome implements _DeleteIncome {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DeleteIncomeCopyWith<_$_DeleteIncome> get copyWith =>
-      __$$_DeleteIncomeCopyWithImpl<_$_DeleteIncome>(this, _$identity);
+  _$$DeleteIncomeImplCopyWith<_$DeleteIncomeImpl> get copyWith =>
+      __$$DeleteIncomeImplCopyWithImpl<_$DeleteIncomeImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -200,34 +200,34 @@ class _$_DeleteIncome implements _DeleteIncome {
 }
 
 abstract class _DeleteIncome implements IncomesEvent {
-  const factory _DeleteIncome(final IncomeId incomeId) = _$_DeleteIncome;
+  const factory _DeleteIncome(final IncomeId incomeId) = _$DeleteIncomeImpl;
 
   IncomeId get incomeId;
   @JsonKey(ignore: true)
-  _$$_DeleteIncomeCopyWith<_$_DeleteIncome> get copyWith =>
+  _$$DeleteIncomeImplCopyWith<_$DeleteIncomeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_GetIncomesCopyWith<$Res> {
-  factory _$$_GetIncomesCopyWith(
-          _$_GetIncomes value, $Res Function(_$_GetIncomes) then) =
-      __$$_GetIncomesCopyWithImpl<$Res>;
+abstract class _$$GetIncomesImplCopyWith<$Res> {
+  factory _$$GetIncomesImplCopyWith(
+          _$GetIncomesImpl value, $Res Function(_$GetIncomesImpl) then) =
+      __$$GetIncomesImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_GetIncomesCopyWithImpl<$Res>
-    extends _$IncomesEventCopyWithImpl<$Res, _$_GetIncomes>
-    implements _$$_GetIncomesCopyWith<$Res> {
-  __$$_GetIncomesCopyWithImpl(
-      _$_GetIncomes _value, $Res Function(_$_GetIncomes) _then)
+class __$$GetIncomesImplCopyWithImpl<$Res>
+    extends _$IncomesEventCopyWithImpl<$Res, _$GetIncomesImpl>
+    implements _$$GetIncomesImplCopyWith<$Res> {
+  __$$GetIncomesImplCopyWithImpl(
+      _$GetIncomesImpl _value, $Res Function(_$GetIncomesImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_GetIncomes implements _GetIncomes {
-  const _$_GetIncomes();
+class _$GetIncomesImpl implements _GetIncomes {
+  const _$GetIncomesImpl();
 
   @override
   String toString() {
@@ -237,7 +237,7 @@ class _$_GetIncomes implements _GetIncomes {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_GetIncomes);
+        (other.runtimeType == runtimeType && other is _$GetIncomesImpl);
   }
 
   @override
@@ -307,7 +307,7 @@ class _$_GetIncomes implements _GetIncomes {
 }
 
 abstract class _GetIncomes implements IncomesEvent {
-  const factory _GetIncomes() = _$_GetIncomes;
+  const factory _GetIncomes() = _$GetIncomesImpl;
 }
 
 /// @nodoc
@@ -376,11 +376,11 @@ class _$IncomesStateCopyWithImpl<$Res, $Val extends IncomesState>
 }
 
 /// @nodoc
-abstract class _$$_IncomesListStateCopyWith<$Res>
+abstract class _$$IncomesListStateImplCopyWith<$Res>
     implements $IncomesStateCopyWith<$Res> {
-  factory _$$_IncomesListStateCopyWith(
-          _$_IncomesListState value, $Res Function(_$_IncomesListState) then) =
-      __$$_IncomesListStateCopyWithImpl<$Res>;
+  factory _$$IncomesListStateImplCopyWith(_$IncomesListStateImpl value,
+          $Res Function(_$IncomesListStateImpl) then) =
+      __$$IncomesListStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -391,11 +391,11 @@ abstract class _$$_IncomesListStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_IncomesListStateCopyWithImpl<$Res>
-    extends _$IncomesStateCopyWithImpl<$Res, _$_IncomesListState>
-    implements _$$_IncomesListStateCopyWith<$Res> {
-  __$$_IncomesListStateCopyWithImpl(
-      _$_IncomesListState _value, $Res Function(_$_IncomesListState) _then)
+class __$$IncomesListStateImplCopyWithImpl<$Res>
+    extends _$IncomesStateCopyWithImpl<$Res, _$IncomesListStateImpl>
+    implements _$$IncomesListStateImplCopyWith<$Res> {
+  __$$IncomesListStateImplCopyWithImpl(_$IncomesListStateImpl _value,
+      $Res Function(_$IncomesListStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -406,7 +406,7 @@ class __$$_IncomesListStateCopyWithImpl<$Res>
     Object? isFetching = null,
     Object? isDeleting = null,
   }) {
-    return _then(_$_IncomesListState(
+    return _then(_$IncomesListStateImpl(
       failureOrIncomes: null == failureOrIncomes
           ? _value.failureOrIncomes
           : failureOrIncomes // ignore: cast_nullable_to_non_nullable
@@ -429,8 +429,8 @@ class __$$_IncomesListStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_IncomesListState implements _IncomesListState {
-  const _$_IncomesListState(
+class _$IncomesListStateImpl implements _IncomesListState {
+  const _$IncomesListStateImpl(
       {required this.failureOrIncomes,
       required this.showErrorMessages,
       required this.isFetching,
@@ -454,7 +454,7 @@ class _$_IncomesListState implements _IncomesListState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_IncomesListState &&
+            other is _$IncomesListStateImpl &&
             (identical(other.failureOrIncomes, failureOrIncomes) ||
                 other.failureOrIncomes == failureOrIncomes) &&
             (identical(other.showErrorMessages, showErrorMessages) ||
@@ -472,8 +472,9 @@ class _$_IncomesListState implements _IncomesListState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_IncomesListStateCopyWith<_$_IncomesListState> get copyWith =>
-      __$$_IncomesListStateCopyWithImpl<_$_IncomesListState>(this, _$identity);
+  _$$IncomesListStateImplCopyWith<_$IncomesListStateImpl> get copyWith =>
+      __$$IncomesListStateImplCopyWithImpl<_$IncomesListStateImpl>(
+          this, _$identity);
 }
 
 abstract class _IncomesListState implements IncomesState {
@@ -482,7 +483,7 @@ abstract class _IncomesListState implements IncomesState {
           failureOrIncomes,
       required final bool showErrorMessages,
       required final bool isFetching,
-      required final bool isDeleting}) = _$_IncomesListState;
+      required final bool isDeleting}) = _$IncomesListStateImpl;
 
   @override
   Option<Either<IncomeFailure, List<Income>>> get failureOrIncomes;
@@ -494,6 +495,6 @@ abstract class _IncomesListState implements IncomesState {
   bool get isDeleting;
   @override
   @JsonKey(ignore: true)
-  _$$_IncomesListStateCopyWith<_$_IncomesListState> get copyWith =>
+  _$$IncomesListStateImplCopyWith<_$IncomesListStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

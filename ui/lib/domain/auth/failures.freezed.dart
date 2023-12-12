@@ -108,29 +108,29 @@ class _$AuthFailureCopyWithImpl<$Res, $Val extends AuthFailure>
 }
 
 /// @nodoc
-abstract class _$$InvalidUsernameAndPasswordCombinationCopyWith<$Res> {
-  factory _$$InvalidUsernameAndPasswordCombinationCopyWith(
-          _$InvalidUsernameAndPasswordCombination value,
-          $Res Function(_$InvalidUsernameAndPasswordCombination) then) =
-      __$$InvalidUsernameAndPasswordCombinationCopyWithImpl<$Res>;
+abstract class _$$InvalidUsernameAndPasswordCombinationImplCopyWith<$Res> {
+  factory _$$InvalidUsernameAndPasswordCombinationImplCopyWith(
+          _$InvalidUsernameAndPasswordCombinationImpl value,
+          $Res Function(_$InvalidUsernameAndPasswordCombinationImpl) then) =
+      __$$InvalidUsernameAndPasswordCombinationImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InvalidUsernameAndPasswordCombinationCopyWithImpl<$Res>
+class __$$InvalidUsernameAndPasswordCombinationImplCopyWithImpl<$Res>
     extends _$AuthFailureCopyWithImpl<$Res,
-        _$InvalidUsernameAndPasswordCombination>
-    implements _$$InvalidUsernameAndPasswordCombinationCopyWith<$Res> {
-  __$$InvalidUsernameAndPasswordCombinationCopyWithImpl(
-      _$InvalidUsernameAndPasswordCombination _value,
-      $Res Function(_$InvalidUsernameAndPasswordCombination) _then)
+        _$InvalidUsernameAndPasswordCombinationImpl>
+    implements _$$InvalidUsernameAndPasswordCombinationImplCopyWith<$Res> {
+  __$$InvalidUsernameAndPasswordCombinationImplCopyWithImpl(
+      _$InvalidUsernameAndPasswordCombinationImpl _value,
+      $Res Function(_$InvalidUsernameAndPasswordCombinationImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$InvalidUsernameAndPasswordCombination
+class _$InvalidUsernameAndPasswordCombinationImpl
     implements InvalidUsernameAndPasswordCombination {
-  const _$InvalidUsernameAndPasswordCombination();
+  const _$InvalidUsernameAndPasswordCombinationImpl();
 
   @override
   String toString() {
@@ -141,7 +141,7 @@ class _$InvalidUsernameAndPasswordCombination
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$InvalidUsernameAndPasswordCombination);
+            other is _$InvalidUsernameAndPasswordCombinationImpl);
   }
 
   @override
@@ -245,29 +245,29 @@ class _$InvalidUsernameAndPasswordCombination
 
 abstract class InvalidUsernameAndPasswordCombination implements AuthFailure {
   const factory InvalidUsernameAndPasswordCombination() =
-      _$InvalidUsernameAndPasswordCombination;
+      _$InvalidUsernameAndPasswordCombinationImpl;
 }
 
 /// @nodoc
-abstract class _$$EmailAlreadyInUseCopyWith<$Res> {
-  factory _$$EmailAlreadyInUseCopyWith(
-          _$EmailAlreadyInUse value, $Res Function(_$EmailAlreadyInUse) then) =
-      __$$EmailAlreadyInUseCopyWithImpl<$Res>;
+abstract class _$$EmailAlreadyInUseImplCopyWith<$Res> {
+  factory _$$EmailAlreadyInUseImplCopyWith(_$EmailAlreadyInUseImpl value,
+          $Res Function(_$EmailAlreadyInUseImpl) then) =
+      __$$EmailAlreadyInUseImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$EmailAlreadyInUseCopyWithImpl<$Res>
-    extends _$AuthFailureCopyWithImpl<$Res, _$EmailAlreadyInUse>
-    implements _$$EmailAlreadyInUseCopyWith<$Res> {
-  __$$EmailAlreadyInUseCopyWithImpl(
-      _$EmailAlreadyInUse _value, $Res Function(_$EmailAlreadyInUse) _then)
+class __$$EmailAlreadyInUseImplCopyWithImpl<$Res>
+    extends _$AuthFailureCopyWithImpl<$Res, _$EmailAlreadyInUseImpl>
+    implements _$$EmailAlreadyInUseImplCopyWith<$Res> {
+  __$$EmailAlreadyInUseImplCopyWithImpl(_$EmailAlreadyInUseImpl _value,
+      $Res Function(_$EmailAlreadyInUseImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$EmailAlreadyInUse implements EmailAlreadyInUse {
-  const _$EmailAlreadyInUse();
+class _$EmailAlreadyInUseImpl implements EmailAlreadyInUse {
+  const _$EmailAlreadyInUseImpl();
 
   @override
   String toString() {
@@ -277,7 +277,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$EmailAlreadyInUse);
+        (other.runtimeType == runtimeType && other is _$EmailAlreadyInUseImpl);
   }
 
   @override
@@ -380,29 +380,29 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
 }
 
 abstract class EmailAlreadyInUse implements AuthFailure {
-  const factory EmailAlreadyInUse() = _$EmailAlreadyInUse;
+  const factory EmailAlreadyInUse() = _$EmailAlreadyInUseImpl;
 }
 
 /// @nodoc
-abstract class _$$UsernameAlreadyInUseCopyWith<$Res> {
-  factory _$$UsernameAlreadyInUseCopyWith(_$UsernameAlreadyInUse value,
-          $Res Function(_$UsernameAlreadyInUse) then) =
-      __$$UsernameAlreadyInUseCopyWithImpl<$Res>;
+abstract class _$$UsernameAlreadyInUseImplCopyWith<$Res> {
+  factory _$$UsernameAlreadyInUseImplCopyWith(_$UsernameAlreadyInUseImpl value,
+          $Res Function(_$UsernameAlreadyInUseImpl) then) =
+      __$$UsernameAlreadyInUseImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$UsernameAlreadyInUseCopyWithImpl<$Res>
-    extends _$AuthFailureCopyWithImpl<$Res, _$UsernameAlreadyInUse>
-    implements _$$UsernameAlreadyInUseCopyWith<$Res> {
-  __$$UsernameAlreadyInUseCopyWithImpl(_$UsernameAlreadyInUse _value,
-      $Res Function(_$UsernameAlreadyInUse) _then)
+class __$$UsernameAlreadyInUseImplCopyWithImpl<$Res>
+    extends _$AuthFailureCopyWithImpl<$Res, _$UsernameAlreadyInUseImpl>
+    implements _$$UsernameAlreadyInUseImplCopyWith<$Res> {
+  __$$UsernameAlreadyInUseImplCopyWithImpl(_$UsernameAlreadyInUseImpl _value,
+      $Res Function(_$UsernameAlreadyInUseImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$UsernameAlreadyInUse implements UsernameAlreadyInUse {
-  const _$UsernameAlreadyInUse();
+class _$UsernameAlreadyInUseImpl implements UsernameAlreadyInUse {
+  const _$UsernameAlreadyInUseImpl();
 
   @override
   String toString() {
@@ -412,7 +412,8 @@ class _$UsernameAlreadyInUse implements UsernameAlreadyInUse {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UsernameAlreadyInUse);
+        (other.runtimeType == runtimeType &&
+            other is _$UsernameAlreadyInUseImpl);
   }
 
   @override
@@ -515,29 +516,29 @@ class _$UsernameAlreadyInUse implements UsernameAlreadyInUse {
 }
 
 abstract class UsernameAlreadyInUse implements AuthFailure {
-  const factory UsernameAlreadyInUse() = _$UsernameAlreadyInUse;
+  const factory UsernameAlreadyInUse() = _$UsernameAlreadyInUseImpl;
 }
 
 /// @nodoc
-abstract class _$$PasswordsNotMatchCopyWith<$Res> {
-  factory _$$PasswordsNotMatchCopyWith(
-          _$PasswordsNotMatch value, $Res Function(_$PasswordsNotMatch) then) =
-      __$$PasswordsNotMatchCopyWithImpl<$Res>;
+abstract class _$$PasswordsNotMatchImplCopyWith<$Res> {
+  factory _$$PasswordsNotMatchImplCopyWith(_$PasswordsNotMatchImpl value,
+          $Res Function(_$PasswordsNotMatchImpl) then) =
+      __$$PasswordsNotMatchImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$PasswordsNotMatchCopyWithImpl<$Res>
-    extends _$AuthFailureCopyWithImpl<$Res, _$PasswordsNotMatch>
-    implements _$$PasswordsNotMatchCopyWith<$Res> {
-  __$$PasswordsNotMatchCopyWithImpl(
-      _$PasswordsNotMatch _value, $Res Function(_$PasswordsNotMatch) _then)
+class __$$PasswordsNotMatchImplCopyWithImpl<$Res>
+    extends _$AuthFailureCopyWithImpl<$Res, _$PasswordsNotMatchImpl>
+    implements _$$PasswordsNotMatchImplCopyWith<$Res> {
+  __$$PasswordsNotMatchImplCopyWithImpl(_$PasswordsNotMatchImpl _value,
+      $Res Function(_$PasswordsNotMatchImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$PasswordsNotMatch implements PasswordsNotMatch {
-  const _$PasswordsNotMatch();
+class _$PasswordsNotMatchImpl implements PasswordsNotMatch {
+  const _$PasswordsNotMatchImpl();
 
   @override
   String toString() {
@@ -547,7 +548,7 @@ class _$PasswordsNotMatch implements PasswordsNotMatch {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$PasswordsNotMatch);
+        (other.runtimeType == runtimeType && other is _$PasswordsNotMatchImpl);
   }
 
   @override
@@ -650,29 +651,29 @@ class _$PasswordsNotMatch implements PasswordsNotMatch {
 }
 
 abstract class PasswordsNotMatch implements AuthFailure {
-  const factory PasswordsNotMatch() = _$PasswordsNotMatch;
+  const factory PasswordsNotMatch() = _$PasswordsNotMatchImpl;
 }
 
 /// @nodoc
-abstract class _$$ServerErrorCopyWith<$Res> {
-  factory _$$ServerErrorCopyWith(
-          _$ServerError value, $Res Function(_$ServerError) then) =
-      __$$ServerErrorCopyWithImpl<$Res>;
+abstract class _$$ServerErrorImplCopyWith<$Res> {
+  factory _$$ServerErrorImplCopyWith(
+          _$ServerErrorImpl value, $Res Function(_$ServerErrorImpl) then) =
+      __$$ServerErrorImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ServerErrorCopyWithImpl<$Res>
-    extends _$AuthFailureCopyWithImpl<$Res, _$ServerError>
-    implements _$$ServerErrorCopyWith<$Res> {
-  __$$ServerErrorCopyWithImpl(
-      _$ServerError _value, $Res Function(_$ServerError) _then)
+class __$$ServerErrorImplCopyWithImpl<$Res>
+    extends _$AuthFailureCopyWithImpl<$Res, _$ServerErrorImpl>
+    implements _$$ServerErrorImplCopyWith<$Res> {
+  __$$ServerErrorImplCopyWithImpl(
+      _$ServerErrorImpl _value, $Res Function(_$ServerErrorImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ServerError implements ServerError {
-  const _$ServerError();
+class _$ServerErrorImpl implements ServerError {
+  const _$ServerErrorImpl();
 
   @override
   String toString() {
@@ -682,7 +683,7 @@ class _$ServerError implements ServerError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ServerError);
+        (other.runtimeType == runtimeType && other is _$ServerErrorImpl);
   }
 
   @override
@@ -785,29 +786,29 @@ class _$ServerError implements ServerError {
 }
 
 abstract class ServerError implements AuthFailure {
-  const factory ServerError() = _$ServerError;
+  const factory ServerError() = _$ServerErrorImpl;
 }
 
 /// @nodoc
-abstract class _$$CacheErrorCopyWith<$Res> {
-  factory _$$CacheErrorCopyWith(
-          _$CacheError value, $Res Function(_$CacheError) then) =
-      __$$CacheErrorCopyWithImpl<$Res>;
+abstract class _$$CacheErrorImplCopyWith<$Res> {
+  factory _$$CacheErrorImplCopyWith(
+          _$CacheErrorImpl value, $Res Function(_$CacheErrorImpl) then) =
+      __$$CacheErrorImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$CacheErrorCopyWithImpl<$Res>
-    extends _$AuthFailureCopyWithImpl<$Res, _$CacheError>
-    implements _$$CacheErrorCopyWith<$Res> {
-  __$$CacheErrorCopyWithImpl(
-      _$CacheError _value, $Res Function(_$CacheError) _then)
+class __$$CacheErrorImplCopyWithImpl<$Res>
+    extends _$AuthFailureCopyWithImpl<$Res, _$CacheErrorImpl>
+    implements _$$CacheErrorImplCopyWith<$Res> {
+  __$$CacheErrorImplCopyWithImpl(
+      _$CacheErrorImpl _value, $Res Function(_$CacheErrorImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$CacheError implements CacheError {
-  const _$CacheError();
+class _$CacheErrorImpl implements CacheError {
+  const _$CacheErrorImpl();
 
   @override
   String toString() {
@@ -817,7 +818,7 @@ class _$CacheError implements CacheError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$CacheError);
+        (other.runtimeType == runtimeType && other is _$CacheErrorImpl);
   }
 
   @override
@@ -920,29 +921,29 @@ class _$CacheError implements CacheError {
 }
 
 abstract class CacheError implements AuthFailure {
-  const factory CacheError() = _$CacheError;
+  const factory CacheError() = _$CacheErrorImpl;
 }
 
 /// @nodoc
-abstract class _$$ConnectionErrorCopyWith<$Res> {
-  factory _$$ConnectionErrorCopyWith(
-          _$ConnectionError value, $Res Function(_$ConnectionError) then) =
-      __$$ConnectionErrorCopyWithImpl<$Res>;
+abstract class _$$ConnectionErrorImplCopyWith<$Res> {
+  factory _$$ConnectionErrorImplCopyWith(_$ConnectionErrorImpl value,
+          $Res Function(_$ConnectionErrorImpl) then) =
+      __$$ConnectionErrorImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ConnectionErrorCopyWithImpl<$Res>
-    extends _$AuthFailureCopyWithImpl<$Res, _$ConnectionError>
-    implements _$$ConnectionErrorCopyWith<$Res> {
-  __$$ConnectionErrorCopyWithImpl(
-      _$ConnectionError _value, $Res Function(_$ConnectionError) _then)
+class __$$ConnectionErrorImplCopyWithImpl<$Res>
+    extends _$AuthFailureCopyWithImpl<$Res, _$ConnectionErrorImpl>
+    implements _$$ConnectionErrorImplCopyWith<$Res> {
+  __$$ConnectionErrorImplCopyWithImpl(
+      _$ConnectionErrorImpl _value, $Res Function(_$ConnectionErrorImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ConnectionError implements ConnectionError {
-  const _$ConnectionError();
+class _$ConnectionErrorImpl implements ConnectionError {
+  const _$ConnectionErrorImpl();
 
   @override
   String toString() {
@@ -952,7 +953,7 @@ class _$ConnectionError implements ConnectionError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ConnectionError);
+        (other.runtimeType == runtimeType && other is _$ConnectionErrorImpl);
   }
 
   @override
@@ -1055,5 +1056,5 @@ class _$ConnectionError implements ConnectionError {
 }
 
 abstract class ConnectionError implements AuthFailure {
-  const factory ConnectionError() = _$ConnectionError;
+  const factory ConnectionError() = _$ConnectionErrorImpl;
 }

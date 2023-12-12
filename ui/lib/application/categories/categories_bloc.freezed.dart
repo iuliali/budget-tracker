@@ -81,25 +81,25 @@ class _$CategoriesEventCopyWithImpl<$Res, $Val extends CategoriesEvent>
 }
 
 /// @nodoc
-abstract class _$$FetchCategoriesCopyWith<$Res> {
-  factory _$$FetchCategoriesCopyWith(
-          _$FetchCategories value, $Res Function(_$FetchCategories) then) =
-      __$$FetchCategoriesCopyWithImpl<$Res>;
+abstract class _$$FetchCategoriesImplCopyWith<$Res> {
+  factory _$$FetchCategoriesImplCopyWith(_$FetchCategoriesImpl value,
+          $Res Function(_$FetchCategoriesImpl) then) =
+      __$$FetchCategoriesImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$FetchCategoriesCopyWithImpl<$Res>
-    extends _$CategoriesEventCopyWithImpl<$Res, _$FetchCategories>
-    implements _$$FetchCategoriesCopyWith<$Res> {
-  __$$FetchCategoriesCopyWithImpl(
-      _$FetchCategories _value, $Res Function(_$FetchCategories) _then)
+class __$$FetchCategoriesImplCopyWithImpl<$Res>
+    extends _$CategoriesEventCopyWithImpl<$Res, _$FetchCategoriesImpl>
+    implements _$$FetchCategoriesImplCopyWith<$Res> {
+  __$$FetchCategoriesImplCopyWithImpl(
+      _$FetchCategoriesImpl _value, $Res Function(_$FetchCategoriesImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$FetchCategories implements FetchCategories {
-  const _$FetchCategories();
+class _$FetchCategoriesImpl implements FetchCategories {
+  const _$FetchCategoriesImpl();
 
   @override
   String toString() {
@@ -109,7 +109,7 @@ class _$FetchCategories implements FetchCategories {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$FetchCategories);
+        (other.runtimeType == runtimeType && other is _$FetchCategoriesImpl);
   }
 
   @override
@@ -185,24 +185,24 @@ class _$FetchCategories implements FetchCategories {
 }
 
 abstract class FetchCategories implements CategoriesEvent {
-  const factory FetchCategories() = _$FetchCategories;
+  const factory FetchCategories() = _$FetchCategoriesImpl;
 }
 
 /// @nodoc
-abstract class _$$SelectCategoryCopyWith<$Res> {
-  factory _$$SelectCategoryCopyWith(
-          _$SelectCategory value, $Res Function(_$SelectCategory) then) =
-      __$$SelectCategoryCopyWithImpl<$Res>;
+abstract class _$$SelectCategoryImplCopyWith<$Res> {
+  factory _$$SelectCategoryImplCopyWith(_$SelectCategoryImpl value,
+          $Res Function(_$SelectCategoryImpl) then) =
+      __$$SelectCategoryImplCopyWithImpl<$Res>;
   @useResult
   $Res call({CategoryId categoryId});
 }
 
 /// @nodoc
-class __$$SelectCategoryCopyWithImpl<$Res>
-    extends _$CategoriesEventCopyWithImpl<$Res, _$SelectCategory>
-    implements _$$SelectCategoryCopyWith<$Res> {
-  __$$SelectCategoryCopyWithImpl(
-      _$SelectCategory _value, $Res Function(_$SelectCategory) _then)
+class __$$SelectCategoryImplCopyWithImpl<$Res>
+    extends _$CategoriesEventCopyWithImpl<$Res, _$SelectCategoryImpl>
+    implements _$$SelectCategoryImplCopyWith<$Res> {
+  __$$SelectCategoryImplCopyWithImpl(
+      _$SelectCategoryImpl _value, $Res Function(_$SelectCategoryImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -210,7 +210,7 @@ class __$$SelectCategoryCopyWithImpl<$Res>
   $Res call({
     Object? categoryId = null,
   }) {
-    return _then(_$SelectCategory(
+    return _then(_$SelectCategoryImpl(
       categoryId: null == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
@@ -221,8 +221,8 @@ class __$$SelectCategoryCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SelectCategory implements SelectCategory {
-  const _$SelectCategory({required this.categoryId});
+class _$SelectCategoryImpl implements SelectCategory {
+  const _$SelectCategoryImpl({required this.categoryId});
 
   @override
   final CategoryId categoryId;
@@ -236,7 +236,7 @@ class _$SelectCategory implements SelectCategory {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SelectCategory &&
+            other is _$SelectCategoryImpl &&
             (identical(other.categoryId, categoryId) ||
                 other.categoryId == categoryId));
   }
@@ -247,8 +247,9 @@ class _$SelectCategory implements SelectCategory {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SelectCategoryCopyWith<_$SelectCategory> get copyWith =>
-      __$$SelectCategoryCopyWithImpl<_$SelectCategory>(this, _$identity);
+  _$$SelectCategoryImplCopyWith<_$SelectCategoryImpl> get copyWith =>
+      __$$SelectCategoryImplCopyWithImpl<_$SelectCategoryImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -321,29 +322,29 @@ class _$SelectCategory implements SelectCategory {
 
 abstract class SelectCategory implements CategoriesEvent {
   const factory SelectCategory({required final CategoryId categoryId}) =
-      _$SelectCategory;
+      _$SelectCategoryImpl;
 
   CategoryId get categoryId;
   @JsonKey(ignore: true)
-  _$$SelectCategoryCopyWith<_$SelectCategory> get copyWith =>
+  _$$SelectCategoryImplCopyWith<_$SelectCategoryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DeleteCategoryCopyWith<$Res> {
-  factory _$$DeleteCategoryCopyWith(
-          _$DeleteCategory value, $Res Function(_$DeleteCategory) then) =
-      __$$DeleteCategoryCopyWithImpl<$Res>;
+abstract class _$$DeleteCategoryImplCopyWith<$Res> {
+  factory _$$DeleteCategoryImplCopyWith(_$DeleteCategoryImpl value,
+          $Res Function(_$DeleteCategoryImpl) then) =
+      __$$DeleteCategoryImplCopyWithImpl<$Res>;
   @useResult
   $Res call({CategoryId categoryId});
 }
 
 /// @nodoc
-class __$$DeleteCategoryCopyWithImpl<$Res>
-    extends _$CategoriesEventCopyWithImpl<$Res, _$DeleteCategory>
-    implements _$$DeleteCategoryCopyWith<$Res> {
-  __$$DeleteCategoryCopyWithImpl(
-      _$DeleteCategory _value, $Res Function(_$DeleteCategory) _then)
+class __$$DeleteCategoryImplCopyWithImpl<$Res>
+    extends _$CategoriesEventCopyWithImpl<$Res, _$DeleteCategoryImpl>
+    implements _$$DeleteCategoryImplCopyWith<$Res> {
+  __$$DeleteCategoryImplCopyWithImpl(
+      _$DeleteCategoryImpl _value, $Res Function(_$DeleteCategoryImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -351,7 +352,7 @@ class __$$DeleteCategoryCopyWithImpl<$Res>
   $Res call({
     Object? categoryId = null,
   }) {
-    return _then(_$DeleteCategory(
+    return _then(_$DeleteCategoryImpl(
       categoryId: null == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
@@ -362,8 +363,8 @@ class __$$DeleteCategoryCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DeleteCategory implements DeleteCategory {
-  const _$DeleteCategory({required this.categoryId});
+class _$DeleteCategoryImpl implements DeleteCategory {
+  const _$DeleteCategoryImpl({required this.categoryId});
 
   @override
   final CategoryId categoryId;
@@ -377,7 +378,7 @@ class _$DeleteCategory implements DeleteCategory {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DeleteCategory &&
+            other is _$DeleteCategoryImpl &&
             (identical(other.categoryId, categoryId) ||
                 other.categoryId == categoryId));
   }
@@ -388,8 +389,9 @@ class _$DeleteCategory implements DeleteCategory {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DeleteCategoryCopyWith<_$DeleteCategory> get copyWith =>
-      __$$DeleteCategoryCopyWithImpl<_$DeleteCategory>(this, _$identity);
+  _$$DeleteCategoryImplCopyWith<_$DeleteCategoryImpl> get copyWith =>
+      __$$DeleteCategoryImplCopyWithImpl<_$DeleteCategoryImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -462,11 +464,11 @@ class _$DeleteCategory implements DeleteCategory {
 
 abstract class DeleteCategory implements CategoriesEvent {
   const factory DeleteCategory({required final CategoryId categoryId}) =
-      _$DeleteCategory;
+      _$DeleteCategoryImpl;
 
   CategoryId get categoryId;
   @JsonKey(ignore: true)
-  _$$DeleteCategoryCopyWith<_$DeleteCategory> get copyWith =>
+  _$$DeleteCategoryImplCopyWith<_$DeleteCategoryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -543,11 +545,11 @@ class _$CategoriesStateCopyWithImpl<$Res, $Val extends CategoriesState>
 }
 
 /// @nodoc
-abstract class _$$_CategoriesListStateCopyWith<$Res>
+abstract class _$$CategoriesListStateImplCopyWith<$Res>
     implements $CategoriesStateCopyWith<$Res> {
-  factory _$$_CategoriesListStateCopyWith(_$_CategoriesListState value,
-          $Res Function(_$_CategoriesListState) then) =
-      __$$_CategoriesListStateCopyWithImpl<$Res>;
+  factory _$$CategoriesListStateImplCopyWith(_$CategoriesListStateImpl value,
+          $Res Function(_$CategoriesListStateImpl) then) =
+      __$$CategoriesListStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -559,11 +561,11 @@ abstract class _$$_CategoriesListStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CategoriesListStateCopyWithImpl<$Res>
-    extends _$CategoriesStateCopyWithImpl<$Res, _$_CategoriesListState>
-    implements _$$_CategoriesListStateCopyWith<$Res> {
-  __$$_CategoriesListStateCopyWithImpl(_$_CategoriesListState _value,
-      $Res Function(_$_CategoriesListState) _then)
+class __$$CategoriesListStateImplCopyWithImpl<$Res>
+    extends _$CategoriesStateCopyWithImpl<$Res, _$CategoriesListStateImpl>
+    implements _$$CategoriesListStateImplCopyWith<$Res> {
+  __$$CategoriesListStateImplCopyWithImpl(_$CategoriesListStateImpl _value,
+      $Res Function(_$CategoriesListStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -575,7 +577,7 @@ class __$$_CategoriesListStateCopyWithImpl<$Res>
     Object? isFetching = null,
     Object? isDeleting = null,
   }) {
-    return _then(_$_CategoriesListState(
+    return _then(_$CategoriesListStateImpl(
       failureOrCategories: null == failureOrCategories
           ? _value.failureOrCategories
           : failureOrCategories // ignore: cast_nullable_to_non_nullable
@@ -602,8 +604,8 @@ class __$$_CategoriesListStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CategoriesListState implements _CategoriesListState {
-  const _$_CategoriesListState(
+class _$CategoriesListStateImpl implements _CategoriesListState {
+  const _$CategoriesListStateImpl(
       {required this.failureOrCategories,
       required this.selectedCategory,
       required this.showErrorMessages,
@@ -630,7 +632,7 @@ class _$_CategoriesListState implements _CategoriesListState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CategoriesListState &&
+            other is _$CategoriesListStateImpl &&
             (identical(other.failureOrCategories, failureOrCategories) ||
                 other.failureOrCategories == failureOrCategories) &&
             (identical(other.selectedCategory, selectedCategory) ||
@@ -650,8 +652,8 @@ class _$_CategoriesListState implements _CategoriesListState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CategoriesListStateCopyWith<_$_CategoriesListState> get copyWith =>
-      __$$_CategoriesListStateCopyWithImpl<_$_CategoriesListState>(
+  _$$CategoriesListStateImplCopyWith<_$CategoriesListStateImpl> get copyWith =>
+      __$$CategoriesListStateImplCopyWithImpl<_$CategoriesListStateImpl>(
           this, _$identity);
 }
 
@@ -662,7 +664,7 @@ abstract class _CategoriesListState implements CategoriesState {
       required final Option<Category> selectedCategory,
       required final bool showErrorMessages,
       required final bool isFetching,
-      required final bool isDeleting}) = _$_CategoriesListState;
+      required final bool isDeleting}) = _$CategoriesListStateImpl;
 
   @override
   Option<Either<CategoryFailure, List<Category>>> get failureOrCategories;
@@ -676,6 +678,6 @@ abstract class _CategoriesListState implements CategoriesState {
   bool get isDeleting;
   @override
   @JsonKey(ignore: true)
-  _$$_CategoriesListStateCopyWith<_$_CategoriesListState> get copyWith =>
+  _$$CategoriesListStateImplCopyWith<_$CategoriesListStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
