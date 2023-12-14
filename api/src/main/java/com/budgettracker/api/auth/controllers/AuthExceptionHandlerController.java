@@ -85,6 +85,14 @@ public class AuthExceptionHandlerController extends ResponseEntityExceptionHandl
                 HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(value = {CurrencyDoesNotExistException.class})
+    public ResponseEntity<?> handleCurrencyDoesNotExistException(CurrencyDoesNotExistException exception,
+                                                                 WebRequest request) {
+        logger.warn(exception.getMessage());
+        return new ResponseEntity<>(Map.of("message", "Currency does not exist in database."),
+                HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(value = {BadCredentialsException.class,
             InternalAuthenticationServiceException.class})
     public ResponseEntity<?> handleBadCredentialsException(Exception exception,
