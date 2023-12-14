@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,5 +28,11 @@ public class UserController {
     @GetMapping(value = "/all")
     public ResponseEntity<?> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsersDto());
+    }
+
+    @Operation(summary= "Update authenticated user's default currency")
+    @PutMapping(value = "/default-currency")
+    public ResponseEntity<?> updateDefaultCurrency(String currency) {
+        return ResponseEntity.ok(userService.updateDefaultCurrency(currency));
     }
 }
