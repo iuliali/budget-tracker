@@ -88,20 +88,20 @@ class _$CategoryFormEventCopyWithImpl<$Res, $Val extends CategoryFormEvent>
 }
 
 /// @nodoc
-abstract class _$$InitializedCopyWith<$Res> {
-  factory _$$InitializedCopyWith(
-          _$Initialized value, $Res Function(_$Initialized) then) =
-      __$$InitializedCopyWithImpl<$Res>;
+abstract class _$$InitializedImplCopyWith<$Res> {
+  factory _$$InitializedImplCopyWith(
+          _$InitializedImpl value, $Res Function(_$InitializedImpl) then) =
+      __$$InitializedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Option<Category> initialCategoryOption});
 }
 
 /// @nodoc
-class __$$InitializedCopyWithImpl<$Res>
-    extends _$CategoryFormEventCopyWithImpl<$Res, _$Initialized>
-    implements _$$InitializedCopyWith<$Res> {
-  __$$InitializedCopyWithImpl(
-      _$Initialized _value, $Res Function(_$Initialized) _then)
+class __$$InitializedImplCopyWithImpl<$Res>
+    extends _$CategoryFormEventCopyWithImpl<$Res, _$InitializedImpl>
+    implements _$$InitializedImplCopyWith<$Res> {
+  __$$InitializedImplCopyWithImpl(
+      _$InitializedImpl _value, $Res Function(_$InitializedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -109,7 +109,7 @@ class __$$InitializedCopyWithImpl<$Res>
   $Res call({
     Object? initialCategoryOption = null,
   }) {
-    return _then(_$Initialized(
+    return _then(_$InitializedImpl(
       null == initialCategoryOption
           ? _value.initialCategoryOption
           : initialCategoryOption // ignore: cast_nullable_to_non_nullable
@@ -120,8 +120,8 @@ class __$$InitializedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Initialized implements Initialized {
-  const _$Initialized(this.initialCategoryOption);
+class _$InitializedImpl implements Initialized {
+  const _$InitializedImpl(this.initialCategoryOption);
 
   @override
   final Option<Category> initialCategoryOption;
@@ -135,7 +135,7 @@ class _$Initialized implements Initialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Initialized &&
+            other is _$InitializedImpl &&
             (identical(other.initialCategoryOption, initialCategoryOption) ||
                 other.initialCategoryOption == initialCategoryOption));
   }
@@ -146,8 +146,8 @@ class _$Initialized implements Initialized {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$InitializedCopyWith<_$Initialized> get copyWith =>
-      __$$InitializedCopyWithImpl<_$Initialized>(this, _$identity);
+  _$$InitializedImplCopyWith<_$InitializedImpl> get copyWith =>
+      __$$InitializedImplCopyWithImpl<_$InitializedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -227,29 +227,29 @@ class _$Initialized implements Initialized {
 
 abstract class Initialized implements CategoryFormEvent {
   const factory Initialized(final Option<Category> initialCategoryOption) =
-      _$Initialized;
+      _$InitializedImpl;
 
   Option<Category> get initialCategoryOption;
   @JsonKey(ignore: true)
-  _$$InitializedCopyWith<_$Initialized> get copyWith =>
+  _$$InitializedImplCopyWith<_$InitializedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$NameChangedCopyWith<$Res> {
-  factory _$$NameChangedCopyWith(
-          _$NameChanged value, $Res Function(_$NameChanged) then) =
-      __$$NameChangedCopyWithImpl<$Res>;
+abstract class _$$NameChangedImplCopyWith<$Res> {
+  factory _$$NameChangedImplCopyWith(
+          _$NameChangedImpl value, $Res Function(_$NameChangedImpl) then) =
+      __$$NameChangedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String nameStr});
 }
 
 /// @nodoc
-class __$$NameChangedCopyWithImpl<$Res>
-    extends _$CategoryFormEventCopyWithImpl<$Res, _$NameChanged>
-    implements _$$NameChangedCopyWith<$Res> {
-  __$$NameChangedCopyWithImpl(
-      _$NameChanged _value, $Res Function(_$NameChanged) _then)
+class __$$NameChangedImplCopyWithImpl<$Res>
+    extends _$CategoryFormEventCopyWithImpl<$Res, _$NameChangedImpl>
+    implements _$$NameChangedImplCopyWith<$Res> {
+  __$$NameChangedImplCopyWithImpl(
+      _$NameChangedImpl _value, $Res Function(_$NameChangedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -257,7 +257,7 @@ class __$$NameChangedCopyWithImpl<$Res>
   $Res call({
     Object? nameStr = null,
   }) {
-    return _then(_$NameChanged(
+    return _then(_$NameChangedImpl(
       null == nameStr
           ? _value.nameStr
           : nameStr // ignore: cast_nullable_to_non_nullable
@@ -268,8 +268,8 @@ class __$$NameChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$NameChanged implements NameChanged {
-  const _$NameChanged(this.nameStr);
+class _$NameChangedImpl implements NameChanged {
+  const _$NameChangedImpl(this.nameStr);
 
   @override
   final String nameStr;
@@ -283,7 +283,7 @@ class _$NameChanged implements NameChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$NameChanged &&
+            other is _$NameChangedImpl &&
             (identical(other.nameStr, nameStr) || other.nameStr == nameStr));
   }
 
@@ -293,8 +293,8 @@ class _$NameChanged implements NameChanged {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$NameChangedCopyWith<_$NameChanged> get copyWith =>
-      __$$NameChangedCopyWithImpl<_$NameChanged>(this, _$identity);
+  _$$NameChangedImplCopyWith<_$NameChangedImpl> get copyWith =>
+      __$$NameChangedImplCopyWithImpl<_$NameChangedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -373,29 +373,29 @@ class _$NameChanged implements NameChanged {
 }
 
 abstract class NameChanged implements CategoryFormEvent {
-  const factory NameChanged(final String nameStr) = _$NameChanged;
+  const factory NameChanged(final String nameStr) = _$NameChangedImpl;
 
   String get nameStr;
   @JsonKey(ignore: true)
-  _$$NameChangedCopyWith<_$NameChanged> get copyWith =>
+  _$$NameChangedImplCopyWith<_$NameChangedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AmountChangedCopyWith<$Res> {
-  factory _$$AmountChangedCopyWith(
-          _$AmountChanged value, $Res Function(_$AmountChanged) then) =
-      __$$AmountChangedCopyWithImpl<$Res>;
+abstract class _$$AmountChangedImplCopyWith<$Res> {
+  factory _$$AmountChangedImplCopyWith(
+          _$AmountChangedImpl value, $Res Function(_$AmountChangedImpl) then) =
+      __$$AmountChangedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String amountStr});
 }
 
 /// @nodoc
-class __$$AmountChangedCopyWithImpl<$Res>
-    extends _$CategoryFormEventCopyWithImpl<$Res, _$AmountChanged>
-    implements _$$AmountChangedCopyWith<$Res> {
-  __$$AmountChangedCopyWithImpl(
-      _$AmountChanged _value, $Res Function(_$AmountChanged) _then)
+class __$$AmountChangedImplCopyWithImpl<$Res>
+    extends _$CategoryFormEventCopyWithImpl<$Res, _$AmountChangedImpl>
+    implements _$$AmountChangedImplCopyWith<$Res> {
+  __$$AmountChangedImplCopyWithImpl(
+      _$AmountChangedImpl _value, $Res Function(_$AmountChangedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -403,7 +403,7 @@ class __$$AmountChangedCopyWithImpl<$Res>
   $Res call({
     Object? amountStr = null,
   }) {
-    return _then(_$AmountChanged(
+    return _then(_$AmountChangedImpl(
       null == amountStr
           ? _value.amountStr
           : amountStr // ignore: cast_nullable_to_non_nullable
@@ -414,8 +414,8 @@ class __$$AmountChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AmountChanged implements AmountChanged {
-  const _$AmountChanged(this.amountStr);
+class _$AmountChangedImpl implements AmountChanged {
+  const _$AmountChangedImpl(this.amountStr);
 
   @override
   final String amountStr;
@@ -429,7 +429,7 @@ class _$AmountChanged implements AmountChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AmountChanged &&
+            other is _$AmountChangedImpl &&
             (identical(other.amountStr, amountStr) ||
                 other.amountStr == amountStr));
   }
@@ -440,8 +440,8 @@ class _$AmountChanged implements AmountChanged {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AmountChangedCopyWith<_$AmountChanged> get copyWith =>
-      __$$AmountChangedCopyWithImpl<_$AmountChanged>(this, _$identity);
+  _$$AmountChangedImplCopyWith<_$AmountChangedImpl> get copyWith =>
+      __$$AmountChangedImplCopyWithImpl<_$AmountChangedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -520,32 +520,34 @@ class _$AmountChanged implements AmountChanged {
 }
 
 abstract class AmountChanged implements CategoryFormEvent {
-  const factory AmountChanged(final String amountStr) = _$AmountChanged;
+  const factory AmountChanged(final String amountStr) = _$AmountChangedImpl;
 
   String get amountStr;
   @JsonKey(ignore: true)
-  _$$AmountChangedCopyWith<_$AmountChanged> get copyWith =>
+  _$$AmountChangedImplCopyWith<_$AmountChangedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SavedCopyWith<$Res> {
-  factory _$$SavedCopyWith(_$Saved value, $Res Function(_$Saved) then) =
-      __$$SavedCopyWithImpl<$Res>;
+abstract class _$$SavedImplCopyWith<$Res> {
+  factory _$$SavedImplCopyWith(
+          _$SavedImpl value, $Res Function(_$SavedImpl) then) =
+      __$$SavedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SavedCopyWithImpl<$Res>
-    extends _$CategoryFormEventCopyWithImpl<$Res, _$Saved>
-    implements _$$SavedCopyWith<$Res> {
-  __$$SavedCopyWithImpl(_$Saved _value, $Res Function(_$Saved) _then)
+class __$$SavedImplCopyWithImpl<$Res>
+    extends _$CategoryFormEventCopyWithImpl<$Res, _$SavedImpl>
+    implements _$$SavedImplCopyWith<$Res> {
+  __$$SavedImplCopyWithImpl(
+      _$SavedImpl _value, $Res Function(_$SavedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$Saved implements Saved {
-  const _$Saved();
+class _$SavedImpl implements Saved {
+  const _$SavedImpl();
 
   @override
   String toString() {
@@ -555,7 +557,7 @@ class _$Saved implements Saved {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Saved);
+        (other.runtimeType == runtimeType && other is _$SavedImpl);
   }
 
   @override
@@ -638,7 +640,7 @@ class _$Saved implements Saved {
 }
 
 abstract class Saved implements CategoryFormEvent {
-  const factory Saved() = _$Saved;
+  const factory Saved() = _$SavedImpl;
 }
 
 /// @nodoc
@@ -728,11 +730,11 @@ class _$CategoryFormStateCopyWithImpl<$Res, $Val extends CategoryFormState>
 }
 
 /// @nodoc
-abstract class _$$_CategoryFormStateCopyWith<$Res>
+abstract class _$$CategoryFormStateImplCopyWith<$Res>
     implements $CategoryFormStateCopyWith<$Res> {
-  factory _$$_CategoryFormStateCopyWith(_$_CategoryFormState value,
-          $Res Function(_$_CategoryFormState) then) =
-      __$$_CategoryFormStateCopyWithImpl<$Res>;
+  factory _$$CategoryFormStateImplCopyWith(_$CategoryFormStateImpl value,
+          $Res Function(_$CategoryFormStateImpl) then) =
+      __$$CategoryFormStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -746,11 +748,11 @@ abstract class _$$_CategoryFormStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CategoryFormStateCopyWithImpl<$Res>
-    extends _$CategoryFormStateCopyWithImpl<$Res, _$_CategoryFormState>
-    implements _$$_CategoryFormStateCopyWith<$Res> {
-  __$$_CategoryFormStateCopyWithImpl(
-      _$_CategoryFormState _value, $Res Function(_$_CategoryFormState) _then)
+class __$$CategoryFormStateImplCopyWithImpl<$Res>
+    extends _$CategoryFormStateCopyWithImpl<$Res, _$CategoryFormStateImpl>
+    implements _$$CategoryFormStateImplCopyWith<$Res> {
+  __$$CategoryFormStateImplCopyWithImpl(_$CategoryFormStateImpl _value,
+      $Res Function(_$CategoryFormStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -764,7 +766,7 @@ class __$$_CategoryFormStateCopyWithImpl<$Res>
     Object? isSaving = null,
     Object? saveFailureOrSuccessOption = null,
   }) {
-    return _then(_$_CategoryFormState(
+    return _then(_$CategoryFormStateImpl(
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -799,8 +801,8 @@ class __$$_CategoryFormStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CategoryFormState implements _CategoryFormState {
-  const _$_CategoryFormState(
+class _$CategoryFormStateImpl implements _CategoryFormState {
+  const _$CategoryFormStateImpl(
       {required this.category,
       required this.name,
       required this.amount,
@@ -833,7 +835,7 @@ class _$_CategoryFormState implements _CategoryFormState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CategoryFormState &&
+            other is _$CategoryFormStateImpl &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.name, name) || other.name == name) &&
@@ -857,8 +859,8 @@ class _$_CategoryFormState implements _CategoryFormState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CategoryFormStateCopyWith<_$_CategoryFormState> get copyWith =>
-      __$$_CategoryFormStateCopyWithImpl<_$_CategoryFormState>(
+  _$$CategoryFormStateImplCopyWith<_$CategoryFormStateImpl> get copyWith =>
+      __$$CategoryFormStateImplCopyWithImpl<_$CategoryFormStateImpl>(
           this, _$identity);
 }
 
@@ -871,7 +873,7 @@ abstract class _CategoryFormState implements CategoryFormState {
       required final bool isEditing,
       required final bool isSaving,
       required final Option<Either<CategoryFailure, Unit>>
-          saveFailureOrSuccessOption}) = _$_CategoryFormState;
+          saveFailureOrSuccessOption}) = _$CategoryFormStateImpl;
 
   @override
   Option<Category> get category;
@@ -889,6 +891,6 @@ abstract class _CategoryFormState implements CategoryFormState {
   Option<Either<CategoryFailure, Unit>> get saveFailureOrSuccessOption;
   @override
   @JsonKey(ignore: true)
-  _$$_CategoryFormStateCopyWith<_$_CategoryFormState> get copyWith =>
+  _$$CategoryFormStateImplCopyWith<_$CategoryFormStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

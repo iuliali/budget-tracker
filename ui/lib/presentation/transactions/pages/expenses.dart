@@ -9,6 +9,7 @@ import '../../../application/transactions/expenses/expenses_bloc.dart';
 import '../../core/colors.dart';
 import '../../core/routing/router.dart';
 import '../../core/widgets/app_bar.dart';
+import '../../core/widgets/bottom_bar.dart';
 import '../../core/widgets/header.dart';
 import '../../core/widgets/menu.dart';
 
@@ -22,6 +23,7 @@ class ExpensesPage extends StatelessWidget {
       create: (_) =>
         getIt<ExpensesBloc>()..add(const ExpensesEvent.getExpenses()),
       child: Scaffold(
+        bottomNavigationBar: const BottomBar(),
         backgroundColor: Theme.of(context).colorScheme.background,
         appBar: generateAppBarWidget(context),
         drawer: const Drawer(child: MenuWidget()),
@@ -35,7 +37,6 @@ class ExpensesPage extends StatelessWidget {
         ),
         body: SafeArea(
           child: ListView(
-            shrinkWrap: true,
             children: <Widget>[
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 32),
@@ -80,6 +81,7 @@ class ExpensesPage extends StatelessWidget {
                   }
                   return ListView.builder(
                     shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: listOfExpenses.length,
                     itemBuilder: (context, index) {
                       final item = listOfExpenses[index];
