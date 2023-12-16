@@ -26,6 +26,19 @@ class CategorySpentAmount {
     required this.budgetAmount,
     required this.amount,
   });
+
+  bool get isOverspent =>
+      budgetAmount != null && budgetAmount!.getOrCrash() < amount;
+  bool get isLeft =>
+      budgetAmount != null && budgetAmount!.getOrCrash() > amount;
+  bool get isAllInclusive => budgetAmount == null;
+
+  double get percentage =>
+      budgetAmount != null ? (amount / budgetAmount!.getOrCrash()) : 0;
+  double get overspentAmount =>
+      budgetAmount != null ? (amount - budgetAmount!.getOrCrash()) : 0;
+  double get leftAmount =>
+      budgetAmount != null ? (budgetAmount!.getOrCrash() - amount) : 0;
 }
 
 class WeeklySpentAmount {
@@ -44,20 +57,20 @@ class WeeklySpentAmount {
 class StatisticsPage extends StatelessWidget {
   const StatisticsPage({super.key});
 
-  List<CategorySpentAmount> dummyCategorySpentAmounts(List<Category> categories) {
+  List<CategorySpentAmount> dummyCategorySpentAmounts(
+      List<Category> categories) {
     return List<CategorySpentAmount>.generate(
       categories.length,
       (index) => CategorySpentAmount(
         categoryName: categories[index].name,
         budgetAmount: categories[index].budget?.amount,
-        amount: Random().nextInt(10000) / 100,
+        amount: Random().nextInt(50000) / 100,
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-
     var firstDayOfTheMonth =
         DateTime(DateTime.now().year, DateTime.now().month, 1);
     var lastDayOfTheMonth =
@@ -100,8 +113,11 @@ class StatisticsPage extends StatelessWidget {
 
     return BlocBuilder<CategoriesBloc, CategoriesState>(
       builder: (context, state) {
-        final categories = state.failureOrCategories.getOrElse(() => right([])).fold((
-            l) => <Category>[], (r) => r,);
+        final categories =
+            state.failureOrCategories.getOrElse(() => right([])).fold(
+                  (l) => <Category>[],
+                  (r) => r,
+                );
 
         final categorySpentAmounts = dummyCategorySpentAmounts(categories);
         return Scaffold(
@@ -283,9 +299,9 @@ class StatisticsPage extends StatelessWidget {
                                                   fontWeight: FontWeight.bold,
                                                   color: cGreyColor),
                                             ),
-                                            Text(
+                                            const Text(
                                               "0",
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.bold,
                                                   color: cGreyColor),
@@ -300,9 +316,9 @@ class StatisticsPage extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(height: 16),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 32),
-                            child: const Text("Spends by category",
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 32),
+                            child: Text("Spends by category",
                                 style: TextStyle(
                                     fontSize: 16, fontWeight: FontWeight.bold)),
                           ),
@@ -319,63 +335,62 @@ class StatisticsPage extends StatelessWidget {
                                 title: Text(categorySpentAmount.categoryName
                                     .getOrCrash()),
                                 leading: Container(
-                                  // Strocked circle percentage indicator
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 5,
-                                    value: (categorySpentAmount.budgetAmount?.getOrCrash() ?? 0) /
-                                        categorySpentAmount.amount,
-                                    backgroundColor: cGreyColor,
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                        (categorySpentAmount.budgetAmount?.getOrCrash() ?? 0) /
-                                                  categorySpentAmount.amount <
-                                              1
-                                          ? cGreenColor
-                                          : cRedColor,
-                                    ),
-                                  ),
+                                  width: 40,
+                                  height: 40,
+                                  padding: const EdgeInsets.all(5),
+                                  child: categorySpentAmount.isAllInclusive
+                                      ? const Icon(Icons.all_inclusive)
+                                      : CircularProgressIndicator(
+                                          strokeWidth: 5,
+                                          value: categorySpentAmount.percentage,
+                                          backgroundColor: cGreyColor,
+                                          valueColor:
+                                              AlwaysStoppedAnimation<Color>(
+                                            categorySpentAmount.isLeft
+                                                ? cGreenColor
+                                                : cRedColor,
+                                          ),
+                                        ),
                                 ),
                                 trailing: IntrinsicWidth(
                                   child: Row(
                                     children: [
-                                      (categorySpentAmount.amount == null)
-                                          ? const Icon(Icons.all_inclusive)
-                                          : Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.end,
-                                              children: [
-                                                Text(
-                                                  "${categorySpentAmount.amount} RON",
-                                                  style: const TextStyle(
-                                                      fontSize: 16,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: cGreyColor),
-                                                ),
-                                                categorySpentAmount.budgetAmount != null
-                                                  ?
-                                                (categorySpentAmount.budgetAmount?.getOrCrash() ?? 0) /
-                                                            categorySpentAmount.amount > 1
-                                                    ? Text(
-                                                        "Overspent ${(categorySpentAmount.budgetAmount?.getOrCrash() ?? 0 - categorySpentAmount.amount).toStringAsFixed(2)} RON",
-                                                        style: const TextStyle(
-                                                            fontSize: 12,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            color: cRedColor),
-                                                      )
-                                                    : Text(
-                                                        "Left ${(categorySpentAmount.amount - (categorySpentAmount.budgetAmount?.getOrCrash() ?? 0)).toStringAsFixed(2)} RON",
-                                                        style: const TextStyle(
-                                                            fontSize: 12,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            color: cGreenColor),
-                                                      )
-                                                  : const SizedBox(),
-                                              ],
-                                            ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: [
+                                          Text(
+                                            "${categorySpentAmount.amount} RON",
+                                            style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                                color: cGreyColor),
+                                          ),
+                                          categorySpentAmount.isAllInclusive
+                                              ? const SizedBox()
+                                              : categorySpentAmount.isOverspent
+                                                  ? Text(
+                                                      "Overspent ${categorySpentAmount.overspentAmount.toStringAsFixed(2)}",
+                                                      style: const TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: cRedColor,
+                                                      ),
+                                                    )
+                                                  : Text(
+                                                      "Left ${categorySpentAmount.leftAmount.toStringAsFixed(2)}",
+                                                      style: const TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: cGreenColor,
+                                                      ),
+                                                    )
+                                        ],
+                                      ),
                                     ],
                                   ),
                                 ),
