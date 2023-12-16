@@ -2,11 +2,14 @@ package com.budgettracker.api.budgeting.services;
 
 import com.budgettracker.api.auth.auth_facade.AuthenticationFacade;
 import com.budgettracker.api.auth.services.UserService;
+import com.budgettracker.api.budgeting.dtos.BudgetDTO;
 import com.budgettracker.api.budgeting.dtos.ExpenseDto;
 import com.budgettracker.api.budgeting.dtos.NewExpenseDto;
+import com.budgettracker.api.budgeting.exceptions.BudgetNotFoundException;
 import com.budgettracker.api.budgeting.exceptions.ExpenseNotFoundException;
 import com.budgettracker.api.budgeting.exceptions.NoUserCategoryForExpenseException;
 import com.budgettracker.api.budgeting.exceptions.UserHasNoExpensesException;
+import com.budgettracker.api.budgeting.models.Budget;
 import com.budgettracker.api.budgeting.models.Expense;
 import com.budgettracker.api.auth.models.User;
 import com.budgettracker.api.budgeting.models.UserCategory;
@@ -38,10 +41,16 @@ public class ExpenseService {
     }
 
     public boolean checkIfNewExpenseIsOverBudget(BigDecimal newExpenseAmount, BigInteger userCategoryId){
-        BigDecimal currentAmount = budgetService.getActiveBudget(userCategoryId).getAmount();
+        BudgetDTO budget;
+        BigDecimal currentAmount;
+        try {
+            budget = budgetService.getActiveBudget(userCategoryId);
+            currentAmount = budget.getAmount();
+        } catch (BudgetNotFoundException exc) {
+            currentAmount = new BigDecimal(Integer.MAX_VALUE);
+        }
         BigDecimal sumOfExpenses = expensesSumByUserCategoryId(userCategoryId);
         return sumOfExpenses.add(newExpenseAmount).compareTo(currentAmount) > 0;
-
     }
 
     public Map<String, String> createExpense(NewExpenseDto expenseDto){
@@ -128,5 +137,11 @@ public class ExpenseService {
         Optional<BigDecimal> sum = expenseRepository.expensesSumByUserCategory(userCategoryId);
         return sum.orElseGet(() -> BigDecimal.valueOf(0));
 
+    }
+
+    public BigDecimal getSumOfExpenses(){
+        User user = userService.getUserByUsername(authenticationFacade.getAuthentication().getName());
+        Optional<BigDecimal> sum = expenseRepository.sumOfExpensesByUser(user);
+        return sum.orElseGet(() -> BigDecimal.valueOf(0));
     }
 }

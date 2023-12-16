@@ -102,4 +102,5 @@ public class IncomeService {
         incomeRepository.deleteById(id);
         return "Income has been deleted successfully";
     }
+
 }

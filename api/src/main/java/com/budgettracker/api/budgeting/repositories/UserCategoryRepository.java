@@ -29,4 +29,8 @@ public interface UserCategoryRepository extends JpaRepository<UserCategory, BigI
 
     @Query("SELECT uc FROM userCategory uc WHERE uc.name=:name AND uc.user.id =:userId AND uc.deletedAt IS NULL")
     Optional<UserCategory> findByNameAndUserId(String name, BigInteger userId);
+
+
+    @Query("SELECT uc FROM userCategory uc JOIN uc.userExpenses e WHERE uc.user = :user GROUP BY uc.id HAVING SUM(e.amount) = (SELECT SUM(e.amount) FROM userCategory uc JOIN uc.userExpenses e WHERE uc.user = :user GROUP BY uc.id ORDER BY SUM(e.amount) DESC LIMIT 1)")
+    Optional<List<UserCategory>> findCategoriesWithHighestExpense(User user);
 }
