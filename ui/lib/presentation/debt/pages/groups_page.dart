@@ -8,6 +8,7 @@ import '../../../application/dept/groups/groups_bloc.dart';
 import '../../core/colors.dart';
 import '../../core/routing/router.dart';
 import '../../core/widgets/app_bar.dart';
+import '../../core/widgets/bottom_bar.dart';
 import '../../core/widgets/header.dart';
 import '../../core/widgets/menu.dart';
 
@@ -129,6 +130,7 @@ class GroupsPage extends StatelessWidget {
     return BlocProvider(
       create: (_) => getIt<GroupsBloc>()..add(const GroupsEvent.getGroups()),
       child: Scaffold(
+        bottomNavigationBar: const BottomBar(),
         backgroundColor: Theme.of(context).colorScheme.background,
         appBar: generateAppBarWidget(context),
         drawer: const Drawer(child: MenuWidget()),
@@ -142,7 +144,6 @@ class GroupsPage extends StatelessWidget {
         ),
         body: SafeArea(
           child: ListView(
-            shrinkWrap: true,
             children: <Widget>[
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 32),

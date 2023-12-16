@@ -9,6 +9,7 @@ import '../../../application/transactions/incomes/incomes_bloc.dart';
 import '../../core/colors.dart';
 import '../../core/routing/router.dart';
 import '../../core/widgets/app_bar.dart';
+import '../../core/widgets/bottom_bar.dart';
 import '../../core/widgets/header.dart';
 import '../../core/widgets/menu.dart';
 
@@ -22,6 +23,7 @@ class IncomesPage extends StatelessWidget {
       create: (_) =>
       getIt<IncomesBloc>()..add(const IncomesEvent.getIncomes()),
       child: Scaffold(
+        bottomNavigationBar: const BottomBar(),
         backgroundColor: Theme.of(context).colorScheme.background,
         appBar: generateAppBarWidget(context),
         drawer: const Drawer(child: MenuWidget()),
@@ -35,7 +37,6 @@ class IncomesPage extends StatelessWidget {
         ),
         body: SafeArea(
           child: ListView(
-            shrinkWrap: true,
             children: <Widget>[
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 32),
@@ -80,6 +81,7 @@ class IncomesPage extends StatelessWidget {
                   }
                   return ListView.builder(
                     shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: listOfIncomes.length,
                     itemBuilder: (context, index) {
                       final item = listOfIncomes[index];

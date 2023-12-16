@@ -21,6 +21,7 @@ class SplitEquallyForm extends StatelessWidget {
             key: formKey,
             child: ListView(
               shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
