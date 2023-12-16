@@ -129,7 +129,7 @@ class ExpenseStatisticsPage extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 32),
                   child: HeaderWidget(
-                      title: "Statistics",
+                      title: "Expenses",
                       subtitle: "View how you spent your money!"),
                 ),
                 categories.isEmpty

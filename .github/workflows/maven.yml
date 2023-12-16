@@ -1,0 +1,62 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Java Maven Build and Test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+          MYSQL_USER: ${{ secrets.MYSQL_USER }}
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+        ports:
+          - 13306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+      mailhog:
+        image: maildev/maildev
+        ports:
+          - 1080:1080
+          - 1025:1025
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Set environment properties
+      run: cp api/src/main/resources/config/env.sample.properties api/src/main/resources/config/env.properties
+
+    - name: Set up JDK 19
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '19'
+
+    - name: Build with Maven
+      run: mvn -B package --file api/pom.xml
+
+    - name: Start Docker Compose
+      run: docker-compose up -d
+
+    - name: Wait for services to be ready
+      run: sleep 30s
+
+    - name: Run tests
+      run: mvn test
+
+    - name: Stop Docker Compose
+      run: docker-compose down || true
+

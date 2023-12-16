@@ -147,42 +147,47 @@ class _StatisticsPageState extends State<StatisticsPage> {
                               children: <Widget>[
                                 const SizedBox(height: 16),
                                 // Total spent amount
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 32),
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 16),
-                                          height: 80,
-                                          decoration: BoxDecoration(
-                                            color: cWhiteColor,
-                                            borderRadius: BorderRadius.circular(8),
-                                          ),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              const Text(
-                                                "Spent",
-                                                style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: cBlackColor),
-                                              ),
-                                              Text(
-                                                "${categorySpentAmount.amount.toStringAsFixed(2)} RON",
-                                                style: const TextStyle(
-                                                    fontSize: 24,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: cBlackColor),
-                                              ),
-                                            ],
+                                GestureDetector(
+                                  onTap: () {
+                                    context.router.push(const ExpenseStatisticsRoute());
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 16),
+                                            height: 80,
+                                            decoration: BoxDecoration(
+                                              color: cWhiteColor,
+                                              borderRadius: BorderRadius.circular(8),
+                                            ),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                const Text(
+                                                  "Spent",
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight: FontWeight.bold,
+                                                      color: cBlackColor),
+                                                ),
+                                                Text(
+                                                  "${categorySpentAmount.amount.toStringAsFixed(2)} RON",
+                                                  style: const TextStyle(
+                                                      fontSize: 24,
+                                                      fontWeight: FontWeight.bold,
+                                                      color: cBlackColor),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 const SizedBox(height: 16),

@@ -7,6 +7,7 @@ import com.budgettracker.api.auth.models.ConfirmationToken;
 import com.budgettracker.api.auth.models.User;
 import com.budgettracker.api.auth.repositories.UserRepository;
 import com.budgettracker.api.auth.utils.Utils;
+import com.budgettracker.api.budgeting.enums.Currency;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -31,6 +32,17 @@ public class UserService {
 
     private final JWTService jwtService;
     private final EmailService emailService;
+
+    public String updateDefaultCurrency(String currency) {
+        User user = getAuthenticatedUser();
+        try{
+            user.setDefaultCurrency(Currency.valueOf(currency));
+            userRepository.save(user);
+            return "Default currency updated successfully!";
+        } catch (IllegalArgumentException e) {
+            throw new CurrencyDoesNotExistException();
+        }
+    }
 
     public String createUser(NewUserDto newUserDto) {
         if (userRepository.findByUsername(newUserDto.getUsername()).isPresent()) {
