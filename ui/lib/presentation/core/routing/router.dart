@@ -29,6 +29,7 @@ import '../../debt/pages/group_page.dart';
 import '../../debt/pages/groups_page.dart';
 import '../../debt/pages/split_page.dart';
 import '../../statistics/pages/stats_page.dart';
+import '../../statistics/pages/expenses_stats.dart';
 import '../splash.dart';
 
 part 'router.gr.dart';
@@ -73,6 +74,7 @@ class AppRouter extends _$AppRouter {
 
     // Statistics
     AutoRoute(page: StatisticsRoute.page, path: "/statistics"),
+    AutoRoute(page: ExpenseStatisticsRoute.page, path: "/statistics/expenses"),
 
   ];
 }

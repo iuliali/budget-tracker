@@ -108,6 +108,12 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    ExpenseStatisticsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ExpenseStatisticsPage(),
+      );
+    },
     ExpensesRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -486,6 +492,20 @@ class ExpenseRouteArgs {
   String toString() {
     return 'ExpenseRouteArgs{key: $key, expenseId: $expenseId}';
   }
+}
+
+/// generated route for
+/// [ExpenseStatisticsPage]
+class ExpenseStatisticsRoute extends PageRouteInfo<void> {
+  const ExpenseStatisticsRoute({List<PageRouteInfo>? children})
+      : super(
+          ExpenseStatisticsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ExpenseStatisticsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
