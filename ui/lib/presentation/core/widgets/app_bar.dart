@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../application/auth/auth_bloc.dart';
 import '../colors.dart';
+import '../routing/router.dart';
 
 PreferredSizeWidget generateAppBarWidget(BuildContext context) {
   return AppBar(
@@ -34,12 +36,17 @@ PreferredSizeWidget generateAppBarWidget(BuildContext context) {
         );
       },
     ),
-    actions: const <Widget>[
+    actions: <Widget>[
       Padding(
-        padding: EdgeInsets.all(8.0),
-        child: CircleAvatar(
-          radius: 16,
-          backgroundImage: AssetImage("assets/images/profile.webp"),
+        padding: const EdgeInsets.all(8.0),
+        child: GestureDetector(
+          onTap: () {
+            context.router.navigate(const UserDetailsRoute());
+          },
+          child: const CircleAvatar(
+            radius: 16,
+            backgroundImage: AssetImage("assets/images/profile.webp"),
+          ),
         ),
       ),
     ],

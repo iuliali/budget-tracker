@@ -99,20 +99,20 @@ class _$GroupFormEventCopyWithImpl<$Res, $Val extends GroupFormEvent>
 }
 
 /// @nodoc
-abstract class _$$_InitializedCopyWith<$Res> {
-  factory _$$_InitializedCopyWith(
-          _$_Initialized value, $Res Function(_$_Initialized) then) =
-      __$$_InitializedCopyWithImpl<$Res>;
+abstract class _$$InitializedImplCopyWith<$Res> {
+  factory _$$InitializedImplCopyWith(
+          _$InitializedImpl value, $Res Function(_$InitializedImpl) then) =
+      __$$InitializedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Option<Group> initialGroupOption});
 }
 
 /// @nodoc
-class __$$_InitializedCopyWithImpl<$Res>
-    extends _$GroupFormEventCopyWithImpl<$Res, _$_Initialized>
-    implements _$$_InitializedCopyWith<$Res> {
-  __$$_InitializedCopyWithImpl(
-      _$_Initialized _value, $Res Function(_$_Initialized) _then)
+class __$$InitializedImplCopyWithImpl<$Res>
+    extends _$GroupFormEventCopyWithImpl<$Res, _$InitializedImpl>
+    implements _$$InitializedImplCopyWith<$Res> {
+  __$$InitializedImplCopyWithImpl(
+      _$InitializedImpl _value, $Res Function(_$InitializedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -120,7 +120,7 @@ class __$$_InitializedCopyWithImpl<$Res>
   $Res call({
     Object? initialGroupOption = null,
   }) {
-    return _then(_$_Initialized(
+    return _then(_$InitializedImpl(
       null == initialGroupOption
           ? _value.initialGroupOption
           : initialGroupOption // ignore: cast_nullable_to_non_nullable
@@ -131,8 +131,8 @@ class __$$_InitializedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initialized implements _Initialized {
-  const _$_Initialized(this.initialGroupOption);
+class _$InitializedImpl implements _Initialized {
+  const _$InitializedImpl(this.initialGroupOption);
 
   @override
   final Option<Group> initialGroupOption;
@@ -146,7 +146,7 @@ class _$_Initialized implements _Initialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Initialized &&
+            other is _$InitializedImpl &&
             (identical(other.initialGroupOption, initialGroupOption) ||
                 other.initialGroupOption == initialGroupOption));
   }
@@ -157,8 +157,8 @@ class _$_Initialized implements _Initialized {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_InitializedCopyWith<_$_Initialized> get copyWith =>
-      __$$_InitializedCopyWithImpl<_$_Initialized>(this, _$identity);
+  _$$InitializedImplCopyWith<_$InitializedImpl> get copyWith =>
+      __$$InitializedImplCopyWithImpl<_$InitializedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -249,29 +249,29 @@ class _$_Initialized implements _Initialized {
 
 abstract class _Initialized implements GroupFormEvent {
   const factory _Initialized(final Option<Group> initialGroupOption) =
-      _$_Initialized;
+      _$InitializedImpl;
 
   Option<Group> get initialGroupOption;
   @JsonKey(ignore: true)
-  _$$_InitializedCopyWith<_$_Initialized> get copyWith =>
+  _$$InitializedImplCopyWith<_$InitializedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_GroupNameChangedCopyWith<$Res> {
-  factory _$$_GroupNameChangedCopyWith(
-          _$_GroupNameChanged value, $Res Function(_$_GroupNameChanged) then) =
-      __$$_GroupNameChangedCopyWithImpl<$Res>;
+abstract class _$$GroupNameChangedImplCopyWith<$Res> {
+  factory _$$GroupNameChangedImplCopyWith(_$GroupNameChangedImpl value,
+          $Res Function(_$GroupNameChangedImpl) then) =
+      __$$GroupNameChangedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String groupNameStr});
 }
 
 /// @nodoc
-class __$$_GroupNameChangedCopyWithImpl<$Res>
-    extends _$GroupFormEventCopyWithImpl<$Res, _$_GroupNameChanged>
-    implements _$$_GroupNameChangedCopyWith<$Res> {
-  __$$_GroupNameChangedCopyWithImpl(
-      _$_GroupNameChanged _value, $Res Function(_$_GroupNameChanged) _then)
+class __$$GroupNameChangedImplCopyWithImpl<$Res>
+    extends _$GroupFormEventCopyWithImpl<$Res, _$GroupNameChangedImpl>
+    implements _$$GroupNameChangedImplCopyWith<$Res> {
+  __$$GroupNameChangedImplCopyWithImpl(_$GroupNameChangedImpl _value,
+      $Res Function(_$GroupNameChangedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -279,7 +279,7 @@ class __$$_GroupNameChangedCopyWithImpl<$Res>
   $Res call({
     Object? groupNameStr = null,
   }) {
-    return _then(_$_GroupNameChanged(
+    return _then(_$GroupNameChangedImpl(
       null == groupNameStr
           ? _value.groupNameStr
           : groupNameStr // ignore: cast_nullable_to_non_nullable
@@ -290,8 +290,8 @@ class __$$_GroupNameChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GroupNameChanged implements _GroupNameChanged {
-  const _$_GroupNameChanged(this.groupNameStr);
+class _$GroupNameChangedImpl implements _GroupNameChanged {
+  const _$GroupNameChangedImpl(this.groupNameStr);
 
   @override
   final String groupNameStr;
@@ -305,7 +305,7 @@ class _$_GroupNameChanged implements _GroupNameChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GroupNameChanged &&
+            other is _$GroupNameChangedImpl &&
             (identical(other.groupNameStr, groupNameStr) ||
                 other.groupNameStr == groupNameStr));
   }
@@ -316,8 +316,9 @@ class _$_GroupNameChanged implements _GroupNameChanged {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GroupNameChangedCopyWith<_$_GroupNameChanged> get copyWith =>
-      __$$_GroupNameChangedCopyWithImpl<_$_GroupNameChanged>(this, _$identity);
+  _$$GroupNameChangedImplCopyWith<_$GroupNameChangedImpl> get copyWith =>
+      __$$GroupNameChangedImplCopyWithImpl<_$GroupNameChangedImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -408,29 +409,29 @@ class _$_GroupNameChanged implements _GroupNameChanged {
 
 abstract class _GroupNameChanged implements GroupFormEvent {
   const factory _GroupNameChanged(final String groupNameStr) =
-      _$_GroupNameChanged;
+      _$GroupNameChangedImpl;
 
   String get groupNameStr;
   @JsonKey(ignore: true)
-  _$$_GroupNameChangedCopyWith<_$_GroupNameChanged> get copyWith =>
+  _$$GroupNameChangedImplCopyWith<_$GroupNameChangedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_FindUserByUsernameCopyWith<$Res> {
-  factory _$$_FindUserByUsernameCopyWith(_$_FindUserByUsername value,
-          $Res Function(_$_FindUserByUsername) then) =
-      __$$_FindUserByUsernameCopyWithImpl<$Res>;
+abstract class _$$FindUserByUsernameImplCopyWith<$Res> {
+  factory _$$FindUserByUsernameImplCopyWith(_$FindUserByUsernameImpl value,
+          $Res Function(_$FindUserByUsernameImpl) then) =
+      __$$FindUserByUsernameImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String usernameStr});
 }
 
 /// @nodoc
-class __$$_FindUserByUsernameCopyWithImpl<$Res>
-    extends _$GroupFormEventCopyWithImpl<$Res, _$_FindUserByUsername>
-    implements _$$_FindUserByUsernameCopyWith<$Res> {
-  __$$_FindUserByUsernameCopyWithImpl(
-      _$_FindUserByUsername _value, $Res Function(_$_FindUserByUsername) _then)
+class __$$FindUserByUsernameImplCopyWithImpl<$Res>
+    extends _$GroupFormEventCopyWithImpl<$Res, _$FindUserByUsernameImpl>
+    implements _$$FindUserByUsernameImplCopyWith<$Res> {
+  __$$FindUserByUsernameImplCopyWithImpl(_$FindUserByUsernameImpl _value,
+      $Res Function(_$FindUserByUsernameImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -438,7 +439,7 @@ class __$$_FindUserByUsernameCopyWithImpl<$Res>
   $Res call({
     Object? usernameStr = null,
   }) {
-    return _then(_$_FindUserByUsername(
+    return _then(_$FindUserByUsernameImpl(
       null == usernameStr
           ? _value.usernameStr
           : usernameStr // ignore: cast_nullable_to_non_nullable
@@ -449,8 +450,8 @@ class __$$_FindUserByUsernameCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_FindUserByUsername implements _FindUserByUsername {
-  const _$_FindUserByUsername(this.usernameStr);
+class _$FindUserByUsernameImpl implements _FindUserByUsername {
+  const _$FindUserByUsernameImpl(this.usernameStr);
 
   @override
   final String usernameStr;
@@ -464,7 +465,7 @@ class _$_FindUserByUsername implements _FindUserByUsername {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_FindUserByUsername &&
+            other is _$FindUserByUsernameImpl &&
             (identical(other.usernameStr, usernameStr) ||
                 other.usernameStr == usernameStr));
   }
@@ -475,8 +476,8 @@ class _$_FindUserByUsername implements _FindUserByUsername {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_FindUserByUsernameCopyWith<_$_FindUserByUsername> get copyWith =>
-      __$$_FindUserByUsernameCopyWithImpl<_$_FindUserByUsername>(
+  _$$FindUserByUsernameImplCopyWith<_$FindUserByUsernameImpl> get copyWith =>
+      __$$FindUserByUsernameImplCopyWithImpl<_$FindUserByUsernameImpl>(
           this, _$identity);
 
   @override
@@ -568,29 +569,29 @@ class _$_FindUserByUsername implements _FindUserByUsername {
 
 abstract class _FindUserByUsername implements GroupFormEvent {
   const factory _FindUserByUsername(final String usernameStr) =
-      _$_FindUserByUsername;
+      _$FindUserByUsernameImpl;
 
   String get usernameStr;
   @JsonKey(ignore: true)
-  _$$_FindUserByUsernameCopyWith<_$_FindUserByUsername> get copyWith =>
+  _$$FindUserByUsernameImplCopyWith<_$FindUserByUsernameImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_AddMemberCopyWith<$Res> {
-  factory _$$_AddMemberCopyWith(
-          _$_AddMember value, $Res Function(_$_AddMember) then) =
-      __$$_AddMemberCopyWithImpl<$Res>;
+abstract class _$$AddMemberImplCopyWith<$Res> {
+  factory _$$AddMemberImplCopyWith(
+          _$AddMemberImpl value, $Res Function(_$AddMemberImpl) then) =
+      __$$AddMemberImplCopyWithImpl<$Res>;
   @useResult
   $Res call({UserId userId});
 }
 
 /// @nodoc
-class __$$_AddMemberCopyWithImpl<$Res>
-    extends _$GroupFormEventCopyWithImpl<$Res, _$_AddMember>
-    implements _$$_AddMemberCopyWith<$Res> {
-  __$$_AddMemberCopyWithImpl(
-      _$_AddMember _value, $Res Function(_$_AddMember) _then)
+class __$$AddMemberImplCopyWithImpl<$Res>
+    extends _$GroupFormEventCopyWithImpl<$Res, _$AddMemberImpl>
+    implements _$$AddMemberImplCopyWith<$Res> {
+  __$$AddMemberImplCopyWithImpl(
+      _$AddMemberImpl _value, $Res Function(_$AddMemberImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -598,7 +599,7 @@ class __$$_AddMemberCopyWithImpl<$Res>
   $Res call({
     Object? userId = null,
   }) {
-    return _then(_$_AddMember(
+    return _then(_$AddMemberImpl(
       null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -609,8 +610,8 @@ class __$$_AddMemberCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AddMember implements _AddMember {
-  const _$_AddMember(this.userId);
+class _$AddMemberImpl implements _AddMember {
+  const _$AddMemberImpl(this.userId);
 
   @override
   final UserId userId;
@@ -624,7 +625,7 @@ class _$_AddMember implements _AddMember {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AddMember &&
+            other is _$AddMemberImpl &&
             (identical(other.userId, userId) || other.userId == userId));
   }
 
@@ -634,8 +635,8 @@ class _$_AddMember implements _AddMember {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AddMemberCopyWith<_$_AddMember> get copyWith =>
-      __$$_AddMemberCopyWithImpl<_$_AddMember>(this, _$identity);
+  _$$AddMemberImplCopyWith<_$AddMemberImpl> get copyWith =>
+      __$$AddMemberImplCopyWithImpl<_$AddMemberImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -725,29 +726,29 @@ class _$_AddMember implements _AddMember {
 }
 
 abstract class _AddMember implements GroupFormEvent {
-  const factory _AddMember(final UserId userId) = _$_AddMember;
+  const factory _AddMember(final UserId userId) = _$AddMemberImpl;
 
   UserId get userId;
   @JsonKey(ignore: true)
-  _$$_AddMemberCopyWith<_$_AddMember> get copyWith =>
+  _$$AddMemberImplCopyWith<_$AddMemberImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_RemoveMemberCopyWith<$Res> {
-  factory _$$_RemoveMemberCopyWith(
-          _$_RemoveMember value, $Res Function(_$_RemoveMember) then) =
-      __$$_RemoveMemberCopyWithImpl<$Res>;
+abstract class _$$RemoveMemberImplCopyWith<$Res> {
+  factory _$$RemoveMemberImplCopyWith(
+          _$RemoveMemberImpl value, $Res Function(_$RemoveMemberImpl) then) =
+      __$$RemoveMemberImplCopyWithImpl<$Res>;
   @useResult
   $Res call({UserId userId});
 }
 
 /// @nodoc
-class __$$_RemoveMemberCopyWithImpl<$Res>
-    extends _$GroupFormEventCopyWithImpl<$Res, _$_RemoveMember>
-    implements _$$_RemoveMemberCopyWith<$Res> {
-  __$$_RemoveMemberCopyWithImpl(
-      _$_RemoveMember _value, $Res Function(_$_RemoveMember) _then)
+class __$$RemoveMemberImplCopyWithImpl<$Res>
+    extends _$GroupFormEventCopyWithImpl<$Res, _$RemoveMemberImpl>
+    implements _$$RemoveMemberImplCopyWith<$Res> {
+  __$$RemoveMemberImplCopyWithImpl(
+      _$RemoveMemberImpl _value, $Res Function(_$RemoveMemberImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -755,7 +756,7 @@ class __$$_RemoveMemberCopyWithImpl<$Res>
   $Res call({
     Object? userId = null,
   }) {
-    return _then(_$_RemoveMember(
+    return _then(_$RemoveMemberImpl(
       null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -766,8 +767,8 @@ class __$$_RemoveMemberCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_RemoveMember implements _RemoveMember {
-  const _$_RemoveMember(this.userId);
+class _$RemoveMemberImpl implements _RemoveMember {
+  const _$RemoveMemberImpl(this.userId);
 
   @override
   final UserId userId;
@@ -781,7 +782,7 @@ class _$_RemoveMember implements _RemoveMember {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_RemoveMember &&
+            other is _$RemoveMemberImpl &&
             (identical(other.userId, userId) || other.userId == userId));
   }
 
@@ -791,8 +792,8 @@ class _$_RemoveMember implements _RemoveMember {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RemoveMemberCopyWith<_$_RemoveMember> get copyWith =>
-      __$$_RemoveMemberCopyWithImpl<_$_RemoveMember>(this, _$identity);
+  _$$RemoveMemberImplCopyWith<_$RemoveMemberImpl> get copyWith =>
+      __$$RemoveMemberImplCopyWithImpl<_$RemoveMemberImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -882,32 +883,34 @@ class _$_RemoveMember implements _RemoveMember {
 }
 
 abstract class _RemoveMember implements GroupFormEvent {
-  const factory _RemoveMember(final UserId userId) = _$_RemoveMember;
+  const factory _RemoveMember(final UserId userId) = _$RemoveMemberImpl;
 
   UserId get userId;
   @JsonKey(ignore: true)
-  _$$_RemoveMemberCopyWith<_$_RemoveMember> get copyWith =>
+  _$$RemoveMemberImplCopyWith<_$RemoveMemberImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_SavedCopyWith<$Res> {
-  factory _$$_SavedCopyWith(_$_Saved value, $Res Function(_$_Saved) then) =
-      __$$_SavedCopyWithImpl<$Res>;
+abstract class _$$SavedImplCopyWith<$Res> {
+  factory _$$SavedImplCopyWith(
+          _$SavedImpl value, $Res Function(_$SavedImpl) then) =
+      __$$SavedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SavedCopyWithImpl<$Res>
-    extends _$GroupFormEventCopyWithImpl<$Res, _$_Saved>
-    implements _$$_SavedCopyWith<$Res> {
-  __$$_SavedCopyWithImpl(_$_Saved _value, $Res Function(_$_Saved) _then)
+class __$$SavedImplCopyWithImpl<$Res>
+    extends _$GroupFormEventCopyWithImpl<$Res, _$SavedImpl>
+    implements _$$SavedImplCopyWith<$Res> {
+  __$$SavedImplCopyWithImpl(
+      _$SavedImpl _value, $Res Function(_$SavedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Saved implements _Saved {
-  const _$_Saved();
+class _$SavedImpl implements _Saved {
+  const _$SavedImpl();
 
   @override
   String toString() {
@@ -917,7 +920,7 @@ class _$_Saved implements _Saved {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Saved);
+        (other.runtimeType == runtimeType && other is _$SavedImpl);
   }
 
   @override
@@ -1011,7 +1014,7 @@ class _$_Saved implements _Saved {
 }
 
 abstract class _Saved implements GroupFormEvent {
-  const factory _Saved() = _$_Saved;
+  const factory _Saved() = _$SavedImpl;
 }
 
 /// @nodoc
@@ -1116,11 +1119,11 @@ class _$GroupFormStateCopyWithImpl<$Res, $Val extends GroupFormState>
 }
 
 /// @nodoc
-abstract class _$$_GroupFormStateCopyWith<$Res>
+abstract class _$$GroupFormStateImplCopyWith<$Res>
     implements $GroupFormStateCopyWith<$Res> {
-  factory _$$_GroupFormStateCopyWith(
-          _$_GroupFormState value, $Res Function(_$_GroupFormState) then) =
-      __$$_GroupFormStateCopyWithImpl<$Res>;
+  factory _$$GroupFormStateImplCopyWith(_$GroupFormStateImpl value,
+          $Res Function(_$GroupFormStateImpl) then) =
+      __$$GroupFormStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1136,11 +1139,11 @@ abstract class _$$_GroupFormStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_GroupFormStateCopyWithImpl<$Res>
-    extends _$GroupFormStateCopyWithImpl<$Res, _$_GroupFormState>
-    implements _$$_GroupFormStateCopyWith<$Res> {
-  __$$_GroupFormStateCopyWithImpl(
-      _$_GroupFormState _value, $Res Function(_$_GroupFormState) _then)
+class __$$GroupFormStateImplCopyWithImpl<$Res>
+    extends _$GroupFormStateCopyWithImpl<$Res, _$GroupFormStateImpl>
+    implements _$$GroupFormStateImplCopyWith<$Res> {
+  __$$GroupFormStateImplCopyWithImpl(
+      _$GroupFormStateImpl _value, $Res Function(_$GroupFormStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1156,7 +1159,7 @@ class __$$_GroupFormStateCopyWithImpl<$Res>
     Object? usersFailureOrSuccessOption = null,
     Object? saveFailureOrSuccessOption = null,
   }) {
-    return _then(_$_GroupFormState(
+    return _then(_$GroupFormStateImpl(
       groupOption: null == groupOption
           ? _value.groupOption
           : groupOption // ignore: cast_nullable_to_non_nullable
@@ -1199,8 +1202,8 @@ class __$$_GroupFormStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GroupFormState implements _GroupFormState {
-  const _$_GroupFormState(
+class _$GroupFormStateImpl implements _GroupFormState {
+  const _$GroupFormStateImpl(
       {required this.groupOption,
       required this.groupName,
       required this.findUserByUsername,
@@ -1246,7 +1249,7 @@ class _$_GroupFormState implements _GroupFormState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GroupFormState &&
+            other is _$GroupFormStateImpl &&
             (identical(other.groupOption, groupOption) ||
                 other.groupOption == groupOption) &&
             (identical(other.groupName, groupName) ||
@@ -1286,8 +1289,9 @@ class _$_GroupFormState implements _GroupFormState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GroupFormStateCopyWith<_$_GroupFormState> get copyWith =>
-      __$$_GroupFormStateCopyWithImpl<_$_GroupFormState>(this, _$identity);
+  _$$GroupFormStateImplCopyWith<_$GroupFormStateImpl> get copyWith =>
+      __$$GroupFormStateImplCopyWithImpl<_$GroupFormStateImpl>(
+          this, _$identity);
 }
 
 abstract class _GroupFormState implements GroupFormState {
@@ -1302,7 +1306,7 @@ abstract class _GroupFormState implements GroupFormState {
       required final Option<Either<AuthFailure, List<User>>>
           usersFailureOrSuccessOption,
       required final Option<Either<GroupFailure, Unit>>
-          saveFailureOrSuccessOption}) = _$_GroupFormState;
+          saveFailureOrSuccessOption}) = _$GroupFormStateImpl;
 
   @override
   Option<Group> get groupOption;
@@ -1324,6 +1328,6 @@ abstract class _GroupFormState implements GroupFormState {
   Option<Either<GroupFailure, Unit>> get saveFailureOrSuccessOption;
   @override
   @JsonKey(ignore: true)
-  _$$_GroupFormStateCopyWith<_$_GroupFormState> get copyWith =>
+  _$$GroupFormStateImplCopyWith<_$GroupFormStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

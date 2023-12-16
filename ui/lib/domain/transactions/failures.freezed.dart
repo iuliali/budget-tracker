@@ -88,25 +88,25 @@ class _$ExpenseFailureCopyWithImpl<$Res, $Val extends ExpenseFailure>
 }
 
 /// @nodoc
-abstract class _$$_ExpenseUnexpectedCopyWith<$Res> {
-  factory _$$_ExpenseUnexpectedCopyWith(_$_ExpenseUnexpected value,
-          $Res Function(_$_ExpenseUnexpected) then) =
-      __$$_ExpenseUnexpectedCopyWithImpl<$Res>;
+abstract class _$$ExpenseUnexpectedImplCopyWith<$Res> {
+  factory _$$ExpenseUnexpectedImplCopyWith(_$ExpenseUnexpectedImpl value,
+          $Res Function(_$ExpenseUnexpectedImpl) then) =
+      __$$ExpenseUnexpectedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ExpenseUnexpectedCopyWithImpl<$Res>
-    extends _$ExpenseFailureCopyWithImpl<$Res, _$_ExpenseUnexpected>
-    implements _$$_ExpenseUnexpectedCopyWith<$Res> {
-  __$$_ExpenseUnexpectedCopyWithImpl(
-      _$_ExpenseUnexpected _value, $Res Function(_$_ExpenseUnexpected) _then)
+class __$$ExpenseUnexpectedImplCopyWithImpl<$Res>
+    extends _$ExpenseFailureCopyWithImpl<$Res, _$ExpenseUnexpectedImpl>
+    implements _$$ExpenseUnexpectedImplCopyWith<$Res> {
+  __$$ExpenseUnexpectedImplCopyWithImpl(_$ExpenseUnexpectedImpl _value,
+      $Res Function(_$ExpenseUnexpectedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_ExpenseUnexpected implements _ExpenseUnexpected {
-  const _$_ExpenseUnexpected();
+class _$ExpenseUnexpectedImpl implements _ExpenseUnexpected {
+  const _$ExpenseUnexpectedImpl();
 
   @override
   String toString() {
@@ -116,7 +116,7 @@ class _$_ExpenseUnexpected implements _ExpenseUnexpected {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ExpenseUnexpected);
+        (other.runtimeType == runtimeType && other is _$ExpenseUnexpectedImpl);
   }
 
   @override
@@ -199,29 +199,29 @@ class _$_ExpenseUnexpected implements _ExpenseUnexpected {
 }
 
 abstract class _ExpenseUnexpected implements ExpenseFailure {
-  const factory _ExpenseUnexpected() = _$_ExpenseUnexpected;
+  const factory _ExpenseUnexpected() = _$ExpenseUnexpectedImpl;
 }
 
 /// @nodoc
-abstract class _$$_ExpenseNotFoundCopyWith<$Res> {
-  factory _$$_ExpenseNotFoundCopyWith(
-          _$_ExpenseNotFound value, $Res Function(_$_ExpenseNotFound) then) =
-      __$$_ExpenseNotFoundCopyWithImpl<$Res>;
+abstract class _$$ExpenseNotFoundImplCopyWith<$Res> {
+  factory _$$ExpenseNotFoundImplCopyWith(_$ExpenseNotFoundImpl value,
+          $Res Function(_$ExpenseNotFoundImpl) then) =
+      __$$ExpenseNotFoundImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ExpenseNotFoundCopyWithImpl<$Res>
-    extends _$ExpenseFailureCopyWithImpl<$Res, _$_ExpenseNotFound>
-    implements _$$_ExpenseNotFoundCopyWith<$Res> {
-  __$$_ExpenseNotFoundCopyWithImpl(
-      _$_ExpenseNotFound _value, $Res Function(_$_ExpenseNotFound) _then)
+class __$$ExpenseNotFoundImplCopyWithImpl<$Res>
+    extends _$ExpenseFailureCopyWithImpl<$Res, _$ExpenseNotFoundImpl>
+    implements _$$ExpenseNotFoundImplCopyWith<$Res> {
+  __$$ExpenseNotFoundImplCopyWithImpl(
+      _$ExpenseNotFoundImpl _value, $Res Function(_$ExpenseNotFoundImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_ExpenseNotFound implements _ExpenseNotFound {
-  const _$_ExpenseNotFound();
+class _$ExpenseNotFoundImpl implements _ExpenseNotFound {
+  const _$ExpenseNotFoundImpl();
 
   @override
   String toString() {
@@ -231,7 +231,7 @@ class _$_ExpenseNotFound implements _ExpenseNotFound {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ExpenseNotFound);
+        (other.runtimeType == runtimeType && other is _$ExpenseNotFoundImpl);
   }
 
   @override
@@ -314,31 +314,31 @@ class _$_ExpenseNotFound implements _ExpenseNotFound {
 }
 
 abstract class _ExpenseNotFound implements ExpenseFailure {
-  const factory _ExpenseNotFound() = _$_ExpenseNotFound;
+  const factory _ExpenseNotFound() = _$ExpenseNotFoundImpl;
 }
 
 /// @nodoc
-abstract class _$$_ExpenseCategoryNotSelectedCopyWith<$Res> {
-  factory _$$_ExpenseCategoryNotSelectedCopyWith(
-          _$_ExpenseCategoryNotSelected value,
-          $Res Function(_$_ExpenseCategoryNotSelected) then) =
-      __$$_ExpenseCategoryNotSelectedCopyWithImpl<$Res>;
+abstract class _$$ExpenseCategoryNotSelectedImplCopyWith<$Res> {
+  factory _$$ExpenseCategoryNotSelectedImplCopyWith(
+          _$ExpenseCategoryNotSelectedImpl value,
+          $Res Function(_$ExpenseCategoryNotSelectedImpl) then) =
+      __$$ExpenseCategoryNotSelectedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ExpenseCategoryNotSelectedCopyWithImpl<$Res>
-    extends _$ExpenseFailureCopyWithImpl<$Res, _$_ExpenseCategoryNotSelected>
-    implements _$$_ExpenseCategoryNotSelectedCopyWith<$Res> {
-  __$$_ExpenseCategoryNotSelectedCopyWithImpl(
-      _$_ExpenseCategoryNotSelected _value,
-      $Res Function(_$_ExpenseCategoryNotSelected) _then)
+class __$$ExpenseCategoryNotSelectedImplCopyWithImpl<$Res>
+    extends _$ExpenseFailureCopyWithImpl<$Res, _$ExpenseCategoryNotSelectedImpl>
+    implements _$$ExpenseCategoryNotSelectedImplCopyWith<$Res> {
+  __$$ExpenseCategoryNotSelectedImplCopyWithImpl(
+      _$ExpenseCategoryNotSelectedImpl _value,
+      $Res Function(_$ExpenseCategoryNotSelectedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_ExpenseCategoryNotSelected implements _ExpenseCategoryNotSelected {
-  const _$_ExpenseCategoryNotSelected();
+class _$ExpenseCategoryNotSelectedImpl implements _ExpenseCategoryNotSelected {
+  const _$ExpenseCategoryNotSelectedImpl();
 
   @override
   String toString() {
@@ -349,7 +349,7 @@ class _$_ExpenseCategoryNotSelected implements _ExpenseCategoryNotSelected {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ExpenseCategoryNotSelected);
+            other is _$ExpenseCategoryNotSelectedImpl);
   }
 
   @override
@@ -432,29 +432,30 @@ class _$_ExpenseCategoryNotSelected implements _ExpenseCategoryNotSelected {
 }
 
 abstract class _ExpenseCategoryNotSelected implements ExpenseFailure {
-  const factory _ExpenseCategoryNotSelected() = _$_ExpenseCategoryNotSelected;
+  const factory _ExpenseCategoryNotSelected() =
+      _$ExpenseCategoryNotSelectedImpl;
 }
 
 /// @nodoc
-abstract class _$$_ExpenseServerErrorCopyWith<$Res> {
-  factory _$$_ExpenseServerErrorCopyWith(_$_ExpenseServerError value,
-          $Res Function(_$_ExpenseServerError) then) =
-      __$$_ExpenseServerErrorCopyWithImpl<$Res>;
+abstract class _$$ExpenseServerErrorImplCopyWith<$Res> {
+  factory _$$ExpenseServerErrorImplCopyWith(_$ExpenseServerErrorImpl value,
+          $Res Function(_$ExpenseServerErrorImpl) then) =
+      __$$ExpenseServerErrorImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ExpenseServerErrorCopyWithImpl<$Res>
-    extends _$ExpenseFailureCopyWithImpl<$Res, _$_ExpenseServerError>
-    implements _$$_ExpenseServerErrorCopyWith<$Res> {
-  __$$_ExpenseServerErrorCopyWithImpl(
-      _$_ExpenseServerError _value, $Res Function(_$_ExpenseServerError) _then)
+class __$$ExpenseServerErrorImplCopyWithImpl<$Res>
+    extends _$ExpenseFailureCopyWithImpl<$Res, _$ExpenseServerErrorImpl>
+    implements _$$ExpenseServerErrorImplCopyWith<$Res> {
+  __$$ExpenseServerErrorImplCopyWithImpl(_$ExpenseServerErrorImpl _value,
+      $Res Function(_$ExpenseServerErrorImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_ExpenseServerError implements _ExpenseServerError {
-  const _$_ExpenseServerError();
+class _$ExpenseServerErrorImpl implements _ExpenseServerError {
+  const _$ExpenseServerErrorImpl();
 
   @override
   String toString() {
@@ -464,7 +465,7 @@ class _$_ExpenseServerError implements _ExpenseServerError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ExpenseServerError);
+        (other.runtimeType == runtimeType && other is _$ExpenseServerErrorImpl);
   }
 
   @override
@@ -547,7 +548,7 @@ class _$_ExpenseServerError implements _ExpenseServerError {
 }
 
 abstract class _ExpenseServerError implements ExpenseFailure {
-  const factory _ExpenseServerError() = _$_ExpenseServerError;
+  const factory _ExpenseServerError() = _$ExpenseServerErrorImpl;
 }
 
 /// @nodoc
@@ -624,25 +625,25 @@ class _$IncomeFailureCopyWithImpl<$Res, $Val extends IncomeFailure>
 }
 
 /// @nodoc
-abstract class _$$_IncomeUnexpectedCopyWith<$Res> {
-  factory _$$_IncomeUnexpectedCopyWith(
-          _$_IncomeUnexpected value, $Res Function(_$_IncomeUnexpected) then) =
-      __$$_IncomeUnexpectedCopyWithImpl<$Res>;
+abstract class _$$IncomeUnexpectedImplCopyWith<$Res> {
+  factory _$$IncomeUnexpectedImplCopyWith(_$IncomeUnexpectedImpl value,
+          $Res Function(_$IncomeUnexpectedImpl) then) =
+      __$$IncomeUnexpectedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_IncomeUnexpectedCopyWithImpl<$Res>
-    extends _$IncomeFailureCopyWithImpl<$Res, _$_IncomeUnexpected>
-    implements _$$_IncomeUnexpectedCopyWith<$Res> {
-  __$$_IncomeUnexpectedCopyWithImpl(
-      _$_IncomeUnexpected _value, $Res Function(_$_IncomeUnexpected) _then)
+class __$$IncomeUnexpectedImplCopyWithImpl<$Res>
+    extends _$IncomeFailureCopyWithImpl<$Res, _$IncomeUnexpectedImpl>
+    implements _$$IncomeUnexpectedImplCopyWith<$Res> {
+  __$$IncomeUnexpectedImplCopyWithImpl(_$IncomeUnexpectedImpl _value,
+      $Res Function(_$IncomeUnexpectedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_IncomeUnexpected implements _IncomeUnexpected {
-  const _$_IncomeUnexpected();
+class _$IncomeUnexpectedImpl implements _IncomeUnexpected {
+  const _$IncomeUnexpectedImpl();
 
   @override
   String toString() {
@@ -652,7 +653,7 @@ class _$_IncomeUnexpected implements _IncomeUnexpected {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_IncomeUnexpected);
+        (other.runtimeType == runtimeType && other is _$IncomeUnexpectedImpl);
   }
 
   @override
@@ -735,29 +736,29 @@ class _$_IncomeUnexpected implements _IncomeUnexpected {
 }
 
 abstract class _IncomeUnexpected implements IncomeFailure {
-  const factory _IncomeUnexpected() = _$_IncomeUnexpected;
+  const factory _IncomeUnexpected() = _$IncomeUnexpectedImpl;
 }
 
 /// @nodoc
-abstract class _$$_IncomeNotFoundCopyWith<$Res> {
-  factory _$$_IncomeNotFoundCopyWith(
-          _$_IncomeNotFound value, $Res Function(_$_IncomeNotFound) then) =
-      __$$_IncomeNotFoundCopyWithImpl<$Res>;
+abstract class _$$IncomeNotFoundImplCopyWith<$Res> {
+  factory _$$IncomeNotFoundImplCopyWith(_$IncomeNotFoundImpl value,
+          $Res Function(_$IncomeNotFoundImpl) then) =
+      __$$IncomeNotFoundImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_IncomeNotFoundCopyWithImpl<$Res>
-    extends _$IncomeFailureCopyWithImpl<$Res, _$_IncomeNotFound>
-    implements _$$_IncomeNotFoundCopyWith<$Res> {
-  __$$_IncomeNotFoundCopyWithImpl(
-      _$_IncomeNotFound _value, $Res Function(_$_IncomeNotFound) _then)
+class __$$IncomeNotFoundImplCopyWithImpl<$Res>
+    extends _$IncomeFailureCopyWithImpl<$Res, _$IncomeNotFoundImpl>
+    implements _$$IncomeNotFoundImplCopyWith<$Res> {
+  __$$IncomeNotFoundImplCopyWithImpl(
+      _$IncomeNotFoundImpl _value, $Res Function(_$IncomeNotFoundImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_IncomeNotFound implements _IncomeNotFound {
-  const _$_IncomeNotFound();
+class _$IncomeNotFoundImpl implements _IncomeNotFound {
+  const _$IncomeNotFoundImpl();
 
   @override
   String toString() {
@@ -767,7 +768,7 @@ class _$_IncomeNotFound implements _IncomeNotFound {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_IncomeNotFound);
+        (other.runtimeType == runtimeType && other is _$IncomeNotFoundImpl);
   }
 
   @override
@@ -850,31 +851,31 @@ class _$_IncomeNotFound implements _IncomeNotFound {
 }
 
 abstract class _IncomeNotFound implements IncomeFailure {
-  const factory _IncomeNotFound() = _$_IncomeNotFound;
+  const factory _IncomeNotFound() = _$IncomeNotFoundImpl;
 }
 
 /// @nodoc
-abstract class _$$_IncomeCategoryNotSelectedCopyWith<$Res> {
-  factory _$$_IncomeCategoryNotSelectedCopyWith(
-          _$_IncomeCategoryNotSelected value,
-          $Res Function(_$_IncomeCategoryNotSelected) then) =
-      __$$_IncomeCategoryNotSelectedCopyWithImpl<$Res>;
+abstract class _$$IncomeCategoryNotSelectedImplCopyWith<$Res> {
+  factory _$$IncomeCategoryNotSelectedImplCopyWith(
+          _$IncomeCategoryNotSelectedImpl value,
+          $Res Function(_$IncomeCategoryNotSelectedImpl) then) =
+      __$$IncomeCategoryNotSelectedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_IncomeCategoryNotSelectedCopyWithImpl<$Res>
-    extends _$IncomeFailureCopyWithImpl<$Res, _$_IncomeCategoryNotSelected>
-    implements _$$_IncomeCategoryNotSelectedCopyWith<$Res> {
-  __$$_IncomeCategoryNotSelectedCopyWithImpl(
-      _$_IncomeCategoryNotSelected _value,
-      $Res Function(_$_IncomeCategoryNotSelected) _then)
+class __$$IncomeCategoryNotSelectedImplCopyWithImpl<$Res>
+    extends _$IncomeFailureCopyWithImpl<$Res, _$IncomeCategoryNotSelectedImpl>
+    implements _$$IncomeCategoryNotSelectedImplCopyWith<$Res> {
+  __$$IncomeCategoryNotSelectedImplCopyWithImpl(
+      _$IncomeCategoryNotSelectedImpl _value,
+      $Res Function(_$IncomeCategoryNotSelectedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_IncomeCategoryNotSelected implements _IncomeCategoryNotSelected {
-  const _$_IncomeCategoryNotSelected();
+class _$IncomeCategoryNotSelectedImpl implements _IncomeCategoryNotSelected {
+  const _$IncomeCategoryNotSelectedImpl();
 
   @override
   String toString() {
@@ -885,7 +886,7 @@ class _$_IncomeCategoryNotSelected implements _IncomeCategoryNotSelected {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_IncomeCategoryNotSelected);
+            other is _$IncomeCategoryNotSelectedImpl);
   }
 
   @override
@@ -968,29 +969,29 @@ class _$_IncomeCategoryNotSelected implements _IncomeCategoryNotSelected {
 }
 
 abstract class _IncomeCategoryNotSelected implements IncomeFailure {
-  const factory _IncomeCategoryNotSelected() = _$_IncomeCategoryNotSelected;
+  const factory _IncomeCategoryNotSelected() = _$IncomeCategoryNotSelectedImpl;
 }
 
 /// @nodoc
-abstract class _$$_IncomeServerErrorCopyWith<$Res> {
-  factory _$$_IncomeServerErrorCopyWith(_$_IncomeServerError value,
-          $Res Function(_$_IncomeServerError) then) =
-      __$$_IncomeServerErrorCopyWithImpl<$Res>;
+abstract class _$$IncomeServerErrorImplCopyWith<$Res> {
+  factory _$$IncomeServerErrorImplCopyWith(_$IncomeServerErrorImpl value,
+          $Res Function(_$IncomeServerErrorImpl) then) =
+      __$$IncomeServerErrorImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_IncomeServerErrorCopyWithImpl<$Res>
-    extends _$IncomeFailureCopyWithImpl<$Res, _$_IncomeServerError>
-    implements _$$_IncomeServerErrorCopyWith<$Res> {
-  __$$_IncomeServerErrorCopyWithImpl(
-      _$_IncomeServerError _value, $Res Function(_$_IncomeServerError) _then)
+class __$$IncomeServerErrorImplCopyWithImpl<$Res>
+    extends _$IncomeFailureCopyWithImpl<$Res, _$IncomeServerErrorImpl>
+    implements _$$IncomeServerErrorImplCopyWith<$Res> {
+  __$$IncomeServerErrorImplCopyWithImpl(_$IncomeServerErrorImpl _value,
+      $Res Function(_$IncomeServerErrorImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_IncomeServerError implements _IncomeServerError {
-  const _$_IncomeServerError();
+class _$IncomeServerErrorImpl implements _IncomeServerError {
+  const _$IncomeServerErrorImpl();
 
   @override
   String toString() {
@@ -1000,7 +1001,7 @@ class _$_IncomeServerError implements _IncomeServerError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_IncomeServerError);
+        (other.runtimeType == runtimeType && other is _$IncomeServerErrorImpl);
   }
 
   @override
@@ -1083,5 +1084,5 @@ class _$_IncomeServerError implements _IncomeServerError {
 }
 
 abstract class _IncomeServerError implements IncomeFailure {
-  const factory _IncomeServerError() = _$_IncomeServerError;
+  const factory _IncomeServerError() = _$IncomeServerErrorImpl;
 }

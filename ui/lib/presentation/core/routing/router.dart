@@ -9,6 +9,7 @@ import '../../../domain/transactions/value_objects.dart';
 import '../../auth/pages/login.dart';
 import '../../auth/pages/register.dart';
 import '../../auth/pages/verify_email.dart';
+import '../../auth/pages/user_details.dart';
 import '../../categories/pages/categories.dart';
 import '../../categories/pages/category.dart';
 import '../../categories/pages/add_category.dart';
@@ -41,6 +42,7 @@ class AppRouter extends _$AppRouter {
     AutoRoute(page: LoginRoute.page),
     AutoRoute(page: RegisterRoute.page),
     AutoRoute(page: VerifyEmailRoute.page),
+    AutoRoute(page: UserDetailsRoute.page),
 
     // Categories
     AutoRoute(page: CategoriesRoute.page),

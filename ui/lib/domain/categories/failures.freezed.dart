@@ -94,25 +94,25 @@ class _$CategoryFailureCopyWithImpl<$Res, $Val extends CategoryFailure>
 }
 
 /// @nodoc
-abstract class _$$_UnexpectedCopyWith<$Res> {
-  factory _$$_UnexpectedCopyWith(
-          _$_Unexpected value, $Res Function(_$_Unexpected) then) =
-      __$$_UnexpectedCopyWithImpl<$Res>;
+abstract class _$$UnexpectedImplCopyWith<$Res> {
+  factory _$$UnexpectedImplCopyWith(
+          _$UnexpectedImpl value, $Res Function(_$UnexpectedImpl) then) =
+      __$$UnexpectedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_UnexpectedCopyWithImpl<$Res>
-    extends _$CategoryFailureCopyWithImpl<$Res, _$_Unexpected>
-    implements _$$_UnexpectedCopyWith<$Res> {
-  __$$_UnexpectedCopyWithImpl(
-      _$_Unexpected _value, $Res Function(_$_Unexpected) _then)
+class __$$UnexpectedImplCopyWithImpl<$Res>
+    extends _$CategoryFailureCopyWithImpl<$Res, _$UnexpectedImpl>
+    implements _$$UnexpectedImplCopyWith<$Res> {
+  __$$UnexpectedImplCopyWithImpl(
+      _$UnexpectedImpl _value, $Res Function(_$UnexpectedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Unexpected implements _Unexpected {
-  const _$_Unexpected();
+class _$UnexpectedImpl implements _Unexpected {
+  const _$UnexpectedImpl();
 
   @override
   String toString() {
@@ -122,7 +122,7 @@ class _$_Unexpected implements _Unexpected {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Unexpected);
+        (other.runtimeType == runtimeType && other is _$UnexpectedImpl);
   }
 
   @override
@@ -211,29 +211,29 @@ class _$_Unexpected implements _Unexpected {
 }
 
 abstract class _Unexpected implements CategoryFailure {
-  const factory _Unexpected() = _$_Unexpected;
+  const factory _Unexpected() = _$UnexpectedImpl;
 }
 
 /// @nodoc
-abstract class _$$_ServerErrorCopyWith<$Res> {
-  factory _$$_ServerErrorCopyWith(
-          _$_ServerError value, $Res Function(_$_ServerError) then) =
-      __$$_ServerErrorCopyWithImpl<$Res>;
+abstract class _$$ServerErrorImplCopyWith<$Res> {
+  factory _$$ServerErrorImplCopyWith(
+          _$ServerErrorImpl value, $Res Function(_$ServerErrorImpl) then) =
+      __$$ServerErrorImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ServerErrorCopyWithImpl<$Res>
-    extends _$CategoryFailureCopyWithImpl<$Res, _$_ServerError>
-    implements _$$_ServerErrorCopyWith<$Res> {
-  __$$_ServerErrorCopyWithImpl(
-      _$_ServerError _value, $Res Function(_$_ServerError) _then)
+class __$$ServerErrorImplCopyWithImpl<$Res>
+    extends _$CategoryFailureCopyWithImpl<$Res, _$ServerErrorImpl>
+    implements _$$ServerErrorImplCopyWith<$Res> {
+  __$$ServerErrorImplCopyWithImpl(
+      _$ServerErrorImpl _value, $Res Function(_$ServerErrorImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_ServerError implements _ServerError {
-  const _$_ServerError();
+class _$ServerErrorImpl implements _ServerError {
+  const _$ServerErrorImpl();
 
   @override
   String toString() {
@@ -243,7 +243,7 @@ class _$_ServerError implements _ServerError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ServerError);
+        (other.runtimeType == runtimeType && other is _$ServerErrorImpl);
   }
 
   @override
@@ -332,29 +332,29 @@ class _$_ServerError implements _ServerError {
 }
 
 abstract class _ServerError implements CategoryFailure {
-  const factory _ServerError() = _$_ServerError;
+  const factory _ServerError() = _$ServerErrorImpl;
 }
 
 /// @nodoc
-abstract class _$$_BudgetAlreadySetCopyWith<$Res> {
-  factory _$$_BudgetAlreadySetCopyWith(
-          _$_BudgetAlreadySet value, $Res Function(_$_BudgetAlreadySet) then) =
-      __$$_BudgetAlreadySetCopyWithImpl<$Res>;
+abstract class _$$BudgetAlreadySetImplCopyWith<$Res> {
+  factory _$$BudgetAlreadySetImplCopyWith(_$BudgetAlreadySetImpl value,
+          $Res Function(_$BudgetAlreadySetImpl) then) =
+      __$$BudgetAlreadySetImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_BudgetAlreadySetCopyWithImpl<$Res>
-    extends _$CategoryFailureCopyWithImpl<$Res, _$_BudgetAlreadySet>
-    implements _$$_BudgetAlreadySetCopyWith<$Res> {
-  __$$_BudgetAlreadySetCopyWithImpl(
-      _$_BudgetAlreadySet _value, $Res Function(_$_BudgetAlreadySet) _then)
+class __$$BudgetAlreadySetImplCopyWithImpl<$Res>
+    extends _$CategoryFailureCopyWithImpl<$Res, _$BudgetAlreadySetImpl>
+    implements _$$BudgetAlreadySetImplCopyWith<$Res> {
+  __$$BudgetAlreadySetImplCopyWithImpl(_$BudgetAlreadySetImpl _value,
+      $Res Function(_$BudgetAlreadySetImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_BudgetAlreadySet implements _BudgetAlreadySet {
-  const _$_BudgetAlreadySet();
+class _$BudgetAlreadySetImpl implements _BudgetAlreadySet {
+  const _$BudgetAlreadySetImpl();
 
   @override
   String toString() {
@@ -364,7 +364,7 @@ class _$_BudgetAlreadySet implements _BudgetAlreadySet {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_BudgetAlreadySet);
+        (other.runtimeType == runtimeType && other is _$BudgetAlreadySetImpl);
   }
 
   @override
@@ -453,29 +453,30 @@ class _$_BudgetAlreadySet implements _BudgetAlreadySet {
 }
 
 abstract class _BudgetAlreadySet implements CategoryFailure {
-  const factory _BudgetAlreadySet() = _$_BudgetAlreadySet;
+  const factory _BudgetAlreadySet() = _$BudgetAlreadySetImpl;
 }
 
 /// @nodoc
-abstract class _$$_CategoryAlreadyExistsCopyWith<$Res> {
-  factory _$$_CategoryAlreadyExistsCopyWith(_$_CategoryAlreadyExists value,
-          $Res Function(_$_CategoryAlreadyExists) then) =
-      __$$_CategoryAlreadyExistsCopyWithImpl<$Res>;
+abstract class _$$CategoryAlreadyExistsImplCopyWith<$Res> {
+  factory _$$CategoryAlreadyExistsImplCopyWith(
+          _$CategoryAlreadyExistsImpl value,
+          $Res Function(_$CategoryAlreadyExistsImpl) then) =
+      __$$CategoryAlreadyExistsImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_CategoryAlreadyExistsCopyWithImpl<$Res>
-    extends _$CategoryFailureCopyWithImpl<$Res, _$_CategoryAlreadyExists>
-    implements _$$_CategoryAlreadyExistsCopyWith<$Res> {
-  __$$_CategoryAlreadyExistsCopyWithImpl(_$_CategoryAlreadyExists _value,
-      $Res Function(_$_CategoryAlreadyExists) _then)
+class __$$CategoryAlreadyExistsImplCopyWithImpl<$Res>
+    extends _$CategoryFailureCopyWithImpl<$Res, _$CategoryAlreadyExistsImpl>
+    implements _$$CategoryAlreadyExistsImplCopyWith<$Res> {
+  __$$CategoryAlreadyExistsImplCopyWithImpl(_$CategoryAlreadyExistsImpl _value,
+      $Res Function(_$CategoryAlreadyExistsImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_CategoryAlreadyExists implements _CategoryAlreadyExists {
-  const _$_CategoryAlreadyExists();
+class _$CategoryAlreadyExistsImpl implements _CategoryAlreadyExists {
+  const _$CategoryAlreadyExistsImpl();
 
   @override
   String toString() {
@@ -485,7 +486,8 @@ class _$_CategoryAlreadyExists implements _CategoryAlreadyExists {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_CategoryAlreadyExists);
+        (other.runtimeType == runtimeType &&
+            other is _$CategoryAlreadyExistsImpl);
   }
 
   @override
@@ -574,29 +576,29 @@ class _$_CategoryAlreadyExists implements _CategoryAlreadyExists {
 }
 
 abstract class _CategoryAlreadyExists implements CategoryFailure {
-  const factory _CategoryAlreadyExists() = _$_CategoryAlreadyExists;
+  const factory _CategoryAlreadyExists() = _$CategoryAlreadyExistsImpl;
 }
 
 /// @nodoc
-abstract class _$$_CategoryNotFoundCopyWith<$Res> {
-  factory _$$_CategoryNotFoundCopyWith(
-          _$_CategoryNotFound value, $Res Function(_$_CategoryNotFound) then) =
-      __$$_CategoryNotFoundCopyWithImpl<$Res>;
+abstract class _$$CategoryNotFoundImplCopyWith<$Res> {
+  factory _$$CategoryNotFoundImplCopyWith(_$CategoryNotFoundImpl value,
+          $Res Function(_$CategoryNotFoundImpl) then) =
+      __$$CategoryNotFoundImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_CategoryNotFoundCopyWithImpl<$Res>
-    extends _$CategoryFailureCopyWithImpl<$Res, _$_CategoryNotFound>
-    implements _$$_CategoryNotFoundCopyWith<$Res> {
-  __$$_CategoryNotFoundCopyWithImpl(
-      _$_CategoryNotFound _value, $Res Function(_$_CategoryNotFound) _then)
+class __$$CategoryNotFoundImplCopyWithImpl<$Res>
+    extends _$CategoryFailureCopyWithImpl<$Res, _$CategoryNotFoundImpl>
+    implements _$$CategoryNotFoundImplCopyWith<$Res> {
+  __$$CategoryNotFoundImplCopyWithImpl(_$CategoryNotFoundImpl _value,
+      $Res Function(_$CategoryNotFoundImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_CategoryNotFound implements _CategoryNotFound {
-  const _$_CategoryNotFound();
+class _$CategoryNotFoundImpl implements _CategoryNotFound {
+  const _$CategoryNotFoundImpl();
 
   @override
   String toString() {
@@ -606,7 +608,7 @@ class _$_CategoryNotFound implements _CategoryNotFound {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_CategoryNotFound);
+        (other.runtimeType == runtimeType && other is _$CategoryNotFoundImpl);
   }
 
   @override
@@ -695,5 +697,5 @@ class _$_CategoryNotFound implements _CategoryNotFound {
 }
 
 abstract class _CategoryNotFound implements CategoryFailure {
-  const factory _CategoryNotFound() = _$_CategoryNotFound;
+  const factory _CategoryNotFound() = _$CategoryNotFoundImpl;
 }
