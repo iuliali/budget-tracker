@@ -5,7 +5,6 @@ import 'package:budget_tracker/presentation/auth/pages/user_details_square.dart'
 import 'package:budget_tracker/presentation/core/widgets/header.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 
 import '../../core/colors.dart';
 

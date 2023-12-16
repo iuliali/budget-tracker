@@ -39,6 +39,15 @@ PreferredSizeWidget generateAppBarWidget(BuildContext context) {
     actions: <Widget>[
       Padding(
         padding: const EdgeInsets.all(8.0),
+        child: IconButton(
+          onPressed: () {
+            context.router.navigate(const StatisticsRoute());
+          },
+          icon: const Icon(Icons.bar_chart, color: cBlackColor),
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
         child: GestureDetector(
           onTap: () {
             context.router.navigate(const UserDetailsRoute());

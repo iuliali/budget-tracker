@@ -11,12 +11,14 @@ class MenuItem {
   final IconData icon;
   final PageRouteInfo route;
   final bool disabled;
+  final bool bottomBar;
 
   const MenuItem({
     required this.title,
     required this.icon,
     required this.route,
     this.disabled = false,
+    this.bottomBar = false,
   });
 }
 
@@ -59,33 +61,34 @@ class MenuItemWidget extends StatelessWidget {
   }
 }
 
+const menu_items = [
+  MenuItem(
+      title: "Expenses", icon: Icons.south_east, route: ExpensesRoute(), bottomBar: true),
+  MenuItem(title: "Incomes", icon: Icons.north_east, route: IncomesRoute(), bottomBar: true),
+  MenuItem(title: "Categories", icon: Icons.category, route: CategoriesRoute(), bottomBar: true),
+  MenuItem(title: "Groups", icon: Icons.group, route: GroupsRoute(), bottomBar: true),
+  MenuItem(title: "Statistics", icon: Icons.bar_chart, route: StatisticsRoute()),
+  // const MenuItem(title: "Settings", icon: Icons.settings, route: "/settings", disabled: true),
+];
+
 // a side menu widget
 class MenuWidget extends StatelessWidget {
   const MenuWidget({
     Key? key,
   }) : super(key: key);
-
-
+  
   @override
   Widget build(BuildContext context) {
-    const items = [
-      MenuItem(
-          title: "Expenses", icon: Icons.south_east, route: ExpensesRoute()),
-      MenuItem(title: "Incomes", icon: Icons.north_east, route: IncomesRoute()),
-      MenuItem(title: "Categories", icon: Icons.dns, route: CategoriesRoute()),
-      MenuItem(title: "Groups", icon: Icons.attach_money, route: GroupsRoute()),
-      // const MenuItem(title: "Statistics", icon: Icons.pie_chart, route: "/statistics", disabled: true),
-      // const MenuItem(title: "Settings", icon: Icons.settings, route: "/settings", disabled: true),
-    ];
+
 
     return SafeArea(
       child: Column(
         children: [
           ListView.builder(
             shrinkWrap: true,
-            itemCount: items.length,
+            itemCount: menu_items.length,
             itemBuilder: (context, index) {
-              final item = items[index];
+              final item = menu_items[index];
               return MenuItemWidget(
                 title: item.title,
                 icon: item.icon,
