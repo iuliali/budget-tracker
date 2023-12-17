@@ -1,8 +1,6 @@
 package com.budgettracker.api.budgeting.dtos;
 
 import com.budgettracker.api.budgeting.models.Budget;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +17,6 @@ import java.time.LocalDateTime;
 public class BudgetDTO {
     private BigInteger id;
 
-    @Positive(message = "Amount must be positive")
     private BigDecimal amount;
 
     private BigInteger userCategoryId;

@@ -4,9 +4,9 @@ import com.budgettracker.api.auth.enums.Role;
 import com.budgettracker.api.budgeting.enums.Currency;
 import com.budgettracker.api.budgeting.models.UserCategory;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
-import javax.validation.constraints.*;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -27,28 +27,31 @@ public class User {
     private BigInteger id;
 
     @Column(nullable = false, unique = true)
-    @Size(min = 5, max = 15)
-    @NotBlank
-    @Pattern(regexp = "^[a-zA-Z0-9]*$")
+    @Size(min = 5, max = 50, message = "Username must be between 5 and 50 characters")
+    @NotBlank(message = "Username cannot be blank")
+    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "Username must be alphanumeric")
     private String username;
     @Column(nullable = false)
+    @NotBlank(message = "Password cannot be blank")
+    @Size(min = 10, message = "Password must be at least 10 characters")
     private String password;
 
-    @NotBlank
+    @NotBlank(message = "First name cannot be blank")
     private String firstName;
 
-    @NotBlank
+    @NotBlank(message = "Last name cannot be blank")
     private String lastName;
 
     @Column(nullable = false)
-    @NotBlank
+    @NotNull(message = "Default currency cannot be blank")
     private Currency defaultCurrency;
 
-    @NonNull
+    @NotNull(message = "Role cannot be null")
     private Role role;
 
     @Email
     @Column(unique = true, nullable = false)
+    @NotBlank(message = "Email cannot be blank")
     private String email;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
