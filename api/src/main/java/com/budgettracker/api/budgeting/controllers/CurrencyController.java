@@ -32,6 +32,7 @@ public class CurrencyController {
     @Operation(summary = "Get exhange for one unit of 'from' in 'to' currency")
     public ResponseEntity<?> getExchange(@PathVariable("from") Currency from,
                                          @PathVariable("to") Currency to) {
-        return ResponseEntity.ok(Map.of("exchange", currencyService.getExchange(from, to)));
+        String exchange = "%s%s".formatted(from, to);
+        return ResponseEntity.ok(Map.of(exchange, currencyService.getExchange(from, to)));
     }
 }

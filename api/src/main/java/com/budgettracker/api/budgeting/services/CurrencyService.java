@@ -33,9 +33,8 @@ public class CurrencyService {
         return currencies.stream().collect(Collectors.toMap(c->c, Currency::getName));
     }
 
-    public Map<String, BigDecimal> getExchange(Currency from, Currency to) {
-        String exchange = "%s%s".formatted(from, to);
-        return Map.of(exchange, currencyExchangeCache.getExchange(from, to));
+    public BigDecimal getExchange(Currency from, Currency to) {
+        return currencyExchangeCache.getExchange(from, to);
     }
 }
 
@@ -73,7 +72,7 @@ class CurrencyCache {
             var rates = result.get(RATES);
             exchange = objectMapper.convertValue(rates, Map.class);
             expiresAt = objectMapper.convertValue(result.get(NEXT_UPDATE_TIME), Long.class);
-        } else if (result == null) {
+        } else {
             throw new ExchangeAPIFailedException();
         }
     }
