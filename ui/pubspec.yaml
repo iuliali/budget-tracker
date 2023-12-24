@@ -43,6 +43,8 @@ dependencies:
   google_fonts: ^6.1.0
   url_launcher: ^6.0.9
   auto_route: ^7.1.0
+  touchable: ^1.0.2
+  card_swiper: ^3.0.1
 
   # DateFormatting
   intl: ^0.19.0
