@@ -26,6 +26,7 @@ public class StatisticsService {
     private final ExpenseRepository expenseRepository;
     private final IncomeRepository incomeRepository;
     private final UserCategoryService userCategoryService;
+    private final CurrencyService currencyService;
     public Map<String, Map<String, BigDecimal>> getExpensesSumForMonth(String month){
         Pair<LocalDateTime, LocalDateTime> startAndEndDatesForMonth = getStartAndEndDatesForMonth(month);
 
