@@ -73,6 +73,7 @@ class StatisticsServiceTest {
         when(currencyService.getExchange(Currency.EUR, Currency.RON)).thenReturn(BigDecimal.valueOf(5));
         when(currencyService.getExchange(Currency.USD, Currency.RON)).thenReturn(BigDecimal.valueOf(4.5));
         when(currencyService.getExchange(Currency.RON, Currency.RON)).thenReturn(BigDecimal.ONE);
+        when(userService.getDefaultCurrency()).thenReturn(Currency.RON);
     }
 
     void setUpExpenses(LocalDateTime start, LocalDateTime end) {
@@ -114,7 +115,7 @@ class StatisticsServiceTest {
     @Test
     void getExpensesSumForMonth_ValidMonth_ReturnsExpensesMap() {
         String month = "2023-05";
-        String currency = "RON";
+        Optional<Currency> currency = Optional.of(Currency.RON);
         LocalDateTime startOfMonth = LocalDateTime.of(2023, 5, 1, 0, 0);
         LocalDateTime endOfMonth = LocalDateTime.of(2023, 5, 31, 23, 59);
 
@@ -145,7 +146,7 @@ class StatisticsServiceTest {
     @Test
     void getIncomesSumForMonth_ValidMonth_ReturnsIncomesMap() {
         String month = "2023-05";
-        String currency = "RON";
+        Optional<Currency> currency = Optional.of(Currency.RON);
         LocalDateTime startOfMonth = LocalDateTime.of(2023, 5, 1, 0, 0);
         LocalDateTime endOfMonth = LocalDateTime.of(2023, 5, 31, 23, 59);
         Pair<LocalDateTime, LocalDateTime> startAndEndDates = Pair.of(startOfMonth, endOfMonth);
@@ -177,7 +178,7 @@ class StatisticsServiceTest {
     @Test
     void getExpenseMonthlyInfoForCurrentYear_ValidData_ReturnsExpenseMonthlyInfoMap() {
         String year = "2023";
-        String currency = "RON";
+        Optional<Currency> currency = Optional.of(Currency.RON);
         LocalDateTime startOfYear = LocalDateTime.of(2023, 1, 1, 0, 0);
         LocalDateTime endOfYear = LocalDateTime.of(2023, 12, 31, 23, 59);
 
@@ -212,7 +213,7 @@ class StatisticsServiceTest {
     @Test
     void getIncomeMonthlyInfoForCurrentYear_ValidData_ReturnsIncomeMonthlyInfoMap() {
         String year = "2023";
-        String currency = "RON";
+        Optional<Currency> currency = Optional.of(Currency.RON);
         LocalDateTime startOfYear = LocalDateTime.of(2023, 1, 1, 0, 0);
         LocalDateTime endOfYear = LocalDateTime.of(2023, 12, 31, 23, 59);
 
@@ -274,15 +275,6 @@ class StatisticsServiceTest {
         String month = "2023-05-05";
 
         assertThrows(InvalidMonthFormatException.class, () -> statisticsService.getStartAndEndDatesForMonth(month));
-    }
-
-    @Test
-    void getToCurrencyBlankString() {
-        String currency = "";
-        when(userService.getDefaultCurrency()).thenReturn(Currency.RON);
-
-        Currency resultCurrency = statisticsService.getToCurrency(currency);
-        assertEquals(Currency.RON, resultCurrency);
     }
 
     @Test

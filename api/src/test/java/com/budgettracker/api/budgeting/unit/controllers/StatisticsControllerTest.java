@@ -1,6 +1,7 @@
 package com.budgettracker.api.budgeting.unit.controllers;
 
 import com.budgettracker.api.budgeting.controllers.StatisticsController;
+import com.budgettracker.api.budgeting.enums.Currency;
 import com.budgettracker.api.budgeting.services.StatisticsService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -31,7 +33,7 @@ class StatisticsControllerTest {
     @Test
     void getExpensesSumForMonth_ShouldReturnExpenseSumForMonth() {
         String month = "2023-01";
-        String currency = "EUR";
+        Optional<Currency> currency = Optional.of(Currency.RON);
         Map<String, Map<String, BigDecimal>> expectedResponse = new HashMap<>();
 
         when(statisticsService.getExpensesSumForMonth(month, currency)).thenReturn(expectedResponse);
@@ -47,7 +49,7 @@ class StatisticsControllerTest {
     @Test
     void getIncomesSumForMonth_ShouldReturnIncomeSumForMonth() {
         String month = "2023-01";
-        String currency = "EUR";
+        Optional<Currency> currency = Optional.of(Currency.RON);
         Map<String, Map<String, BigDecimal>> expectedResponse = new HashMap<>();
 
         when(statisticsService.getIncomesSumForMonth(month, currency)).thenReturn(expectedResponse);
@@ -63,7 +65,7 @@ class StatisticsControllerTest {
     @Test
     void getCurrentYearExpenses_ShouldReturnExpenseMonthlyInfoForCurrentYear() {
         String year = "2023";
-        String currency = "EUR";
+        Optional<Currency> currency = Optional.of(Currency.RON);
         Map<String, Map<String, BigDecimal>> expectedResponse = new HashMap<>();
 
         when(statisticsService.getExpenseMonthlyInfoForYear(year, currency)).thenReturn(expectedResponse);
@@ -79,7 +81,7 @@ class StatisticsControllerTest {
     @Test
     void getCurrentYearIncomes_ShouldReturnIncomeMonthlyInfoForCurrentYear() {
         String year = "2023";
-        String currency = "EUR";
+        Optional<Currency> currency = Optional.of(Currency.RON);
         Map<String, Map<String, BigDecimal>> expectedResponse = new HashMap<>();
 
         when(statisticsService.getIncomeMonthlyInfoForYear(year, currency)).thenReturn(expectedResponse);
