@@ -44,6 +44,11 @@ public class UserService {
         }
     }
 
+    public Currency getDefaultCurrency() {
+        User user = getAuthenticatedUser();
+        return user.getDefaultCurrency();
+    }
+
     public String createUser(NewUserDto newUserDto) {
         if (userRepository.findByUsername(newUserDto.getUsername()).isPresent()) {
             throw new UsernameAlreadyExistsException();
