@@ -9,7 +9,6 @@ import com.budgettracker.api.budgeting.exceptions.BudgetNotFoundException;
 import com.budgettracker.api.budgeting.exceptions.ExpenseNotFoundException;
 import com.budgettracker.api.budgeting.exceptions.NoUserCategoryForExpenseException;
 import com.budgettracker.api.budgeting.exceptions.UserHasNoExpensesException;
-import com.budgettracker.api.budgeting.models.Budget;
 import com.budgettracker.api.budgeting.models.Expense;
 import com.budgettracker.api.auth.models.User;
 import com.budgettracker.api.budgeting.models.UserCategory;
@@ -20,7 +19,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -65,15 +63,11 @@ public class ExpenseService {
     }
 
     public Expense addNewExpense(NewExpenseDto expenseDto){
-        Expense expense = new Expense();
-        expense.setTo(expenseDto.getTo());
-        expense.setAmount(expenseDto.getAmount());
-        expense.setCurrency(expenseDto.getCurrency());
-        expense.setRegisteredAt(LocalDateTime.now());
         UserCategory userCategory = userCategoryService.getUserCategoryIfExists(expenseDto.getUserCategoryId())
                 .orElseThrow(
                         NoUserCategoryForExpenseException::new
                 );
+        Expense expense = NewExpenseDto.toExpense(expenseDto);
         expense.setUserCategory(userCategory);
         expenseRepository.save(expense);
         return expense;

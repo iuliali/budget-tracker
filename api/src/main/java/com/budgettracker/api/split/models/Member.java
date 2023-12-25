@@ -2,6 +2,7 @@ package com.budgettracker.api.split.models;
 
 import com.budgettracker.api.auth.models.User;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.math.BigInteger;
@@ -28,10 +29,10 @@ public class Member {
     @JoinColumn(name="group_id", referencedColumnName = "id")
     private Group group;
 
-    @NonNull
+    @NotNull(message = "Admin is required")
     private boolean isAdmin = false;
 
-    @NonNull
+    @NotNull(message = "Member since (entry date) is required")
     private LocalDateTime memberSince;
 
     public static Member toMember(User user, Group group, boolean admin) {

@@ -6,16 +6,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class NewUserCategoryDto {
-    @NotBlank
-    @Pattern(regexp = "^[a-zA-Z0-9]*$")
+    @NotBlank(message = "Name field is required")
+    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "Name must contain only letters and numbers")
     private String name;
 
     public static UserCategory toUserCategory(NewUserCategoryDto newUserCategoryDto) {

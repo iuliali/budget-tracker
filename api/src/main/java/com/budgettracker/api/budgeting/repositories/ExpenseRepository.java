@@ -31,4 +31,7 @@ public interface ExpenseRepository extends JpaRepository<Expense, BigInteger> {
 
     @Query("SELECT SUM(expe.amount) FROM expense expe, userCategory uc WHERE uc.user = :user AND expe.userCategory.id = uc.id")
     Optional<BigDecimal> sumOfExpensesByUser(User user);
+
+    @Query("SELECT expe FROM expense expe, userCategory uc WHERE expe.userCategory.id = uc.id AND uc.user = :user AND expe.registeredAt >= :startDate AND expe.registeredAt <= :endDate")
+    Optional<List<Expense>> expensesBetweenDates(User user, LocalDateTime startDate, LocalDateTime endDate);
 }

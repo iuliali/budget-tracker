@@ -1,8 +1,8 @@
 package com.budgettracker.api.split.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import org.hibernate.annotations.Where;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -25,7 +25,7 @@ public class Debt {
     @JoinColumn(name="group_expense_id", referencedColumnName = "id")
     private GroupExpense groupExpense;
 
-    @NonNull
+    @NotNull(message = "Amount is required")
     private BigDecimal amount;
 
     @ManyToOne(fetch = FetchType.LAZY)

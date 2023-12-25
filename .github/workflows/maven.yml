@@ -45,18 +45,5 @@ jobs:
         distribution: 'adopt'
         java-version: '19'
 
-    - name: Build with Maven
+    - name: Build with Maven (compile + test + package)
       run: mvn -B package --file api/pom.xml
-
-    - name: Start Docker Compose
-      run: docker-compose up -d
-
-    - name: Wait for services to be ready
-      run: sleep 30s
-
-    - name: Run tests
-      run: mvn test
-
-    - name: Stop Docker Compose
-      run: docker-compose down || true
-
