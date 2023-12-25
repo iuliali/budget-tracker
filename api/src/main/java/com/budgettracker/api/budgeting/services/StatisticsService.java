@@ -1,5 +1,7 @@
 package com.budgettracker.api.budgeting.services;
 
+import com.budgettracker.api.auth.auth_facade.AuthenticationFacade;
+import com.budgettracker.api.auth.models.User;
 import com.budgettracker.api.auth.services.UserService;
 import com.budgettracker.api.budgeting.dtos.UserCategoryDto;
 import com.budgettracker.api.budgeting.enums.Currency;
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +34,7 @@ public class StatisticsService {
     private final UserCategoryService userCategoryService;
     private final CurrencyService currencyService;
     private final UserService userService;
+    private final AuthenticationFacade authenticationFacade;
 
     public Map<String, Map<String, BigDecimal>> getExpensesSumForMonth(String month, String currency){
         Pair<LocalDateTime, LocalDateTime> startAndEndDatesForMonth = getStartAndEndDatesForMonth(month);
@@ -186,9 +190,44 @@ public class StatisticsService {
     public Currency getToCurrency(String currency) {
         if (currency != null && !currency.trim().isEmpty()) {
             return Currency.valueOf(currency);
-        }
-        else {
+        } else {
             return userService.getDefaultCurrency();
         }
+    }
+
+    public BigDecimal sumOfExpensesPerWeek(LocalDateTime startDate, LocalDateTime endDate, Currency currency){
+        BigDecimal sumWeek = BigDecimal.valueOf(0);
+        User user = userService.getUserByUsername(authenticationFacade.getAuthentication().getName());
+        BigDecimal exchange;
+        Optional<List<Expense>> expenses = expenseRepository.expensesBetweenDates(user, startDate, endDate);
+        if(expenses.isPresent()){
+            for(Expense expense: expenses.get()){
+                exchange = currencyService.getExchange(expense.getCurrency(), currency);
+                sumWeek = sumWeek.add(exchange.multiply(expense.getAmount()));
+            }
+        }
+        return sumWeek;
+    }
+    public Map<String, BigDecimal> getExpensesSumForMonthByWeek(String month, Optional<Currency> optionalCurrency){
+        User user = userService.getUserByUsername(authenticationFacade.getAuthentication().getName());
+        Pair<LocalDateTime, LocalDateTime> startAndEndDatesForMonth = getStartAndEndDatesForMonth(month);
+        BigDecimal daysBetween = BigDecimal.valueOf(1 + ChronoUnit.DAYS.between(startAndEndDatesForMonth.getFirst(), startAndEndDatesForMonth.getSecond()));
+        BigDecimal numberOfWeeks = daysBetween.divide(BigDecimal.valueOf(7), 0, BigDecimal.ROUND_UP);
+        Map<String, BigDecimal> weeks = new HashMap<>();
+        Currency currency;
+        if(optionalCurrency.isPresent()){
+            currency = optionalCurrency.get();
+        }
+        else{
+            currency = user.getDefaultCurrency();
+        }
+        weeks.put("1", sumOfExpensesPerWeek(startAndEndDatesForMonth.getFirst(), startAndEndDatesForMonth.getFirst().plusDays(6), currency));
+        weeks.put("2", sumOfExpensesPerWeek(startAndEndDatesForMonth.getFirst().plusDays(7), startAndEndDatesForMonth.getFirst().plusDays(13), currency));
+        weeks.put("3", sumOfExpensesPerWeek(startAndEndDatesForMonth.getFirst().plusDays(14), startAndEndDatesForMonth.getFirst().plusDays(20), currency));
+        weeks.put("4", sumOfExpensesPerWeek(startAndEndDatesForMonth.getFirst().plusDays(21), startAndEndDatesForMonth.getFirst().plusDays(27), currency));
+        if(numberOfWeeks == BigDecimal.valueOf(5)){
+            weeks.put("5", sumOfExpensesPerWeek(startAndEndDatesForMonth.getFirst().plusDays(28), startAndEndDatesForMonth.getSecond(), currency));
+        }
+        return weeks;
     }
 }
