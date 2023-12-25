@@ -43,6 +43,11 @@ public class StatisticsController {
         return ResponseEntity.ok(statisticsService.getIncomeMonthlyInfoForCurrentYear());
     }
 
+    @GetMapping("/week-incomes-by-month/{month}/{currency}")
+    @Operation(summary = "Get the sum of incomes for every week in a month (yyyy-mm) using a currency.")
+    public ResponseEntity<?>getIncomesSumForMonthByWeek(@PathVariable String month, @RequestParam(required = false) Optional<Currency> currency){
+        return ResponseEntity.ok(statisticsService.getIncomesSumForMonthByWeek(month, currency));
+    }
 
     @GetMapping("/week-expenses-by-month/{month}/{currency}")
     @Operation(summary = "Get the sum of expenses for every week in a month (yyyy-mm) using a currency.")
