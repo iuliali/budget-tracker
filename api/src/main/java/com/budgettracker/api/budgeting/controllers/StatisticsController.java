@@ -32,13 +32,13 @@ public class StatisticsController {
     }
 
     @GetMapping("/year-expenses/{year}/{currency}")
-    @Operation(summary = "Get the sum of expenses for the year and the monthly average for each category and the total sum for the year.")
+    @Operation(summary = "Get the sum of expenses for the year (yyyy) and the monthly average for each category and the total sum for the year.")
     public ResponseEntity<?> getYearExpenses(@PathVariable String year, @PathVariable String currency) {
         return ResponseEntity.ok(statisticsService.getExpenseMonthlyInfoForYear(year, currency));
     }
 
     @GetMapping("/year-incomes/{year}/{currency}")
-    @Operation(summary = "Get the sum of incomes for the year and the monthly average for each category and the total sum for the year.")
+    @Operation(summary = "Get the sum of incomes for the year (yyyy) and the monthly average for each category and the total sum for the year.")
     public ResponseEntity<?> getYearIncomes(@PathVariable String year, @PathVariable String currency) {
         return ResponseEntity.ok(statisticsService.getIncomeMonthlyInfoForYear(year, currency));
     }
