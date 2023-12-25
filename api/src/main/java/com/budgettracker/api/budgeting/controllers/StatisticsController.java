@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Optional;
 
 @RestController
@@ -19,28 +18,28 @@ import java.util.Optional;
 public class StatisticsController {
     private final StatisticsService statisticsService;
 
-    @GetMapping("/month-expenses/{month}")
+    @GetMapping("/month-expenses/{month}/{currency}")
     @Operation(summary = "Get the sum of expenses for the month (yyyy-mm) for each category and the total sum for the month.")
-    public ResponseEntity<?> getExpensesSumForMonth(@PathVariable String month) {
-        return ResponseEntity.ok(statisticsService.getExpensesSumForMonth(month));
+    public ResponseEntity<?> getExpensesSumForMonth(@PathVariable String month, @RequestParam(required = false) Optional<Currency> currency) {
+        return ResponseEntity.ok(statisticsService.getExpensesSumForMonth(month, currency));
     }
 
-    @GetMapping("/month-incomes/{month}")
+    @GetMapping("/month-incomes/{month}/{currency}")
     @Operation(summary = "Get the sum of incomes for the month (yyyy-mm) for each category and the total sum for the month.")
-    public ResponseEntity<?> getIncomesSumForMonth(@PathVariable String month) {
-        return ResponseEntity.ok(statisticsService.getIncomesSumForMonth(month));
+    public ResponseEntity<?> getIncomesSumForMonth(@PathVariable String month, @RequestParam(required = false) Optional<Currency> currency) {
+        return ResponseEntity.ok(statisticsService.getIncomesSumForMonth(month, currency));
     }
 
-    @GetMapping("/current-year-expenses")
-    @Operation(summary = "Get the sum of expenses for the current year and the monthly average for each category and the total sum for the year.")
-    public ResponseEntity<?> getCurrentYearExpenses() {
-        return ResponseEntity.ok(statisticsService.getExpenseMonthlyInfoForCurrentYear());
+    @GetMapping("/year-expenses/{year}/{currency}")
+    @Operation(summary = "Get the sum of expenses for the year (yyyy) and the monthly average for each category and the total sum for the year.")
+    public ResponseEntity<?> getYearExpenses(@PathVariable String year, @RequestParam(required = false) Optional<Currency> currency) {
+        return ResponseEntity.ok(statisticsService.getExpenseMonthlyInfoForYear(year, currency));
     }
 
-    @GetMapping("/current-year-incomes")
-    @Operation(summary = "Get the sum of incomes for the current year and the monthly average for each category and the total sum for the year.")
-    public ResponseEntity<?> getCurrentYearIncomes() {
-        return ResponseEntity.ok(statisticsService.getIncomeMonthlyInfoForCurrentYear());
+    @GetMapping("/year-incomes/{year}/{currency}")
+    @Operation(summary = "Get the sum of incomes for the year (yyyy) and the monthly average for each category and the total sum for the year.")
+    public ResponseEntity<?> getYearIncomes(@PathVariable String year, @RequestParam(required = false) Optional<Currency> currency) {
+        return ResponseEntity.ok(statisticsService.getIncomeMonthlyInfoForYear(year, currency));
     }
 
     @GetMapping("/week-incomes-by-month/{month}/{currency}")
