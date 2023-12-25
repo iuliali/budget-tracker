@@ -1,54 +1,21 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:collection/collection.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../application/categories/categories_bloc.dart';
 import '../../../domain/categories/entities/category.dart';
 import '../../../domain/categories/value_objects.dart';
+import '../../../injection.dart';
 import '../../core/colors.dart';
 import '../../core/routing/router.dart';
 import '../../core/widgets/app_bar.dart';
 import '../../core/widgets/header.dart';
 import '../../core/widgets/menu.dart';
+import '../dtos/statistics_dtos.dart';
 import '../widgets/month_selector.dart';
-
-class CategoryMonthlyAmount {
-  final CategoryName categoryName;
-  final BudgetAmount? budgetAmount;
-  final double amount;
-
-  const CategoryMonthlyAmount({
-    required this.categoryName,
-    required this.budgetAmount,
-    required this.amount,
-  });
-
-  bool get isOverspent =>
-      budgetAmount != null && budgetAmount!.getOrCrash() < amount;
-  bool get isLeft =>
-      budgetAmount != null && budgetAmount!.getOrCrash() > amount;
-  bool get isAllInclusive => budgetAmount == null;
-
-  double get percentage =>
-      budgetAmount != null ? (amount / budgetAmount!.getOrCrash()) : 0;
-  double get overspentAmount =>
-      budgetAmount != null ? (amount - budgetAmount!.getOrCrash()) : 0;
-  double get leftAmount =>
-      budgetAmount != null ? (budgetAmount!.getOrCrash() - amount) : 0;
-}
-
-class WeeklySpentAmount {
-  final DateTime from_date;
-  final DateTime to_date;
-  final double amount;
-
-  const WeeklySpentAmount({
-    required this.from_date,
-    required this.to_date,
-    required this.amount,
-  });
-}
 
 
 @RoutePage()
@@ -62,43 +29,159 @@ class StatisticsPage extends StatefulWidget {
 class _StatisticsPageState extends State<StatisticsPage> {
   var selectedMonth = DateTime.now();
 
+  double totalSpentAmount = 0;
+  double totalIncomeAmount = 0;
+
+  List<Category> categories = [];
+
+  CategoryStat? categoryExpenseStat;
+  CategoryStat? categoryIncomeStat;
+
+  Future getMTotalExpenses(Dio client, List<Category> categories) async {
+    final resp = await client.get(
+        '/statistics/month-expenses/${selectedMonth.year}-${selectedMonth.month}/{currency}');
+    final data = resp.data as Map<String, dynamic>;
+    final categoriesTotal = data["total"] as Map<String, dynamic>;
+    final categoryStats = data["categories"] as Map<String, dynamic>;
+    final list = List<CategoryStat>.generate(
+      categoryStats.length,
+          (index) => CategoryStat(
+        categoryName: CategoryName(categoryStats.keys.elementAt(index)),
+        budgetAmount: categories.firstWhereOrNull((element) => element.name.getOrElse("") == categoryStats.keys.elementAt(index))?.budget?.amount,
+        amount: double.tryParse(categoryStats.values.elementAt(index).toString()) ?? 0.0,
+      ),
+    );
+    setState(() {
+      totalSpentAmount = double.tryParse(categoriesTotal["sum"].toString()) as double;
+      categoryExpenseStat = list.reduce((value, element) => value.amount > element.amount ? value : element);
+    });
+  }
+
+  Future getTotalIncomes(Dio client, List<Category> categories) async {
+    final resp = await client.get(
+        '/statistics/month-incomes/${selectedMonth.year}-${selectedMonth.month}/{currency}');
+    final data = resp.data as Map<String, dynamic>;
+    final categoriesTotal = data["total"] as Map<String, dynamic>;
+    final categoryStats = data["categories"] as Map<String, dynamic>;
+    final list = List<CategoryStat>.generate(
+      categoryStats.length,
+          (index) => CategoryStat(
+        categoryName: CategoryName(categoryStats.keys.elementAt(index)),
+        budgetAmount: categories.firstWhereOrNull((element) => element.name.getOrElse("") == categoryStats.keys.elementAt(index))?.budget?.amount,
+        amount: double.tryParse(categoryStats.values.elementAt(index).toString()) ?? 0.0,
+      ),
+    );
+    setState(() {
+      totalIncomeAmount = double.tryParse(categoriesTotal["sum"].toString()) as double;
+      categoryIncomeStat = list.reduce((value, element) => value.amount > element.amount ? value : element);
+    });
+  }
+
   void _onMonthChanged(DateTime month) {
     setState(() {
       selectedMonth = month;
     });
+    getStats();
+  }
+
+  Future getStats() async {
+    final client = getIt<Dio>();
+    Future task1 = getMTotalExpenses(client, categories);
+    Future task2 = getTotalIncomes(client, categories);
+    await Future.wait([task1, task2]);
+  }
+
+  void setCategories(List<Category> categories) {
+    setState(() {
+      this.categories = categories;
+    });
+    getStats();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<CategoriesBloc>().add(const CategoriesEvent.fetch());
   }
 
   @override
   Widget build(BuildContext context) {
-    final categorySpentAmount = CategoryMonthlyAmount(
-      categoryName: CategoryName("Food"),
-      budgetAmount: BudgetAmount(100),
-      amount: 50,
-    );
-    final categoryIncomeAmount = CategoryMonthlyAmount(
-      categoryName: CategoryName("Salary"),
-      budgetAmount: null,
-      amount: 1000,
-    );
 
-    return BlocBuilder<CategoriesBloc, CategoriesState>(
+    const double minMainDisplacement = 50;
+    const double maxCrossRatio = 0.75;
+    const double minVelocity = 300;
+
+    DragStartDetails? panStartDetails;
+    DragUpdateDetails? panUpdateDetails;
+
+    return BlocConsumer<CategoriesBloc, CategoriesState>(
+      listener: (context, state) {
+        state.failureOrCategories.fold(() => null, (a) => a.fold((l) => null, (r) => setCategories(r)));
+      },
       builder: (context, state) {
         List<Category> categories =
             state.failureOrCategories.fold(() => <Category>[], (a) => a.fold((l) => <Category>[], (r) => r));
-
         return Scaffold(
           backgroundColor: Theme.of(context).colorScheme.background,
           appBar: generateAppBarWidget(context),
           drawer: const Drawer(child: MenuWidget()),
           body: GestureDetector(
-            // onHorizontalDragUpdate: (details) {
-            //   int sensitivity = 10;
-            //   if (details.delta.dx > sensitivity) {
-            //     _onMonthChanged(DateTime(selectedMonth.year, selectedMonth.month - 1, 1));
-            //   } else if (details.delta.dx < -sensitivity) {
-            //     _onMonthChanged(DateTime(selectedMonth.year, selectedMonth.month + 1, 1));
-            //   }
-            // },
+            onPanStart: (startDetails) => panStartDetails = startDetails,
+            onPanUpdate: (updateDetails) => panUpdateDetails = updateDetails,
+            onPanEnd: (endDetails) {
+              if (panStartDetails == null || panUpdateDetails == null) return;
+
+              double dx = panUpdateDetails!.globalPosition.dx -
+                  panStartDetails!.globalPosition.dx;
+              double dy = panUpdateDetails!.globalPosition.dy -
+                  panStartDetails!.globalPosition.dy;
+
+              int panDurationMiliseconds =
+                  panUpdateDetails!.sourceTimeStamp!.inMilliseconds -
+                      panStartDetails!.sourceTimeStamp!.inMilliseconds;
+
+              double mainDis, crossDis, mainVel;
+              bool isHorizontalMainAxis = dx.abs() > dy.abs();
+
+              if (isHorizontalMainAxis) {
+                mainDis = dx.abs();
+                crossDis = dy.abs();
+              } else {
+                mainDis = dy.abs();
+                crossDis = dx.abs();
+              }
+
+              mainVel = 1000 * mainDis / panDurationMiliseconds;
+
+              // if (mainDis < minMainDisplacement) return;
+              // if (crossDis > maxCrossRatio * mainDis) return;
+              // if (mainVel < minVelocity) return;
+
+              if (mainDis < minMainDisplacement) {
+                debugPrint(
+                    "SWIPE DEBUG | Displacement too short. Real: $mainDis - Min: $minMainDisplacement");
+                return;
+              }
+              if (crossDis > maxCrossRatio * mainDis) {
+                debugPrint(
+                    "SWIPE DEBUG | Cross axis displacemnt bigger than limit. Real: $crossDis - Limit: ${mainDis * maxCrossRatio}");
+                return;
+              }
+              if (mainVel < minVelocity) {
+                debugPrint(
+                    "SWIPE DEBUG | Swipe velocity too slow. Real: $mainVel - Min: $minVelocity");
+                return;
+              }
+
+              // dy < 0 => UP -- dx > 0 => RIGHT
+              if (isHorizontalMainAxis) {
+                if (dx > 0) {
+                  _onMonthChanged(DateTime(selectedMonth.year, selectedMonth.month - 1, 1));
+                } else {
+                  _onMonthChanged(DateTime(selectedMonth.year, selectedMonth.month + 1, 1));
+                }
+              }
+            },
             child: SafeArea(
               child: ListView(
                 children: [
@@ -176,7 +259,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
                                                       color: cBlackColor),
                                                 ),
                                                 Text(
-                                                  "${categorySpentAmount.amount.toStringAsFixed(2)} RON",
+                                                  "${totalSpentAmount.toStringAsFixed(2)} RON",
                                                   style: const TextStyle(
                                                       fontSize: 24,
                                                       fontWeight: FontWeight.bold,
@@ -191,13 +274,15 @@ class _StatisticsPageState extends State<StatisticsPage> {
                                   ),
                                 ),
                                 const SizedBox(height: 16),
-                                ListTile(
+                                categoryExpenseStat == null
+                                    ? SizedBox()
+                                    : ListTile(
                                   onTap: () {},
                                   title: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                          categorySpentAmount.categoryName.getOrCrash()),
+                                          categoryExpenseStat!.categoryName.getOrCrash()),
                                       const Text(
                                         "Top Spent Category",
                                         style: TextStyle(
@@ -211,14 +296,14 @@ class _StatisticsPageState extends State<StatisticsPage> {
                                     width: 40,
                                     height: 40,
                                     padding: const EdgeInsets.all(5),
-                                    child: categorySpentAmount.isAllInclusive
+                                    child: categoryExpenseStat!.isAllInclusive
                                         ? const Icon(Icons.all_inclusive)
                                         : CircularProgressIndicator(
                                             strokeWidth: 5,
-                                            value: categorySpentAmount.percentage,
+                                            value: categoryExpenseStat!.percentage,
                                             backgroundColor: cGreyColor,
                                             valueColor: AlwaysStoppedAnimation<Color>(
-                                              categorySpentAmount.isLeft
+                                              categoryExpenseStat!.isLeft
                                                   ? cGreenColor
                                                   : cRedColor,
                                             ),
@@ -232,17 +317,17 @@ class _StatisticsPageState extends State<StatisticsPage> {
                                           crossAxisAlignment: CrossAxisAlignment.end,
                                           children: [
                                             Text(
-                                              "${categorySpentAmount.amount} RON",
+                                              "${categoryExpenseStat!.amount} RON",
                                               style: const TextStyle(
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.bold,
                                                   color: cGreyColor),
                                             ),
-                                            categorySpentAmount.isAllInclusive
+                                            categoryExpenseStat!.isAllInclusive
                                                 ? const SizedBox()
-                                                : categorySpentAmount.isOverspent
+                                                : categoryExpenseStat!.isOverspent
                                                     ? Text(
-                                                        "Overspent ${categorySpentAmount.overspentAmount.toStringAsFixed(2)}",
+                                                        "Overspent ${categoryExpenseStat!.overspentAmount.toStringAsFixed(2)}",
                                                         style: const TextStyle(
                                                           fontSize: 12,
                                                           fontWeight: FontWeight.bold,
@@ -250,7 +335,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
                                                         ),
                                                       )
                                                     : Text(
-                                                        "Left ${categorySpentAmount.leftAmount.toStringAsFixed(2)}",
+                                                        "Left ${categoryExpenseStat!.leftAmount.toStringAsFixed(2)}",
                                                         style: const TextStyle(
                                                           fontSize: 12,
                                                           fontWeight: FontWeight.bold,
@@ -270,52 +355,59 @@ class _StatisticsPageState extends State<StatisticsPage> {
                             children: <Widget>[
                               const SizedBox(height: 16),
                               // Total spent amount
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 32),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 16),
-                                        height: 80,
-                                        decoration: BoxDecoration(
-                                          color: cWhiteColor,
-                                          borderRadius: BorderRadius.circular(8),
-                                        ),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                          children: [
-                                            const Text(
-                                              "Income",
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: cBlackColor),
-                                            ),
-                                            Text(
-                                              "${categoryIncomeAmount.amount.toStringAsFixed(2)} RON",
-                                              style: const TextStyle(
-                                                  fontSize: 24,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: cBlackColor),
-                                            ),
-                                          ],
+                              GestureDetector(
+                                onTap: () {
+                                  context.router.push(const IncomeStatisticsRoute());
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 16),
+                                          height: 80,
+                                          decoration: BoxDecoration(
+                                            color: cWhiteColor,
+                                            borderRadius: BorderRadius.circular(8),
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                            children: [
+                                              const Text(
+                                                "Income",
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: cBlackColor),
+                                              ),
+                                              Text(
+                                                "${totalIncomeAmount.toStringAsFixed(2)} RON",
+                                                style: const TextStyle(
+                                                    fontSize: 24,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: cBlackColor),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                               const SizedBox(height: 16),
-                              ListTile(
+                              categoryIncomeStat == null
+                                  ? const SizedBox()
+                                  : ListTile(
                                 onTap: () {},
                                 title: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                        categoryIncomeAmount.categoryName.getOrCrash()),
+                                        categoryIncomeStat!.categoryName.getOrCrash()),
                                     const Text(
                                       "Top Income Category",
                                       style: TextStyle(
@@ -329,14 +421,14 @@ class _StatisticsPageState extends State<StatisticsPage> {
                                   width: 40,
                                   height: 40,
                                   padding: const EdgeInsets.all(5),
-                                  child: categoryIncomeAmount.isAllInclusive
+                                  child: categoryIncomeStat!.isAllInclusive
                                       ? const Icon(Icons.all_inclusive)
                                       : CircularProgressIndicator(
                                     strokeWidth: 5,
-                                    value: categorySpentAmount.percentage,
+                                    value: categoryIncomeStat!.percentage,
                                     backgroundColor: cGreyColor,
                                     valueColor: AlwaysStoppedAnimation<Color>(
-                                      categorySpentAmount.isLeft
+                                      categoryIncomeStat!.isLeft
                                           ? cGreenColor
                                           : cRedColor,
                                     ),
@@ -350,17 +442,17 @@ class _StatisticsPageState extends State<StatisticsPage> {
                                         crossAxisAlignment: CrossAxisAlignment.end,
                                         children: [
                                           Text(
-                                            "${categoryIncomeAmount.amount} RON",
+                                            "${categoryIncomeStat!.amount} RON",
                                             style: const TextStyle(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.bold,
                                                 color: cGreyColor),
                                           ),
-                                          categoryIncomeAmount.isAllInclusive
+                                          categoryIncomeStat!.isAllInclusive
                                               ? const SizedBox()
-                                              : categoryIncomeAmount.isOverspent
+                                              : categoryIncomeStat!.isOverspent
                                               ? Text(
-                                            "Overspent ${categoryIncomeAmount.overspentAmount.toStringAsFixed(2)}",
+                                            "Overspent ${categoryIncomeStat!.overspentAmount.toStringAsFixed(2)}",
                                             style: const TextStyle(
                                               fontSize: 12,
                                               fontWeight: FontWeight.bold,
@@ -368,7 +460,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
                                             ),
                                           )
                                               : Text(
-                                            "Left ${categoryIncomeAmount.leftAmount.toStringAsFixed(2)}",
+                                            "Left ${categoryIncomeStat!.leftAmount.toStringAsFixed(2)}",
                                             style: const TextStyle(
                                               fontSize: 12,
                                               fontWeight: FontWeight.bold,

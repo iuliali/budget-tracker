@@ -1,12 +1,12 @@
 
 import '../../../domain/categories/value_objects.dart';
 
-class CategorySpentAmount {
+class CategoryStat {
   final CategoryName categoryName;
   final BudgetAmount? budgetAmount;
   final double amount;
 
-  const CategorySpentAmount({
+  const CategoryStat({
     required this.categoryName,
     required this.budgetAmount,
     required this.amount,
@@ -15,7 +15,7 @@ class CategorySpentAmount {
   bool get isOverspent =>
       budgetAmount != null && budgetAmount!.getOrCrash() < amount;
   bool get isLeft =>
-      budgetAmount != null && budgetAmount!.getOrCrash() > amount;
+      budgetAmount != null && budgetAmount!.getOrCrash() >= amount;
   bool get isAllInclusive => budgetAmount == null;
 
   double get percentage =>
@@ -26,12 +26,12 @@ class CategorySpentAmount {
       budgetAmount != null ? (budgetAmount!.getOrCrash() - amount) : 0;
 }
 
-class WeeklySpentAmount {
-  final DateTime from_date;
-  final DateTime to_date;
+class WeeklyStat {
+  final String from_date;
+  final String to_date;
   final double amount;
 
-  const WeeklySpentAmount({
+  const WeeklyStat({
     required this.from_date,
     required this.to_date,
     required this.amount,

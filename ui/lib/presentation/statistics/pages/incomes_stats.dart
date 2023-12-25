@@ -1,6 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:budget_tracker/presentation/statistics/widgets/weekly_chart.dart';
+import 'package:budget_tracker/domain/categories/value_objects.dart';
+import 'package:budget_tracker/injection.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
@@ -9,8 +10,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../application/categories/categories_bloc.dart';
 import '../../../domain/categories/entities/category.dart';
-import '../../../domain/categories/value_objects.dart';
-import '../../../injection.dart';
 import '../../core/colors.dart';
 import '../../core/routing/router.dart';
 import '../../core/widgets/app_bar.dart';
@@ -18,51 +17,57 @@ import '../../core/widgets/header.dart';
 import '../../core/widgets/menu.dart';
 import '../dtos/statistics_dtos.dart';
 import '../widgets/pie_chart.dart';
+import '../widgets/weekly_chart.dart';
 
 @RoutePage()
-class ExpenseStatisticsPage extends StatefulWidget {
-  const ExpenseStatisticsPage({super.key});
+class IncomeStatisticsPage extends StatefulWidget {
+  const IncomeStatisticsPage({super.key});
 
   @override
-  State<ExpenseStatisticsPage> createState() => _ExpenseStatisticsPageState();
+  State<IncomeStatisticsPage> createState() => _IncomeStatisticsPageState();
 }
 
-class _ExpenseStatisticsPageState extends State<ExpenseStatisticsPage> {
+class _IncomeStatisticsPageState extends State<IncomeStatisticsPage> {
   DateTime selectedDate = DateTime.now();
+
   CategoryStat? selectedCategory;
   List<CategoryStat> categoryStats = [];
   List<WeeklyStat> weeklyStats = [];
 
-
   Future getWeeklyStats(Dio client) async {
     final resp = await client.get(
-        '/statistics/week-expenses-by-month/${selectedDate.year}-${selectedDate.month}/{currency}');
+        '/statistics/week-incomes-by-month/${selectedDate.year}-${selectedDate.month}/{currency}');
     final data = resp.data as Map<String, dynamic>;
     final list = List<WeeklyStat>.generate(
       data.length,
-          (index) => WeeklyStat(
-        from_date: (index*7).toString(),
-        to_date: (index*7+6).toString(),
+      (index) => WeeklyStat(
+        from_date: (index * 7).toString(),
+        to_date: (index * 7 + 6).toString(),
         amount: double.tryParse(data.values.elementAt(index).toString()) ?? 0.0,
       ),
     );
     setState(() {
       weeklyStats = list;
     });
-
   }
 
   Future getMonthlyStats(Dio client, List<Category> categories) async {
     final resp = await client.get(
-        '/statistics/month-expenses/${selectedDate.year}-${selectedDate.month}/{currency}');
+        '/statistics/month-incomes/${selectedDate.year}-${selectedDate.month}/{currency}');
     final data = resp.data as Map<String, dynamic>;
     final categoryStats = data["categories"] as Map<String, dynamic>;
     final list = List<CategoryStat>.generate(
       categoryStats.length,
-          (index) => CategoryStat(
+      (index) => CategoryStat(
         categoryName: CategoryName(categoryStats.keys.elementAt(index)),
-        budgetAmount: categories.firstWhereOrNull((element) => element.name.getOrElse("") == categoryStats.keys.elementAt(index))?.budget?.amount,
-        amount: double.tryParse(categoryStats.values.elementAt(index).toString()) ?? 0.0,
+        budgetAmount: categories
+            .firstWhereOrNull((element) =>
+                element.name == categoryStats.keys.elementAt(index))
+            ?.budget
+            ?.amount,
+        amount:
+            double.tryParse(categoryStats.values.elementAt(index).toString()) ??
+                0.0,
       ),
     );
     list.sort((a, b) => b.amount.compareTo(a.amount));
@@ -88,7 +93,6 @@ class _ExpenseStatisticsPageState extends State<ExpenseStatisticsPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocConsumer<CategoriesBloc, CategoriesState>(
       listener: (context, state) {
         state.failureOrCategories.fold(
@@ -110,8 +114,7 @@ class _ExpenseStatisticsPageState extends State<ExpenseStatisticsPage> {
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 32),
                   child: HeaderWidget(
-                      title: "Expenses",
-                      subtitle: "View how you spent your money!"),
+                      title: "Incomes", subtitle: "View your incomes sources!"),
                 ),
                 categoryStats.isEmpty
                     ? const SizedBox(
@@ -142,7 +145,7 @@ class _ExpenseStatisticsPageState extends State<ExpenseStatisticsPage> {
                                           MainAxisAlignment.center,
                                       children: [
                                         const Text(
-                                          "Spent",
+                                          "Recieved",
                                           style: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold,
@@ -182,8 +185,12 @@ class _ExpenseStatisticsPageState extends State<ExpenseStatisticsPage> {
                                               selectedCategory = category;
                                             });
                                           },
+                                          normalColor: cBlueColor,
                                         )
-                                      : weeklyStats.isEmpty ? const SizedBox() : WeeklyChart(weeklyStats: weeklyStats),
+                                      : weeklyStats.isEmpty
+                                          ? const SizedBox()
+                                          : WeeklyChart(
+                                              weeklyStats: weeklyStats),
                                 );
                               },
                               itemCount: 2,
