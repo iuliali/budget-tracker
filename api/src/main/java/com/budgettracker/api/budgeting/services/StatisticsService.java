@@ -9,6 +9,7 @@ import com.budgettracker.api.budgeting.enums.Currency;
 import com.budgettracker.api.budgeting.exceptions.GivenDateIsInTheFutureException;
 import com.budgettracker.api.budgeting.exceptions.InvalidMonthFormatException;
 import com.budgettracker.api.budgeting.exceptions.InvalidMonthNumberException;
+import com.budgettracker.api.budgeting.exceptions.InvalidYearFormatException;
 import com.budgettracker.api.budgeting.models.Income;
 import com.budgettracker.api.budgeting.models.Expense;
 import com.budgettracker.api.budgeting.repositories.ExpenseRepository;
@@ -26,9 +27,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import static java.time.temporal.TemporalAdjusters.firstDayOfMonth;
-import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
-
 @Service
 @RequiredArgsConstructor
 public class StatisticsService {
@@ -38,63 +36,71 @@ public class StatisticsService {
     private final CurrencyService currencyService;
     private final UserService userService;
     private final AuthenticationFacade authenticationFacade;
-    public Map<String, Map<String, BigDecimal>> getExpensesSumForMonth(String month){
+
+    public Map<String, Map<String, BigDecimal>> getExpensesSumForMonth(String month, Optional<Currency> currency){
         Pair<LocalDateTime, LocalDateTime> startAndEndDatesForMonth = getStartAndEndDatesForMonth(month);
 
-        Map<String, Map<String, BigDecimal>> expenses = new HashMap<>();
+        Map<String, Map<String, BigDecimal>> expensesMap = new HashMap<>();
         Map<String, BigDecimal> categories = new HashMap<>();
         Map<String, BigDecimal> total = new HashMap<>();
         BigDecimal monthTotal = BigDecimal.ZERO;
 
         List<UserCategoryDto> userCategories = userCategoryService.getUserCategories();
         for (UserCategoryDto userCategory : userCategories) {
-            BigDecimal sum = expenseRepository.expensesSumByUserCategoryBetweenDates(userCategory.getId(),
+            Optional<List<Expense>> expenses = expenseRepository.expensesByUserCategoryBetweenDates(userCategory.getId(),
                     startAndEndDatesForMonth.getFirst(),
-                    startAndEndDatesForMonth.getSecond()).orElse(BigDecimal.ZERO);
+                    startAndEndDatesForMonth.getSecond());
+
+            BigDecimal sum = getExpenseSum(expenses, currency.orElseGet(userService::getDefaultCurrency));
             categories.put(userCategory.getName(), sum);
             monthTotal = monthTotal.add(sum);
         }
 
         total.put("sum", monthTotal);
-        expenses.put("total", total);
-        expenses.put("categories", categories);
+        expensesMap.put("total", total);
+        expensesMap.put("categories", categories);
 
-        return expenses;
+        return expensesMap;
     }
-    public Map<String, Map<String, BigDecimal>> getIncomesSumForMonth(String month){
+
+    public Map<String, Map<String, BigDecimal>> getIncomesSumForMonth(String month, Optional<Currency> currency){
             Pair<LocalDateTime, LocalDateTime> startAndEndDatesForMonth = getStartAndEndDatesForMonth(month);
 
-            Map<String, Map<String, BigDecimal>> incomes = new HashMap<>();
+            Map<String, Map<String, BigDecimal>> incomesMap = new HashMap<>();
             Map<String, BigDecimal> categories = new HashMap<>();
             Map<String, BigDecimal> total = new HashMap<>();
             BigDecimal monthTotal = BigDecimal.ZERO;
 
             List<UserCategoryDto> userCategories = userCategoryService.getUserCategories();
             for (UserCategoryDto userCategory : userCategories) {
-                BigDecimal sum = incomeRepository.incomesSSumByUserCategoryBetweenDates(userCategory.getId(),
+                Optional<List<Income>> incomes = incomeRepository.incomesByUserCategoryBetweenDates(userCategory.getId(),
                         startAndEndDatesForMonth.getFirst(),
-                        startAndEndDatesForMonth.getSecond()).orElse(BigDecimal.ZERO);
+                        startAndEndDatesForMonth.getSecond());
+
+                BigDecimal sum = getIncomeSum(incomes, currency.orElseGet(userService::getDefaultCurrency));
                 categories.put(userCategory.getName(), sum);
                 monthTotal = monthTotal.add(sum);
             }
 
             total.put("sum", monthTotal);
-            incomes.put("total", total);
-            incomes.put("categories", categories);
+            incomesMap.put("total", total);
+            incomesMap.put("categories", categories);
 
-            return incomes;
-
+            return incomesMap;
     }
-    public Map<String, Map<String, BigDecimal>> getExpenseMonthlyInfoForCurrentYear(){
+    public Map<String, Map<String, BigDecimal>> getExpenseMonthlyInfoForYear(String year, Optional<Currency> currency){
+        int yearNumber = getYearNumber(year);
         Map<String, Map<String, BigDecimal>> expenseMonthlyInfo = new HashMap<>();
         Map<String, BigDecimal> total = new HashMap<>();
         BigDecimal yearTotal = BigDecimal.ZERO;
 
         List<UserCategoryDto> userCategories = userCategoryService.getUserCategories();
         for (UserCategoryDto userCategory : userCategories) {
-            BigDecimal sum = expenseRepository.expensesSumByUserCategoryBetweenDates(userCategory.getId(),
-                    LocalDateTime.now().with(firstDayOfMonth()).withMonth(1),
-                    LocalDateTime.now().with(lastDayOfMonth()).withMonth(12)).orElse(BigDecimal.ZERO);
+            Optional<List<Expense>> expenses = expenseRepository.expensesByUserCategoryBetweenDates(userCategory.getId(),
+                    LocalDateTime.of(yearNumber, 1, 1, 0, 0),
+                    LocalDateTime.of(yearNumber, 12, 31, 23, 59));
+
+            BigDecimal sum = getExpenseSum(expenses, currency.orElseGet(userService::getDefaultCurrency));
             yearTotal = yearTotal.add(sum);
             computeMonthInfo(expenseMonthlyInfo, userCategory.getName(), sum);
         }
@@ -105,16 +111,18 @@ public class StatisticsService {
         return expenseMonthlyInfo;
     }
 
-    public Map<String, Map<String, BigDecimal>> getIncomeMonthlyInfoForCurrentYear(){
+    public Map<String, Map<String, BigDecimal>> getIncomeMonthlyInfoForYear(String year, Optional<Currency> currency){
+        int yearNumber = getYearNumber(year);
         Map<String, Map<String, BigDecimal>> incomeMonthlyInfo = new HashMap<>();
         Map<String, BigDecimal> total = new HashMap<>();
         BigDecimal yearTotal = BigDecimal.ZERO;
 
         List<UserCategoryDto> userCategories = userCategoryService.getUserCategories();
         for (UserCategoryDto userCategory : userCategories) {
-            BigDecimal sum = incomeRepository.incomesSSumByUserCategoryBetweenDates(userCategory.getId(),
-                    LocalDateTime.now().with(firstDayOfMonth()).withMonth(1),
-                    LocalDateTime.now().with(lastDayOfMonth()).withMonth(12)).orElse(BigDecimal.ZERO);
+            Optional<List<Income>> incomes = incomeRepository.incomesByUserCategoryBetweenDates(userCategory.getId(),
+                    LocalDateTime.of(yearNumber, 1, 1, 0, 0),
+                    LocalDateTime.of(yearNumber, 12, 31, 23, 59));
+            BigDecimal sum = getIncomeSum(incomes, currency.orElseGet(userService::getDefaultCurrency));
             yearTotal = yearTotal.add(sum);
             computeMonthInfo(incomeMonthlyInfo, userCategory.getName(), sum);
         }
@@ -132,6 +140,7 @@ public class StatisticsService {
         monthInfo.put("sum", sum);
         monthlyInfo.put(userCategoryName, monthInfo);
     }
+
     public Pair<LocalDateTime, LocalDateTime> getStartAndEndDatesForMonth(String month){
         if (!month.matches("\\d{4}-\\d{2}")) {
             throw new InvalidMonthFormatException();
@@ -148,6 +157,35 @@ public class StatisticsService {
         }
         LocalDateTime endDate = LocalDateTime.of(year, monthNumber, startDate.toLocalDate().lengthOfMonth(), 23, 59);
         return Pair.of(startDate, endDate);
+    }
+
+    public Integer getYearNumber(String year) {
+        if (!year.matches("\\d{4}")) {
+            throw new InvalidYearFormatException();
+        }
+        return Integer.parseInt(year);
+    }
+
+    public BigDecimal getIncomeSum(Optional<List<Income>> incomes, Currency toCurrency) {
+        BigDecimal sum = BigDecimal.ZERO;
+        if(incomes.isPresent()){
+            for(Income income: incomes.get()){
+                BigDecimal exchangeRate = currencyService.getExchange(income.getCurrency(), toCurrency);
+                sum = sum.add(exchangeRate.multiply(income.getAmount()));
+            }
+        }
+        return sum;
+    }
+
+    public BigDecimal getExpenseSum(Optional<List<Expense>> expenses, Currency toCurrency) {
+        BigDecimal sum = BigDecimal.ZERO;
+        if(expenses.isPresent()){
+            for(Expense expense: expenses.get()){
+                BigDecimal exchangeRate = currencyService.getExchange(expense.getCurrency(), toCurrency);
+                sum = sum.add(exchangeRate.multiply(expense.getAmount()));
+            }
+        }
+        return sum;
     }
 
     public BigDecimal sumOfExpensesPerWeek(LocalDateTime startDate, LocalDateTime endDate, Currency currency){
