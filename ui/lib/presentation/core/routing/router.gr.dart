@@ -146,6 +146,12 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    IncomeStatisticsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const IncomeStatisticsPage(),
+      );
+    },
     IncomesRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -608,6 +614,20 @@ class IncomeRouteArgs {
   String toString() {
     return 'IncomeRouteArgs{key: $key, income: $income}';
   }
+}
+
+/// generated route for
+/// [IncomeStatisticsPage]
+class IncomeStatisticsRoute extends PageRouteInfo<void> {
+  const IncomeStatisticsRoute({List<PageRouteInfo>? children})
+      : super(
+          IncomeStatisticsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'IncomeStatisticsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
