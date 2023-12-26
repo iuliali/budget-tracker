@@ -11,7 +11,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../application/categories/categories_bloc.dart';
 import '../../../domain/categories/entities/category.dart';
 import '../../core/colors.dart';
-import '../../core/routing/router.dart';
 import '../../core/widgets/app_bar.dart';
 import '../../core/widgets/header.dart';
 import '../../core/widgets/menu.dart';
@@ -38,11 +37,12 @@ class _IncomeStatisticsPageState extends State<IncomeStatisticsPage> {
     final resp = await client.get(
         '/statistics/week-incomes-by-month/${selectedDate.year}-${selectedDate.month}/{currency}');
     final data = resp.data as Map<String, dynamic>;
+    final lastDay = DateTime(selectedDate.year, selectedDate.month + 1, 0).day;
     final list = List<WeeklyStat>.generate(
       data.length,
-      (index) => WeeklyStat(
-        from_date: (index * 7).toString(),
-        to_date: (index * 7 + 6).toString(),
+          (index) => WeeklyStat(
+        from_date: (index*7 + 1).toString(),
+        to_date: (index*7+7 > lastDay ? lastDay : index*7+7).toString(),
         amount: double.tryParse(data.values.elementAt(index).toString()) ?? 0.0,
       ),
     );
