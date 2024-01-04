@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class NewExpenseDto {
     @NotBlank(message = "To field is required")
-    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "To must contain only letters and numbers")
+    @Pattern(regexp = "^[\\p{Alnum}\\p{Punct}\\s]*$", message = "To field must contain only letters, numbers, punctuation and spaces")
     private String to;
 
     @NotNull(message = "Amount field is required")

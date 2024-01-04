@@ -31,7 +31,7 @@ public class UserCategory {
 
     @Column(nullable = false)
     @NotBlank(message = "Name field cannot be blank")
-    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "Name field must be alphanumeric")
+    @Pattern(regexp = "^[\\p{Alnum}\\p{Punct}\\s]*$", message = "Name field must contain only letters, numbers, punctuation and spaces")
     private String name;
 
     private LocalDateTime deletedAt;

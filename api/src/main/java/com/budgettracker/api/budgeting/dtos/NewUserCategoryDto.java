@@ -15,7 +15,7 @@ import jakarta.validation.constraints.Pattern;
 @NoArgsConstructor
 public class NewUserCategoryDto {
     @NotBlank(message = "Name field is required")
-    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "Name must contain only letters and numbers")
+    @Pattern(regexp = "^[\\p{Alnum}\\p{Punct}\\s]*$", message = "Name field must contain only letters, numbers, punctuation and spaces")
     private String name;
 
     public static UserCategory toUserCategory(NewUserCategoryDto newUserCategoryDto) {

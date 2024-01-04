@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class NewIncomeDto {
     @NotBlank(message = "From field is required")
-    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "From must contain only letters and numbers")
+    @Pattern(regexp = "^[\\p{Alnum}\\p{Punct}\\s]*$", message = "From field must contain only letters, numbers, punctuation and spaces")
     private String from;
 
     @NotNull(message = "Amount field is required")

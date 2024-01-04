@@ -31,7 +31,7 @@ public class Income {
 
     @Column(name = "sender", nullable = false)
     @NotBlank(message = "From field cannot be blank")
-    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "From field must be alphanumeric")
+    @Pattern(regexp = "^[\\p{Alnum}\\p{Punct}\\s]*$", message = "From field must contain only letters, numbers, punctuation and spaces")
     private String from;
 
     @Column(nullable = false)
