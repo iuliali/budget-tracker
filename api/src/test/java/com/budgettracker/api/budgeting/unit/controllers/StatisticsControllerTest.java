@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -34,7 +35,7 @@ class StatisticsControllerTest {
     void getExpensesSumForMonth_ShouldReturnExpenseSumForMonth() {
         String month = "2023-01";
         Optional<Currency> currency = Optional.of(Currency.RON);
-        Map<String, Map<String, BigDecimal>> expectedResponse = new HashMap<>();
+        Map<String, Map<String, List<BigDecimal>>> expectedResponse = new HashMap<>();
 
         when(statisticsService.getExpensesSumForMonth(month, currency)).thenReturn(expectedResponse);
 

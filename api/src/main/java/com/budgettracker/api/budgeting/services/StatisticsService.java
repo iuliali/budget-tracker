@@ -6,10 +6,7 @@ import com.budgettracker.api.auth.auth_facade.AuthenticationFacade;
 import com.budgettracker.api.auth.services.UserService;
 import com.budgettracker.api.budgeting.dtos.UserCategoryDto;
 import com.budgettracker.api.budgeting.enums.Currency;
-import com.budgettracker.api.budgeting.exceptions.GivenDateIsInTheFutureException;
-import com.budgettracker.api.budgeting.exceptions.InvalidMonthFormatException;
-import com.budgettracker.api.budgeting.exceptions.InvalidMonthNumberException;
-import com.budgettracker.api.budgeting.exceptions.InvalidYearFormatException;
+import com.budgettracker.api.budgeting.exceptions.*;
 import com.budgettracker.api.budgeting.models.Income;
 import com.budgettracker.api.budgeting.models.Expense;
 import com.budgettracker.api.budgeting.repositories.ExpenseRepository;
@@ -35,14 +32,15 @@ public class StatisticsService {
     private final UserCategoryService userCategoryService;
     private final CurrencyService currencyService;
     private final UserService userService;
+    private final BudgetService budgetService;
     private final AuthenticationFacade authenticationFacade;
 
-    public Map<String, Map<String, BigDecimal>> getExpensesSumForMonth(String month, Optional<Currency> currency){
+    public Map<String, Map<String, List<BigDecimal>>> getExpensesSumForMonth(String month, Optional<Currency> currency){
         Pair<LocalDateTime, LocalDateTime> startAndEndDatesForMonth = getStartAndEndDatesForMonth(month);
 
-        Map<String, Map<String, BigDecimal>> expensesMap = new HashMap<>();
-        Map<String, BigDecimal> categories = new HashMap<>();
-        Map<String, BigDecimal> total = new HashMap<>();
+        Map<String, Map<String, List<BigDecimal>>> expensesMap = new HashMap<>();
+        Map<String, List<BigDecimal>> categories = new HashMap<>();
+        Map<String, List<BigDecimal>> total = new HashMap<>();
         BigDecimal monthTotal = BigDecimal.ZERO;
 
         List<UserCategoryDto> userCategories = userCategoryService.getUserCategories();
@@ -52,11 +50,16 @@ public class StatisticsService {
                     startAndEndDatesForMonth.getSecond());
 
             BigDecimal sum = getExpenseSum(expenses, currency.orElseGet(userService::getDefaultCurrency));
-            categories.put(userCategory.getName(), sum);
+            BigDecimal budgetAmount = BigDecimal.valueOf(-1.0);
+            try {
+                budgetAmount = budgetService.getActiveBudget(userCategory.getId()).getAmount();
+            }catch(BudgetNotFoundException ignored){}
+            List<BigDecimal> values = List.of(sum, budgetAmount);
+            categories.put(userCategory.getName(), values);
             monthTotal = monthTotal.add(sum);
         }
 
-        total.put("sum", monthTotal);
+        total.put("sum", List.of(monthTotal));
         expensesMap.put("total", total);
         expensesMap.put("categories", categories);
 

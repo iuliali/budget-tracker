@@ -1,8 +1,10 @@
 package com.budgettracker.api.budgeting.unit.services;
 
 import com.budgettracker.api.auth.services.UserService;
+import com.budgettracker.api.budgeting.dtos.BudgetDTO;
 import com.budgettracker.api.budgeting.dtos.UserCategoryDto;
 import com.budgettracker.api.budgeting.enums.Currency;
+import com.budgettracker.api.budgeting.exceptions.BudgetNotFoundException;
 import com.budgettracker.api.budgeting.exceptions.GivenDateIsInTheFutureException;
 import com.budgettracker.api.budgeting.exceptions.InvalidMonthFormatException;
 import com.budgettracker.api.budgeting.exceptions.InvalidMonthNumberException;
@@ -10,6 +12,7 @@ import com.budgettracker.api.budgeting.models.Expense;
 import com.budgettracker.api.budgeting.models.Income;
 import com.budgettracker.api.budgeting.repositories.ExpenseRepository;
 import com.budgettracker.api.budgeting.repositories.IncomeRepository;
+import com.budgettracker.api.budgeting.services.BudgetService;
 import com.budgettracker.api.budgeting.services.CurrencyService;
 import com.budgettracker.api.budgeting.services.StatisticsService;
 import com.budgettracker.api.budgeting.services.UserCategoryService;
@@ -49,6 +52,8 @@ class StatisticsServiceTest {
 
     @Mock
     private UserService userService;
+    @Mock
+    private BudgetService budgetService;
 
     @InjectMocks
     private StatisticsService statisticsService;
@@ -123,7 +128,13 @@ class StatisticsServiceTest {
         setUpExpenses(startOfMonth, endOfMonth);
         setUpExchangeRates();
 
-        Map<String, Map<String, BigDecimal>> result = statisticsService.getExpensesSumForMonth(month, currency);
+        BudgetDTO budget = new BudgetDTO();
+        budget.setUserCategoryId(BigInteger.ONE);
+        budget.setAmount(BigDecimal.valueOf(100.0));
+        when(budgetService.getActiveBudget(BigInteger.ONE)).thenReturn(budget);
+        when(budgetService.getActiveBudget(BigInteger.TWO)).thenThrow(new BudgetNotFoundException());
+
+        Map<String, Map<String, List<BigDecimal>>> result = statisticsService.getExpensesSumForMonth(month, currency);
 
         assertNotNull(result);
         assertEquals(2, result.size());
@@ -134,13 +145,16 @@ class StatisticsServiceTest {
         assertTrue(result.get("total").containsKey("sum"));
         assertTrue(result.get("categories").containsKey("Category 1"));
         assertTrue(result.get("categories").containsKey("Category 2"));
-        assertEquals(BigDecimal.valueOf(800.0), result.get("total").get("sum"));
-        assertEquals(BigDecimal.valueOf(350), result.get("categories").get("Category 1"));
-        assertEquals(BigDecimal.valueOf(450.0), result.get("categories").get("Category 2"));
+        assertEquals(BigDecimal.valueOf(800.0), result.get("total").get("sum").get(0));
+        assertEquals(BigDecimal.valueOf(350), result.get("categories").get("Category 1").get(0));
+        assertEquals(BigDecimal.valueOf(100.0), result.get("categories").get("Category 1").get(1));
+        assertEquals(BigDecimal.valueOf(450.0), result.get("categories").get("Category 2").get(0));
+        assertEquals(BigDecimal.valueOf(-1.0), result.get("categories").get("Category 2").get(1));
 
         verify(userCategoryService, times(1)).getUserCategories();
         verify(expenseRepository, times(1)).expensesByUserCategoryBetweenDates(eq(BigInteger.ONE), eq(startOfMonth), eq(endOfMonth));
         verify(expenseRepository, times(1)).expensesByUserCategoryBetweenDates(eq(BigInteger.TWO), eq(startOfMonth), eq(endOfMonth));
+        verify(budgetService, times(1)).getActiveBudget(BigInteger.ONE);
     }
 
     @Test
