@@ -52,7 +52,10 @@ public class StatisticsService {
             BigDecimal sum = getExpenseSum(expenses, currency.orElseGet(userService::getDefaultCurrency));
             BigDecimal budgetAmount = BigDecimal.valueOf(-1.0);
             try {
-                budgetAmount = budgetService.getActiveBudget(userCategory.getId()).getAmount();
+                budgetAmount = budgetService.getActiveBudget(
+                        userCategory.getId(),
+                        Optional.of(currency.orElseGet(userService::getDefaultCurrency))
+                ).getAmount();
             }catch(BudgetNotFoundException ignored){}
             List<BigDecimal> values = List.of(sum, budgetAmount);
             categories.put(userCategory.getName(), values);

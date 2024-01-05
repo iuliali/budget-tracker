@@ -131,8 +131,8 @@ class StatisticsServiceTest {
         BudgetDTO budget = new BudgetDTO();
         budget.setUserCategoryId(BigInteger.ONE);
         budget.setAmount(BigDecimal.valueOf(100.0));
-        when(budgetService.getActiveBudget(BigInteger.ONE)).thenReturn(budget);
-        when(budgetService.getActiveBudget(BigInteger.TWO)).thenThrow(new BudgetNotFoundException());
+        when(budgetService.getActiveBudget(BigInteger.ONE, Optional.of(Currency.RON))).thenReturn(budget);
+        when(budgetService.getActiveBudget(BigInteger.TWO, Optional.of(Currency.RON))).thenThrow(new BudgetNotFoundException());
 
         Map<String, Map<String, List<BigDecimal>>> result = statisticsService.getExpensesSumForMonth(month, currency);
 
@@ -154,7 +154,7 @@ class StatisticsServiceTest {
         verify(userCategoryService, times(1)).getUserCategories();
         verify(expenseRepository, times(1)).expensesByUserCategoryBetweenDates(eq(BigInteger.ONE), eq(startOfMonth), eq(endOfMonth));
         verify(expenseRepository, times(1)).expensesByUserCategoryBetweenDates(eq(BigInteger.TWO), eq(startOfMonth), eq(endOfMonth));
-        verify(budgetService, times(1)).getActiveBudget(BigInteger.ONE);
+        verify(budgetService, times(1)).getActiveBudget(BigInteger.ONE, Optional.of(Currency.RON));
     }
 
     @Test

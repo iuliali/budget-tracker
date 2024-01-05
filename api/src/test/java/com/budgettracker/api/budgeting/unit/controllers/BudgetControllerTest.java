@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.math.BigInteger;
 import java.util.Collections;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -48,13 +49,13 @@ class BudgetControllerTest {
     void getActiveBudget_ValidUserCategoryId_ReturnsOkResponse() {
         BigInteger userCategoryId = BigInteger.valueOf(123);
         BudgetDTO returnedBudget = new BudgetDTO();
-        when(budgetService.getActiveBudget(eq(userCategoryId))).thenReturn(returnedBudget);
+        when(budgetService.getActiveBudget(eq(userCategoryId), eq(Optional.empty()))).thenReturn(returnedBudget);
 
-        ResponseEntity<?> response = budgetController.getActiveBudget(userCategoryId);
+        ResponseEntity<?> response = budgetController.getActiveBudget(userCategoryId, Optional.empty());
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(Collections.singletonMap("budget", returnedBudget), response.getBody());
-        verify(budgetService, times(1)).getActiveBudget(userCategoryId);
+        verify(budgetService, times(1)).getActiveBudget(userCategoryId, Optional.empty());
     }
 
     @Test

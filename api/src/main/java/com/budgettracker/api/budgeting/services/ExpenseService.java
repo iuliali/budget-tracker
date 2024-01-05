@@ -5,6 +5,7 @@ import com.budgettracker.api.auth.services.UserService;
 import com.budgettracker.api.budgeting.dtos.BudgetDTO;
 import com.budgettracker.api.budgeting.dtos.ExpenseDto;
 import com.budgettracker.api.budgeting.dtos.NewExpenseDto;
+import com.budgettracker.api.budgeting.enums.Currency;
 import com.budgettracker.api.budgeting.exceptions.BudgetNotFoundException;
 import com.budgettracker.api.budgeting.exceptions.ExpenseNotFoundException;
 import com.budgettracker.api.budgeting.exceptions.NoUserCategoryForExpenseException;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -31,6 +33,8 @@ public class ExpenseService {
     private final UserService userService;
     private final BudgetService budgetService;
     private final AuthenticationFacade authenticationFacade;
+    private final StatisticsService statisticsService;
+    private final CurrencyService currencyService;
 
     public ExpenseDto getExpenseById(BigInteger id) {
         return new ExpenseDto(expenseRepository.findById(id).orElseThrow(
@@ -38,23 +42,24 @@ public class ExpenseService {
         ));
     }
 
-    public boolean checkIfNewExpenseIsOverBudget(BigDecimal newExpenseAmount, BigInteger userCategoryId){
+    public boolean checkIfNewExpenseIsOverBudget(BigDecimal newExpenseAmount, Currency currency, BigInteger userCategoryId){
         BudgetDTO budget;
         BigDecimal currentAmount;
         try {
-            budget = budgetService.getActiveBudget(userCategoryId);
+            budget = budgetService.getActiveBudget(userCategoryId, Optional.empty());
             currentAmount = budget.getAmount();
         } catch (BudgetNotFoundException exc) {
             currentAmount = new BigDecimal(Integer.MAX_VALUE);
         }
-        BigDecimal sumOfExpenses = expensesSumByUserCategoryId(userCategoryId);
+        newExpenseAmount = newExpenseAmount.multiply(currencyService.getExchange(currency, userService.getDefaultCurrency()));
+        BigDecimal sumOfExpenses = expensesSumByUserCategoryIdForCurrentMonth(userCategoryId);
         return sumOfExpenses.add(newExpenseAmount).compareTo(currentAmount) > 0;
     }
 
     public Map<String, String> createExpense(NewExpenseDto expenseDto){
 
         String warning = "No warning";
-        if (checkIfNewExpenseIsOverBudget(expenseDto.getAmount(), expenseDto.getUserCategoryId()))
+        if (checkIfNewExpenseIsOverBudget(expenseDto.getAmount(), expenseDto.getCurrency(), expenseDto.getUserCategoryId()))
             warning = "You are over budget for this category";
 
         Expense expense = addNewExpense(expenseDto);
@@ -127,10 +132,15 @@ public class ExpenseService {
         return "Expense has been deleted successfully";
     }
 
-    public BigDecimal expensesSumByUserCategoryId(BigInteger userCategoryId){
-        Optional<BigDecimal> sum = expenseRepository.expensesSumByUserCategory(userCategoryId);
-        return sum.orElseGet(() -> BigDecimal.valueOf(0));
+    public BigDecimal expensesSumByUserCategoryIdForCurrentMonth(BigInteger userCategoryId) {
+        LocalDateTime currentDate = LocalDateTime.now();
+        Optional<List<Expense>> expenses = expenseRepository.expensesByUserCategoryBetweenDates(
+                userCategoryId,
+                LocalDateTime.of(currentDate.getYear(), currentDate.getMonth(), 1, 0, 0),
+                LocalDateTime.of(currentDate.getYear(), currentDate.getMonth(), currentDate.getDayOfMonth(), 23, 59)
+        );
 
+        return statisticsService.getExpenseSum(expenses, userService.getDefaultCurrency());
     }
 
     public BigDecimal getSumOfExpenses(){
