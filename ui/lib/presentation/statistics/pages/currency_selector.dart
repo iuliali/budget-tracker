@@ -1,37 +1,38 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:budget_tracker/injection.dart';
-import 'package:budget_tracker/presentation/auth/pages/user_details_square.dart';
-import 'package:budget_tracker/presentation/core/widgets/header.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
+import '../../../injection.dart';
+import '../../auth/pages/user_details_square.dart';
 import '../../core/colors.dart';
+import '../../core/widgets/header.dart';
 
 @RoutePage()
-class UserDetailsPage extends StatefulWidget {
-  const UserDetailsPage({Key? key}) : super(key: key);
+class CurrencySelectorPage extends StatefulWidget {
+  final Function(String) setCurrency;
+  final String currentCurrency;
+  const CurrencySelectorPage({Key? key, required this.setCurrency, required this.currentCurrency}) : super(key: key);
 
   @override
-  State<UserDetailsPage> createState() => _UserDetailsPageState();
+  State<CurrencySelectorPage> createState() => _CurrencySelectorPageState();
+
 }
 
-class _UserDetailsPageState extends State<UserDetailsPage> {
+class _CurrencySelectorPageState extends State<CurrencySelectorPage>{
+
   late List currencies = [];
 
   var filteredCurrencies = [];
 
-  var currentCurrency = '';
-
-  @override
   void initState() {
-    getCurrencies().then((value) => {
-          setState(() {
-            currencies = value;
-            filteredCurrencies = value;
-          })
-        });
-    getCurrentCurrency();
+    getCurrencies().then((value) =>
+    {
+      setState(() {
+        currencies = value;
+        filteredCurrencies = value;
+      })
+    });
     super.initState();
   }
 
@@ -44,41 +45,13 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
       var currency = currencies[index];
       currencies[index] =
           currency + ' (' + response.data['currencies'][currency] + ')';
-      if (currencies[index] == currentCurrency) {
+      if (currencies[index].contains(widget.currentCurrency)) {
         var aux = currencies[0];
         currencies[0] = currencies[index];
         currencies[index] = aux;
       }
     }
     return currencies;
-  }
-
-  Future<void> getCurrentCurrency() async {
-    final client = getIt<Dio>();
-    final response = await client.get('/user/details');
-    var indexDefaultCurrency = currencies.map((e) => e.split(' ')[0])
-        .toList().indexOf(response.data['defaultCurrency']);
-    var aux = currencies[0];
-    currencies[0] = currencies[indexDefaultCurrency];
-    currencies[indexDefaultCurrency] = aux;
-    setState(() {
-      currentCurrency = response.data['defaultCurrency'];
-    });
-  }
-
-  Future<void> setCurrency(String currency) async {
-    final client = getIt<Dio>();
-    try {
-        final response = await client
-            .patch('/user/default-currency', data : {'currency' : currency.split(' ')[0]});
-        if (response.statusCode == 200) {
-          setState(() {
-            currentCurrency = currency;
-          });
-        };
-      } catch (e) {
-      print(e);
-    }
   }
 
   @override
@@ -95,7 +68,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
           const Padding(
               padding: EdgeInsets.symmetric(horizontal: 32),
               child: (HeaderWidget(
-                  title: 'User Details', subtitle: 'Set default currency'))),
+                  title: 'Currency Selector', subtitle: 'Set currency for statistics'))),
           // search bar
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
@@ -104,7 +77,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
                 // filter currencies
                 setState(() {
                   filteredCurrencies = currencies
-                      .where((element) => element.contains(value))
+                      .where((element) => element.toString().toLowerCase().contains(value.toLowerCase()))
                       .toList();
                 });
               },
@@ -122,9 +95,10 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
                 return MySquare(
                   child: filteredCurrencies[index],
                   isSelected:
-                      filteredCurrencies[index].split(' ')[0].compareTo(currentCurrency) == 0,
+                  filteredCurrencies[index].contains(widget.currentCurrency),
                   onTap: () {
-                    setCurrency(filteredCurrencies[index].split(' ')[0]);
+                    widget.setCurrency(filteredCurrencies[index].split(' ')[0]);
+                    context.router.pop();
                   },
                 );
               },
@@ -136,3 +110,4 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
     );
   }
 }
+

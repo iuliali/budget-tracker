@@ -85,6 +85,7 @@ class AuthApiDataSourceImpl implements AuthRemoteDataSource {
         'email': email,
         'firstName': firstName,
         'lastName': lastName,
+        'defaultCurrency': 'RON'
       }
     );
     return true;

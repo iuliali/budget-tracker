@@ -184,6 +184,7 @@ class _ExpenseStatisticsPageState extends State<ExpenseStatisticsPage> {
   @override
   Widget build(BuildContext context) {
 
+
     return BlocConsumer<CategoriesBloc, CategoriesState>(
       listener: (context, state) {
         state.failureOrCategories.fold(

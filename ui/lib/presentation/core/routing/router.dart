@@ -16,6 +16,7 @@ import '../../categories/pages/add_category.dart';
 import '../../categories/pages/edit_category.dart';
 import '../../budget/pages/add_budget.dart';
 import '../../budget/pages/edit_budget.dart';
+import '../../statistics/pages/currency_selector.dart';
 import '../../transactions/pages/edit_expense.dart';
 import '../../transactions/pages/edit_income.dart';
 import '../../transactions/pages/incomes.dart';
@@ -31,6 +32,7 @@ import '../../debt/pages/split_page.dart';
 import '../../statistics/pages/stats_page.dart';
 import '../../statistics/pages/expenses_stats.dart';
 import '../../statistics/pages/incomes_stats.dart';
+import '../../statistics/pages/currency_selector.dart';
 import '../splash.dart';
 
 part 'router.gr.dart';
@@ -77,6 +79,6 @@ class AppRouter extends _$AppRouter {
     AutoRoute(page: StatisticsRoute.page, path: "/statistics"),
     AutoRoute(page: ExpenseStatisticsRoute.page, path: "/statistics/expenses"),
     AutoRoute(page: IncomeStatisticsRoute.page, path: "/statistics/incomes"),
-
+    AutoRoute(page: CurrencySelectorRoute.page, path: "/statistics/currency_selector"),
   ];
 }

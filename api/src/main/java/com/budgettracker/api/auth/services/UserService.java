@@ -33,10 +33,10 @@ public class UserService {
     private final JWTService jwtService;
     private final EmailService emailService;
 
-    public String updateDefaultCurrency(String currency) {
+    public String updateDefaultCurrency(Currency currency) {
         User user = getAuthenticatedUser();
         try{
-            user.setDefaultCurrency(Currency.valueOf(currency));
+            user.setDefaultCurrency(currency);
             userRepository.save(user);
             return "Default currency updated successfully!";
         } catch (IllegalArgumentException e) {

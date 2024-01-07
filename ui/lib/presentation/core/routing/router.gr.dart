@@ -61,6 +61,17 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    CurrencySelectorRoute.name: (routeData) {
+      final args = routeData.argsAs<CurrencySelectorRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: CurrencySelectorPage(
+          key: args.key,
+          setCurrency: args.setCurrency,
+          currentCurrency: args.currentCurrency,
+        ),
+      );
+    },
     EditBudgetRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -338,6 +349,49 @@ class CategoryRouteArgs {
   @override
   String toString() {
     return 'CategoryRouteArgs{key: $key, categoryId: $categoryId}';
+  }
+}
+
+/// generated route for
+/// [CurrencySelectorPage]
+class CurrencySelectorRoute extends PageRouteInfo<CurrencySelectorRouteArgs> {
+  CurrencySelectorRoute({
+    Key? key,
+    required dynamic Function(String) setCurrency,
+    required String currentCurrency,
+    List<PageRouteInfo>? children,
+  }) : super(
+          CurrencySelectorRoute.name,
+          args: CurrencySelectorRouteArgs(
+            key: key,
+            setCurrency: setCurrency,
+            currentCurrency: currentCurrency,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'CurrencySelectorRoute';
+
+  static const PageInfo<CurrencySelectorRouteArgs> page =
+      PageInfo<CurrencySelectorRouteArgs>(name);
+}
+
+class CurrencySelectorRouteArgs {
+  const CurrencySelectorRouteArgs({
+    this.key,
+    required this.setCurrency,
+    required this.currentCurrency,
+  });
+
+  final Key? key;
+
+  final dynamic Function(String) setCurrency;
+
+  final String currentCurrency;
+
+  @override
+  String toString() {
+    return 'CurrencySelectorRouteArgs{key: $key, setCurrency: $setCurrency, currentCurrency: $currentCurrency}';
   }
 }
 
