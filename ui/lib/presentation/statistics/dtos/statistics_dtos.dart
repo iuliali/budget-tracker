@@ -38,3 +38,16 @@ class WeeklyStat {
   });
 }
 
+class MonthlyStat {
+  final String month;
+  final double amount;
+
+  const MonthlyStat({
+    required this.month,
+    required this.amount,
+  });
+  @override
+  String toString() => 'MonthlyStat(month: $month, amount: $amount)';
+}
+
+

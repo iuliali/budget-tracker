@@ -6,6 +6,7 @@ import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../../../application/categories/categories_bloc.dart';
 import '../../../domain/categories/entities/category.dart';
@@ -17,26 +18,47 @@ import '../../core/widgets/app_bar.dart';
 import '../../core/widgets/header.dart';
 import '../../core/widgets/menu.dart';
 import '../dtos/statistics_dtos.dart';
+import '../widgets/monthly_chart.dart';
 import '../widgets/pie_chart.dart';
 
 @RoutePage()
 class ExpenseStatisticsPage extends StatefulWidget {
-  const ExpenseStatisticsPage({super.key});
+  final bool yearly;
+  final String currency;
+  final DateTime selectedDate;
+  const ExpenseStatisticsPage({super.key, required this.yearly, required this.currency, required this.selectedDate});
 
   @override
   State<ExpenseStatisticsPage> createState() => _ExpenseStatisticsPageState();
 }
 
 class _ExpenseStatisticsPageState extends State<ExpenseStatisticsPage> {
-  DateTime selectedDate = DateTime.now();
   CategoryStat? selectedCategory;
   List<CategoryStat> categoryStats = [];
   List<WeeklyStat> weeklyStats = [];
+  List<MonthlyStat> monthlyStats = [];
 
+
+  String get currency => widget.currency;
+  bool get yearly => widget.yearly;
+  DateTime get selectedDate => widget.selectedDate;
+  String get timePeriod {
+    if (yearly) {
+      return "${selectedDate.year}";
+    } else {
+      return "${DateFormat('MMMM').format(selectedDate)} ${selectedDate.year}";
+    }
+  }
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   Future getWeeklyStats(Dio client) async {
+    assert(!yearly);
+    var formattedDate = DateFormat('yyyy-MM').format(selectedDate);
     final resp = await client.get(
-        '/statistics/week-expenses-by-month/${selectedDate.year}-${selectedDate.month}/{currency}');
+        '/statistics/week-expenses-by-month/${formattedDate}/${currency}');
     final data = resp.data as Map<String, dynamic>;
 
     final lastDay = DateTime(selectedDate.year, selectedDate.month + 1, 0).day;
@@ -48,37 +70,108 @@ class _ExpenseStatisticsPageState extends State<ExpenseStatisticsPage> {
         amount: double.tryParse(data.values.elementAt(index).toString()) ?? 0.0,
       ),
     );
-    setState(() {
+    if (mounted) {
+      setState(() {
       weeklyStats = list;
-    });
-
+      });
+    }
   }
 
   Future getMonthlyStats(Dio client, List<Category> categories) async {
+    var formattedDate = DateFormat('yyyy-MM').format(selectedDate);
     final resp = await client.get(
-        '/statistics/month-expenses/${selectedDate.year}-${selectedDate.month}/{currency}');
+        '/statistics/month-expenses/${formattedDate}/${currency}');
+    final data = resp.data as Map<String, dynamic>;
+    final categoryStats = data["categories"] as Map<String, dynamic>;
+    final list = List<CategoryStat>.generate(
+      categoryStats.length,
+          (index) => CategoryStat(
+            categoryName: CategoryName(categoryStats.keys.elementAt(index)),
+            budgetAmount: categoryStats.values.elementAt(index)["budget"] >= 0 ?
+            BudgetAmount.fromString(categoryStats.values.elementAt(index)["budget"].toString()) : null,
+            amount: double.tryParse(categoryStats.values.elementAt(index)["sum"].toString()) ?? 0.0,
+      ),
+    );
+    list.sort((a, b) => b.amount.compareTo(a.amount));
+    // filter out categories with 0 amount
+    list.removeWhere((element) => element.amount == 0.0);
+    if (mounted) {
+      setState(() {
+        this.categoryStats = list;
+      });
+    }
+  }
+
+  Future getYearlyStats(Dio client, List<Category> categories) async {
+    final resp = await client.get(
+        '/statistics/year-expenses/${selectedDate.year}/${currency}');
+    print(resp.data);
     final data = resp.data as Map<String, dynamic>;
     final categoryStats = data["categories"] as Map<String, dynamic>;
     final list = List<CategoryStat>.generate(
       categoryStats.length,
           (index) => CategoryStat(
         categoryName: CategoryName(categoryStats.keys.elementAt(index)),
-        budgetAmount: categories.firstWhereOrNull((element) => element.name.getOrElse("") == categoryStats.keys.elementAt(index))?.budget?.amount,
-        amount: double.tryParse(categoryStats.values.elementAt(index).toString()) ?? 0.0,
+        budgetAmount: null,
+        amount: double.tryParse(categoryStats.values.elementAt(index)["sum"].toString()) ?? 0.0,
       ),
     );
     list.sort((a, b) => b.amount.compareTo(a.amount));
     // filter out categories with 0 amount
     list.removeWhere((element) => element.amount == 0.0);
-    setState(() {
-      this.categoryStats = list;
-    });
+    if (mounted) {
+      setState(() {
+        this.categoryStats = list;
+      });
+    }
   }
+
+  int getMonthNumber(String month) {
+    switch(month) {
+      case "January": return 1;
+      case "February": return 2;
+      case "March": return 3;
+      case "April": return 4;
+      case "May": return 5;
+      case "June": return 6;
+      case "July": return 7;
+      case "August": return 8;
+      case "September": return 9;
+      case "October": return 10;
+      case "November": return 11;
+      case "December": return 12;
+      default: return 0;
+    }
+  }
+
+  Future getMonthlyStatsForYear(Dio client, List<Category> categories) async {
+    final resp = await client.get(
+        '/statistics/year-expenses/${selectedDate.year}/${currency}');
+    final data = resp.data as Map<String, dynamic>;
+    final dataMonths = data["months"] as Map<String, dynamic>;
+    final list = List<MonthlyStat>.generate(
+      dataMonths.length,
+          (index) => MonthlyStat(
+        month: DateFormat("MMMM").format(DateTime(selectedDate.year,
+            int.tryParse(dataMonths.keys.elementAt(index))!, 1)),
+        amount: double.tryParse(dataMonths.values.elementAt(index).toString()) ?? 0.0,
+      ),
+    );
+    // sort by month
+    list.sort((a, b) => getMonthNumber(a.month).compareTo(getMonthNumber(b.month)));
+
+    if (mounted) {
+      setState(() {
+        monthlyStats = list;
+      });
+    }
+  }
+
 
   Future getStats(List<Category> categories) async {
     Dio client = getIt<Dio>();
-    Future task1 = getWeeklyStats(client);
-    Future task2 = getMonthlyStats(client, categories);
+    Future task1 = !yearly ? getWeeklyStats(client): getMonthlyStatsForYear(client, categories);
+    Future task2 = !yearly ? getMonthlyStats(client, categories): getYearlyStats(client, categories);
     await Future.wait([task1, task2]);
   }
 
@@ -109,11 +202,11 @@ class _ExpenseStatisticsPageState extends State<ExpenseStatisticsPage> {
           body: SafeArea(
             child: ListView(
               children: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 32),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
                   child: HeaderWidget(
                       title: "Expenses",
-                      subtitle: "View how you spent your money!"),
+                      subtitle: "View how you spent your money!\n$timePeriod"),
                 ),
                 categoryStats.isEmpty
                     ? const SizedBox(
@@ -185,7 +278,9 @@ class _ExpenseStatisticsPageState extends State<ExpenseStatisticsPage> {
                                             });
                                           },
                                         )
-                                      : weeklyStats.isEmpty ? const SizedBox() : WeeklyChart(weeklyStats: weeklyStats),
+                                      :   !yearly && weeklyStats.isNotEmpty   ? WeeklyChart(weeklyStats: weeklyStats)     :
+                                          yearly && monthlyStats.isNotEmpty   ? MonthlyChart(monthlyStats: monthlyStats)  :
+                                          const SizedBox(),
                                 );
                               },
                               itemCount: 2,
@@ -290,4 +385,5 @@ class _ExpenseStatisticsPageState extends State<ExpenseStatisticsPage> {
       },
     );
   }
+
 }

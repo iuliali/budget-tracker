@@ -22,6 +22,7 @@ dependencies:
   ## Service locator
   get_it: ^7.2.0
   injectable: ^2.1.1
+  toggle_switch: ^2.1.0
 
   # Application
   ## Bloc state management
@@ -67,7 +68,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/

@@ -109,9 +109,15 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     ExpenseStatisticsRoute.name: (routeData) {
+      final args = routeData.argsAs<ExpenseStatisticsRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ExpenseStatisticsPage(),
+        child: ExpenseStatisticsPage(
+          key: args.key,
+          yearly: args.yearly,
+          currency: args.currency,
+          selectedDate: args.selectedDate,
+        ),
       );
     },
     ExpensesRoute.name: (routeData) {
@@ -147,9 +153,15 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     IncomeStatisticsRoute.name: (routeData) {
+      final args = routeData.argsAs<IncomeStatisticsRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const IncomeStatisticsPage(),
+        child: IncomeStatisticsPage(
+          key: args.key,
+          yearly: args.yearly,
+          currency: args.currency,
+          selectedDate: args.selectedDate,
+        ),
       );
     },
     IncomesRoute.name: (routeData) {
@@ -502,16 +514,50 @@ class ExpenseRouteArgs {
 
 /// generated route for
 /// [ExpenseStatisticsPage]
-class ExpenseStatisticsRoute extends PageRouteInfo<void> {
-  const ExpenseStatisticsRoute({List<PageRouteInfo>? children})
-      : super(
+class ExpenseStatisticsRoute extends PageRouteInfo<ExpenseStatisticsRouteArgs> {
+  ExpenseStatisticsRoute({
+    Key? key,
+    required bool yearly,
+    required String currency,
+    required DateTime selectedDate,
+    List<PageRouteInfo>? children,
+  }) : super(
           ExpenseStatisticsRoute.name,
+          args: ExpenseStatisticsRouteArgs(
+            key: key,
+            yearly: yearly,
+            currency: currency,
+            selectedDate: selectedDate,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'ExpenseStatisticsRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<ExpenseStatisticsRouteArgs> page =
+      PageInfo<ExpenseStatisticsRouteArgs>(name);
+}
+
+class ExpenseStatisticsRouteArgs {
+  const ExpenseStatisticsRouteArgs({
+    this.key,
+    required this.yearly,
+    required this.currency,
+    required this.selectedDate,
+  });
+
+  final Key? key;
+
+  final bool yearly;
+
+  final String currency;
+
+  final DateTime selectedDate;
+
+  @override
+  String toString() {
+    return 'ExpenseStatisticsRouteArgs{key: $key, yearly: $yearly, currency: $currency, selectedDate: $selectedDate}';
+  }
 }
 
 /// generated route for
@@ -618,16 +664,50 @@ class IncomeRouteArgs {
 
 /// generated route for
 /// [IncomeStatisticsPage]
-class IncomeStatisticsRoute extends PageRouteInfo<void> {
-  const IncomeStatisticsRoute({List<PageRouteInfo>? children})
-      : super(
+class IncomeStatisticsRoute extends PageRouteInfo<IncomeStatisticsRouteArgs> {
+  IncomeStatisticsRoute({
+    Key? key,
+    required bool yearly,
+    required String currency,
+    required DateTime selectedDate,
+    List<PageRouteInfo>? children,
+  }) : super(
           IncomeStatisticsRoute.name,
+          args: IncomeStatisticsRouteArgs(
+            key: key,
+            yearly: yearly,
+            currency: currency,
+            selectedDate: selectedDate,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'IncomeStatisticsRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<IncomeStatisticsRouteArgs> page =
+      PageInfo<IncomeStatisticsRouteArgs>(name);
+}
+
+class IncomeStatisticsRouteArgs {
+  const IncomeStatisticsRouteArgs({
+    this.key,
+    required this.yearly,
+    required this.currency,
+    required this.selectedDate,
+  });
+
+  final Key? key;
+
+  final bool yearly;
+
+  final String currency;
+
+  final DateTime selectedDate;
+
+  @override
+  String toString() {
+    return 'IncomeStatisticsRouteArgs{key: $key, yearly: $yearly, currency: $currency, selectedDate: $selectedDate}';
+  }
 }
 
 /// generated route for

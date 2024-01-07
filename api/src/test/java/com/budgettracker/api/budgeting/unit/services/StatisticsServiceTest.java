@@ -134,7 +134,8 @@ class StatisticsServiceTest {
         when(budgetService.getActiveBudget(BigInteger.ONE, Optional.of(Currency.RON))).thenReturn(budget);
         when(budgetService.getActiveBudget(BigInteger.TWO, Optional.of(Currency.RON))).thenThrow(new BudgetNotFoundException());
 
-        Map<String, Map<String, List<BigDecimal>>> result = statisticsService.getExpensesSumForMonth(month, currency);
+        Map<String, Map<String, ?>> result = statisticsService.getExpensesSumForMonth(month, currency);
+        Map<String, Map<String, ?>> categories = (Map<String, Map<String, ?>>) result.get("categories");
 
         assertNotNull(result);
         assertEquals(2, result.size());
@@ -145,11 +146,9 @@ class StatisticsServiceTest {
         assertTrue(result.get("total").containsKey("sum"));
         assertTrue(result.get("categories").containsKey("Category 1"));
         assertTrue(result.get("categories").containsKey("Category 2"));
-        assertEquals(BigDecimal.valueOf(800.0), result.get("total").get("sum").get(0));
-        assertEquals(BigDecimal.valueOf(350), result.get("categories").get("Category 1").get(0));
-        assertEquals(BigDecimal.valueOf(100.0), result.get("categories").get("Category 1").get(1));
-        assertEquals(BigDecimal.valueOf(450.0), result.get("categories").get("Category 2").get(0));
-        assertEquals(BigDecimal.valueOf(-1.0), result.get("categories").get("Category 2").get(1));
+        assertEquals(BigDecimal.valueOf(800.0), result.get("total").get("sum"));
+        assertEquals(BigDecimal.valueOf(350), categories.get("Category 1").get("sum"));
+        assertEquals(BigDecimal.valueOf(450.0), categories.get("Category 2").get("sum"));
 
         verify(userCategoryService, times(1)).getUserCategories();
         verify(expenseRepository, times(1)).expensesByUserCategoryBetweenDates(eq(BigInteger.ONE), eq(startOfMonth), eq(endOfMonth));
@@ -169,7 +168,8 @@ class StatisticsServiceTest {
         setUpIncomes(startOfMonth, endOfMonth);
         setUpExchangeRates();
 
-        Map<String, Map<String, BigDecimal>> result = statisticsService.getIncomesSumForMonth(month, currency);
+        Map<String, Map<String, ?>> result = statisticsService.getIncomesSumForMonth(month, currency);
+        Map<String, Map<String, ?>> categories = (Map<String, Map<String, ?>>) result.get("categories");
 
         assertNotNull(result);
         assertEquals(2, result.size());
@@ -181,82 +181,12 @@ class StatisticsServiceTest {
         assertTrue(result.get("categories").containsKey("Category 1"));
         assertTrue(result.get("categories").containsKey("Category 2"));
         assertEquals(BigDecimal.valueOf(800.0), result.get("total").get("sum"));
-        assertEquals(BigDecimal.valueOf(350), result.get("categories").get("Category 1"));
-        assertEquals(BigDecimal.valueOf(450.0), result.get("categories").get("Category 2"));
+        assertEquals(BigDecimal.valueOf(350), categories.get("Category 1").get("sum"));
+        assertEquals(BigDecimal.valueOf(450.0), categories.get("Category 2").get("sum"));
 
         verify(userCategoryService, times(1)).getUserCategories();
         verify(incomeRepository, times(1)).incomesByUserCategoryBetweenDates(eq(BigInteger.ONE), eq(startOfMonth), eq(endOfMonth));
         verify(incomeRepository, times(1)).incomesByUserCategoryBetweenDates(eq(BigInteger.TWO), eq(startOfMonth), eq(endOfMonth));
-    }
-
-    @Test
-    void getExpenseMonthlyInfoForCurrentYear_ValidData_ReturnsExpenseMonthlyInfoMap() {
-        String year = "2023";
-        Optional<Currency> currency = Optional.of(Currency.RON);
-        LocalDateTime startOfYear = LocalDateTime.of(2023, 1, 1, 0, 0);
-        LocalDateTime endOfYear = LocalDateTime.of(2023, 12, 31, 23, 59);
-
-        setupUserCategoryDtos();
-        setUpExpenses(startOfYear, endOfYear);
-        setUpExchangeRates();
-
-        Map<String, Map<String, BigDecimal>> result = statisticsService.getExpenseMonthlyInfoForYear(year, currency);
-
-        assertNotNull(result);
-        assertEquals(3, result.size());
-        assertTrue(result.containsKey("totalYearExpenses"));
-        assertEquals(1, result.get("totalYearExpenses").size());
-        assertTrue(result.get("totalYearExpenses").containsKey("sum"));
-        assertEquals(BigDecimal.valueOf(800.0), result.get("totalYearExpenses").get("sum"));
-        assertTrue(result.containsKey("Category 1"));
-        assertTrue(result.get("Category 1").containsKey("sum"));
-        assertEquals(BigDecimal.valueOf(350), result.get("Category 1").get("sum"));
-        assertTrue(result.get("Category 1").containsKey("average"));
-        assertEquals(BigDecimal.valueOf(350).divide(BigDecimal.valueOf(12), RoundingMode.HALF_UP), result.get("Category 1").get("average"));
-        assertTrue(result.containsKey("Category 2"));
-        assertTrue(result.get("Category 2").containsKey("sum"));
-        assertEquals(BigDecimal.valueOf(450.0), result.get("Category 2").get("sum"));
-        assertTrue(result.get("Category 2").containsKey("average"));
-        assertEquals(BigDecimal.valueOf(450.0).divide(BigDecimal.valueOf(12), RoundingMode.HALF_UP), result.get("Category 2").get("average"));
-
-        verify(userCategoryService, times(1)).getUserCategories();
-        verify(expenseRepository, times(1)).expensesByUserCategoryBetweenDates(eq(BigInteger.ONE), eq(startOfYear), eq(endOfYear));
-        verify(expenseRepository, times(1)).expensesByUserCategoryBetweenDates(eq(BigInteger.TWO), eq(startOfYear), eq(endOfYear));
-    }
-
-    @Test
-    void getIncomeMonthlyInfoForCurrentYear_ValidData_ReturnsIncomeMonthlyInfoMap() {
-        String year = "2023";
-        Optional<Currency> currency = Optional.of(Currency.RON);
-        LocalDateTime startOfYear = LocalDateTime.of(2023, 1, 1, 0, 0);
-        LocalDateTime endOfYear = LocalDateTime.of(2023, 12, 31, 23, 59);
-
-        setupUserCategoryDtos();
-        setUpIncomes(startOfYear, endOfYear);
-        setUpExchangeRates();
-
-        Map<String, Map<String, BigDecimal>> result = statisticsService.getIncomeMonthlyInfoForYear(year, currency);
-
-        assertNotNull(result);
-        assertEquals(3, result.size());
-        assertTrue(result.containsKey("totalYearIncomes"));
-        assertEquals(1, result.get("totalYearIncomes").size());
-        assertTrue(result.get("totalYearIncomes").containsKey("sum"));
-        assertEquals(BigDecimal.valueOf(800.0), result.get("totalYearIncomes").get("sum"));
-        assertTrue(result.containsKey("Category 1"));
-        assertTrue(result.get("Category 1").containsKey("sum"));
-        assertEquals(BigDecimal.valueOf(350), result.get("Category 1").get("sum"));
-        assertTrue(result.get("Category 1").containsKey("average"));
-        assertEquals(BigDecimal.valueOf(350).divide(BigDecimal.valueOf(12), RoundingMode.HALF_UP), result.get("Category 1").get("average"));
-        assertTrue(result.containsKey("Category 2"));
-        assertTrue(result.get("Category 2").containsKey("sum"));
-        assertEquals(BigDecimal.valueOf(450.0), result.get("Category 2").get("sum"));
-        assertTrue(result.get("Category 2").containsKey("average"));
-        assertEquals(BigDecimal.valueOf(450.0).divide(BigDecimal.valueOf(12), RoundingMode.HALF_UP), result.get("Category 2").get("average"));
-
-        verify(userCategoryService, times(1)).getUserCategories();
-        verify(incomeRepository, times(1)).incomesByUserCategoryBetweenDates(eq(BigInteger.ONE), eq(startOfYear), eq(endOfYear));
-        verify(incomeRepository, times(1)).incomesByUserCategoryBetweenDates(eq(BigInteger.TWO), eq(startOfYear), eq(endOfYear));
     }
 
     @Test

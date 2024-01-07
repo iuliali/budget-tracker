@@ -35,7 +35,7 @@ class StatisticsControllerTest {
     void getExpensesSumForMonth_ShouldReturnExpenseSumForMonth() {
         String month = "2023-01";
         Optional<Currency> currency = Optional.of(Currency.RON);
-        Map<String, Map<String, List<BigDecimal>>> expectedResponse = new HashMap<>();
+        Map<String, Map<String, ?>> expectedResponse = new HashMap<>();
 
         when(statisticsService.getExpensesSumForMonth(month, currency)).thenReturn(expectedResponse);
 
@@ -51,7 +51,7 @@ class StatisticsControllerTest {
     void getIncomesSumForMonth_ShouldReturnIncomeSumForMonth() {
         String month = "2023-01";
         Optional<Currency> currency = Optional.of(Currency.RON);
-        Map<String, Map<String, BigDecimal>> expectedResponse = new HashMap<>();
+        Map<String, Map<String, ?>> expectedResponse = new HashMap<>();
 
         when(statisticsService.getIncomesSumForMonth(month, currency)).thenReturn(expectedResponse);
 
@@ -67,7 +67,7 @@ class StatisticsControllerTest {
     void getCurrentYearExpenses_ShouldReturnExpenseMonthlyInfoForCurrentYear() {
         String year = "2023";
         Optional<Currency> currency = Optional.of(Currency.RON);
-        Map<String, Map<String, BigDecimal>> expectedResponse = new HashMap<>();
+        Map<String, Map<String, ?>> expectedResponse = new HashMap<>();
 
         when(statisticsService.getExpenseMonthlyInfoForYear(year, currency)).thenReturn(expectedResponse);
 
@@ -83,7 +83,7 @@ class StatisticsControllerTest {
     void getCurrentYearIncomes_ShouldReturnIncomeMonthlyInfoForCurrentYear() {
         String year = "2023";
         Optional<Currency> currency = Optional.of(Currency.RON);
-        Map<String, Map<String, BigDecimal>> expectedResponse = new HashMap<>();
+        Map<String, Map<String, ?>> expectedResponse = new HashMap<>();
 
         when(statisticsService.getIncomeMonthlyInfoForYear(year, currency)).thenReturn(expectedResponse);
 

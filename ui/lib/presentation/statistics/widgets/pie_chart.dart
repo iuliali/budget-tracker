@@ -193,7 +193,7 @@ class PieChart extends StatelessWidget {
     required this.categoriesStats,
     required this.selectedCategory,
     required this.onTap,
-    this.normalColor = cBlackColor,
+    this.normalColor = cBlueColor,
   });
 
   @override

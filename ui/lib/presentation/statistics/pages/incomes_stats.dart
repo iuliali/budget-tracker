@@ -3,10 +3,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:budget_tracker/domain/categories/value_objects.dart';
 import 'package:budget_tracker/injection.dart';
 import 'package:card_swiper/card_swiper.dart';
-import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../../../application/categories/categories_bloc.dart';
 import '../../../domain/categories/entities/category.dart';
@@ -15,59 +15,75 @@ import '../../core/widgets/app_bar.dart';
 import '../../core/widgets/header.dart';
 import '../../core/widgets/menu.dart';
 import '../dtos/statistics_dtos.dart';
+import '../widgets/monthly_chart.dart';
 import '../widgets/pie_chart.dart';
 import '../widgets/weekly_chart.dart';
 
 @RoutePage()
 class IncomeStatisticsPage extends StatefulWidget {
-  const IncomeStatisticsPage({super.key});
+  final bool yearly;
+  final String currency;
+  final DateTime selectedDate;
+
+  const IncomeStatisticsPage({super.key, required this.yearly, required this.currency, required this.selectedDate});
 
   @override
   State<IncomeStatisticsPage> createState() => _IncomeStatisticsPageState();
 }
 
 class _IncomeStatisticsPageState extends State<IncomeStatisticsPage> {
-  DateTime selectedDate = DateTime.now();
-
   CategoryStat? selectedCategory;
   List<CategoryStat> categoryStats = [];
   List<WeeklyStat> weeklyStats = [];
+  List<MonthlyStat> monthlyStats = [];
+
+  String get currency => widget.currency;
+  bool get yearly => widget.yearly;
+  DateTime get selectedDate => widget.selectedDate;
+  String get timePeriod {
+    if (yearly) {
+      return "${selectedDate.year}";
+    } else {
+      return "${DateFormat('MMMM').format(selectedDate)} ${selectedDate.year}";
+    }
+  }
 
   Future getWeeklyStats(Dio client) async {
+    var formattedDate = DateFormat('yyyy-MM').format(selectedDate);
     final resp = await client.get(
-        '/statistics/week-incomes-by-month/${selectedDate.year}-${selectedDate.month}/{currency}');
+        '/statistics/week-incomes-by-month/${formattedDate}/${currency}');
     final data = resp.data as Map<String, dynamic>;
     final lastDay = DateTime(selectedDate.year, selectedDate.month + 1, 0).day;
     final list = List<WeeklyStat>.generate(
       data.length,
-          (index) => WeeklyStat(
-        from_date: (index*7 + 1).toString(),
-        to_date: (index*7+7 > lastDay ? lastDay : index*7+7).toString(),
-        amount: double.tryParse(data.values.elementAt(index).toString()) ?? 0.0,
-      ),
+          (index) =>
+          WeeklyStat(
+            from_date: (index * 7 + 1).toString(),
+            to_date: (index * 7 + 7 > lastDay ? lastDay : index * 7 + 7)
+                .toString(),
+            amount: double.tryParse(data.values.elementAt(index).toString()) ??
+                0.0,
+          ),
     );
-    setState(() {
-      weeklyStats = list;
-    });
+    if (mounted) {
+      setState(() {
+        weeklyStats = list;
+      });
+    }
   }
 
   Future getMonthlyStats(Dio client, List<Category> categories) async {
+    var formattedDate = DateFormat('yyyy-MM').format(selectedDate);
     final resp = await client.get(
-        '/statistics/month-incomes/${selectedDate.year}-${selectedDate.month}/{currency}');
+        '/statistics/month-incomes/${formattedDate}/${currency}');
     final data = resp.data as Map<String, dynamic>;
     final categoryStats = data["categories"] as Map<String, dynamic>;
     final list = List<CategoryStat>.generate(
       categoryStats.length,
       (index) => CategoryStat(
         categoryName: CategoryName(categoryStats.keys.elementAt(index)),
-        budgetAmount: categories
-            .firstWhereOrNull((element) =>
-                element.name == categoryStats.keys.elementAt(index))
-            ?.budget
-            ?.amount,
-        amount:
-            double.tryParse(categoryStats.values.elementAt(index).toString()) ??
-                0.0,
+        budgetAmount: null,
+        amount: double.tryParse(categoryStats.values.elementAt(index)["sum"].toString()) ?? 0.0,
       ),
     );
     list.sort((a, b) => b.amount.compareTo(a.amount));
@@ -78,10 +94,75 @@ class _IncomeStatisticsPageState extends State<IncomeStatisticsPage> {
     });
   }
 
+
+  Future getYearlyStats(Dio client, List<Category> categories) async {
+    final resp = await client.get(
+        '/statistics/year-incomes/${selectedDate.year}/${currency}');
+    final data = resp.data as Map<String, dynamic>;
+    final categoryStats = data["categories"] as Map<String, dynamic>;
+    final list = List<CategoryStat>.generate(
+      categoryStats.length,
+          (index) => CategoryStat(
+        categoryName: CategoryName(categoryStats.keys.elementAt(index)),
+        budgetAmount: null,
+        amount: double.tryParse(categoryStats.values.elementAt(index)["sum"].toString()) ?? 0.0,
+      ),
+    );
+    list.sort((a, b) => b.amount.compareTo(a.amount));
+    // filter out categories with 0 amount
+    list.removeWhere((element) => element.amount == 0.0);
+    if (mounted) {
+      setState(() {
+        this.categoryStats = list;
+      });
+    }
+  }
+
+  int getMonthNumber(String month) {
+    switch(month) {
+      case "January": return 1;
+      case "February": return 2;
+      case "March": return 3;
+      case "April": return 4;
+      case "May": return 5;
+      case "June": return 6;
+      case "July": return 7;
+      case "August": return 8;
+      case "September": return 9;
+      case "October": return 10;
+      case "November": return 11;
+      case "December": return 12;
+      default: return 0;
+    }
+  }
+
+  Future getMonthlyStatsForYear(Dio client, List<Category> categories) async {
+    final resp = await client.get(
+        '/statistics/year-incomes/${selectedDate.year}/${currency}');
+    final data = resp.data as Map<String, dynamic>;
+    final dataMonths = data["months"] as Map<String, dynamic>;
+    final list = List<MonthlyStat>.generate(
+      dataMonths.length,
+          (index) => MonthlyStat(
+        month: DateFormat("MMMM").format(DateTime(selectedDate.year,
+            int.tryParse(dataMonths.keys.elementAt(index))!, 1)),
+        amount: double.tryParse(dataMonths.values.elementAt(index).toString()) ?? 0.0,
+      ),
+    );
+    // sort by month
+    list.sort((a, b) => getMonthNumber(a.month).compareTo(getMonthNumber(b.month)));
+
+    if (mounted) {
+      setState(() {
+        this.monthlyStats = list;
+      });
+    }
+  }
+
   Future getStats(List<Category> categories) async {
     Dio client = getIt<Dio>();
-    Future task1 = getWeeklyStats(client);
-    Future task2 = getMonthlyStats(client, categories);
+    Future task1 = !yearly ? getWeeklyStats(client): getMonthlyStatsForYear(client, categories);
+    Future task2 = !yearly? getMonthlyStats(client, categories): getYearlyStats(client, categories);
     await Future.wait([task1, task2]);
   }
 
@@ -111,10 +192,10 @@ class _IncomeStatisticsPageState extends State<IncomeStatisticsPage> {
           body: SafeArea(
             child: ListView(
               children: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 32),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
                   child: HeaderWidget(
-                      title: "Incomes", subtitle: "View your incomes sources!"),
+                      title: "Incomes", subtitle: "View your incomes sources!\n$timePeriod"),
                 ),
                 categoryStats.isEmpty
                     ? const SizedBox(
@@ -187,10 +268,10 @@ class _IncomeStatisticsPageState extends State<IncomeStatisticsPage> {
                                           },
                                           normalColor: cBlueColor,
                                         )
-                                      : weeklyStats.isEmpty
-                                          ? const SizedBox()
-                                          : WeeklyChart(
-                                              weeklyStats: weeklyStats),
+                                      :
+                                        !yearly && weeklyStats.isNotEmpty ? WeeklyChart(weeklyStats: weeklyStats)     :
+                                        yearly && monthlyStats.isNotEmpty ? MonthlyChart(monthlyStats: monthlyStats)  :
+                                        const SizedBox()
                                 );
                               },
                               itemCount: 2,
