@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>[#BT-33] As a traveller, I want to set my default currency in order to have it already selected for adding expenses.</title>
+    <meta http-equiv="Content-Type" Content="application/vnd.ms-word; charset=UTF-8">
+        <style type="text/css">
+
+.tableBorder, .grid
+{
+    background-color: #fff;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tableBorder td, .grid td
+{
+    vertical-align: top;
+    padding: 2px;
+    border: 1px solid #ccc;
+}
+
+.noPadding
+{
+    padding: 0 !important;
+}
+
+h3 .subText
+{
+    font-size: 60%;
+    font-weight: normal;
+}
+
+.tabLabel
+{
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-bottom:none;
+    padding: 2px;
+    display: inline;
+}
+
+td.blank
+{
+    padding: 0;
+    margin: 0;
+}
+
+.blank td
+{
+    border: none;
+}
+
+#descriptionArea
+{
+    margin: 0;
+    padding: 2px;
+    border: 1px solid #ccc;
+}
+
+hr
+{
+    border-top:1px solid #aaa;
+}
+
+hr.fullcontent
+{
+  height: 15px;
+  padding: 10px 0;
+  background: #fff url('https://budget-tracker.atlassian.net/images/icons/hr.gif') no-repeat scroll center;
+}
+
+</style>
+
+</head>
+<body>
+
+<table class="tableBorder" cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td bgcolor="#f0f0f0" width="100%" colspan="2" valign="top">
+                            <b><a id="parent_issue_summary" href="https://budget-tracker.atlassian.net/browse/BT-21">Multi-currency support</a></b>
+                <span style="font-size: 9px">(<a id="parent_issue_key" href="https://budget-tracker.atlassian.net/browse/BT-21">BT-21</a>)</span>
+                <h3 class="formtitle"><img src="https://budget-tracker.atlassian.net/images/icons/link_out_bot.gif" width="16" height="16" />
+                        [BT-33]&nbsp;<a href="https://budget-tracker.atlassian.net/browse/BT-33">As a traveller, I want to set my default currency in order to have it already selected for adding expenses.</a>
+            <span class="subText">
+               Created: 24/Nov/23                   &nbsp;Updated: 16/Dec/23
+
+                                                    &nbsp;Resolved: 16/Dec/23
+                            </span>
+            </h3>
+        </td>
+    </tr>
+    <tr>
+        <td width="20%"><b>Status:</b></td>
+        <td width="80%">Done</td>
+    </tr>
+    <tr>
+        <td width="20%"><b>Project:</b></td>
+        <td width="80%"><a href="https://budget-tracker.atlassian.net/secure/BrowseProject.jspa?id=10000">Budget Tracker</a></td>
+    </tr>
+
+        <tr>
+            <td><b>Components:</b></td>
+            <td>
+                            None
+                </td>
+    </tr>
+    
+
+        <tr>
+            <td><b>Affects versions:</b></td>
+            <td>
+                            None
+                </td>
+    </tr>
+    
+
+        <tr>
+            <td><b>Fix versions:</b></td>
+            <td>
+                            None
+                </td>
+    </tr>
+    
+    
+            <td width="20%"><b>Parent:</b></td>
+        <td width="80%"><a href="https://budget-tracker.atlassian.net/browse/BT-21">Multi-currency support</a></td>
+    </table>
+
+<br />
+<table class="grid" cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td bgcolor="#f0f0f0" valign="top" width="20%">
+            <b>Type:</b>
+        </td>
+        <td bgcolor="#ffffff" valign="top"  width="30%" >
+            Story
+        </td>
+
+                    <td bgcolor="#f0f0f0">
+                <b>Priority:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top" nowrap>
+                Medium
+            </td>
+            </tr>
+    <tr>
+                        <td bgcolor="#f0f0f0" valign="top" width="20%">
+                <b>Reporter:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top"  width="30%" >
+                                        
+                
+        
+            <a class="user-hover" rel="70121:a103686b-e5dd-4479-b029-5853c19b3c98"
+                id="word_reporter_70121:a103686b-e5dd-4479-b029-5853c19b3c98"
+                href="https://budget-tracker.atlassian.net/secure/ViewProfile.jspa?accountId=70121%3Aa103686b-e5dd-4479-b029-5853c19b3c98">
+                    Talpalariu Iulia-Georgiana
+                </a>
+
+                            </td>
+        
+                    <td bgcolor="#f0f0f0" width="20%">
+                <b>Assignee:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top" nowrap  width="30%" >
+                                        
+                
+        
+            <a class="user-hover" rel="6405abca81de11a1adfb2750"
+                id="word_assignee_6405abca81de11a1adfb2750"
+                href="https://budget-tracker.atlassian.net/secure/ViewProfile.jspa?accountId=6405abca81de11a1adfb2750">
+                    Sabau Eduard
+                </a>
+
+                            </td>
+            </tr>
+    	<tr>
+		<td bgcolor="#f0f0f0" width="20%">
+			<b>Resolution:</b>
+		</td>
+		<td bgcolor="#ffffff" valign="top" width="30%" nowrap>
+                            Done
+                    </td>
+                    <td bgcolor="#f0f0f0" width="20%">
+                <b>Votes:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top" width="30%" nowrap>
+                0
+            </td>
+        
+    </tr>
+    
+        <tr>
+        <td bgcolor="#f0f0f0" width="20%">
+            <b>Labels:</b>
+        </td>
+        <td id="labels-10032-value" class="value" bgcolor="#ffffff" valign="top" colspan="3" nowrap>
+                            None
+                    </td>
+    </tr>
+    
+    	<tr>
+                <td bgcolor="#f0f0f0" width="20%"><b>Σ Remaining Estimate:</b></td>
+        <td bgcolor="#ffffff" valign="top" nowrap>
+                            Not Specified
+                    </td>
+        		<td bgcolor="#f0f0f0" width="20%"><b>Remaining Estimate:</b></td>
+        <td bgcolor="#ffffff" valign="top" nowrap>
+                            Not Specified
+            		</td>
+    </tr>
+    <tr>
+                <td bgcolor="#f0f0f0" width="20%"><b>Σ Time Spent:</b></td>
+        <td bgcolor="#ffffff" valign="top" nowrap>
+                            Not Specified
+                    </td>
+                <td bgcolor="#f0f0f0" width="20%"><b>Time Spent:</b></td>
+		<td bgcolor="#ffffff" valign="top" nowrap>
+                            Not Specified
+            		</td>
+	</tr>
+    <tr>
+                <td bgcolor="#f0f0f0" width="20%"><b>Σ Original Estimate:</b></td>
+        <td bgcolor="#ffffff" valign="top" nowrap>
+                            Not Specified
+                    </td>
+                <td bgcolor="#f0f0f0" width="20%"><b>Original estimate:</b></td>
+		<td bgcolor="#ffffff" valign="top" nowrap>
+                            Not Specified
+            		</td>
+    </tr>
+    
+    </table>
+
+
+
+    <br />
+
+    	<table class="grid" cellpadding="0" cellspacing="0" border="0" width="100%">
+            
+
+        
+            <tr>
+            <td bgcolor="#f0f0f0" width="20%" valign="top">
+                <b>Issue links:</b>
+            </td>
+            <td bgcolor="#ffffff" valign="top" class="noPadding">
+                <table cellpadding="0" cellspacing="0" border="0" width="100%" class="blank">
+                                            <tr>
+                            <td colspan="4" bgcolor="#f0f0f0">
+                                <b>Relates</b><br/>
+                            </td>
+                        </tr>
+                                                                <tr>
+            <td>
+                relates to
+            </td>
+            <td>
+                <a href="https://budget-tracker.atlassian.net/browse/BT-22">
+                     <strike>BT-22</strike>                 </a>
+            </td>
+            <td>
+                Set your default currency
+            </td>
+            <td>
+                Done
+            </td>
+        </tr>
+                                        </table>
+            </td>
+        </tr>
+    
+
+
+<tr><td bgcolor="#f0f0f0" width="20%" valign="top"><b>Sub-tasks:</b></td>
+    <td bgcolor="#ffffff" valign="top">
+        <table class="grid" cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tr bgcolor="#f0f0f0">
+                <td>
+                    <b>Key</b><br/>
+                </td>
+                <td>
+                    <b>Summary</b><br/>
+                </td>
+                <td>
+                    <b>Type</b><br/>
+                </td>
+                <td>
+                    <b>Status</b><br/>
+                </td>
+                <td>
+                    <b>Assignee</b><br/>
+                </td>
+            </tr>
+                            <tr>
+                    <td>
+                        <a href="https://budget-tracker.atlassian.net/browse/BT-37">BT-37</a>
+                    </td>
+                    <td valign="top" width="25%">
+                        <a href="https://budget-tracker.atlassian.net/browse/BT-37">Set default backend API</a>
+                    </td>
+                    <td>
+                        Subtask
+                    </td>
+                    <td>
+                        Done
+                    </td>
+                    <td>
+                                                     Sabau Eduard  &nbsp;
+                                            </td>
+                </tr>
+                            <tr>
+                    <td>
+                        <a href="https://budget-tracker.atlassian.net/browse/BT-38">BT-38</a>
+                    </td>
+                    <td valign="top" width="25%">
+                        <a href="https://budget-tracker.atlassian.net/browse/BT-38">Set default currency form UI</a>
+                    </td>
+                    <td>
+                        Subtask
+                    </td>
+                    <td>
+                        Done
+                    </td>
+                    <td>
+                                                     Valentin Maftei  &nbsp;
+                                            </td>
+                </tr>
+                    </table>
+    </td>
+</tr>
+
+                        <tr>
+                <td bgcolor="#f0f0f0" width="20%" valign="top"><b>Sprint:</b></td>
+                <td id="customfield_10020-10032-value" class="value" bgcolor="#ffffff" width="80%">BT Sprint 1</td>
+            </tr>
+                                <tr>
+                <td bgcolor="#f0f0f0" width="20%" valign="top"><b>Story point estimate:</b></td>
+                <td id="customfield_10016-10032-value" class="value" bgcolor="#ffffff" width="80%">    2
+</td>
+            </tr>
+                                <tr>
+                <td bgcolor="#f0f0f0" width="20%" valign="top"><b>Rank:</b></td>
+                <td id="customfield_10019-10032-value" class="value" bgcolor="#ffffff" width="80%">      0|i00069:
+  </td>
+            </tr>
+            </table>
+
+    <br/>
+
+    <table cellpadding="2" cellspacing="0" border="0" width="100%" align="center">
+    <tr>
+        <td bgcolor="#bbbbbb" width="1%" nowrap align="center">
+            &nbsp;<font color="#ffffff"><b>Description</b></font>&nbsp;
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    </table>
+
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td id="descriptionArea">
+            <p><b><em>GIVEN</em></b> <b><em>I AM LOGGED IN MY ACCOUNT,</em></b></p>
+
+<p><b><em>WHEN</em></b> <b><em>I ACCESS PAGE FOR BUDGET ACCOUNT SETTINGS,</em></b></p>
+
+<p><b><em>THEN I CAN SET THE DEFAULT CURRENCY</em></b></p>
+            <br/>
+        </td>
+    </tr>
+    </table>
+
+Generated at Mon Jan 08 07:39:26 UTC 2024 by Sabau Eduard using Jira 1001.0.0-SNAPSHOT#100244-sha1:56b96990f0778758529900a2cb33d5d1131d888f.
+
+</body>
+</html>
