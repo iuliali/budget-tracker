@@ -96,4 +96,13 @@ public class ShellCommands {
         }
         return "Categories with incomes and expenses created successfully";
     }
+
+    @ShellComponent
+    public class ShutdownCommand {
+
+        @ShellMethod(key = "shutdown", value = "Shutdown the application")
+        public void shutdown() {
+            System.exit(0);
+        }
+    }
 }
