@@ -26,10 +26,11 @@ class AddIncomePage extends StatelessWidget {
           backgroundColor: Theme.of(context).colorScheme.background,
           elevation: 0,
         ),
-        body: const SafeArea(
-          child: Padding(
-            padding: EdgeInsets.all(32),
-            child: Column(
+        body: SafeArea(
+          child: Container(
+            padding: const EdgeInsets.all(32),
+            height: MediaQuery.of(context).size.height - 100,
+            child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Spacer(),

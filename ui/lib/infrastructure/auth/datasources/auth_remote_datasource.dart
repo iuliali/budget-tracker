@@ -127,13 +127,17 @@ class AuthApiDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<UserModel> getUser() async {
-    final response = await client.get(
-      "/user/details",
-    );
-    if (response.statusCode == 200) {
+    try {
+      final response = await client.get(
+        "/user/details",
+      );
       return UserModel.fromJson(response.data);
-    } else {
-      throw AuthServerException();
+    } on DioError catch (e) {
+      if (e.response?.statusCode == 401) {
+        throw InvalidCredentialsException();
+      } else {
+        throw AuthServerException();
+      }
     }
   }
 
