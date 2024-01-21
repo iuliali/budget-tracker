@@ -17,7 +17,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1/currencies")
 @RequiredArgsConstructor
-@Secured({"ADMIN", "USER"})
 @Tag(name = "Currency Controller", description = "Get all available currencies")
 public class CurrencyController {
     private final CurrencyService currencyService;

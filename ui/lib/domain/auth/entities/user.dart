@@ -7,6 +7,7 @@ class User extends Equatable {
   final EmailAddress emailAddress;
   final FirstName firstName;
   final LastName lastName;
+  final UserDefaultCurrency defaultCurrency;
 
   const User({
     required this.id,
@@ -14,6 +15,7 @@ class User extends Equatable {
     required this.emailAddress,
     required this.firstName,
     required this.lastName,
+    required this.defaultCurrency,
   });
 
   @override

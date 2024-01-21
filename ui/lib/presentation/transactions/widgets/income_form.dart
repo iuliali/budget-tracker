@@ -99,42 +99,32 @@ class IncomeForm extends StatelessWidget {
                       const SizedBox(width: 20),
                       Flexible(
                         flex: 1,
-                        child: DropdownButtonFormField(
-                          decoration: const InputDecoration(
-                            labelText: 'Currency',
-                          ),
-                          value: income?.currency.getOrCrash() ??
-                              state.currency.value.getOrElse(() => 'RON'),
-                          onChanged: (value) => context
-                              .read<IncomeFormBloc>()
-                              .add(IncomeFormEvent.currencyChanged(
-                                  value ?? 'RON')),
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: (_) {
-                            return state.currency.value.fold(
-                                (f) => f.maybeMap(
-                                      empty: (_) =>
-                                          'Income currency cannot be empty',
-                                      invalidTransactionCurrency: (_) =>
-                                          'Income currency is invalid',
-                                      orElse: () => null,
+                        child:
+                        ElevatedButton.icon(
+                          onPressed: () {
+                            context.router.push(
+                              CurrencySelectorRoute(
+                                currentCurrency:
+                                state.currency.value.getOrElse(() => ""),
+                                setCurrency: (value) =>
+                                    context.read<IncomeFormBloc>().add(
+                                      IncomeFormEvent.currencyChanged(value),
                                     ),
-                                (_) => null);
+                              ),
+                            );
                           },
-                          items: const [
-                            DropdownMenuItem(
-                              value: 'RON',
-                              child: Text('RON'),
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 20.0),
+                            textStyle: const TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                            elevation: 1,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                            DropdownMenuItem(
-                              value: 'EUR',
-                              child: Text('EUR'),
-                            ),
-                            DropdownMenuItem(
-                              value: 'USD',
-                              child: Text('USD'),
-                            ),
-                          ],
+                          ),
+                          icon: Image.asset("assets/images/change.png"),
+                          label: Text(state.currency.value
+                              .getOrElse(() => "Select your currency")),
                         ),
                       ),
                     ],

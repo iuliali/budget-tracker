@@ -27,6 +27,7 @@ abstract class AuthRemoteDataSource {
     required String email,
     required String firstName,
     required String lastName,
+    required String defaultCurrency,
   });
 
   void addDioAuthInterceptor(AccessTokenModel accessToken);
@@ -75,6 +76,7 @@ class AuthApiDataSourceImpl implements AuthRemoteDataSource {
     required String email,
     required String firstName,
     required String lastName,
+    required String defaultCurrency,
   }) async {
     try {
       await client.post(
@@ -85,7 +87,7 @@ class AuthApiDataSourceImpl implements AuthRemoteDataSource {
         'email': email,
         'firstName': firstName,
         'lastName': lastName,
-        'defaultCurrency': 'RON'
+        'defaultCurrency': defaultCurrency,
       }
     );
     return true;

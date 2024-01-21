@@ -16,6 +16,7 @@ abstract class IAuthFacade {
     required EmailAddress email,
     required FirstName firstName,
     required LastName lastName,
+    required UserDefaultCurrency defaultCurrency,
   });
 
   Future<Option<User>> getSignedInUser();

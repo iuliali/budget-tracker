@@ -41,6 +41,7 @@ public class SecurityConfig {
             "/swagger-resources/**",
             "/swagger-ui/**",
             "/swagger-ui.html",
+            "/api/v1/currencies/all",
     };
 
     @Bean

@@ -345,11 +345,11 @@ class _StatisticsPageState extends State<StatisticsPage> {
                       child: ToggleSwitch(
                         minWidth: 90.0,
                         cornerRadius: 40.0,
-                        activeBgColors: const [
-                          [cLightBlueColor],
-                          [cLightBlueColor]
+                        activeBgColors: [
+                          [cLightBlueColor.withAlpha(60)],
+                          [cLightBlueColor.withAlpha(60)]
                         ],
-                        activeFgColor: cGreyColor,
+                        activeFgColor: cBlackColor,
                         inactiveBgColor: cWhiteGreyColor,
                         inactiveFgColor: cLightBlueColor,
                         initialLabelIndex:
