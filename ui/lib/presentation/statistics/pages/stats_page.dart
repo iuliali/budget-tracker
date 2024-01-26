@@ -113,7 +113,6 @@ class _StatisticsPageState extends State<StatisticsPage> {
     final data = resp.data as Map<String, dynamic>;
     final categoriesTotal = data["total"] as Map<String, dynamic>;
     final categoryStats = data["categories"] as Map<String, dynamic>;
-    print(categoriesTotal);
     final list = List<CategoryStat>.generate(
       categoryStats.length,
       (index) => CategoryStat(
@@ -125,15 +124,14 @@ class _StatisticsPageState extends State<StatisticsPage> {
             ?.budget
             ?.amount,
         amount:
-            double.tryParse(categoryStats.values.elementAt(index).toString()) ??
+            double.tryParse(categoryStats.values.elementAt(index)["sum"].toString()) ??
                 0.0,
       ),
     );
     setState(() {
       totalIncomeAmount =
           double.tryParse(categoriesTotal["sum"].toString()) as double;
-      categoryIncomeStatMonth = list.reduce(
-          (value, element) => value.amount > element.amount ? value : element);
+      categoryIncomeStatMonth = list.reduce((a, b) => a.amount > b.amount ? a : b);
     });
   }
 
