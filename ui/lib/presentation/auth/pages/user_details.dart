@@ -104,7 +104,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
                 // filter currencies
                 setState(() {
                   filteredCurrencies = currencies
-                      .where((element) => element.contains(value))
+                      .where((element) => element.toString().toLowerCase().contains(value.toLowerCase()))
                       .toList();
                 });
               },

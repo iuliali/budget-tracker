@@ -36,7 +36,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
   var selectedMonth = DateTime.now();
   var selectedYear = DateTime.now();
   var timeFrame = TimeFrame.monthly;
-  var currency = "RON"; // TODO: get from user DETAILS
+  var currency = '';
   var inFuture = false;
 
   double totalSpentAmount = 0;
@@ -52,7 +52,6 @@ class _StatisticsPageState extends State<StatisticsPage> {
   get yearly => timeFrame == TimeFrame.yearly;
 
   Future getMonthlyTotalExpenses(Dio client, List<Category> categories) async {
-    print(currency);
     assert(timeFrame == TimeFrame.monthly);
     var formattedDate = DateFormat('yyyy-MM').format(selectedMonth);
     String path = '/statistics/month-expenses/${formattedDate}/${currency}';
@@ -84,8 +83,8 @@ class _StatisticsPageState extends State<StatisticsPage> {
 
   Future getYearlyTotalExpenses(Dio client, List<Category> categories) async {
     assert(timeFrame == TimeFrame.yearly);
-    String path = '/statistics/year-expenses/${selectedYear.year}/${currency}';
-    final resp = await client.get(path);
+    final resp = await client
+        .get('/statistics/year-expenses/${selectedYear.year}/${currency}');
     final data = resp.data as Map<String, dynamic>;
     final categoriesTotal = data["total"] as Map<String, dynamic>;
     final categoryStats = data["categories"] as Map<String, dynamic>;
@@ -109,7 +108,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
   Future getMonthlyTotalIncomes(Dio client, List<Category> categories) async {
     var formattedDate = DateFormat('yyyy-MM').format(selectedMonth);
     final resp = await client
-        .get('/statistics/month-incomes/${formattedDate}/{currency}', queryParameters: {"currency": currency});
+        .get('/statistics/month-incomes/${formattedDate}/${currency}');
     final data = resp.data as Map<String, dynamic>;
     final categoriesTotal = data["total"] as Map<String, dynamic>;
     final categoryStats = data["categories"] as Map<String, dynamic>;
@@ -204,9 +203,18 @@ class _StatisticsPageState extends State<StatisticsPage> {
     getStats();
   }
 
+  Future<void> getCurrentCurrency() async {
+    final client = getIt<Dio>();
+    final response = await client.get('/user/details');
+    setState(() {
+      currency = response.data['defaultCurrency'];
+    });
+  }
+
   @override
   void initState() {
     super.initState();
+    getCurrentCurrency();
     context.read<CategoriesBloc>().add(const CategoriesEvent.fetch());
   }
 
