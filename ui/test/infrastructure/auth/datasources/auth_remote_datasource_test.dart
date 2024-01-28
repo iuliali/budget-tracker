@@ -155,6 +155,7 @@ void main() {
           email: tEmail,
           firstName: tFirstName,
           lastName: tLastName,
+          defaultCurrency: "USD",
         );
         // assert
         verify(
@@ -184,6 +185,7 @@ void main() {
           email: tEmail,
           firstName: tFirstName,
           lastName: tLastName,
+          defaultCurrency: "USD",
         );
         // assert
         expect(result, equals(true));
@@ -205,6 +207,7 @@ void main() {
             email: tEmail,
             firstName: tFirstName,
             lastName: tLastName,
+            defaultCurrency: "USD",
           ),
           throwsA(isA<EmailAlreadyUsedException>()),
         );
@@ -226,6 +229,7 @@ void main() {
             email: tEmail,
             firstName: tFirstName,
             lastName: tLastName,
+            defaultCurrency: "USD",
           ),
           throwsA(isA<UsernameAlreadyUsedException>()),
         );
@@ -247,6 +251,7 @@ void main() {
             email: tEmail,
             firstName: tFirstName,
             lastName: tLastName,
+            defaultCurrency: "USD",
           ),
           throwsA(isA<AuthServerException>()),
         );

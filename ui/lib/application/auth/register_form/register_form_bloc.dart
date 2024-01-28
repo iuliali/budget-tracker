@@ -25,6 +25,7 @@ class RegisterFormBloc extends Bloc<RegisterFormEvent, RegisterFormState> {
     on<FirstNameChanged>(_onFirstNameChanged);
     on<LastNameChanged>(_onLastNameChanged);
     on<EmailChanged>(_onEmailChanged);
+    on<DefaultCurrencyChanged>(_onDefaultCurrencyChanged);
     on<RegisterPressed>(_onRegisterPressed);
     on<RegisterAgain>(_onRegisterAgain);
   }
@@ -77,6 +78,14 @@ class RegisterFormBloc extends Bloc<RegisterFormEvent, RegisterFormState> {
     ));
   }
 
+  Future _onDefaultCurrencyChanged(
+      DefaultCurrencyChanged event, Emitter<RegisterFormState> emit) async {
+    emit(state.copyWith(
+      defaultCurrency: UserDefaultCurrency(event.defaultCurrencyStr),
+      authFailureOrSuccessOption: none(),
+    ));
+  }
+
   Future _onRegisterPressed(
       RegisterPressed event, Emitter<RegisterFormState> emit) async {
     Either<AuthFailure, Unit>? failureOrSuccess;
@@ -87,13 +96,16 @@ class RegisterFormBloc extends Bloc<RegisterFormEvent, RegisterFormState> {
     final isFirstNameValid = state.firstName.isValid();
     final isLastNameValid = state.lastName.isValid();
     final isEmailValid = state.emailAddress.isValid();
+    final isUserCurrencyValid = state.defaultCurrency.isValid();
 
     if (isUsernameValid &&
         isPasswordValid &&
         isConfirmPasswordValid &&
         isFirstNameValid &&
         isLastNameValid &&
-        isEmailValid) {
+        isEmailValid &&
+        isUserCurrencyValid
+    ) {
       emit(state.copyWith(
         isSubmitting: true,
         authFailureOrSuccessOption: none(),
@@ -105,6 +117,7 @@ class RegisterFormBloc extends Bloc<RegisterFormEvent, RegisterFormState> {
         email: state.emailAddress,
         firstName: state.firstName,
         lastName: state.lastName,
+        defaultCurrency: state.defaultCurrency,
       );
     }
 

@@ -231,6 +231,7 @@ void main() {
           email: any(named: "email"),
           firstName: any(named: "firstName"),
           lastName: any(named: "lastName"),
+          defaultCurrency: any(named: "defaultCurrency"),
         )).thenAnswer((_) async => true);
 
         // act
@@ -240,6 +241,7 @@ void main() {
           email: tEmail,
           firstName: tFirstName,
           lastName: tLastName,
+          defaultCurrency: UserDefaultCurrency("RON"),
         );
         // assert
         verify(() => mockNetworkInfo.isConnected);
@@ -257,6 +259,7 @@ void main() {
             email: any(named: "email"),
             firstName: any(named: "firstName"),
             lastName: any(named: "lastName"),
+            defaultCurrency: any(named: "defaultCurrency"),
           )).thenAnswer((_) async => true);
           // act
           final result = await repository.register(
@@ -265,6 +268,7 @@ void main() {
             email: tEmail,
             firstName: tFirstName,
             lastName: tLastName,
+            defaultCurrency: UserDefaultCurrency("RON"),
           );
           // assert
           verify(() => mockAuthRemoteDataSource.register(
@@ -273,6 +277,7 @@ void main() {
             email: tEmail.getOrCrash(),
             firstName: tFirstName.getOrCrash(),
             lastName: tLastName.getOrCrash(),
+            defaultCurrency: "RON",
           ));
           expect(result, equals(const Right(unit)));
         },
@@ -288,6 +293,7 @@ void main() {
             email: any(named: "email"),
             firstName: any(named: "firstName"),
             lastName: any(named: "lastName"),
+            defaultCurrency: any(named: "defaultCurrency"),
           )).thenThrow(AuthServerException());
           // act
           final result = await repository.register(
@@ -296,6 +302,7 @@ void main() {
             email: tEmail,
             firstName: tFirstName,
             lastName: tLastName,
+            defaultCurrency: UserDefaultCurrency("RON"),
           );
           // assert
           verify(() => mockAuthRemoteDataSource.register(
@@ -304,6 +311,7 @@ void main() {
             email: tEmail.getOrCrash(),
             firstName: tFirstName.getOrCrash(),
             lastName: tLastName.getOrCrash(),
+            defaultCurrency: "RON",
           ));
           expect(result, equals(const Left(AuthFailure.serverError())));
         },
@@ -319,6 +327,7 @@ void main() {
             email: any(named: "email"),
             firstName: any(named: "firstName"),
             lastName: any(named: "lastName"),
+            defaultCurrency: any(named: "defaultCurrency"),
           )).thenThrow(EmailAlreadyUsedException());
           // act
           final result = await repository.register(
@@ -327,6 +336,7 @@ void main() {
             email: tEmail,
             firstName: tFirstName,
             lastName: tLastName,
+            defaultCurrency: UserDefaultCurrency("RON"),
           );
           // assert
           verify(() => mockAuthRemoteDataSource.register(
@@ -335,6 +345,7 @@ void main() {
             email: tEmail.getOrCrash(),
             firstName: tFirstName.getOrCrash(),
             lastName: tLastName.getOrCrash(),
+            defaultCurrency: "RON",
           ));
           expect(result, equals(const Left(AuthFailure.emailAlreadyInUse())));
         },
@@ -350,6 +361,7 @@ void main() {
             email: any(named: "email"),
             firstName: any(named: "firstName"),
             lastName: any(named: "lastName"),
+            defaultCurrency: any(named: "defaultCurrency"),
           )).thenThrow(UsernameAlreadyUsedException());
           // act
           final result = await repository.register(
@@ -358,6 +370,7 @@ void main() {
             email: tEmail,
             firstName: tFirstName,
             lastName: tLastName,
+            defaultCurrency: UserDefaultCurrency("RON"),
           );
           // assert
           verify(() => mockAuthRemoteDataSource.register(
@@ -366,6 +379,7 @@ void main() {
             email: tEmail.getOrCrash(),
             firstName: tFirstName.getOrCrash(),
             lastName: tLastName.getOrCrash(),
+            defaultCurrency: "RON",
           ));
           expect(result, equals(const Left(AuthFailure.usernameAlreadyInUse())));
         },
@@ -383,6 +397,7 @@ void main() {
             email: tEmail,
             firstName: tFirstName,
             lastName: tLastName,
+            defaultCurrency: UserDefaultCurrency("RON"),
           );
           // assert
           verifyZeroInteractions(mockAuthRemoteDataSource);

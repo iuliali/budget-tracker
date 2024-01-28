@@ -32,8 +32,9 @@ class EditIncomePage extends StatelessWidget {
           elevation: 0,
         ),
         body: SafeArea(
-          child: Padding(
+          child: Container(
             padding: const EdgeInsets.all(32),
+            height: MediaQuery.of(context).size.height - 100,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

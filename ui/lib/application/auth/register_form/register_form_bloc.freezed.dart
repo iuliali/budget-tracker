@@ -24,6 +24,7 @@ mixin _$RegisterFormEvent {
     required TResult Function(String emailStr) emailChanged,
     required TResult Function(String firstNameStr) firstNameChanged,
     required TResult Function(String lastNameStr) lastNameChanged,
+    required TResult Function(String defaultCurrencyStr) defaultCurrencyChanged,
     required TResult Function() registerPressed,
     required TResult Function() registerAgain,
   }) =>
@@ -36,6 +37,7 @@ mixin _$RegisterFormEvent {
     TResult? Function(String emailStr)? emailChanged,
     TResult? Function(String firstNameStr)? firstNameChanged,
     TResult? Function(String lastNameStr)? lastNameChanged,
+    TResult? Function(String defaultCurrencyStr)? defaultCurrencyChanged,
     TResult? Function()? registerPressed,
     TResult? Function()? registerAgain,
   }) =>
@@ -48,6 +50,7 @@ mixin _$RegisterFormEvent {
     TResult Function(String emailStr)? emailChanged,
     TResult Function(String firstNameStr)? firstNameChanged,
     TResult Function(String lastNameStr)? lastNameChanged,
+    TResult Function(String defaultCurrencyStr)? defaultCurrencyChanged,
     TResult Function()? registerPressed,
     TResult Function()? registerAgain,
     required TResult orElse(),
@@ -62,6 +65,8 @@ mixin _$RegisterFormEvent {
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(FirstNameChanged value) firstNameChanged,
     required TResult Function(LastNameChanged value) lastNameChanged,
+    required TResult Function(DefaultCurrencyChanged value)
+        defaultCurrencyChanged,
     required TResult Function(RegisterPressed value) registerPressed,
     required TResult Function(RegisterAgain value) registerAgain,
   }) =>
@@ -74,6 +79,7 @@ mixin _$RegisterFormEvent {
     TResult? Function(EmailChanged value)? emailChanged,
     TResult? Function(FirstNameChanged value)? firstNameChanged,
     TResult? Function(LastNameChanged value)? lastNameChanged,
+    TResult? Function(DefaultCurrencyChanged value)? defaultCurrencyChanged,
     TResult? Function(RegisterPressed value)? registerPressed,
     TResult? Function(RegisterAgain value)? registerAgain,
   }) =>
@@ -86,6 +92,7 @@ mixin _$RegisterFormEvent {
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(FirstNameChanged value)? firstNameChanged,
     TResult Function(LastNameChanged value)? lastNameChanged,
+    TResult Function(DefaultCurrencyChanged value)? defaultCurrencyChanged,
     TResult Function(RegisterPressed value)? registerPressed,
     TResult Function(RegisterAgain value)? registerAgain,
     required TResult orElse(),
@@ -183,6 +190,7 @@ class _$UsernameChangedImpl implements UsernameChanged {
     required TResult Function(String emailStr) emailChanged,
     required TResult Function(String firstNameStr) firstNameChanged,
     required TResult Function(String lastNameStr) lastNameChanged,
+    required TResult Function(String defaultCurrencyStr) defaultCurrencyChanged,
     required TResult Function() registerPressed,
     required TResult Function() registerAgain,
   }) {
@@ -198,6 +206,7 @@ class _$UsernameChangedImpl implements UsernameChanged {
     TResult? Function(String emailStr)? emailChanged,
     TResult? Function(String firstNameStr)? firstNameChanged,
     TResult? Function(String lastNameStr)? lastNameChanged,
+    TResult? Function(String defaultCurrencyStr)? defaultCurrencyChanged,
     TResult? Function()? registerPressed,
     TResult? Function()? registerAgain,
   }) {
@@ -213,6 +222,7 @@ class _$UsernameChangedImpl implements UsernameChanged {
     TResult Function(String emailStr)? emailChanged,
     TResult Function(String firstNameStr)? firstNameChanged,
     TResult Function(String lastNameStr)? lastNameChanged,
+    TResult Function(String defaultCurrencyStr)? defaultCurrencyChanged,
     TResult Function()? registerPressed,
     TResult Function()? registerAgain,
     required TResult orElse(),
@@ -233,6 +243,8 @@ class _$UsernameChangedImpl implements UsernameChanged {
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(FirstNameChanged value) firstNameChanged,
     required TResult Function(LastNameChanged value) lastNameChanged,
+    required TResult Function(DefaultCurrencyChanged value)
+        defaultCurrencyChanged,
     required TResult Function(RegisterPressed value) registerPressed,
     required TResult Function(RegisterAgain value) registerAgain,
   }) {
@@ -248,6 +260,7 @@ class _$UsernameChangedImpl implements UsernameChanged {
     TResult? Function(EmailChanged value)? emailChanged,
     TResult? Function(FirstNameChanged value)? firstNameChanged,
     TResult? Function(LastNameChanged value)? lastNameChanged,
+    TResult? Function(DefaultCurrencyChanged value)? defaultCurrencyChanged,
     TResult? Function(RegisterPressed value)? registerPressed,
     TResult? Function(RegisterAgain value)? registerAgain,
   }) {
@@ -263,6 +276,7 @@ class _$UsernameChangedImpl implements UsernameChanged {
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(FirstNameChanged value)? firstNameChanged,
     TResult Function(LastNameChanged value)? lastNameChanged,
+    TResult Function(DefaultCurrencyChanged value)? defaultCurrencyChanged,
     TResult Function(RegisterPressed value)? registerPressed,
     TResult Function(RegisterAgain value)? registerAgain,
     required TResult orElse(),
@@ -356,6 +370,7 @@ class _$PasswordChangedImpl implements PasswordChanged {
     required TResult Function(String emailStr) emailChanged,
     required TResult Function(String firstNameStr) firstNameChanged,
     required TResult Function(String lastNameStr) lastNameChanged,
+    required TResult Function(String defaultCurrencyStr) defaultCurrencyChanged,
     required TResult Function() registerPressed,
     required TResult Function() registerAgain,
   }) {
@@ -371,6 +386,7 @@ class _$PasswordChangedImpl implements PasswordChanged {
     TResult? Function(String emailStr)? emailChanged,
     TResult? Function(String firstNameStr)? firstNameChanged,
     TResult? Function(String lastNameStr)? lastNameChanged,
+    TResult? Function(String defaultCurrencyStr)? defaultCurrencyChanged,
     TResult? Function()? registerPressed,
     TResult? Function()? registerAgain,
   }) {
@@ -386,6 +402,7 @@ class _$PasswordChangedImpl implements PasswordChanged {
     TResult Function(String emailStr)? emailChanged,
     TResult Function(String firstNameStr)? firstNameChanged,
     TResult Function(String lastNameStr)? lastNameChanged,
+    TResult Function(String defaultCurrencyStr)? defaultCurrencyChanged,
     TResult Function()? registerPressed,
     TResult Function()? registerAgain,
     required TResult orElse(),
@@ -406,6 +423,8 @@ class _$PasswordChangedImpl implements PasswordChanged {
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(FirstNameChanged value) firstNameChanged,
     required TResult Function(LastNameChanged value) lastNameChanged,
+    required TResult Function(DefaultCurrencyChanged value)
+        defaultCurrencyChanged,
     required TResult Function(RegisterPressed value) registerPressed,
     required TResult Function(RegisterAgain value) registerAgain,
   }) {
@@ -421,6 +440,7 @@ class _$PasswordChangedImpl implements PasswordChanged {
     TResult? Function(EmailChanged value)? emailChanged,
     TResult? Function(FirstNameChanged value)? firstNameChanged,
     TResult? Function(LastNameChanged value)? lastNameChanged,
+    TResult? Function(DefaultCurrencyChanged value)? defaultCurrencyChanged,
     TResult? Function(RegisterPressed value)? registerPressed,
     TResult? Function(RegisterAgain value)? registerAgain,
   }) {
@@ -436,6 +456,7 @@ class _$PasswordChangedImpl implements PasswordChanged {
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(FirstNameChanged value)? firstNameChanged,
     TResult Function(LastNameChanged value)? lastNameChanged,
+    TResult Function(DefaultCurrencyChanged value)? defaultCurrencyChanged,
     TResult Function(RegisterPressed value)? registerPressed,
     TResult Function(RegisterAgain value)? registerAgain,
     required TResult orElse(),
@@ -531,6 +552,7 @@ class _$ConfirmPasswordChangedImpl implements ConfirmPasswordChanged {
     required TResult Function(String emailStr) emailChanged,
     required TResult Function(String firstNameStr) firstNameChanged,
     required TResult Function(String lastNameStr) lastNameChanged,
+    required TResult Function(String defaultCurrencyStr) defaultCurrencyChanged,
     required TResult Function() registerPressed,
     required TResult Function() registerAgain,
   }) {
@@ -546,6 +568,7 @@ class _$ConfirmPasswordChangedImpl implements ConfirmPasswordChanged {
     TResult? Function(String emailStr)? emailChanged,
     TResult? Function(String firstNameStr)? firstNameChanged,
     TResult? Function(String lastNameStr)? lastNameChanged,
+    TResult? Function(String defaultCurrencyStr)? defaultCurrencyChanged,
     TResult? Function()? registerPressed,
     TResult? Function()? registerAgain,
   }) {
@@ -561,6 +584,7 @@ class _$ConfirmPasswordChangedImpl implements ConfirmPasswordChanged {
     TResult Function(String emailStr)? emailChanged,
     TResult Function(String firstNameStr)? firstNameChanged,
     TResult Function(String lastNameStr)? lastNameChanged,
+    TResult Function(String defaultCurrencyStr)? defaultCurrencyChanged,
     TResult Function()? registerPressed,
     TResult Function()? registerAgain,
     required TResult orElse(),
@@ -581,6 +605,8 @@ class _$ConfirmPasswordChangedImpl implements ConfirmPasswordChanged {
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(FirstNameChanged value) firstNameChanged,
     required TResult Function(LastNameChanged value) lastNameChanged,
+    required TResult Function(DefaultCurrencyChanged value)
+        defaultCurrencyChanged,
     required TResult Function(RegisterPressed value) registerPressed,
     required TResult Function(RegisterAgain value) registerAgain,
   }) {
@@ -596,6 +622,7 @@ class _$ConfirmPasswordChangedImpl implements ConfirmPasswordChanged {
     TResult? Function(EmailChanged value)? emailChanged,
     TResult? Function(FirstNameChanged value)? firstNameChanged,
     TResult? Function(LastNameChanged value)? lastNameChanged,
+    TResult? Function(DefaultCurrencyChanged value)? defaultCurrencyChanged,
     TResult? Function(RegisterPressed value)? registerPressed,
     TResult? Function(RegisterAgain value)? registerAgain,
   }) {
@@ -611,6 +638,7 @@ class _$ConfirmPasswordChangedImpl implements ConfirmPasswordChanged {
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(FirstNameChanged value)? firstNameChanged,
     TResult Function(LastNameChanged value)? lastNameChanged,
+    TResult Function(DefaultCurrencyChanged value)? defaultCurrencyChanged,
     TResult Function(RegisterPressed value)? registerPressed,
     TResult Function(RegisterAgain value)? registerAgain,
     required TResult orElse(),
@@ -703,6 +731,7 @@ class _$EmailChangedImpl implements EmailChanged {
     required TResult Function(String emailStr) emailChanged,
     required TResult Function(String firstNameStr) firstNameChanged,
     required TResult Function(String lastNameStr) lastNameChanged,
+    required TResult Function(String defaultCurrencyStr) defaultCurrencyChanged,
     required TResult Function() registerPressed,
     required TResult Function() registerAgain,
   }) {
@@ -718,6 +747,7 @@ class _$EmailChangedImpl implements EmailChanged {
     TResult? Function(String emailStr)? emailChanged,
     TResult? Function(String firstNameStr)? firstNameChanged,
     TResult? Function(String lastNameStr)? lastNameChanged,
+    TResult? Function(String defaultCurrencyStr)? defaultCurrencyChanged,
     TResult? Function()? registerPressed,
     TResult? Function()? registerAgain,
   }) {
@@ -733,6 +763,7 @@ class _$EmailChangedImpl implements EmailChanged {
     TResult Function(String emailStr)? emailChanged,
     TResult Function(String firstNameStr)? firstNameChanged,
     TResult Function(String lastNameStr)? lastNameChanged,
+    TResult Function(String defaultCurrencyStr)? defaultCurrencyChanged,
     TResult Function()? registerPressed,
     TResult Function()? registerAgain,
     required TResult orElse(),
@@ -753,6 +784,8 @@ class _$EmailChangedImpl implements EmailChanged {
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(FirstNameChanged value) firstNameChanged,
     required TResult Function(LastNameChanged value) lastNameChanged,
+    required TResult Function(DefaultCurrencyChanged value)
+        defaultCurrencyChanged,
     required TResult Function(RegisterPressed value) registerPressed,
     required TResult Function(RegisterAgain value) registerAgain,
   }) {
@@ -768,6 +801,7 @@ class _$EmailChangedImpl implements EmailChanged {
     TResult? Function(EmailChanged value)? emailChanged,
     TResult? Function(FirstNameChanged value)? firstNameChanged,
     TResult? Function(LastNameChanged value)? lastNameChanged,
+    TResult? Function(DefaultCurrencyChanged value)? defaultCurrencyChanged,
     TResult? Function(RegisterPressed value)? registerPressed,
     TResult? Function(RegisterAgain value)? registerAgain,
   }) {
@@ -783,6 +817,7 @@ class _$EmailChangedImpl implements EmailChanged {
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(FirstNameChanged value)? firstNameChanged,
     TResult Function(LastNameChanged value)? lastNameChanged,
+    TResult Function(DefaultCurrencyChanged value)? defaultCurrencyChanged,
     TResult Function(RegisterPressed value)? registerPressed,
     TResult Function(RegisterAgain value)? registerAgain,
     required TResult orElse(),
@@ -875,6 +910,7 @@ class _$FirstNameChangedImpl implements FirstNameChanged {
     required TResult Function(String emailStr) emailChanged,
     required TResult Function(String firstNameStr) firstNameChanged,
     required TResult Function(String lastNameStr) lastNameChanged,
+    required TResult Function(String defaultCurrencyStr) defaultCurrencyChanged,
     required TResult Function() registerPressed,
     required TResult Function() registerAgain,
   }) {
@@ -890,6 +926,7 @@ class _$FirstNameChangedImpl implements FirstNameChanged {
     TResult? Function(String emailStr)? emailChanged,
     TResult? Function(String firstNameStr)? firstNameChanged,
     TResult? Function(String lastNameStr)? lastNameChanged,
+    TResult? Function(String defaultCurrencyStr)? defaultCurrencyChanged,
     TResult? Function()? registerPressed,
     TResult? Function()? registerAgain,
   }) {
@@ -905,6 +942,7 @@ class _$FirstNameChangedImpl implements FirstNameChanged {
     TResult Function(String emailStr)? emailChanged,
     TResult Function(String firstNameStr)? firstNameChanged,
     TResult Function(String lastNameStr)? lastNameChanged,
+    TResult Function(String defaultCurrencyStr)? defaultCurrencyChanged,
     TResult Function()? registerPressed,
     TResult Function()? registerAgain,
     required TResult orElse(),
@@ -925,6 +963,8 @@ class _$FirstNameChangedImpl implements FirstNameChanged {
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(FirstNameChanged value) firstNameChanged,
     required TResult Function(LastNameChanged value) lastNameChanged,
+    required TResult Function(DefaultCurrencyChanged value)
+        defaultCurrencyChanged,
     required TResult Function(RegisterPressed value) registerPressed,
     required TResult Function(RegisterAgain value) registerAgain,
   }) {
@@ -940,6 +980,7 @@ class _$FirstNameChangedImpl implements FirstNameChanged {
     TResult? Function(EmailChanged value)? emailChanged,
     TResult? Function(FirstNameChanged value)? firstNameChanged,
     TResult? Function(LastNameChanged value)? lastNameChanged,
+    TResult? Function(DefaultCurrencyChanged value)? defaultCurrencyChanged,
     TResult? Function(RegisterPressed value)? registerPressed,
     TResult? Function(RegisterAgain value)? registerAgain,
   }) {
@@ -955,6 +996,7 @@ class _$FirstNameChangedImpl implements FirstNameChanged {
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(FirstNameChanged value)? firstNameChanged,
     TResult Function(LastNameChanged value)? lastNameChanged,
+    TResult Function(DefaultCurrencyChanged value)? defaultCurrencyChanged,
     TResult Function(RegisterPressed value)? registerPressed,
     TResult Function(RegisterAgain value)? registerAgain,
     required TResult orElse(),
@@ -1048,6 +1090,7 @@ class _$LastNameChangedImpl implements LastNameChanged {
     required TResult Function(String emailStr) emailChanged,
     required TResult Function(String firstNameStr) firstNameChanged,
     required TResult Function(String lastNameStr) lastNameChanged,
+    required TResult Function(String defaultCurrencyStr) defaultCurrencyChanged,
     required TResult Function() registerPressed,
     required TResult Function() registerAgain,
   }) {
@@ -1063,6 +1106,7 @@ class _$LastNameChangedImpl implements LastNameChanged {
     TResult? Function(String emailStr)? emailChanged,
     TResult? Function(String firstNameStr)? firstNameChanged,
     TResult? Function(String lastNameStr)? lastNameChanged,
+    TResult? Function(String defaultCurrencyStr)? defaultCurrencyChanged,
     TResult? Function()? registerPressed,
     TResult? Function()? registerAgain,
   }) {
@@ -1078,6 +1122,7 @@ class _$LastNameChangedImpl implements LastNameChanged {
     TResult Function(String emailStr)? emailChanged,
     TResult Function(String firstNameStr)? firstNameChanged,
     TResult Function(String lastNameStr)? lastNameChanged,
+    TResult Function(String defaultCurrencyStr)? defaultCurrencyChanged,
     TResult Function()? registerPressed,
     TResult Function()? registerAgain,
     required TResult orElse(),
@@ -1098,6 +1143,8 @@ class _$LastNameChangedImpl implements LastNameChanged {
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(FirstNameChanged value) firstNameChanged,
     required TResult Function(LastNameChanged value) lastNameChanged,
+    required TResult Function(DefaultCurrencyChanged value)
+        defaultCurrencyChanged,
     required TResult Function(RegisterPressed value) registerPressed,
     required TResult Function(RegisterAgain value) registerAgain,
   }) {
@@ -1113,6 +1160,7 @@ class _$LastNameChangedImpl implements LastNameChanged {
     TResult? Function(EmailChanged value)? emailChanged,
     TResult? Function(FirstNameChanged value)? firstNameChanged,
     TResult? Function(LastNameChanged value)? lastNameChanged,
+    TResult? Function(DefaultCurrencyChanged value)? defaultCurrencyChanged,
     TResult? Function(RegisterPressed value)? registerPressed,
     TResult? Function(RegisterAgain value)? registerAgain,
   }) {
@@ -1128,6 +1176,7 @@ class _$LastNameChangedImpl implements LastNameChanged {
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(FirstNameChanged value)? firstNameChanged,
     TResult Function(LastNameChanged value)? lastNameChanged,
+    TResult Function(DefaultCurrencyChanged value)? defaultCurrencyChanged,
     TResult Function(RegisterPressed value)? registerPressed,
     TResult Function(RegisterAgain value)? registerAgain,
     required TResult orElse(),
@@ -1147,6 +1196,188 @@ abstract class LastNameChanged implements RegisterFormEvent {
   @JsonKey(ignore: true)
   _$$LastNameChangedImplCopyWith<_$LastNameChangedImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DefaultCurrencyChangedImplCopyWith<$Res> {
+  factory _$$DefaultCurrencyChangedImplCopyWith(
+          _$DefaultCurrencyChangedImpl value,
+          $Res Function(_$DefaultCurrencyChangedImpl) then) =
+      __$$DefaultCurrencyChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String defaultCurrencyStr});
+}
+
+/// @nodoc
+class __$$DefaultCurrencyChangedImplCopyWithImpl<$Res>
+    extends _$RegisterFormEventCopyWithImpl<$Res, _$DefaultCurrencyChangedImpl>
+    implements _$$DefaultCurrencyChangedImplCopyWith<$Res> {
+  __$$DefaultCurrencyChangedImplCopyWithImpl(
+      _$DefaultCurrencyChangedImpl _value,
+      $Res Function(_$DefaultCurrencyChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? defaultCurrencyStr = null,
+  }) {
+    return _then(_$DefaultCurrencyChangedImpl(
+      null == defaultCurrencyStr
+          ? _value.defaultCurrencyStr
+          : defaultCurrencyStr // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DefaultCurrencyChangedImpl implements DefaultCurrencyChanged {
+  const _$DefaultCurrencyChangedImpl(this.defaultCurrencyStr);
+
+  @override
+  final String defaultCurrencyStr;
+
+  @override
+  String toString() {
+    return 'RegisterFormEvent.defaultCurrencyChanged(defaultCurrencyStr: $defaultCurrencyStr)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DefaultCurrencyChangedImpl &&
+            (identical(other.defaultCurrencyStr, defaultCurrencyStr) ||
+                other.defaultCurrencyStr == defaultCurrencyStr));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, defaultCurrencyStr);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DefaultCurrencyChangedImplCopyWith<_$DefaultCurrencyChangedImpl>
+      get copyWith => __$$DefaultCurrencyChangedImplCopyWithImpl<
+          _$DefaultCurrencyChangedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String usernameStr) usernameChanged,
+    required TResult Function(String passwordStr) passwordChanged,
+    required TResult Function(String confirmPasswordStr) confirmPasswordChanged,
+    required TResult Function(String emailStr) emailChanged,
+    required TResult Function(String firstNameStr) firstNameChanged,
+    required TResult Function(String lastNameStr) lastNameChanged,
+    required TResult Function(String defaultCurrencyStr) defaultCurrencyChanged,
+    required TResult Function() registerPressed,
+    required TResult Function() registerAgain,
+  }) {
+    return defaultCurrencyChanged(defaultCurrencyStr);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String usernameStr)? usernameChanged,
+    TResult? Function(String passwordStr)? passwordChanged,
+    TResult? Function(String confirmPasswordStr)? confirmPasswordChanged,
+    TResult? Function(String emailStr)? emailChanged,
+    TResult? Function(String firstNameStr)? firstNameChanged,
+    TResult? Function(String lastNameStr)? lastNameChanged,
+    TResult? Function(String defaultCurrencyStr)? defaultCurrencyChanged,
+    TResult? Function()? registerPressed,
+    TResult? Function()? registerAgain,
+  }) {
+    return defaultCurrencyChanged?.call(defaultCurrencyStr);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String usernameStr)? usernameChanged,
+    TResult Function(String passwordStr)? passwordChanged,
+    TResult Function(String confirmPasswordStr)? confirmPasswordChanged,
+    TResult Function(String emailStr)? emailChanged,
+    TResult Function(String firstNameStr)? firstNameChanged,
+    TResult Function(String lastNameStr)? lastNameChanged,
+    TResult Function(String defaultCurrencyStr)? defaultCurrencyChanged,
+    TResult Function()? registerPressed,
+    TResult Function()? registerAgain,
+    required TResult orElse(),
+  }) {
+    if (defaultCurrencyChanged != null) {
+      return defaultCurrencyChanged(defaultCurrencyStr);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UsernameChanged value) usernameChanged,
+    required TResult Function(PasswordChanged value) passwordChanged,
+    required TResult Function(ConfirmPasswordChanged value)
+        confirmPasswordChanged,
+    required TResult Function(EmailChanged value) emailChanged,
+    required TResult Function(FirstNameChanged value) firstNameChanged,
+    required TResult Function(LastNameChanged value) lastNameChanged,
+    required TResult Function(DefaultCurrencyChanged value)
+        defaultCurrencyChanged,
+    required TResult Function(RegisterPressed value) registerPressed,
+    required TResult Function(RegisterAgain value) registerAgain,
+  }) {
+    return defaultCurrencyChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UsernameChanged value)? usernameChanged,
+    TResult? Function(PasswordChanged value)? passwordChanged,
+    TResult? Function(ConfirmPasswordChanged value)? confirmPasswordChanged,
+    TResult? Function(EmailChanged value)? emailChanged,
+    TResult? Function(FirstNameChanged value)? firstNameChanged,
+    TResult? Function(LastNameChanged value)? lastNameChanged,
+    TResult? Function(DefaultCurrencyChanged value)? defaultCurrencyChanged,
+    TResult? Function(RegisterPressed value)? registerPressed,
+    TResult? Function(RegisterAgain value)? registerAgain,
+  }) {
+    return defaultCurrencyChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UsernameChanged value)? usernameChanged,
+    TResult Function(PasswordChanged value)? passwordChanged,
+    TResult Function(ConfirmPasswordChanged value)? confirmPasswordChanged,
+    TResult Function(EmailChanged value)? emailChanged,
+    TResult Function(FirstNameChanged value)? firstNameChanged,
+    TResult Function(LastNameChanged value)? lastNameChanged,
+    TResult Function(DefaultCurrencyChanged value)? defaultCurrencyChanged,
+    TResult Function(RegisterPressed value)? registerPressed,
+    TResult Function(RegisterAgain value)? registerAgain,
+    required TResult orElse(),
+  }) {
+    if (defaultCurrencyChanged != null) {
+      return defaultCurrencyChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DefaultCurrencyChanged implements RegisterFormEvent {
+  const factory DefaultCurrencyChanged(final String defaultCurrencyStr) =
+      _$DefaultCurrencyChangedImpl;
+
+  String get defaultCurrencyStr;
+  @JsonKey(ignore: true)
+  _$$DefaultCurrencyChangedImplCopyWith<_$DefaultCurrencyChangedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1193,6 +1424,7 @@ class _$RegisterPressedImpl implements RegisterPressed {
     required TResult Function(String emailStr) emailChanged,
     required TResult Function(String firstNameStr) firstNameChanged,
     required TResult Function(String lastNameStr) lastNameChanged,
+    required TResult Function(String defaultCurrencyStr) defaultCurrencyChanged,
     required TResult Function() registerPressed,
     required TResult Function() registerAgain,
   }) {
@@ -1208,6 +1440,7 @@ class _$RegisterPressedImpl implements RegisterPressed {
     TResult? Function(String emailStr)? emailChanged,
     TResult? Function(String firstNameStr)? firstNameChanged,
     TResult? Function(String lastNameStr)? lastNameChanged,
+    TResult? Function(String defaultCurrencyStr)? defaultCurrencyChanged,
     TResult? Function()? registerPressed,
     TResult? Function()? registerAgain,
   }) {
@@ -1223,6 +1456,7 @@ class _$RegisterPressedImpl implements RegisterPressed {
     TResult Function(String emailStr)? emailChanged,
     TResult Function(String firstNameStr)? firstNameChanged,
     TResult Function(String lastNameStr)? lastNameChanged,
+    TResult Function(String defaultCurrencyStr)? defaultCurrencyChanged,
     TResult Function()? registerPressed,
     TResult Function()? registerAgain,
     required TResult orElse(),
@@ -1243,6 +1477,8 @@ class _$RegisterPressedImpl implements RegisterPressed {
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(FirstNameChanged value) firstNameChanged,
     required TResult Function(LastNameChanged value) lastNameChanged,
+    required TResult Function(DefaultCurrencyChanged value)
+        defaultCurrencyChanged,
     required TResult Function(RegisterPressed value) registerPressed,
     required TResult Function(RegisterAgain value) registerAgain,
   }) {
@@ -1258,6 +1494,7 @@ class _$RegisterPressedImpl implements RegisterPressed {
     TResult? Function(EmailChanged value)? emailChanged,
     TResult? Function(FirstNameChanged value)? firstNameChanged,
     TResult? Function(LastNameChanged value)? lastNameChanged,
+    TResult? Function(DefaultCurrencyChanged value)? defaultCurrencyChanged,
     TResult? Function(RegisterPressed value)? registerPressed,
     TResult? Function(RegisterAgain value)? registerAgain,
   }) {
@@ -1273,6 +1510,7 @@ class _$RegisterPressedImpl implements RegisterPressed {
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(FirstNameChanged value)? firstNameChanged,
     TResult Function(LastNameChanged value)? lastNameChanged,
+    TResult Function(DefaultCurrencyChanged value)? defaultCurrencyChanged,
     TResult Function(RegisterPressed value)? registerPressed,
     TResult Function(RegisterAgain value)? registerAgain,
     required TResult orElse(),
@@ -1332,6 +1570,7 @@ class _$RegisterAgainImpl implements RegisterAgain {
     required TResult Function(String emailStr) emailChanged,
     required TResult Function(String firstNameStr) firstNameChanged,
     required TResult Function(String lastNameStr) lastNameChanged,
+    required TResult Function(String defaultCurrencyStr) defaultCurrencyChanged,
     required TResult Function() registerPressed,
     required TResult Function() registerAgain,
   }) {
@@ -1347,6 +1586,7 @@ class _$RegisterAgainImpl implements RegisterAgain {
     TResult? Function(String emailStr)? emailChanged,
     TResult? Function(String firstNameStr)? firstNameChanged,
     TResult? Function(String lastNameStr)? lastNameChanged,
+    TResult? Function(String defaultCurrencyStr)? defaultCurrencyChanged,
     TResult? Function()? registerPressed,
     TResult? Function()? registerAgain,
   }) {
@@ -1362,6 +1602,7 @@ class _$RegisterAgainImpl implements RegisterAgain {
     TResult Function(String emailStr)? emailChanged,
     TResult Function(String firstNameStr)? firstNameChanged,
     TResult Function(String lastNameStr)? lastNameChanged,
+    TResult Function(String defaultCurrencyStr)? defaultCurrencyChanged,
     TResult Function()? registerPressed,
     TResult Function()? registerAgain,
     required TResult orElse(),
@@ -1382,6 +1623,8 @@ class _$RegisterAgainImpl implements RegisterAgain {
     required TResult Function(EmailChanged value) emailChanged,
     required TResult Function(FirstNameChanged value) firstNameChanged,
     required TResult Function(LastNameChanged value) lastNameChanged,
+    required TResult Function(DefaultCurrencyChanged value)
+        defaultCurrencyChanged,
     required TResult Function(RegisterPressed value) registerPressed,
     required TResult Function(RegisterAgain value) registerAgain,
   }) {
@@ -1397,6 +1640,7 @@ class _$RegisterAgainImpl implements RegisterAgain {
     TResult? Function(EmailChanged value)? emailChanged,
     TResult? Function(FirstNameChanged value)? firstNameChanged,
     TResult? Function(LastNameChanged value)? lastNameChanged,
+    TResult? Function(DefaultCurrencyChanged value)? defaultCurrencyChanged,
     TResult? Function(RegisterPressed value)? registerPressed,
     TResult? Function(RegisterAgain value)? registerAgain,
   }) {
@@ -1412,6 +1656,7 @@ class _$RegisterAgainImpl implements RegisterAgain {
     TResult Function(EmailChanged value)? emailChanged,
     TResult Function(FirstNameChanged value)? firstNameChanged,
     TResult Function(LastNameChanged value)? lastNameChanged,
+    TResult Function(DefaultCurrencyChanged value)? defaultCurrencyChanged,
     TResult Function(RegisterPressed value)? registerPressed,
     TResult Function(RegisterAgain value)? registerAgain,
     required TResult orElse(),
@@ -1435,6 +1680,7 @@ mixin _$RegisterFormState {
   EmailAddress get emailAddress => throw _privateConstructorUsedError;
   FirstName get firstName => throw _privateConstructorUsedError;
   LastName get lastName => throw _privateConstructorUsedError;
+  UserDefaultCurrency get defaultCurrency => throw _privateConstructorUsedError;
   bool get showErrorMessages => throw _privateConstructorUsedError;
   bool get isSubmitting => throw _privateConstructorUsedError;
   Option<Either<AuthFailure, Unit>> get authFailureOrSuccessOption =>
@@ -1458,6 +1704,7 @@ abstract class $RegisterFormStateCopyWith<$Res> {
       EmailAddress emailAddress,
       FirstName firstName,
       LastName lastName,
+      UserDefaultCurrency defaultCurrency,
       bool showErrorMessages,
       bool isSubmitting,
       Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption});
@@ -1482,6 +1729,7 @@ class _$RegisterFormStateCopyWithImpl<$Res, $Val extends RegisterFormState>
     Object? emailAddress = null,
     Object? firstName = null,
     Object? lastName = null,
+    Object? defaultCurrency = null,
     Object? showErrorMessages = null,
     Object? isSubmitting = null,
     Object? authFailureOrSuccessOption = null,
@@ -1511,6 +1759,10 @@ class _$RegisterFormStateCopyWithImpl<$Res, $Val extends RegisterFormState>
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as LastName,
+      defaultCurrency: null == defaultCurrency
+          ? _value.defaultCurrency
+          : defaultCurrency // ignore: cast_nullable_to_non_nullable
+              as UserDefaultCurrency,
       showErrorMessages: null == showErrorMessages
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
@@ -1542,6 +1794,7 @@ abstract class _$$RegisterFormStateImplCopyWith<$Res>
       EmailAddress emailAddress,
       FirstName firstName,
       LastName lastName,
+      UserDefaultCurrency defaultCurrency,
       bool showErrorMessages,
       bool isSubmitting,
       Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption});
@@ -1564,6 +1817,7 @@ class __$$RegisterFormStateImplCopyWithImpl<$Res>
     Object? emailAddress = null,
     Object? firstName = null,
     Object? lastName = null,
+    Object? defaultCurrency = null,
     Object? showErrorMessages = null,
     Object? isSubmitting = null,
     Object? authFailureOrSuccessOption = null,
@@ -1593,6 +1847,10 @@ class __$$RegisterFormStateImplCopyWithImpl<$Res>
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as LastName,
+      defaultCurrency: null == defaultCurrency
+          ? _value.defaultCurrency
+          : defaultCurrency // ignore: cast_nullable_to_non_nullable
+              as UserDefaultCurrency,
       showErrorMessages: null == showErrorMessages
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
@@ -1619,6 +1877,7 @@ class _$RegisterFormStateImpl implements _RegisterFormState {
       required this.emailAddress,
       required this.firstName,
       required this.lastName,
+      required this.defaultCurrency,
       required this.showErrorMessages,
       required this.isSubmitting,
       required this.authFailureOrSuccessOption});
@@ -1636,6 +1895,8 @@ class _$RegisterFormStateImpl implements _RegisterFormState {
   @override
   final LastName lastName;
   @override
+  final UserDefaultCurrency defaultCurrency;
+  @override
   final bool showErrorMessages;
   @override
   final bool isSubmitting;
@@ -1644,7 +1905,7 @@ class _$RegisterFormStateImpl implements _RegisterFormState {
 
   @override
   String toString() {
-    return 'RegisterFormState(username: $username, password: $password, confirmPassword: $confirmPassword, emailAddress: $emailAddress, firstName: $firstName, lastName: $lastName, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, authFailureOrSuccessOption: $authFailureOrSuccessOption)';
+    return 'RegisterFormState(username: $username, password: $password, confirmPassword: $confirmPassword, emailAddress: $emailAddress, firstName: $firstName, lastName: $lastName, defaultCurrency: $defaultCurrency, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, authFailureOrSuccessOption: $authFailureOrSuccessOption)';
   }
 
   @override
@@ -1664,6 +1925,8 @@ class _$RegisterFormStateImpl implements _RegisterFormState {
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
+            (identical(other.defaultCurrency, defaultCurrency) ||
+                other.defaultCurrency == defaultCurrency) &&
             (identical(other.showErrorMessages, showErrorMessages) ||
                 other.showErrorMessages == showErrorMessages) &&
             (identical(other.isSubmitting, isSubmitting) ||
@@ -1683,6 +1946,7 @@ class _$RegisterFormStateImpl implements _RegisterFormState {
       emailAddress,
       firstName,
       lastName,
+      defaultCurrency,
       showErrorMessages,
       isSubmitting,
       authFailureOrSuccessOption);
@@ -1703,6 +1967,7 @@ abstract class _RegisterFormState implements RegisterFormState {
       required final EmailAddress emailAddress,
       required final FirstName firstName,
       required final LastName lastName,
+      required final UserDefaultCurrency defaultCurrency,
       required final bool showErrorMessages,
       required final bool isSubmitting,
       required final Option<Either<AuthFailure, Unit>>
@@ -1720,6 +1985,8 @@ abstract class _RegisterFormState implements RegisterFormState {
   FirstName get firstName;
   @override
   LastName get lastName;
+  @override
+  UserDefaultCurrency get defaultCurrency;
   @override
   bool get showErrorMessages;
   @override

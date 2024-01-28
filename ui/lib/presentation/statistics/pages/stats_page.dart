@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
+import '../../../application/auth/auth_bloc.dart';
 import '../../../application/categories/categories_bloc.dart';
 import '../../../domain/categories/entities/category.dart';
 import '../../../domain/categories/value_objects.dart';
@@ -323,7 +324,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
                           child: ElevatedButton.icon(
                             onPressed: () {
                               context.router
-                                  .push(CurrencySelectorRoute(currentCurrency: currency??'', setCurrency: (currency) {
+                                  .push(CurrencySelectorRoute(currentCurrency: currency ??'', setCurrency: (currency) {
                                 setState(() {
                                   this.currency = currency;
                                   getStats();
@@ -351,11 +352,11 @@ class _StatisticsPageState extends State<StatisticsPage> {
                       child: ToggleSwitch(
                         minWidth: 90.0,
                         cornerRadius: 40.0,
-                        activeBgColors: const [
-                          [cLightBlueColor],
-                          [cLightBlueColor]
+                        activeBgColors: [
+                          [cLightBlueColor.withAlpha(60)],
+                          [cLightBlueColor.withAlpha(60)]
                         ],
-                        activeFgColor: cGreyColor,
+                        activeFgColor: cBlackColor,
                         inactiveBgColor: cWhiteGreyColor,
                         inactiveFgColor: cLightBlueColor,
                         initialLabelIndex:
@@ -443,7 +444,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
                                               ? context.router.push(
                                                   ExpenseStatisticsRoute(
                                                       yearly: yearly,
-                                                      currency: currency,
+                                                      currency: currency ?? '',
                                                       selectedDate: yearly
                                                           ? selectedYear
                                                           : selectedMonth))
@@ -643,7 +644,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
                                               ? context.router.push(
                                                   IncomeStatisticsRoute(
                                                       yearly: yearly,
-                                                      currency: currency,
+                                                      currency: currency ?? '',
                                                       selectedDate: yearly
                                                           ? selectedYear
                                                           : selectedMonth))

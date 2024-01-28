@@ -26,18 +26,21 @@ class AddExpensePage extends StatelessWidget {
           backgroundColor: Theme.of(context).colorScheme.background,
           elevation: 0,
         ),
-        body: const SafeArea(
-          child: Padding(
-            padding: EdgeInsets.all(32),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Spacer(),
-                HeaderWidget(
-                  title: "Add Expense",
-                ),
-                ExpenseForm()
-              ],
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.all(32),
+              height: MediaQuery.of(context).size.height - 100,
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Spacer(),
+                  HeaderWidget(
+                    title: "Add Expense",
+                  ),
+                  ExpenseForm()
+                ],
+              ),
             ),
           ),
         ),

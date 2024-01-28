@@ -8,6 +8,7 @@ abstract class RegisterFormEvent with _$RegisterFormEvent {
   const factory RegisterFormEvent.emailChanged(String emailStr) = EmailChanged;
   const factory RegisterFormEvent.firstNameChanged(String firstNameStr) = FirstNameChanged;
   const factory RegisterFormEvent.lastNameChanged(String lastNameStr) = LastNameChanged;
+  const factory RegisterFormEvent.defaultCurrencyChanged(String defaultCurrencyStr) = DefaultCurrencyChanged;
   const factory RegisterFormEvent.registerPressed() = RegisterPressed;
   const factory RegisterFormEvent.registerAgain() = RegisterAgain;
 }
