@@ -90,6 +90,8 @@ class IncomeForm extends StatelessWidget {
                                           'Income amount cannot be empty',
                                       negativeTransactionAmount: (_) =>
                                           'Income amount cannot be negative',
+                                      invalidDouble: (_) =>
+                                          'Income amount is invalid',
                                       orElse: () => null,
                                     ),
                                 (_) => null);
@@ -114,7 +116,7 @@ class IncomeForm extends StatelessWidget {
                             );
                           },
                           style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 20.0),
+                            padding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 16.0),
                             textStyle: const TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
                             elevation: 1,
@@ -134,12 +136,8 @@ class IncomeForm extends StatelessWidget {
                 BlocBuilder<CategoriesBloc, CategoriesState>(
                   builder: (contextCategories, stateCategories) {
                     final currentCategoryId = state.categoryId.fold(
-                      () => stateCategories.failureOrCategories.fold(
-                        () => null,
-                        (a) => a.fold(
-                            (l) => null, (categories) => categories.first.id),
-                      ),
-                      (a) => a,
+                      () => income?.categoryId,
+                      (a) => a
                     );
                     if (currentCategoryId != null) {
                       context.read<IncomeFormBloc>().add(
@@ -151,13 +149,7 @@ class IncomeForm extends StatelessWidget {
                         labelText: 'Category',
                       ),
                       value: state.categoryId.fold(
-                          () => stateCategories.failureOrCategories.fold(
-                                () => null,
-                                (a) => a.fold(
-                                  (l) => null,
-                                  (categories) => categories.first.id,
-                                ),
-                              ),
+                          () => null,
                           (a) => a),
                       onChanged: (value) => context.read<IncomeFormBloc>().add(
                           IncomeFormEvent.categoryIdChanged(

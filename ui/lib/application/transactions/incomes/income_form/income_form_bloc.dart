@@ -58,7 +58,7 @@ class IncomeFormBloc extends Bloc<IncomeFormEvent, IncomeFormState> {
 
   void _onAmountChanged(_AmountChanged event, Emitter<IncomeFormState> emit) {
     emit(state.copyWith(
-      amount: TransactionAmount(double.parse(event.amountStr)),
+      amount: TransactionAmount.fromString(event.amountStr),
       saveFailureOrSuccessOption: none(),
     ));
   }

@@ -100,6 +100,8 @@ class ExpenseForm extends StatelessWidget {
                                           'Expense amount cannot be empty',
                                       negativeTransactionAmount: (_) =>
                                           'Expense amount cannot be negative',
+                                      invalidDouble: (_) =>
+                                          'Expense amount is invalid',
                                       orElse: () => null,
                                     ),
                                 (_) => null);
@@ -124,7 +126,7 @@ class ExpenseForm extends StatelessWidget {
                             );
                           },
                           style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 20.0),
+                            padding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 16.0),
                             textStyle: const TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
                             elevation: 1,
@@ -134,7 +136,7 @@ class ExpenseForm extends StatelessWidget {
                           ),
                           icon: Image.asset("assets/images/change.png"),
                           label: Text(state.currency.value
-                              .getOrElse(() => "Select your currency")),
+                              .getOrElse(() => ""), style: const TextStyle(fontSize: 16),),
                         ),
                       ),
                     ],
@@ -148,13 +150,7 @@ class ExpenseForm extends StatelessWidget {
                         labelText: 'Category',
                       ),
                       value: state.categoryId.fold(
-                          () => stateCategories.failureOrCategories.fold(
-                                () => null,
-                                (a) => a.fold(
-                                  (l) => null,
-                                  (categories) => categories.first.id,
-                                ),
-                              ),
+                          () => null,
                           (a) => a),
                       onChanged: (value) => context.read<ExpenseFormBloc>().add(
                           ExpenseFormEvent.categoryIdChanged(

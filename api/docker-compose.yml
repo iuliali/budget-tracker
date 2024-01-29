@@ -1,5 +1,13 @@
 services:
 
+  api:
+    build: .
+    ports:
+    - "8081:80"
+    depends_on:
+    - db
+    - mail-dev
+
   db:
     image: mysql:8
     command:
