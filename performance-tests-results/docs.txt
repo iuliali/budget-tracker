@@ -1,0 +1,2 @@
+The tests were conducted using JMeter on the Authentication and all Statistics endpoints.
+The tests were run on the machine that was also running the web app (my laptop) so results may not represent the capacity of the app very well.

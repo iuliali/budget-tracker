@@ -12,7 +12,6 @@ import com.budgettracker.api.budgeting.exceptions.UserHasNoExpensesException;
 import com.budgettracker.api.budgeting.exceptions.UserHasNoActiveCategoriesException;
 import com.budgettracker.api.budgeting.models.UserCategory;
 import com.budgettracker.api.budgeting.repositories.UserCategoryRepository;
-import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
