@@ -9,7 +9,9 @@ class SectorsPainter extends CustomPainter {
   final List<CategoryStat> categories;
   final CategoryStat? selectedCategory;
   final Function onTap;
-  SectorsPainter({
+  final String currency;
+
+  SectorsPainter(this.currency, {
     required this.context,
     required this.categories,
     required this.selectedCategory,
@@ -18,7 +20,6 @@ class SectorsPainter extends CustomPainter {
     this.leftColor = cBlueColor,
     this.normalColor = cBlackColor,
   });
-
   late Color overspentColor;
   late Color leftColor;
   late Color normalColor;
@@ -154,7 +155,7 @@ class SectorsPainter extends CustomPainter {
       text: TextSpan(
         text: selectedCategory == null
             ? "to see details"
-            : "${selectedCategory!.amount.toStringAsFixed(0) ?? ""}${selectedCategory?.budgetAmount != null ? " / ${selectedCategory!.budgetAmount?.getOrElse(0).toStringAsFixed(0)}" : ""} RON",
+            : "${selectedCategory!.amount.toStringAsFixed(0) ?? ""}${selectedCategory?.budgetAmount != null ? " / ${selectedCategory!.budgetAmount?.getOrElse(0).toStringAsFixed(0)}" : ""} ${currency}",
         style: TextStyle(
           color: selectedCategory == null || selectedCategory?.budgetAmount == null
               ? cBlackColor
@@ -188,11 +189,14 @@ class PieChart extends StatelessWidget {
   final CategoryStat? selectedCategory;
   final Function onTap;
   final Color normalColor;
+
+  final String currency;
   const PieChart({
     super.key,
     required this.categoriesStats,
     required this.selectedCategory,
     required this.onTap,
+    required this.currency,
     this.normalColor = cBlueColor,
   });
 
@@ -203,6 +207,7 @@ class PieChart extends StatelessWidget {
         builder: (context) {
           return CustomPaint(
             painter: SectorsPainter(
+              currency,
               context: context,
               categories: categoriesStats,
               selectedCategory: selectedCategory,

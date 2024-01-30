@@ -12,9 +12,14 @@ import '../../core/routing/router.dart';
 
 @RoutePage()
 class CategoryPage extends StatelessWidget {
-  const CategoryPage({Key? key, required this.categoryId}) : super(key: key);
+
+  const CategoryPage({Key? key,
+    required this.categoryId,
+    // required this.defaultCurrency
+  }) : super(key: key);
 
   final CategoryId categoryId;
+  // final String defaultCurrency;
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +123,7 @@ class CategoryPage extends StatelessWidget {
                     Text(
                       category.budget == null
                           ? "No budget set"
-                          : "${category.budget!.amount.getOrCrash()} RON",
+                          : "${category.budget!.amount.getOrCrash()}",
                       style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w600,

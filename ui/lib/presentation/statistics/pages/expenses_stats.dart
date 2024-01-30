@@ -245,7 +245,7 @@ class _ExpenseStatisticsPageState extends State<ExpenseStatisticsPage> {
                                               color: cBlackColor),
                                         ),
                                         Text(
-                                          "${categoryStats.fold<double>(0, (previousValue, element) => previousValue + element.amount).toStringAsFixed(2)} RON",
+                                          "${categoryStats.fold<double>(0, (previousValue, element) => previousValue + element.amount).toStringAsFixed(2)} ${currency}",
                                           style: const TextStyle(
                                               fontSize: 24,
                                               fontWeight: FontWeight.bold,
@@ -277,7 +277,7 @@ class _ExpenseStatisticsPageState extends State<ExpenseStatisticsPage> {
                                             setState(() {
                                               selectedCategory = category;
                                             });
-                                          },
+                                          }, currency: currency,
                                         )
                                       :   !yearly && weeklyStats.isNotEmpty   ? WeeklyChart(weeklyStats: weeklyStats)     :
                                           yearly && monthlyStats.isNotEmpty   ? MonthlyChart(monthlyStats: monthlyStats)  :
@@ -341,7 +341,7 @@ class _ExpenseStatisticsPageState extends State<ExpenseStatisticsPage> {
                                             CrossAxisAlignment.end,
                                         children: [
                                           Text(
-                                            "${categoryStat.amount} RON",
+                                            "${categoryStat.amount} ${currency}",
                                             style: const TextStyle(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.bold,

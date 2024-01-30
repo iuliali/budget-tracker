@@ -233,7 +233,7 @@ class _IncomeStatisticsPageState extends State<IncomeStatisticsPage> {
                                               color: cBlackColor),
                                         ),
                                         Text(
-                                          "${categoryStats.fold<double>(0, (previousValue, element) => previousValue + element.amount).toStringAsFixed(2)} RON",
+                                          "${categoryStats.fold<double>(0, (previousValue, element) => previousValue + element.amount).toStringAsFixed(2)} ${currency}",
                                           style: const TextStyle(
                                               fontSize: 24,
                                               fontWeight: FontWeight.bold,
@@ -267,6 +267,7 @@ class _IncomeStatisticsPageState extends State<IncomeStatisticsPage> {
                                             });
                                           },
                                           normalColor: cBlueColor,
+                                          currency: currency,
                                         )
                                       :
                                         !yearly && weeklyStats.isNotEmpty ? WeeklyChart(weeklyStats: weeklyStats)     :
@@ -331,7 +332,7 @@ class _IncomeStatisticsPageState extends State<IncomeStatisticsPage> {
                                             CrossAxisAlignment.end,
                                         children: [
                                           Text(
-                                            "${categoryStat.amount} RON",
+                                            "${categoryStat.amount} ${currency}",
                                             style: const TextStyle(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.bold,
