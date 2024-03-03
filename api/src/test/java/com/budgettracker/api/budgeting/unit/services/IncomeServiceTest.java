@@ -135,9 +135,12 @@ class IncomeServiceTest {
         BigInteger categoryId = BigInteger.valueOf(1);
         UserCategory userCategory = new UserCategory();
         List<Income> expectedIncomes = new ArrayList<>();
-        expectedIncomes.add(new Income());
-        expectedIncomes.add(new Income());
-
+        Income income1 = new Income();
+        income1.setUserCategory(userCategory);
+        Income income2 = new Income();
+        income2.setUserCategory(userCategory);
+        expectedIncomes.add(income1);
+        expectedIncomes.add(income2);
         when(userCategoryService.getUserCategoryIfExists(categoryId)).thenReturn(Optional.of(userCategory));
         when(incomeRepository.findIncomesByCategoryForUser(userCategory.getUser(), categoryId))
                 .thenReturn(Optional.of(expectedIncomes));

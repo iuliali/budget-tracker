@@ -58,7 +58,7 @@ class ExpenseFormBloc extends Bloc<ExpenseFormEvent, ExpenseFormState> {
 
   void _onAmountChanged(_AmountChanged event, Emitter<ExpenseFormState> emit) {
     emit(state.copyWith(
-      amount: TransactionAmount(double.parse(event.amountStr)),
+      amount: TransactionAmount.fromString(event.amountStr),
       saveFailureOrSuccessOption: none(),
     ));
   }

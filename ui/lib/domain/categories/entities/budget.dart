@@ -13,4 +13,5 @@ class Budget extends Equatable {
 
   @override
   List<Object?> get props => [categoryId];
+
 }

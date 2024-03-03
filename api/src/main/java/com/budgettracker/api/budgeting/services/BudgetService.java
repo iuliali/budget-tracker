@@ -1,8 +1,10 @@
 package com.budgettracker.api.budgeting.services;
 
+import com.budgettracker.api.auth.services.UserService;
 import com.budgettracker.api.budgeting.dtos.BudgetDTO;
 import com.budgettracker.api.budgeting.dtos.BudgetUpdateDTO;
 import com.budgettracker.api.budgeting.dtos.NewBudgetDTO;
+import com.budgettracker.api.budgeting.enums.Currency;
 import com.budgettracker.api.budgeting.exceptions.ActiveBudgetAlreadyExistsException;
 import com.budgettracker.api.budgeting.exceptions.BudgetNotFoundException;
 import com.budgettracker.api.budgeting.models.Budget;
@@ -14,12 +16,15 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class BudgetService {
     private final BudgetRepository budgetRepository;
     private final UserCategoryService userCategoryService;
+    private final CurrencyService currencyService;
+    private final UserService userService;
 
     protected boolean checkIfThereIsNoActiveBudgetForCategory(UserCategory userCategory) {
         return budgetRepository.findActiveByUserCategory(userCategory).isPresent();
@@ -58,11 +63,15 @@ public class BudgetService {
         return "Budget successfully updated";
     }
 
-    public BudgetDTO getActiveBudget(BigInteger userCategoryId){
+    public BudgetDTO getActiveBudget(BigInteger userCategoryId, Optional<Currency> currency){
         UserCategory userCategory = userCategoryService.getUserCategoryById(userCategoryId);
         Budget budget = budgetRepository.findActiveByUserCategory(userCategory).orElseThrow(
                 BudgetNotFoundException::new
         );
-        return new BudgetDTO(budget);
+        BudgetDTO budgetDTO = new BudgetDTO(budget);
+        currency.ifPresent(value -> budgetDTO.setAmount(
+                currencyService.getExchange(userService.getDefaultCurrency(), value).multiply(budget.getAmount()))
+        );
+        return budgetDTO;
     }
 }

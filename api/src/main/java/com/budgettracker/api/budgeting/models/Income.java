@@ -2,10 +2,12 @@ package com.budgettracker.api.budgeting.models;
 
 import com.budgettracker.api.budgeting.enums.Currency;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
@@ -28,19 +30,20 @@ public class Income {
     private UserCategory userCategory;
 
     @Column(name = "sender", nullable = false)
-    @NotBlank
-    @Pattern(regexp = "^[a-zA-Z0-9]*$")
+    @NotBlank(message = "From field cannot be blank")
+    @Pattern(regexp = "^[\\p{Alnum}\\p{Punct}\\s]*$", message = "From field must contain only letters, numbers, punctuation and spaces")
     private String from;
 
     @Column(nullable = false)
-    @NotBlank
+    @NotNull(message = "Amount field cannot be blank")
+    @Positive(message = "Amount field must be positive")
     private BigDecimal amount;
 
     @Column(nullable = false)
-    @NotBlank
+    @NotNull(message = "Currency field cannot be blank")
     private Currency currency;
 
     @Column(nullable = false)
-    @NotBlank
+    @NotNull(message = "Date field cannot be blank")
     private LocalDateTime registeredAt;
 }

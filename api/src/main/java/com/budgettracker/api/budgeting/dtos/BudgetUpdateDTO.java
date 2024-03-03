@@ -13,6 +13,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BudgetUpdateDTO {
-    @Positive(message = "Amount must be positive")
+    @Positive(message = "Amount must be positive", groups = {NewBudgetDTO.class})
     private BigDecimal amount;
 }

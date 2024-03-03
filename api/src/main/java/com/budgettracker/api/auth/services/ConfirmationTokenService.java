@@ -30,7 +30,6 @@ public class ConfirmationTokenService {
                 user
         );
         saveConfirmationToken(confirmationToken);
-        System.out.println(confirmationToken.getToken());
         return token;
     }
 

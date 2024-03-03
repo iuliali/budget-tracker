@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../core/failures.dart';
+import '../core/validators.dart';
 import '../core/value_object.dart';
 
 class UserId extends ValueObject<int> {
@@ -73,5 +74,17 @@ class LastName extends ValueObject<String> {
 
   factory LastName(String input) {
     return LastName._(validateLastName(input));
+  }
+}
+
+@immutable
+class UserDefaultCurrency extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  const UserDefaultCurrency._(this.value);
+
+  factory UserDefaultCurrency(String input) {
+    return UserDefaultCurrency._(validateStringNotEmpty(input));
   }
 }

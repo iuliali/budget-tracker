@@ -100,6 +100,8 @@ class ExpenseForm extends StatelessWidget {
                                           'Expense amount cannot be empty',
                                       negativeTransactionAmount: (_) =>
                                           'Expense amount cannot be negative',
+                                      invalidDouble: (_) =>
+                                          'Expense amount is invalid',
                                       orElse: () => null,
                                     ),
                                 (_) => null);
@@ -109,41 +111,32 @@ class ExpenseForm extends StatelessWidget {
                       const SizedBox(width: 20),
                       Flexible(
                         flex: 1,
-                        child: DropdownButtonFormField(
-                          decoration: const InputDecoration(
-                            labelText: 'Currency',
-                          ),
-                          value:
-                              expense?.currency.value.getOrElse(() => 'RON') ??
-                                  'RON',
-                          onChanged: (value) => context
-                              .read<ExpenseFormBloc>()
-                              .add(ExpenseFormEvent.currencyChanged(
-                                  value ?? 'RON')),
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: (_) {
-                            return state.currency.value.fold(
-                                (f) => f.maybeMap(
-                                      invalidTransactionCurrency: (_) =>
-                                          'Invalid currency',
-                                      orElse: () => null,
+                        child:
+                        ElevatedButton.icon(
+                          onPressed: () {
+                            context.router.push(
+                              CurrencySelectorRoute(
+                                currentCurrency:
+                                state.currency.value.getOrElse(() => ""),
+                                setCurrency: (value) =>
+                                    context.read<ExpenseFormBloc>().add(
+                                      ExpenseFormEvent.currencyChanged(value),
                                     ),
-                                (_) => null);
+                              ),
+                            );
                           },
-                          items: const [
-                            DropdownMenuItem(
-                              value: 'RON',
-                              child: Text('RON'),
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 16.0),
+                            textStyle: const TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                            elevation: 1,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                            DropdownMenuItem(
-                              value: 'EUR',
-                              child: Text('EUR'),
-                            ),
-                            DropdownMenuItem(
-                              value: 'USD',
-                              child: Text('USD'),
-                            ),
-                          ],
+                          ),
+                          icon: Image.asset("assets/images/change.png"),
+                          label: Text(state.currency.value
+                              .getOrElse(() => ""), style: const TextStyle(fontSize: 16),),
                         ),
                       ),
                     ],
@@ -157,13 +150,7 @@ class ExpenseForm extends StatelessWidget {
                         labelText: 'Category',
                       ),
                       value: state.categoryId.fold(
-                          () => stateCategories.failureOrCategories.fold(
-                                () => null,
-                                (a) => a.fold(
-                                  (l) => null,
-                                  (categories) => categories.first.id,
-                                ),
-                              ),
+                          () => null,
                           (a) => a),
                       onChanged: (value) => context.read<ExpenseFormBloc>().add(
                           ExpenseFormEvent.categoryIdChanged(

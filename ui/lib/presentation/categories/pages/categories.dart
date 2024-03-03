@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../domain/categories/entities/category.dart';
 import '../../core/routing/router.dart';
 import '../../core/widgets/app_bar.dart';
+import '../../core/widgets/bottom_bar.dart';
 import '../../core/widgets/header.dart';
 import '../../core/widgets/menu.dart';
 
@@ -18,6 +19,7 @@ class CategoriesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     BlocProvider.of<CategoriesBloc>(context).add(const CategoriesEvent.fetch());
     return Scaffold(
+      bottomNavigationBar: const BottomBar(),
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: generateAppBarWidget(context),
       drawer: const Drawer(child: MenuWidget()),
@@ -31,7 +33,6 @@ class CategoriesPage extends StatelessWidget {
       ),
       body: SafeArea(
         child: ListView(
-          shrinkWrap: true,
           children: <Widget>[
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 32),
@@ -76,6 +77,7 @@ class CategoriesPage extends StatelessWidget {
                 }
                 return ListView.builder(
                   shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: listOfCategories.length,
                   itemBuilder: (context, index) {
                     final item = listOfCategories[index];

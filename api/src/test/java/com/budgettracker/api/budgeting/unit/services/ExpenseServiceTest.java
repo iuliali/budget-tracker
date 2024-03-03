@@ -13,14 +13,12 @@ import com.budgettracker.api.budgeting.models.Expense;
 import com.budgettracker.api.auth.models.User;
 import com.budgettracker.api.budgeting.models.UserCategory;
 import com.budgettracker.api.budgeting.repositories.ExpenseRepository;
-import com.budgettracker.api.budgeting.services.BudgetService;
-import com.budgettracker.api.budgeting.services.ExpenseService;
-import com.budgettracker.api.budgeting.services.UserCategoryService;
+import com.budgettracker.api.budgeting.services.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.security.authentication.TestingAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 
@@ -34,7 +32,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 class ExpenseServiceTest {
-    private ExpenseService expenseService;
     @Mock
     private ExpenseRepository expenseRepository;
 
@@ -50,10 +47,17 @@ class ExpenseServiceTest {
     @Mock
     private AuthenticationFacade authenticationFacade;
 
+    @Mock
+    private StatisticsService statisticsService;
+    @Mock
+    private CurrencyService currencyService;
+
+    @InjectMocks
+    private ExpenseService expenseService;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        expenseService = new ExpenseService(expenseRepository, userCategoryService, userService, budgetService, authenticationFacade);
     }
 
     @Test
@@ -88,22 +92,25 @@ class ExpenseServiceTest {
     void testCheckIfNewExpenseIsOverBudget() {
         BigDecimal newExpenseAmount = BigDecimal.valueOf(100);
         BigInteger userCategoryId = BigInteger.valueOf(1);
-
-        BigDecimal currentAmount = BigDecimal.valueOf(500);
-        BigDecimal sumOfExpenses = BigDecimal.valueOf(400);
+        BigDecimal sumOfExpenses = BigDecimal.valueOf(50);
 
         BudgetDTO budget = new BudgetDTO(BigInteger.TWO, BigDecimal.valueOf(100), userCategoryId, null);
 
-        ExpenseRepository expenseRepository = mock(ExpenseRepository.class);
-        when(expenseRepository.expensesSumByUserCategory(userCategoryId)).thenReturn(Optional.of(sumOfExpenses));
-        when(budgetService.getActiveBudget(userCategoryId)).thenReturn(budget);
+        when(expenseRepository.expensesByUserCategoryBetweenDates(
+                any(BigInteger.class),
+                any(LocalDateTime.class),
+                any(LocalDateTime.class))
+        ).thenReturn(Optional.empty());
+        when(userService.getDefaultCurrency()).thenReturn(Currency.USD);
+        when(statisticsService.getExpenseSum(Optional.empty(), Currency.USD)).thenReturn(BigDecimal.valueOf(50));
+        when(expenseService.expensesSumByUserCategoryIdForCurrentMonth(userCategoryId)).thenReturn(sumOfExpenses);
+        when(budgetService.getActiveBudget(userCategoryId, Optional.empty())).thenReturn(budget);
+        when(currencyService.getExchange(any(Currency.class), any(Currency.class))).thenReturn(BigDecimal.ONE);
 
-        ExpenseService expenseService = new ExpenseService(expenseRepository, userCategoryService, userService, budgetService, authenticationFacade);
-
-        boolean result = expenseService.checkIfNewExpenseIsOverBudget(newExpenseAmount, userCategoryId);
+        boolean result = expenseService.checkIfNewExpenseIsOverBudget(newExpenseAmount, Currency.RON, userCategoryId);
 
         assertTrue(result);
-        verify(expenseRepository, times(1)).expensesSumByUserCategory(userCategoryId);
+        verify(statisticsService, times(1)).getExpenseSum(eq(Optional.empty()), any(Currency.class));
     }
 
 
@@ -112,12 +119,12 @@ class ExpenseServiceTest {
         NewExpenseDto newExpenseDto = new NewExpenseDto();
         newExpenseDto.setTo("Expense To");
         newExpenseDto.setAmount(BigDecimal.valueOf(100));
-        newExpenseDto.setCurrency(Currency.valueOf("USD"));
+        newExpenseDto.setCurrency(Currency.USD);
         newExpenseDto.setUserCategoryId(BigInteger.valueOf(1));
 
         BudgetDTO activeBudget = new BudgetDTO();
         activeBudget.setAmount(BigDecimal.valueOf(500));
-        when(budgetService.getActiveBudget(any(BigInteger.class))).thenReturn(activeBudget);
+        when(budgetService.getActiveBudget(any(BigInteger.class), eq(Optional.empty()))).thenReturn(activeBudget);
 
         UserCategory userCategory = new UserCategory();
         userCategory.setId(newExpenseDto.getUserCategoryId());
@@ -132,7 +139,14 @@ class ExpenseServiceTest {
         savedExpense.setUserCategory(userCategory);
         when(expenseRepository.save(any(Expense.class))).thenReturn(savedExpense);
 
-        ExpenseService expenseService = new ExpenseService(expenseRepository, userCategoryService, userService, budgetService, authenticationFacade);
+        when(currencyService.getExchange(any(Currency.class), any(Currency.class))).thenReturn(BigDecimal.ONE);
+        when(userService.getDefaultCurrency()).thenReturn(Currency.USD);
+        when(expenseRepository.expensesByUserCategoryBetweenDates(
+                any(BigInteger.class),
+                any(LocalDateTime.class),
+                any(LocalDateTime.class))
+        ).thenReturn(Optional.empty());
+        when(statisticsService.getExpenseSum(Optional.empty(), Currency.USD)).thenReturn(BigDecimal.valueOf(50));
 
         Map<String, String> result = expenseService.createExpense(newExpenseDto);
 
@@ -141,6 +155,8 @@ class ExpenseServiceTest {
         assertEquals("No warning", result.get("warning"));
 
         verify(expenseRepository, times(1)).save(any(Expense.class));
+        verify(budgetService, times(1)).getActiveBudget(any(BigInteger.class), eq(Optional.empty()));
+        verify(currencyService, times(1)).getExchange(any(Currency.class), any(Currency.class));
     }
 
 
@@ -148,27 +164,63 @@ class ExpenseServiceTest {
     void testCreateExpense_ExpenseOverBudget() {
         NewExpenseDto expenseDto = new NewExpenseDto();
         expenseDto.setAmount(BigDecimal.valueOf(100));
+        expenseDto.setCurrency(Currency.USD);
         expenseDto.setUserCategoryId(BigInteger.valueOf(1));
 
         BudgetDTO budgetDTO = new BudgetDTO();
-        budgetDTO.setAmount(BigDecimal.valueOf(50));
-        when(budgetService.getActiveBudget(any(BigInteger.class))).thenReturn(budgetDTO);
-
-        when(expenseRepository.expensesSumByUserCategory(any(BigInteger.class))).thenReturn(Optional.of(BigDecimal.valueOf(60)));
+        budgetDTO.setAmount(BigDecimal.valueOf(150));
+        when(budgetService.getActiveBudget(any(BigInteger.class), eq(Optional.empty()))).thenReturn(budgetDTO);
 
         UserCategory userCategory = new UserCategory();
         userCategory.setId(expenseDto.getUserCategoryId());
         when(userCategoryService.getUserCategoryIfExists(any(BigInteger.class))).thenReturn(Optional.of(userCategory));
-
-        ExpenseService expenseService = new ExpenseService(expenseRepository, userCategoryService, userService, budgetService, authenticationFacade);
+        when(currencyService.getExchange(any(Currency.class), any(Currency.class))).thenReturn(BigDecimal.ONE);
+        when(userService.getDefaultCurrency()).thenReturn(Currency.USD);
+        when(expenseRepository.expensesByUserCategoryBetweenDates(
+                any(BigInteger.class),
+                any(LocalDateTime.class),
+                any(LocalDateTime.class))
+        ).thenReturn(Optional.empty());
+        when(statisticsService.getExpenseSum(Optional.empty(), Currency.USD)).thenReturn(BigDecimal.valueOf(100));
 
         Map<String, String> result = expenseService.createExpense(expenseDto);
 
         assertEquals("Expense has been added successfully", result.get("message"));
         assertEquals("You are over budget for this category", result.get("warning"));
 
-        verify(budgetService, times(1)).getActiveBudget(any(BigInteger.class));
-        verify(expenseRepository, times(1)).expensesSumByUserCategory(any(BigInteger.class));
+        verify(budgetService, times(1)).getActiveBudget(any(BigInteger.class), eq(Optional.empty()));
+        verify(expenseRepository, times(1)).save(any(Expense.class));
+    }
+
+    @Test
+    void testCreateExpense_ExpenseOverBudget_DifferentCurrency() {
+        NewExpenseDto expenseDto = new NewExpenseDto();
+        expenseDto.setAmount(BigDecimal.valueOf(20));
+        expenseDto.setCurrency(Currency.USD);
+        expenseDto.setUserCategoryId(BigInteger.valueOf(1));
+
+        BudgetDTO budgetDTO = new BudgetDTO();
+        budgetDTO.setAmount(BigDecimal.valueOf(150));
+        when(budgetService.getActiveBudget(any(BigInteger.class), eq(Optional.empty()))).thenReturn(budgetDTO);
+
+        UserCategory userCategory = new UserCategory();
+        userCategory.setId(expenseDto.getUserCategoryId());
+        when(userCategoryService.getUserCategoryIfExists(any(BigInteger.class))).thenReturn(Optional.of(userCategory));
+        when(currencyService.getExchange(eq(Currency.USD), eq(Currency.RON))).thenReturn(BigDecimal.valueOf(5));
+        when(userService.getDefaultCurrency()).thenReturn(Currency.RON);
+        when(expenseRepository.expensesByUserCategoryBetweenDates(
+                any(BigInteger.class),
+                any(LocalDateTime.class),
+                any(LocalDateTime.class))
+        ).thenReturn(Optional.empty());
+        when(statisticsService.getExpenseSum(Optional.empty(), Currency.RON)).thenReturn(BigDecimal.valueOf(100));
+
+        Map<String, String> result = expenseService.createExpense(expenseDto);
+
+        assertEquals("Expense has been added successfully", result.get("message"));
+        assertEquals("You are over budget for this category", result.get("warning"));
+
+        verify(budgetService, times(1)).getActiveBudget(any(BigInteger.class), eq(Optional.empty()));
         verify(expenseRepository, times(1)).save(any(Expense.class));
     }
 
@@ -218,7 +270,7 @@ class ExpenseServiceTest {
         NewExpenseDto expenseDto = new NewExpenseDto();
         expenseDto.setTo("Expense Destination");
         expenseDto.setAmount(BigDecimal.valueOf(100));
-        expenseDto.setCurrency(Currency.valueOf("USD"));
+        expenseDto.setCurrency(Currency.USD);
         expenseDto.setUserCategoryId(BigInteger.valueOf(1));
         Expense expense = new Expense();
         expense.setId(expenseId);
@@ -270,31 +322,23 @@ class ExpenseServiceTest {
     }
 
     @Test
-    void testExpensesSumByUserCategoryId() {
-        BigInteger userCategoryId = BigInteger.valueOf(1);
-        BigDecimal sumOfExpenses = BigDecimal.valueOf(100);
-        when(expenseRepository.expensesSumByUserCategory(userCategoryId)).thenReturn(Optional.of(sumOfExpenses));
-        BigDecimal result = expenseService.expensesSumByUserCategoryId(userCategoryId);
-        assertEquals(sumOfExpenses, result);
-        verify(expenseRepository, times(1)).expensesSumByUserCategory(userCategoryId);
-    }
-
-    @Test
-    void expensesSumByUserCategoryId_ShouldReturnSumOfExpenses() {
+    void testExpensesSumByUserCategoryIdForCurrentMonth() {
         BigInteger userCategoryId = BigInteger.valueOf(1);
         BigDecimal expectedSum = BigDecimal.valueOf(1000);
-        when(expenseRepository.expensesSumByUserCategory(userCategoryId)).thenReturn(Optional.of(expectedSum));
-        BigDecimal actualSum = expenseService.expensesSumByUserCategoryId(userCategoryId);
+        when(userService.getDefaultCurrency()).thenReturn(Currency.USD);
+        when(expenseRepository.expensesByUserCategoryBetweenDates(
+                eq(userCategoryId),
+                any(LocalDateTime.class),
+                any(LocalDateTime.class))
+        ).thenReturn(Optional.empty());
+        when(statisticsService.getExpenseSum(eq(Optional.empty()), any(Currency.class))).thenReturn(expectedSum);
+        BigDecimal actualSum = expenseService.expensesSumByUserCategoryIdForCurrentMonth(userCategoryId);
         assertEquals(expectedSum, actualSum);
-        verify(expenseRepository, times(1)).expensesSumByUserCategory(userCategoryId);
-    }
-
-    @Test
-    void expensesSumByUserCategoryId_ShouldReturnZero_WhenNoExpensesFound() {
-        BigInteger userCategoryId = BigInteger.valueOf(1);
-        when(expenseRepository.expensesSumByUserCategory(userCategoryId)).thenReturn(Optional.empty());
-        BigDecimal actualSum = expenseService.expensesSumByUserCategoryId(userCategoryId);
-        assertEquals(BigDecimal.ZERO, actualSum);
-        verify(expenseRepository, times(1)).expensesSumByUserCategory(userCategoryId);
+        verify(expenseRepository, times(1)).expensesByUserCategoryBetweenDates(
+                eq(userCategoryId),
+                any(LocalDateTime.class),
+                any(LocalDateTime.class)
+        );
+        verify(statisticsService, times(1)).getExpenseSum(eq(Optional.empty()), any(Currency.class));
     }
 }

@@ -144,4 +144,11 @@ public class BudgetingExceptionHandlerController extends ResponseEntityException
                 HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(value = {ExchangeAPIFailedException.class})
+    public ResponseEntity<?> handleBadRequest(ExchangeAPIFailedException exception,
+                                              WebRequest request) {
+        logger.warn(request + exception.getMessage());
+        return new ResponseEntity<>(Map.of("message", "Getting daily exchange failed!"),
+                HttpStatus.BAD_REQUEST);
+    }
 }

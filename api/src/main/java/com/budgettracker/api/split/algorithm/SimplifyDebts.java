@@ -41,7 +41,6 @@ public class SimplifyDebts {
         int n = users.size();
         Dinics solver = new Dinics(n, users);
         addAllTransactions(solver, transactions);
-        System.out.println(solver.vertexLabels);
         List<NetworkFlowSolverBase.Edge> result = new ArrayList<>();
 
 
@@ -54,7 +53,6 @@ public class SimplifyDebts {
 
             solver.setSource(firstEdge.from);
             solver.setSink(firstEdge.to);
-            System.out.println("cURRENT eDGE:"+ firstEdge);
             List<Dinics.Edge>[] residualGraph = solver.getGraph();
             List<Dinics.Edge> newEdges = new ArrayList<>();
 
@@ -70,7 +68,6 @@ public class SimplifyDebts {
 
 
             long maxFlow = solver.getMaxFlow();
-            System.out.println("maxflow>:" + maxFlow);
             int source = solver.getSource();
             int sink = solver.getSink();
             visitedEdges.add(getHashKeyForEdge(source, sink));
@@ -79,9 +76,7 @@ public class SimplifyDebts {
             result.addAll(newEdges);
             solver.addEdges(newEdges);
             solver.addEdge(source, sink, maxFlow);
-            System.out.println(newEdges);
         }
-        System.out.println(result);
         return solver.returnEdges();
     }
 

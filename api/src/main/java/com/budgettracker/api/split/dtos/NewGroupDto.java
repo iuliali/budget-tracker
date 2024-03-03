@@ -2,7 +2,8 @@ package com.budgettracker.api.split.dtos;
 
 import lombok.*;
 
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -11,8 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NewGroupDto {
-    @NonNull
-    @Pattern(regexp = "^[a-zA-Z0-9]*$")
+    @NotBlank(message = "Name field is required")
+    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "Name must contain only letters and numbers")
     private String name;
     private List<BigInteger> userIds;
 }

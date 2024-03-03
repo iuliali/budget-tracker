@@ -1,5 +1,6 @@
 package com.budgettracker.api.budgeting.controllers;
 
+import com.budgettracker.api.budgeting.enums.Currency;
 import com.budgettracker.api.budgeting.services.BudgetService;
 import com.budgettracker.api.budgeting.dtos.BudgetUpdateDTO;
 import com.budgettracker.api.budgeting.dtos.NewBudgetDTO;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -31,8 +33,8 @@ public class BudgetController {
 
     @GetMapping("/active/{userCategoryId}")
     @Operation(summary = "Get the active budget for a category")
-    public ResponseEntity<?> getActiveBudget(@PathVariable("userCategoryId") BigInteger userCategoryId) {
-        return ResponseEntity.ok(Map.of("budget", budgetService.getActiveBudget(userCategoryId)));
+    public ResponseEntity<?> getActiveBudget(@PathVariable("userCategoryId") BigInteger userCategoryId, @RequestParam(required = false) Optional<Currency> currency) {
+        return ResponseEntity.ok(Map.of("budget", budgetService.getActiveBudget(userCategoryId, currency)));
     }
 
     @PatchMapping("/update/{userCategoryId}")

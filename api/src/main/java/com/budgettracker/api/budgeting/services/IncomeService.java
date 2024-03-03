@@ -16,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -35,15 +34,11 @@ public class IncomeService {
 
 
     public String createIncome(NewIncomeDto incomeDto){
-        Income income = new Income();
-        income.setFrom(incomeDto.getFrom());
-        income.setAmount(incomeDto.getAmount());
-        income.setCurrency(incomeDto.getCurrency());
-        income.setRegisteredAt(LocalDateTime.now());
         UserCategory userCategory = userCategoryService.getUserCategoryIfExists(incomeDto.getUserCategoryId())
                 .orElseThrow(
                         NoUserCategoryForIncomeException::new
                 );
+        Income income = NewIncomeDto.toIncome(incomeDto);
         income.setUserCategory(userCategory);
         incomeRepository.save(income);
         return "Income has been added successfully";
@@ -102,4 +97,5 @@ public class IncomeService {
         incomeRepository.deleteById(id);
         return "Income has been deleted successfully";
     }
+
 }

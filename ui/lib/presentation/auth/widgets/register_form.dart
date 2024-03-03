@@ -200,6 +200,33 @@ class RegisterForm extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 16),
+              ElevatedButton.icon(
+                onPressed: () {
+                  context.router.push(
+                    CurrencySelectorRoute(
+                      currentCurrency:
+                          state.defaultCurrency.value.getOrElse(() => ""),
+                      setCurrency: (value) =>
+                          context.read<RegisterFormBloc>().add(
+                                RegisterFormEvent.defaultCurrencyChanged(value),
+                              ),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 30.0),
+                  textStyle: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold),
+                  elevation: 1,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                icon: Image.asset("assets/images/change.png"),
+                label: Text(state.defaultCurrency.value
+                    .getOrElse(() => "Select your currency")),
+              ),
+              const SizedBox(height: 16),
               WholeLengthButton(
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
@@ -207,8 +234,10 @@ class RegisterForm extends StatelessWidget {
                         .read<RegisterFormBloc>()
                         .add(const RegisterFormEvent.registerPressed());
                   }
-                }, text: 'Register', filled: true,
-              )
+                },
+                text: 'Register',
+                filled: true,
+              ),
             ],
           ),
         );

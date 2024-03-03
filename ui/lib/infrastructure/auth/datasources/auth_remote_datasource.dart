@@ -27,6 +27,7 @@ abstract class AuthRemoteDataSource {
     required String email,
     required String firstName,
     required String lastName,
+    required String defaultCurrency,
   });
 
   void addDioAuthInterceptor(AccessTokenModel accessToken);
@@ -75,6 +76,7 @@ class AuthApiDataSourceImpl implements AuthRemoteDataSource {
     required String email,
     required String firstName,
     required String lastName,
+    required String defaultCurrency,
   }) async {
     try {
       await client.post(
@@ -85,6 +87,7 @@ class AuthApiDataSourceImpl implements AuthRemoteDataSource {
         'email': email,
         'firstName': firstName,
         'lastName': lastName,
+        'defaultCurrency': defaultCurrency,
       }
     );
     return true;
@@ -124,13 +127,17 @@ class AuthApiDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<UserModel> getUser() async {
-    final response = await client.get(
-      "/user/details",
-    );
-    if (response.statusCode == 200) {
+    try {
+      final response = await client.get(
+        "/user/details",
+      );
       return UserModel.fromJson(response.data);
-    } else {
-      throw AuthServerException();
+    } on DioError catch (e) {
+      if (e.response?.statusCode == 401) {
+        throw InvalidCredentialsException();
+      } else {
+        throw AuthServerException();
+      }
     }
   }
 

@@ -59,12 +59,14 @@ class AuthFacade implements IAuthFacade {
     required EmailAddress email,
     required FirstName firstName,
     required LastName lastName,
+    required UserDefaultCurrency defaultCurrency,
   }) async {
     final usernameStr = username.getOrCrash();
     final passwordStr = password.getOrCrash();
     final emailStr = email.getOrCrash();
     final firstNameStr = firstName.getOrCrash();
     final lastNameStr = lastName.getOrCrash();
+    final defaultCurrencyStr = defaultCurrency.getOrCrash();
     if (!await networkInfo.isConnected) {
       return const Left(AuthFailure.connectionError());
     }
@@ -75,6 +77,7 @@ class AuthFacade implements IAuthFacade {
         email: emailStr,
         firstName: firstNameStr,
         lastName: lastNameStr,
+        defaultCurrency: defaultCurrencyStr,
       );
       return const Right(unit);
     } on EmailAlreadyUsedException {

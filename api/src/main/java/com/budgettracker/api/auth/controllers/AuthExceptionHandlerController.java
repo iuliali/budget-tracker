@@ -4,20 +4,42 @@ package com.budgettracker.api.auth.controllers;
 import com.budgettracker.api.auth.exceptions.*;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import org.springframework.validation.FieldError;
 
+import java.util.List;
 import java.util.Map;
 
 @ControllerAdvice
 @Order(value = Ordered.HIGHEST_PRECEDENCE)
 public class AuthExceptionHandlerController extends ResponseEntityExceptionHandler {
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(
+            MethodArgumentNotValidException ex,
+            HttpHeaders headers,
+            HttpStatusCode status,
+            WebRequest request) {
+
+        List<String> errors = ex.getBindingResult()
+                .getFieldErrors()
+                .stream()
+                .map(FieldError::getDefaultMessage)
+                .toList();
+
+        String firstErrorMessage = errors.isEmpty() ? "Unknown validation error" : errors.get(0);
+
+        return new ResponseEntity<>(Map.of("message", firstErrorMessage), HttpStatus.BAD_REQUEST);
+    }
 
     @ExceptionHandler(value = {UsernameAlreadyExistsException.class})
     public ResponseEntity<?> handleUsernameAlreadyExistsException(UsernameAlreadyExistsException exception,
@@ -83,6 +105,14 @@ public class AuthExceptionHandlerController extends ResponseEntityExceptionHandl
         logger.warn(request + exception.getMessage());
         return new ResponseEntity<>( Map.of("message", "You already confirmed your email!"),
                 HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = {CurrencyDoesNotExistException.class})
+    public ResponseEntity<?> handleCurrencyDoesNotExistException(CurrencyDoesNotExistException exception,
+                                                                 WebRequest request) {
+        logger.warn(exception.getMessage());
+        return new ResponseEntity<>(Map.of("message", "Currency does not exist in database."),
+                HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(value = {BadCredentialsException.class,

@@ -130,7 +130,7 @@ class BudgetServiceTest {
         budget.setAmount(BigDecimal.valueOf(100.0));
         when(budgetRepository.findActiveByUserCategory(userCategory)).thenReturn(Optional.of(budget));
 
-        BudgetDTO result = budgetService.getActiveBudget(userCategoryId);
+        BudgetDTO result = budgetService.getActiveBudget(userCategoryId, Optional.empty());
 
         assertEquals(budget.getAmount(), result.getAmount());
     }
@@ -142,6 +142,6 @@ class BudgetServiceTest {
         when(userCategoryService.getUserCategoryById(userCategoryId)).thenReturn(userCategory);
         when(budgetRepository.findActiveByUserCategory(userCategory)).thenReturn(Optional.empty());
 
-        assertThrows(BudgetNotFoundException.class, () -> budgetService.getActiveBudget(userCategoryId));
+        assertThrows(BudgetNotFoundException.class, () -> budgetService.getActiveBudget(userCategoryId, Optional.empty()));
     }
 }

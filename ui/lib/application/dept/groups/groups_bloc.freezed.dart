@@ -75,20 +75,20 @@ class _$GroupsEventCopyWithImpl<$Res, $Val extends GroupsEvent>
 }
 
 /// @nodoc
-abstract class _$$_DeleteGroupCopyWith<$Res> {
-  factory _$$_DeleteGroupCopyWith(
-          _$_DeleteGroup value, $Res Function(_$_DeleteGroup) then) =
-      __$$_DeleteGroupCopyWithImpl<$Res>;
+abstract class _$$DeleteGroupImplCopyWith<$Res> {
+  factory _$$DeleteGroupImplCopyWith(
+          _$DeleteGroupImpl value, $Res Function(_$DeleteGroupImpl) then) =
+      __$$DeleteGroupImplCopyWithImpl<$Res>;
   @useResult
   $Res call({GroupId groupId});
 }
 
 /// @nodoc
-class __$$_DeleteGroupCopyWithImpl<$Res>
-    extends _$GroupsEventCopyWithImpl<$Res, _$_DeleteGroup>
-    implements _$$_DeleteGroupCopyWith<$Res> {
-  __$$_DeleteGroupCopyWithImpl(
-      _$_DeleteGroup _value, $Res Function(_$_DeleteGroup) _then)
+class __$$DeleteGroupImplCopyWithImpl<$Res>
+    extends _$GroupsEventCopyWithImpl<$Res, _$DeleteGroupImpl>
+    implements _$$DeleteGroupImplCopyWith<$Res> {
+  __$$DeleteGroupImplCopyWithImpl(
+      _$DeleteGroupImpl _value, $Res Function(_$DeleteGroupImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -96,7 +96,7 @@ class __$$_DeleteGroupCopyWithImpl<$Res>
   $Res call({
     Object? groupId = null,
   }) {
-    return _then(_$_DeleteGroup(
+    return _then(_$DeleteGroupImpl(
       null == groupId
           ? _value.groupId
           : groupId // ignore: cast_nullable_to_non_nullable
@@ -107,8 +107,8 @@ class __$$_DeleteGroupCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DeleteGroup implements _DeleteGroup {
-  const _$_DeleteGroup(this.groupId);
+class _$DeleteGroupImpl implements _DeleteGroup {
+  const _$DeleteGroupImpl(this.groupId);
 
   @override
   final GroupId groupId;
@@ -122,7 +122,7 @@ class _$_DeleteGroup implements _DeleteGroup {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DeleteGroup &&
+            other is _$DeleteGroupImpl &&
             (identical(other.groupId, groupId) || other.groupId == groupId));
   }
 
@@ -132,8 +132,8 @@ class _$_DeleteGroup implements _DeleteGroup {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DeleteGroupCopyWith<_$_DeleteGroup> get copyWith =>
-      __$$_DeleteGroupCopyWithImpl<_$_DeleteGroup>(this, _$identity);
+  _$$DeleteGroupImplCopyWith<_$DeleteGroupImpl> get copyWith =>
+      __$$DeleteGroupImplCopyWithImpl<_$DeleteGroupImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -199,34 +199,34 @@ class _$_DeleteGroup implements _DeleteGroup {
 }
 
 abstract class _DeleteGroup implements GroupsEvent {
-  const factory _DeleteGroup(final GroupId groupId) = _$_DeleteGroup;
+  const factory _DeleteGroup(final GroupId groupId) = _$DeleteGroupImpl;
 
   GroupId get groupId;
   @JsonKey(ignore: true)
-  _$$_DeleteGroupCopyWith<_$_DeleteGroup> get copyWith =>
+  _$$DeleteGroupImplCopyWith<_$DeleteGroupImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_GetGroupsCopyWith<$Res> {
-  factory _$$_GetGroupsCopyWith(
-          _$_GetGroups value, $Res Function(_$_GetGroups) then) =
-      __$$_GetGroupsCopyWithImpl<$Res>;
+abstract class _$$GetGroupsImplCopyWith<$Res> {
+  factory _$$GetGroupsImplCopyWith(
+          _$GetGroupsImpl value, $Res Function(_$GetGroupsImpl) then) =
+      __$$GetGroupsImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_GetGroupsCopyWithImpl<$Res>
-    extends _$GroupsEventCopyWithImpl<$Res, _$_GetGroups>
-    implements _$$_GetGroupsCopyWith<$Res> {
-  __$$_GetGroupsCopyWithImpl(
-      _$_GetGroups _value, $Res Function(_$_GetGroups) _then)
+class __$$GetGroupsImplCopyWithImpl<$Res>
+    extends _$GroupsEventCopyWithImpl<$Res, _$GetGroupsImpl>
+    implements _$$GetGroupsImplCopyWith<$Res> {
+  __$$GetGroupsImplCopyWithImpl(
+      _$GetGroupsImpl _value, $Res Function(_$GetGroupsImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_GetGroups implements _GetGroups {
-  const _$_GetGroups();
+class _$GetGroupsImpl implements _GetGroups {
+  const _$GetGroupsImpl();
 
   @override
   String toString() {
@@ -236,7 +236,7 @@ class _$_GetGroups implements _GetGroups {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_GetGroups);
+        (other.runtimeType == runtimeType && other is _$GetGroupsImpl);
   }
 
   @override
@@ -306,7 +306,7 @@ class _$_GetGroups implements _GetGroups {
 }
 
 abstract class _GetGroups implements GroupsEvent {
-  const factory _GetGroups() = _$_GetGroups;
+  const factory _GetGroups() = _$GetGroupsImpl;
 }
 
 /// @nodoc
@@ -375,11 +375,11 @@ class _$GroupsStateCopyWithImpl<$Res, $Val extends GroupsState>
 }
 
 /// @nodoc
-abstract class _$$_GroupsListStateCopyWith<$Res>
+abstract class _$$GroupsListStateImplCopyWith<$Res>
     implements $GroupsStateCopyWith<$Res> {
-  factory _$$_GroupsListStateCopyWith(
-          _$_GroupsListState value, $Res Function(_$_GroupsListState) then) =
-      __$$_GroupsListStateCopyWithImpl<$Res>;
+  factory _$$GroupsListStateImplCopyWith(_$GroupsListStateImpl value,
+          $Res Function(_$GroupsListStateImpl) then) =
+      __$$GroupsListStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -390,11 +390,11 @@ abstract class _$$_GroupsListStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_GroupsListStateCopyWithImpl<$Res>
-    extends _$GroupsStateCopyWithImpl<$Res, _$_GroupsListState>
-    implements _$$_GroupsListStateCopyWith<$Res> {
-  __$$_GroupsListStateCopyWithImpl(
-      _$_GroupsListState _value, $Res Function(_$_GroupsListState) _then)
+class __$$GroupsListStateImplCopyWithImpl<$Res>
+    extends _$GroupsStateCopyWithImpl<$Res, _$GroupsListStateImpl>
+    implements _$$GroupsListStateImplCopyWith<$Res> {
+  __$$GroupsListStateImplCopyWithImpl(
+      _$GroupsListStateImpl _value, $Res Function(_$GroupsListStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -405,7 +405,7 @@ class __$$_GroupsListStateCopyWithImpl<$Res>
     Object? isFetching = null,
     Object? isDeleting = null,
   }) {
-    return _then(_$_GroupsListState(
+    return _then(_$GroupsListStateImpl(
       failureOrGroups: null == failureOrGroups
           ? _value.failureOrGroups
           : failureOrGroups // ignore: cast_nullable_to_non_nullable
@@ -428,8 +428,8 @@ class __$$_GroupsListStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GroupsListState implements _GroupsListState {
-  const _$_GroupsListState(
+class _$GroupsListStateImpl implements _GroupsListState {
+  const _$GroupsListStateImpl(
       {required this.failureOrGroups,
       required this.showErrorMessages,
       required this.isFetching,
@@ -453,7 +453,7 @@ class _$_GroupsListState implements _GroupsListState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GroupsListState &&
+            other is _$GroupsListStateImpl &&
             (identical(other.failureOrGroups, failureOrGroups) ||
                 other.failureOrGroups == failureOrGroups) &&
             (identical(other.showErrorMessages, showErrorMessages) ||
@@ -471,8 +471,9 @@ class _$_GroupsListState implements _GroupsListState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GroupsListStateCopyWith<_$_GroupsListState> get copyWith =>
-      __$$_GroupsListStateCopyWithImpl<_$_GroupsListState>(this, _$identity);
+  _$$GroupsListStateImplCopyWith<_$GroupsListStateImpl> get copyWith =>
+      __$$GroupsListStateImplCopyWithImpl<_$GroupsListStateImpl>(
+          this, _$identity);
 }
 
 abstract class _GroupsListState implements GroupsState {
@@ -480,7 +481,7 @@ abstract class _GroupsListState implements GroupsState {
       {required final Option<Either<GroupFailure, List<Group>>> failureOrGroups,
       required final bool showErrorMessages,
       required final bool isFetching,
-      required final bool isDeleting}) = _$_GroupsListState;
+      required final bool isDeleting}) = _$GroupsListStateImpl;
 
   @override
   Option<Either<GroupFailure, List<Group>>> get failureOrGroups;
@@ -492,6 +493,6 @@ abstract class _GroupsListState implements GroupsState {
   bool get isDeleting;
   @override
   @JsonKey(ignore: true)
-  _$$_GroupsListStateCopyWith<_$_GroupsListState> get copyWith =>
+  _$$GroupsListStateImplCopyWith<_$GroupsListStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

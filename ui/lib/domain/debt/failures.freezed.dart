@@ -93,25 +93,25 @@ class _$GroupFailureCopyWithImpl<$Res, $Val extends GroupFailure>
 }
 
 /// @nodoc
-abstract class _$$_GroupUnexpectedCopyWith<$Res> {
-  factory _$$_GroupUnexpectedCopyWith(
-          _$_GroupUnexpected value, $Res Function(_$_GroupUnexpected) then) =
-      __$$_GroupUnexpectedCopyWithImpl<$Res>;
+abstract class _$$GroupUnexpectedImplCopyWith<$Res> {
+  factory _$$GroupUnexpectedImplCopyWith(_$GroupUnexpectedImpl value,
+          $Res Function(_$GroupUnexpectedImpl) then) =
+      __$$GroupUnexpectedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_GroupUnexpectedCopyWithImpl<$Res>
-    extends _$GroupFailureCopyWithImpl<$Res, _$_GroupUnexpected>
-    implements _$$_GroupUnexpectedCopyWith<$Res> {
-  __$$_GroupUnexpectedCopyWithImpl(
-      _$_GroupUnexpected _value, $Res Function(_$_GroupUnexpected) _then)
+class __$$GroupUnexpectedImplCopyWithImpl<$Res>
+    extends _$GroupFailureCopyWithImpl<$Res, _$GroupUnexpectedImpl>
+    implements _$$GroupUnexpectedImplCopyWith<$Res> {
+  __$$GroupUnexpectedImplCopyWithImpl(
+      _$GroupUnexpectedImpl _value, $Res Function(_$GroupUnexpectedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_GroupUnexpected implements _GroupUnexpected {
-  const _$_GroupUnexpected();
+class _$GroupUnexpectedImpl implements _GroupUnexpected {
+  const _$GroupUnexpectedImpl();
 
   @override
   String toString() {
@@ -121,7 +121,7 @@ class _$_GroupUnexpected implements _GroupUnexpected {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_GroupUnexpected);
+        (other.runtimeType == runtimeType && other is _$GroupUnexpectedImpl);
   }
 
   @override
@@ -209,29 +209,29 @@ class _$_GroupUnexpected implements _GroupUnexpected {
 }
 
 abstract class _GroupUnexpected implements GroupFailure {
-  const factory _GroupUnexpected() = _$_GroupUnexpected;
+  const factory _GroupUnexpected() = _$GroupUnexpectedImpl;
 }
 
 /// @nodoc
-abstract class _$$_GroupNotFoundCopyWith<$Res> {
-  factory _$$_GroupNotFoundCopyWith(
-          _$_GroupNotFound value, $Res Function(_$_GroupNotFound) then) =
-      __$$_GroupNotFoundCopyWithImpl<$Res>;
+abstract class _$$GroupNotFoundImplCopyWith<$Res> {
+  factory _$$GroupNotFoundImplCopyWith(
+          _$GroupNotFoundImpl value, $Res Function(_$GroupNotFoundImpl) then) =
+      __$$GroupNotFoundImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_GroupNotFoundCopyWithImpl<$Res>
-    extends _$GroupFailureCopyWithImpl<$Res, _$_GroupNotFound>
-    implements _$$_GroupNotFoundCopyWith<$Res> {
-  __$$_GroupNotFoundCopyWithImpl(
-      _$_GroupNotFound _value, $Res Function(_$_GroupNotFound) _then)
+class __$$GroupNotFoundImplCopyWithImpl<$Res>
+    extends _$GroupFailureCopyWithImpl<$Res, _$GroupNotFoundImpl>
+    implements _$$GroupNotFoundImplCopyWith<$Res> {
+  __$$GroupNotFoundImplCopyWithImpl(
+      _$GroupNotFoundImpl _value, $Res Function(_$GroupNotFoundImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_GroupNotFound implements _GroupNotFound {
-  const _$_GroupNotFound();
+class _$GroupNotFoundImpl implements _GroupNotFound {
+  const _$GroupNotFoundImpl();
 
   @override
   String toString() {
@@ -241,7 +241,7 @@ class _$_GroupNotFound implements _GroupNotFound {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_GroupNotFound);
+        (other.runtimeType == runtimeType && other is _$GroupNotFoundImpl);
   }
 
   @override
@@ -329,29 +329,29 @@ class _$_GroupNotFound implements _GroupNotFound {
 }
 
 abstract class _GroupNotFound implements GroupFailure {
-  const factory _GroupNotFound() = _$_GroupNotFound;
+  const factory _GroupNotFound() = _$GroupNotFoundImpl;
 }
 
 /// @nodoc
-abstract class _$$_GroupAlreadyExistsCopyWith<$Res> {
-  factory _$$_GroupAlreadyExistsCopyWith(_$_GroupAlreadyExists value,
-          $Res Function(_$_GroupAlreadyExists) then) =
-      __$$_GroupAlreadyExistsCopyWithImpl<$Res>;
+abstract class _$$GroupAlreadyExistsImplCopyWith<$Res> {
+  factory _$$GroupAlreadyExistsImplCopyWith(_$GroupAlreadyExistsImpl value,
+          $Res Function(_$GroupAlreadyExistsImpl) then) =
+      __$$GroupAlreadyExistsImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_GroupAlreadyExistsCopyWithImpl<$Res>
-    extends _$GroupFailureCopyWithImpl<$Res, _$_GroupAlreadyExists>
-    implements _$$_GroupAlreadyExistsCopyWith<$Res> {
-  __$$_GroupAlreadyExistsCopyWithImpl(
-      _$_GroupAlreadyExists _value, $Res Function(_$_GroupAlreadyExists) _then)
+class __$$GroupAlreadyExistsImplCopyWithImpl<$Res>
+    extends _$GroupFailureCopyWithImpl<$Res, _$GroupAlreadyExistsImpl>
+    implements _$$GroupAlreadyExistsImplCopyWith<$Res> {
+  __$$GroupAlreadyExistsImplCopyWithImpl(_$GroupAlreadyExistsImpl _value,
+      $Res Function(_$GroupAlreadyExistsImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_GroupAlreadyExists implements _GroupAlreadyExists {
-  const _$_GroupAlreadyExists();
+class _$GroupAlreadyExistsImpl implements _GroupAlreadyExists {
+  const _$GroupAlreadyExistsImpl();
 
   @override
   String toString() {
@@ -361,7 +361,7 @@ class _$_GroupAlreadyExists implements _GroupAlreadyExists {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_GroupAlreadyExists);
+        (other.runtimeType == runtimeType && other is _$GroupAlreadyExistsImpl);
   }
 
   @override
@@ -449,29 +449,29 @@ class _$_GroupAlreadyExists implements _GroupAlreadyExists {
 }
 
 abstract class _GroupAlreadyExists implements GroupFailure {
-  const factory _GroupAlreadyExists() = _$_GroupAlreadyExists;
+  const factory _GroupAlreadyExists() = _$GroupAlreadyExistsImpl;
 }
 
 /// @nodoc
-abstract class _$$_GroupUnableToUpdateCopyWith<$Res> {
-  factory _$$_GroupUnableToUpdateCopyWith(_$_GroupUnableToUpdate value,
-          $Res Function(_$_GroupUnableToUpdate) then) =
-      __$$_GroupUnableToUpdateCopyWithImpl<$Res>;
+abstract class _$$GroupUnableToUpdateImplCopyWith<$Res> {
+  factory _$$GroupUnableToUpdateImplCopyWith(_$GroupUnableToUpdateImpl value,
+          $Res Function(_$GroupUnableToUpdateImpl) then) =
+      __$$GroupUnableToUpdateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_GroupUnableToUpdateCopyWithImpl<$Res>
-    extends _$GroupFailureCopyWithImpl<$Res, _$_GroupUnableToUpdate>
-    implements _$$_GroupUnableToUpdateCopyWith<$Res> {
-  __$$_GroupUnableToUpdateCopyWithImpl(_$_GroupUnableToUpdate _value,
-      $Res Function(_$_GroupUnableToUpdate) _then)
+class __$$GroupUnableToUpdateImplCopyWithImpl<$Res>
+    extends _$GroupFailureCopyWithImpl<$Res, _$GroupUnableToUpdateImpl>
+    implements _$$GroupUnableToUpdateImplCopyWith<$Res> {
+  __$$GroupUnableToUpdateImplCopyWithImpl(_$GroupUnableToUpdateImpl _value,
+      $Res Function(_$GroupUnableToUpdateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_GroupUnableToUpdate implements _GroupUnableToUpdate {
-  const _$_GroupUnableToUpdate();
+class _$GroupUnableToUpdateImpl implements _GroupUnableToUpdate {
+  const _$GroupUnableToUpdateImpl();
 
   @override
   String toString() {
@@ -481,7 +481,8 @@ class _$_GroupUnableToUpdate implements _GroupUnableToUpdate {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_GroupUnableToUpdate);
+        (other.runtimeType == runtimeType &&
+            other is _$GroupUnableToUpdateImpl);
   }
 
   @override
@@ -569,29 +570,29 @@ class _$_GroupUnableToUpdate implements _GroupUnableToUpdate {
 }
 
 abstract class _GroupUnableToUpdate implements GroupFailure {
-  const factory _GroupUnableToUpdate() = _$_GroupUnableToUpdate;
+  const factory _GroupUnableToUpdate() = _$GroupUnableToUpdateImpl;
 }
 
 /// @nodoc
-abstract class _$$_GroupUnableToDeleteCopyWith<$Res> {
-  factory _$$_GroupUnableToDeleteCopyWith(_$_GroupUnableToDelete value,
-          $Res Function(_$_GroupUnableToDelete) then) =
-      __$$_GroupUnableToDeleteCopyWithImpl<$Res>;
+abstract class _$$GroupUnableToDeleteImplCopyWith<$Res> {
+  factory _$$GroupUnableToDeleteImplCopyWith(_$GroupUnableToDeleteImpl value,
+          $Res Function(_$GroupUnableToDeleteImpl) then) =
+      __$$GroupUnableToDeleteImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_GroupUnableToDeleteCopyWithImpl<$Res>
-    extends _$GroupFailureCopyWithImpl<$Res, _$_GroupUnableToDelete>
-    implements _$$_GroupUnableToDeleteCopyWith<$Res> {
-  __$$_GroupUnableToDeleteCopyWithImpl(_$_GroupUnableToDelete _value,
-      $Res Function(_$_GroupUnableToDelete) _then)
+class __$$GroupUnableToDeleteImplCopyWithImpl<$Res>
+    extends _$GroupFailureCopyWithImpl<$Res, _$GroupUnableToDeleteImpl>
+    implements _$$GroupUnableToDeleteImplCopyWith<$Res> {
+  __$$GroupUnableToDeleteImplCopyWithImpl(_$GroupUnableToDeleteImpl _value,
+      $Res Function(_$GroupUnableToDeleteImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_GroupUnableToDelete implements _GroupUnableToDelete {
-  const _$_GroupUnableToDelete();
+class _$GroupUnableToDeleteImpl implements _GroupUnableToDelete {
+  const _$GroupUnableToDeleteImpl();
 
   @override
   String toString() {
@@ -601,7 +602,8 @@ class _$_GroupUnableToDelete implements _GroupUnableToDelete {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_GroupUnableToDelete);
+        (other.runtimeType == runtimeType &&
+            other is _$GroupUnableToDeleteImpl);
   }
 
   @override
@@ -689,7 +691,7 @@ class _$_GroupUnableToDelete implements _GroupUnableToDelete {
 }
 
 abstract class _GroupUnableToDelete implements GroupFailure {
-  const factory _GroupUnableToDelete() = _$_GroupUnableToDelete;
+  const factory _GroupUnableToDelete() = _$GroupUnableToDeleteImpl;
 }
 
 /// @nodoc
@@ -765,25 +767,25 @@ class _$MemberFailureCopyWithImpl<$Res, $Val extends MemberFailure>
 }
 
 /// @nodoc
-abstract class _$$_MemberUnexpectedCopyWith<$Res> {
-  factory _$$_MemberUnexpectedCopyWith(
-          _$_MemberUnexpected value, $Res Function(_$_MemberUnexpected) then) =
-      __$$_MemberUnexpectedCopyWithImpl<$Res>;
+abstract class _$$MemberUnexpectedImplCopyWith<$Res> {
+  factory _$$MemberUnexpectedImplCopyWith(_$MemberUnexpectedImpl value,
+          $Res Function(_$MemberUnexpectedImpl) then) =
+      __$$MemberUnexpectedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_MemberUnexpectedCopyWithImpl<$Res>
-    extends _$MemberFailureCopyWithImpl<$Res, _$_MemberUnexpected>
-    implements _$$_MemberUnexpectedCopyWith<$Res> {
-  __$$_MemberUnexpectedCopyWithImpl(
-      _$_MemberUnexpected _value, $Res Function(_$_MemberUnexpected) _then)
+class __$$MemberUnexpectedImplCopyWithImpl<$Res>
+    extends _$MemberFailureCopyWithImpl<$Res, _$MemberUnexpectedImpl>
+    implements _$$MemberUnexpectedImplCopyWith<$Res> {
+  __$$MemberUnexpectedImplCopyWithImpl(_$MemberUnexpectedImpl _value,
+      $Res Function(_$MemberUnexpectedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_MemberUnexpected implements _MemberUnexpected {
-  const _$_MemberUnexpected();
+class _$MemberUnexpectedImpl implements _MemberUnexpected {
+  const _$MemberUnexpectedImpl();
 
   @override
   String toString() {
@@ -793,7 +795,7 @@ class _$_MemberUnexpected implements _MemberUnexpected {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_MemberUnexpected);
+        (other.runtimeType == runtimeType && other is _$MemberUnexpectedImpl);
   }
 
   @override
@@ -875,29 +877,29 @@ class _$_MemberUnexpected implements _MemberUnexpected {
 }
 
 abstract class _MemberUnexpected implements MemberFailure {
-  const factory _MemberUnexpected() = _$_MemberUnexpected;
+  const factory _MemberUnexpected() = _$MemberUnexpectedImpl;
 }
 
 /// @nodoc
-abstract class _$$_MemberNotFoundCopyWith<$Res> {
-  factory _$$_MemberNotFoundCopyWith(
-          _$_MemberNotFound value, $Res Function(_$_MemberNotFound) then) =
-      __$$_MemberNotFoundCopyWithImpl<$Res>;
+abstract class _$$MemberNotFoundImplCopyWith<$Res> {
+  factory _$$MemberNotFoundImplCopyWith(_$MemberNotFoundImpl value,
+          $Res Function(_$MemberNotFoundImpl) then) =
+      __$$MemberNotFoundImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_MemberNotFoundCopyWithImpl<$Res>
-    extends _$MemberFailureCopyWithImpl<$Res, _$_MemberNotFound>
-    implements _$$_MemberNotFoundCopyWith<$Res> {
-  __$$_MemberNotFoundCopyWithImpl(
-      _$_MemberNotFound _value, $Res Function(_$_MemberNotFound) _then)
+class __$$MemberNotFoundImplCopyWithImpl<$Res>
+    extends _$MemberFailureCopyWithImpl<$Res, _$MemberNotFoundImpl>
+    implements _$$MemberNotFoundImplCopyWith<$Res> {
+  __$$MemberNotFoundImplCopyWithImpl(
+      _$MemberNotFoundImpl _value, $Res Function(_$MemberNotFoundImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_MemberNotFound implements _MemberNotFound {
-  const _$_MemberNotFound();
+class _$MemberNotFoundImpl implements _MemberNotFound {
+  const _$MemberNotFoundImpl();
 
   @override
   String toString() {
@@ -907,7 +909,7 @@ class _$_MemberNotFound implements _MemberNotFound {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_MemberNotFound);
+        (other.runtimeType == runtimeType && other is _$MemberNotFoundImpl);
   }
 
   @override
@@ -989,29 +991,29 @@ class _$_MemberNotFound implements _MemberNotFound {
 }
 
 abstract class _MemberNotFound implements MemberFailure {
-  const factory _MemberNotFound() = _$_MemberNotFound;
+  const factory _MemberNotFound() = _$MemberNotFoundImpl;
 }
 
 /// @nodoc
-abstract class _$$_MemberUnableToUpdateCopyWith<$Res> {
-  factory _$$_MemberUnableToUpdateCopyWith(_$_MemberUnableToUpdate value,
-          $Res Function(_$_MemberUnableToUpdate) then) =
-      __$$_MemberUnableToUpdateCopyWithImpl<$Res>;
+abstract class _$$MemberUnableToUpdateImplCopyWith<$Res> {
+  factory _$$MemberUnableToUpdateImplCopyWith(_$MemberUnableToUpdateImpl value,
+          $Res Function(_$MemberUnableToUpdateImpl) then) =
+      __$$MemberUnableToUpdateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_MemberUnableToUpdateCopyWithImpl<$Res>
-    extends _$MemberFailureCopyWithImpl<$Res, _$_MemberUnableToUpdate>
-    implements _$$_MemberUnableToUpdateCopyWith<$Res> {
-  __$$_MemberUnableToUpdateCopyWithImpl(_$_MemberUnableToUpdate _value,
-      $Res Function(_$_MemberUnableToUpdate) _then)
+class __$$MemberUnableToUpdateImplCopyWithImpl<$Res>
+    extends _$MemberFailureCopyWithImpl<$Res, _$MemberUnableToUpdateImpl>
+    implements _$$MemberUnableToUpdateImplCopyWith<$Res> {
+  __$$MemberUnableToUpdateImplCopyWithImpl(_$MemberUnableToUpdateImpl _value,
+      $Res Function(_$MemberUnableToUpdateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_MemberUnableToUpdate implements _MemberUnableToUpdate {
-  const _$_MemberUnableToUpdate();
+class _$MemberUnableToUpdateImpl implements _MemberUnableToUpdate {
+  const _$MemberUnableToUpdateImpl();
 
   @override
   String toString() {
@@ -1021,7 +1023,8 @@ class _$_MemberUnableToUpdate implements _MemberUnableToUpdate {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_MemberUnableToUpdate);
+        (other.runtimeType == runtimeType &&
+            other is _$MemberUnableToUpdateImpl);
   }
 
   @override
@@ -1103,29 +1106,29 @@ class _$_MemberUnableToUpdate implements _MemberUnableToUpdate {
 }
 
 abstract class _MemberUnableToUpdate implements MemberFailure {
-  const factory _MemberUnableToUpdate() = _$_MemberUnableToUpdate;
+  const factory _MemberUnableToUpdate() = _$MemberUnableToUpdateImpl;
 }
 
 /// @nodoc
-abstract class _$$_MemberUnableToDeleteCopyWith<$Res> {
-  factory _$$_MemberUnableToDeleteCopyWith(_$_MemberUnableToDelete value,
-          $Res Function(_$_MemberUnableToDelete) then) =
-      __$$_MemberUnableToDeleteCopyWithImpl<$Res>;
+abstract class _$$MemberUnableToDeleteImplCopyWith<$Res> {
+  factory _$$MemberUnableToDeleteImplCopyWith(_$MemberUnableToDeleteImpl value,
+          $Res Function(_$MemberUnableToDeleteImpl) then) =
+      __$$MemberUnableToDeleteImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_MemberUnableToDeleteCopyWithImpl<$Res>
-    extends _$MemberFailureCopyWithImpl<$Res, _$_MemberUnableToDelete>
-    implements _$$_MemberUnableToDeleteCopyWith<$Res> {
-  __$$_MemberUnableToDeleteCopyWithImpl(_$_MemberUnableToDelete _value,
-      $Res Function(_$_MemberUnableToDelete) _then)
+class __$$MemberUnableToDeleteImplCopyWithImpl<$Res>
+    extends _$MemberFailureCopyWithImpl<$Res, _$MemberUnableToDeleteImpl>
+    implements _$$MemberUnableToDeleteImplCopyWith<$Res> {
+  __$$MemberUnableToDeleteImplCopyWithImpl(_$MemberUnableToDeleteImpl _value,
+      $Res Function(_$MemberUnableToDeleteImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_MemberUnableToDelete implements _MemberUnableToDelete {
-  const _$_MemberUnableToDelete();
+class _$MemberUnableToDeleteImpl implements _MemberUnableToDelete {
+  const _$MemberUnableToDeleteImpl();
 
   @override
   String toString() {
@@ -1135,7 +1138,8 @@ class _$_MemberUnableToDelete implements _MemberUnableToDelete {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_MemberUnableToDelete);
+        (other.runtimeType == runtimeType &&
+            other is _$MemberUnableToDeleteImpl);
   }
 
   @override
@@ -1217,7 +1221,7 @@ class _$_MemberUnableToDelete implements _MemberUnableToDelete {
 }
 
 abstract class _MemberUnableToDelete implements MemberFailure {
-  const factory _MemberUnableToDelete() = _$_MemberUnableToDelete;
+  const factory _MemberUnableToDelete() = _$MemberUnableToDeleteImpl;
 }
 
 /// @nodoc
@@ -1303,25 +1307,25 @@ class _$SplitFailureCopyWithImpl<$Res, $Val extends SplitFailure>
 }
 
 /// @nodoc
-abstract class _$$_SplitUnexpectedCopyWith<$Res> {
-  factory _$$_SplitUnexpectedCopyWith(
-          _$_SplitUnexpected value, $Res Function(_$_SplitUnexpected) then) =
-      __$$_SplitUnexpectedCopyWithImpl<$Res>;
+abstract class _$$SplitUnexpectedImplCopyWith<$Res> {
+  factory _$$SplitUnexpectedImplCopyWith(_$SplitUnexpectedImpl value,
+          $Res Function(_$SplitUnexpectedImpl) then) =
+      __$$SplitUnexpectedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SplitUnexpectedCopyWithImpl<$Res>
-    extends _$SplitFailureCopyWithImpl<$Res, _$_SplitUnexpected>
-    implements _$$_SplitUnexpectedCopyWith<$Res> {
-  __$$_SplitUnexpectedCopyWithImpl(
-      _$_SplitUnexpected _value, $Res Function(_$_SplitUnexpected) _then)
+class __$$SplitUnexpectedImplCopyWithImpl<$Res>
+    extends _$SplitFailureCopyWithImpl<$Res, _$SplitUnexpectedImpl>
+    implements _$$SplitUnexpectedImplCopyWith<$Res> {
+  __$$SplitUnexpectedImplCopyWithImpl(
+      _$SplitUnexpectedImpl _value, $Res Function(_$SplitUnexpectedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_SplitUnexpected implements _SplitUnexpected {
-  const _$_SplitUnexpected();
+class _$SplitUnexpectedImpl implements _SplitUnexpected {
+  const _$SplitUnexpectedImpl();
 
   @override
   String toString() {
@@ -1331,7 +1335,7 @@ class _$_SplitUnexpected implements _SplitUnexpected {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SplitUnexpected);
+        (other.runtimeType == runtimeType && other is _$SplitUnexpectedImpl);
   }
 
   @override
@@ -1423,29 +1427,29 @@ class _$_SplitUnexpected implements _SplitUnexpected {
 }
 
 abstract class _SplitUnexpected implements SplitFailure {
-  const factory _SplitUnexpected() = _$_SplitUnexpected;
+  const factory _SplitUnexpected() = _$SplitUnexpectedImpl;
 }
 
 /// @nodoc
-abstract class _$$_SplitServerErrorCopyWith<$Res> {
-  factory _$$_SplitServerErrorCopyWith(
-          _$_SplitServerError value, $Res Function(_$_SplitServerError) then) =
-      __$$_SplitServerErrorCopyWithImpl<$Res>;
+abstract class _$$SplitServerErrorImplCopyWith<$Res> {
+  factory _$$SplitServerErrorImplCopyWith(_$SplitServerErrorImpl value,
+          $Res Function(_$SplitServerErrorImpl) then) =
+      __$$SplitServerErrorImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SplitServerErrorCopyWithImpl<$Res>
-    extends _$SplitFailureCopyWithImpl<$Res, _$_SplitServerError>
-    implements _$$_SplitServerErrorCopyWith<$Res> {
-  __$$_SplitServerErrorCopyWithImpl(
-      _$_SplitServerError _value, $Res Function(_$_SplitServerError) _then)
+class __$$SplitServerErrorImplCopyWithImpl<$Res>
+    extends _$SplitFailureCopyWithImpl<$Res, _$SplitServerErrorImpl>
+    implements _$$SplitServerErrorImplCopyWith<$Res> {
+  __$$SplitServerErrorImplCopyWithImpl(_$SplitServerErrorImpl _value,
+      $Res Function(_$SplitServerErrorImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_SplitServerError implements _SplitServerError {
-  const _$_SplitServerError();
+class _$SplitServerErrorImpl implements _SplitServerError {
+  const _$SplitServerErrorImpl();
 
   @override
   String toString() {
@@ -1455,7 +1459,7 @@ class _$_SplitServerError implements _SplitServerError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SplitServerError);
+        (other.runtimeType == runtimeType && other is _$SplitServerErrorImpl);
   }
 
   @override
@@ -1547,29 +1551,29 @@ class _$_SplitServerError implements _SplitServerError {
 }
 
 abstract class _SplitServerError implements SplitFailure {
-  const factory _SplitServerError() = _$_SplitServerError;
+  const factory _SplitServerError() = _$SplitServerErrorImpl;
 }
 
 /// @nodoc
-abstract class _$$_SplitNotFoundCopyWith<$Res> {
-  factory _$$_SplitNotFoundCopyWith(
-          _$_SplitNotFound value, $Res Function(_$_SplitNotFound) then) =
-      __$$_SplitNotFoundCopyWithImpl<$Res>;
+abstract class _$$SplitNotFoundImplCopyWith<$Res> {
+  factory _$$SplitNotFoundImplCopyWith(
+          _$SplitNotFoundImpl value, $Res Function(_$SplitNotFoundImpl) then) =
+      __$$SplitNotFoundImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SplitNotFoundCopyWithImpl<$Res>
-    extends _$SplitFailureCopyWithImpl<$Res, _$_SplitNotFound>
-    implements _$$_SplitNotFoundCopyWith<$Res> {
-  __$$_SplitNotFoundCopyWithImpl(
-      _$_SplitNotFound _value, $Res Function(_$_SplitNotFound) _then)
+class __$$SplitNotFoundImplCopyWithImpl<$Res>
+    extends _$SplitFailureCopyWithImpl<$Res, _$SplitNotFoundImpl>
+    implements _$$SplitNotFoundImplCopyWith<$Res> {
+  __$$SplitNotFoundImplCopyWithImpl(
+      _$SplitNotFoundImpl _value, $Res Function(_$SplitNotFoundImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_SplitNotFound implements _SplitNotFound {
-  const _$_SplitNotFound();
+class _$SplitNotFoundImpl implements _SplitNotFound {
+  const _$SplitNotFoundImpl();
 
   @override
   String toString() {
@@ -1579,7 +1583,7 @@ class _$_SplitNotFound implements _SplitNotFound {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SplitNotFound);
+        (other.runtimeType == runtimeType && other is _$SplitNotFoundImpl);
   }
 
   @override
@@ -1671,32 +1675,33 @@ class _$_SplitNotFound implements _SplitNotFound {
 }
 
 abstract class _SplitNotFound implements SplitFailure {
-  const factory _SplitNotFound() = _$_SplitNotFound;
+  const factory _SplitNotFound() = _$SplitNotFoundImpl;
 }
 
 /// @nodoc
-abstract class _$$_SplitInsufficientParticipantsCopyWith<$Res> {
-  factory _$$_SplitInsufficientParticipantsCopyWith(
-          _$_SplitInsufficientParticipants value,
-          $Res Function(_$_SplitInsufficientParticipants) then) =
-      __$$_SplitInsufficientParticipantsCopyWithImpl<$Res>;
+abstract class _$$SplitInsufficientParticipantsImplCopyWith<$Res> {
+  factory _$$SplitInsufficientParticipantsImplCopyWith(
+          _$SplitInsufficientParticipantsImpl value,
+          $Res Function(_$SplitInsufficientParticipantsImpl) then) =
+      __$$SplitInsufficientParticipantsImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SplitInsufficientParticipantsCopyWithImpl<$Res>
-    extends _$SplitFailureCopyWithImpl<$Res, _$_SplitInsufficientParticipants>
-    implements _$$_SplitInsufficientParticipantsCopyWith<$Res> {
-  __$$_SplitInsufficientParticipantsCopyWithImpl(
-      _$_SplitInsufficientParticipants _value,
-      $Res Function(_$_SplitInsufficientParticipants) _then)
+class __$$SplitInsufficientParticipantsImplCopyWithImpl<$Res>
+    extends _$SplitFailureCopyWithImpl<$Res,
+        _$SplitInsufficientParticipantsImpl>
+    implements _$$SplitInsufficientParticipantsImplCopyWith<$Res> {
+  __$$SplitInsufficientParticipantsImplCopyWithImpl(
+      _$SplitInsufficientParticipantsImpl _value,
+      $Res Function(_$SplitInsufficientParticipantsImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_SplitInsufficientParticipants
+class _$SplitInsufficientParticipantsImpl
     implements _SplitInsufficientParticipants {
-  const _$_SplitInsufficientParticipants();
+  const _$SplitInsufficientParticipantsImpl();
 
   @override
   String toString() {
@@ -1707,7 +1712,7 @@ class _$_SplitInsufficientParticipants
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SplitInsufficientParticipants);
+            other is _$SplitInsufficientParticipantsImpl);
   }
 
   @override
@@ -1800,31 +1805,31 @@ class _$_SplitInsufficientParticipants
 
 abstract class _SplitInsufficientParticipants implements SplitFailure {
   const factory _SplitInsufficientParticipants() =
-      _$_SplitInsufficientParticipants;
+      _$SplitInsufficientParticipantsImpl;
 }
 
 /// @nodoc
-abstract class _$$_SplitDebtSumNotEqualAmountCopyWith<$Res> {
-  factory _$$_SplitDebtSumNotEqualAmountCopyWith(
-          _$_SplitDebtSumNotEqualAmount value,
-          $Res Function(_$_SplitDebtSumNotEqualAmount) then) =
-      __$$_SplitDebtSumNotEqualAmountCopyWithImpl<$Res>;
+abstract class _$$SplitDebtSumNotEqualAmountImplCopyWith<$Res> {
+  factory _$$SplitDebtSumNotEqualAmountImplCopyWith(
+          _$SplitDebtSumNotEqualAmountImpl value,
+          $Res Function(_$SplitDebtSumNotEqualAmountImpl) then) =
+      __$$SplitDebtSumNotEqualAmountImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SplitDebtSumNotEqualAmountCopyWithImpl<$Res>
-    extends _$SplitFailureCopyWithImpl<$Res, _$_SplitDebtSumNotEqualAmount>
-    implements _$$_SplitDebtSumNotEqualAmountCopyWith<$Res> {
-  __$$_SplitDebtSumNotEqualAmountCopyWithImpl(
-      _$_SplitDebtSumNotEqualAmount _value,
-      $Res Function(_$_SplitDebtSumNotEqualAmount) _then)
+class __$$SplitDebtSumNotEqualAmountImplCopyWithImpl<$Res>
+    extends _$SplitFailureCopyWithImpl<$Res, _$SplitDebtSumNotEqualAmountImpl>
+    implements _$$SplitDebtSumNotEqualAmountImplCopyWith<$Res> {
+  __$$SplitDebtSumNotEqualAmountImplCopyWithImpl(
+      _$SplitDebtSumNotEqualAmountImpl _value,
+      $Res Function(_$SplitDebtSumNotEqualAmountImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_SplitDebtSumNotEqualAmount implements _SplitDebtSumNotEqualAmount {
-  const _$_SplitDebtSumNotEqualAmount();
+class _$SplitDebtSumNotEqualAmountImpl implements _SplitDebtSumNotEqualAmount {
+  const _$SplitDebtSumNotEqualAmountImpl();
 
   @override
   String toString() {
@@ -1835,7 +1840,7 @@ class _$_SplitDebtSumNotEqualAmount implements _SplitDebtSumNotEqualAmount {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SplitDebtSumNotEqualAmount);
+            other is _$SplitDebtSumNotEqualAmountImpl);
   }
 
   @override
@@ -1927,5 +1932,6 @@ class _$_SplitDebtSumNotEqualAmount implements _SplitDebtSumNotEqualAmount {
 }
 
 abstract class _SplitDebtSumNotEqualAmount implements SplitFailure {
-  const factory _SplitDebtSumNotEqualAmount() = _$_SplitDebtSumNotEqualAmount;
+  const factory _SplitDebtSumNotEqualAmount() =
+      _$SplitDebtSumNotEqualAmountImpl;
 }

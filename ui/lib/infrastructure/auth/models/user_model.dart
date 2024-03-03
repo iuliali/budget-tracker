@@ -7,6 +7,7 @@ class UserModel {
   final String email;
   final String firstName;
   final String lastName;
+  final String defaultCurrency;
 
   UserModel({
     required this.id,
@@ -14,6 +15,7 @@ class UserModel {
     required this.email,
     required this.firstName,
     required this.lastName,
+    required this.defaultCurrency,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -23,6 +25,7 @@ class UserModel {
       email: json['email'],
       firstName: json['firstName'],
       lastName: json['lastName'],
+      defaultCurrency: json['defaultCurrency'],
     );
   }
 
@@ -33,6 +36,7 @@ class UserModel {
       'email': email,
       'firstName': firstName,
       'lastName': lastName,
+      'defaultCurrency': defaultCurrency,
     };
   }
 
@@ -43,6 +47,7 @@ class UserModel {
       emailAddress: EmailAddress(email),
       firstName: FirstName(firstName),
       lastName: LastName(lastName),
+      defaultCurrency: UserDefaultCurrency(defaultCurrency),
     );
   }
 

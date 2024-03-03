@@ -1,8 +1,6 @@
 package com.budgettracker.api.split.dtos;
 
-import com.budgettracker.api.auth.models.User;
-import com.budgettracker.api.budgeting.enums.Currency;
-import com.budgettracker.api.split.models.Member;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
@@ -16,14 +14,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NewGroupExpenseDto {
-    @NonNull
+    @NotNull(message = "Group id field is required")
     BigInteger groupId;
 
-    @NonNull
+    @NotNull(message = "Amount field is required")
     private BigDecimal amount;
-    @NonNull
+
+    @NotNull(message = "Member ids are required")
     List<BigInteger> memberIds;
-    @NonNull
+
+    @NotNull(message = "Amounts are required")
     List<BigDecimal> amounts;
 
     public NewGroupExpenseDto(SettleTransactionDto settleTransactionDto) {

@@ -8,10 +8,10 @@ import com.budgettracker.api.budgeting.dtos.UserCategoryDto;
 import com.budgettracker.api.budgeting.exceptions.CategoryIsDeletedException;
 import com.budgettracker.api.budgeting.exceptions.CategoryNotFoundException;
 import com.budgettracker.api.budgeting.exceptions.UserCategoryNameAlreadyExistsException;
+import com.budgettracker.api.budgeting.exceptions.UserHasNoExpensesException;
 import com.budgettracker.api.budgeting.exceptions.UserHasNoActiveCategoriesException;
 import com.budgettracker.api.budgeting.models.UserCategory;
 import com.budgettracker.api.budgeting.repositories.UserCategoryRepository;
-import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,7 +28,6 @@ public class UserCategoryService {
     private final UserCategoryRepository userCategoryRepository;
     private final UserService userService;
     private final AuthenticationFacade authenticationFacade;
-    @PostConstruct
     private void addDefaultUserCategories() {
         List<User> users = userService.getAllUsers();
         users.forEach(this::createUserCategory);
@@ -48,6 +47,7 @@ public class UserCategoryService {
     }
 
     public Optional<UserCategory> getUserCategoryIfExists(BigInteger id){
+        this.addDefaultUserCategories(); // adds default split payments category to all user if not existing yet
         User user = userService.getUserByUsername(authenticationFacade.getAuthentication().getName());
         UserCategory userCategory = getUserCategoryById(id);
         if(userCategory.getUser() == user){
@@ -129,5 +129,15 @@ public class UserCategoryService {
         }
         userCategoryRepository.deleteById(id, user);
         return "Category has been deleted successfully";
+    }
+
+    public List<UserCategoryDto> getCategoriesWithHighestExpense() {
+        User user = userService.getUserByUsername(authenticationFacade.getAuthentication().getName());
+
+        return userCategoryRepository.findCategoriesWithHighestExpense(user)
+                .orElseThrow(UserHasNoExpensesException::new)
+                .stream()
+                .map(UserCategoryDto::new)
+                .toList();
     }
 }

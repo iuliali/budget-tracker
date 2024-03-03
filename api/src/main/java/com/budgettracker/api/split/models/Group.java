@@ -1,13 +1,13 @@
 package com.budgettracker.api.split.models;
 
 import com.budgettracker.api.auth.models.User;
-import com.budgettracker.api.budgeting.models.UserCategory;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -25,11 +25,11 @@ public class Group {
     private BigInteger id;
     @Column(nullable = false, unique = true)
     @Size(min = 5, max = 15)
-    @NotBlank
-    @Pattern(regexp = "^[a-zA-Z0-9]*$")
+    @NotBlank(message = "Group name is required")
+    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "Group name must be alphanumeric")
     private String groupName;
 
-    @NonNull
+    @NotNull(message = "Admin is required")
     @ManyToOne(fetch = FetchType.EAGER)
     private User admin;
 

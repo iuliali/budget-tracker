@@ -2,8 +2,8 @@ package com.budgettracker.api.split.models;
 
 import com.budgettracker.api.budgeting.models.Expense;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import org.springframework.lang.NonNull;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -21,12 +21,12 @@ public class GroupExpense {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private BigInteger id;
 
-    @NonNull
+    @NotNull(message = "Expense is required")
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="expense_id", referencedColumnName = "id")
     private Expense expense;
 
-    @NonNull
+    @NotNull(message = "Group is required")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="group_id", referencedColumnName = "id")
     private Group group;

@@ -1,6 +1,7 @@
 package com.budgettracker.api.budgeting.unit.controllers;
 
 import com.budgettracker.api.budgeting.controllers.StatisticsController;
+import com.budgettracker.api.budgeting.enums.Currency;
 import com.budgettracker.api.budgeting.services.StatisticsService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,9 @@ import org.springframework.http.ResponseEntity;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -31,13 +34,14 @@ class StatisticsControllerTest {
     @Test
     void getExpensesSumForMonth_ShouldReturnExpenseSumForMonth() {
         String month = "2023-01";
-        Map<String, Map<String, BigDecimal>> expectedResponse = new HashMap<>();
+        Optional<Currency> currency = Optional.of(Currency.RON);
+        Map<String, Map<String, ?>> expectedResponse = new HashMap<>();
 
-        when(statisticsService.getExpensesSumForMonth(month)).thenReturn(expectedResponse);
+        when(statisticsService.getExpensesSumForMonth(month, currency)).thenReturn(expectedResponse);
 
-        ResponseEntity<?> response = statisticsController.getExpensesSumForMonth(month);
+        ResponseEntity<?> response = statisticsController.getExpensesSumForMonth(month, currency);
 
-        verify(statisticsService, times(1)).getExpensesSumForMonth(month);
+        verify(statisticsService, times(1)).getExpensesSumForMonth(month, currency);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(expectedResponse, response.getBody());
@@ -46,13 +50,14 @@ class StatisticsControllerTest {
     @Test
     void getIncomesSumForMonth_ShouldReturnIncomeSumForMonth() {
         String month = "2023-01";
-        Map<String, Map<String, BigDecimal>> expectedResponse = new HashMap<>();
+        Optional<Currency> currency = Optional.of(Currency.RON);
+        Map<String, Map<String, ?>> expectedResponse = new HashMap<>();
 
-        when(statisticsService.getIncomesSumForMonth(month)).thenReturn(expectedResponse);
+        when(statisticsService.getIncomesSumForMonth(month, currency)).thenReturn(expectedResponse);
 
-        ResponseEntity<?> response = statisticsController.getIncomesSumForMonth(month);
+        ResponseEntity<?> response = statisticsController.getIncomesSumForMonth(month, currency);
 
-        verify(statisticsService, times(1)).getIncomesSumForMonth(month);
+        verify(statisticsService, times(1)).getIncomesSumForMonth(month, currency);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(expectedResponse, response.getBody());
@@ -60,13 +65,15 @@ class StatisticsControllerTest {
 
     @Test
     void getCurrentYearExpenses_ShouldReturnExpenseMonthlyInfoForCurrentYear() {
-        Map<String, Map<String, BigDecimal>> expectedResponse = new HashMap<>();
+        String year = "2023";
+        Optional<Currency> currency = Optional.of(Currency.RON);
+        Map<String, Map<String, ?>> expectedResponse = new HashMap<>();
 
-        when(statisticsService.getExpenseMonthlyInfoForCurrentYear()).thenReturn(expectedResponse);
+        when(statisticsService.getExpenseMonthlyInfoForYear(year, currency)).thenReturn(expectedResponse);
 
-        ResponseEntity<?> response = statisticsController.getCurrentYearExpenses();
+        ResponseEntity<?> response = statisticsController.getYearExpenses(year, currency);
 
-        verify(statisticsService, times(1)).getExpenseMonthlyInfoForCurrentYear();
+        verify(statisticsService, times(1)).getExpenseMonthlyInfoForYear(year, currency);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(expectedResponse, response.getBody());
@@ -74,13 +81,15 @@ class StatisticsControllerTest {
 
     @Test
     void getCurrentYearIncomes_ShouldReturnIncomeMonthlyInfoForCurrentYear() {
-        Map<String, Map<String, BigDecimal>> expectedResponse = new HashMap<>();
+        String year = "2023";
+        Optional<Currency> currency = Optional.of(Currency.RON);
+        Map<String, Map<String, ?>> expectedResponse = new HashMap<>();
 
-        when(statisticsService.getIncomeMonthlyInfoForCurrentYear()).thenReturn(expectedResponse);
+        when(statisticsService.getIncomeMonthlyInfoForYear(year, currency)).thenReturn(expectedResponse);
 
-        ResponseEntity<?> response = statisticsController.getCurrentYearIncomes();
+        ResponseEntity<?> response = statisticsController.getYearIncomes(year, currency);
 
-        verify(statisticsService, times(1)).getIncomeMonthlyInfoForCurrentYear();
+        verify(statisticsService, times(1)).getIncomeMonthlyInfoForYear(year, currency);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(expectedResponse, response.getBody());

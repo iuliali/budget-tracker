@@ -178,8 +178,10 @@ class UserCategoryServiceTest {
         UserCategory userCategory = new UserCategory();
         userCategory.setId(categoryId);
         userCategory.setUser(user);
+        UserCategory secondCategory = new UserCategory();
+        secondCategory.setId(BigInteger.valueOf(456));
         when(userCategoryRepository.findById(categoryId)).thenReturn(Optional.of(userCategory));
-        when(userCategoryRepository.findActiveByName(eq("Test Category"), eq(user))).thenReturn(Optional.of(new UserCategory()));
+        when(userCategoryRepository.findActiveByName(eq("Test Category"), eq(user))).thenReturn(Optional.of(secondCategory));
 
         assertThrows(UserCategoryNameAlreadyExistsException.class, () -> userCategoryService.updateUserCategory(categoryId, userCategoryDto));
         verify(userCategoryRepository, never()).save(userCategory);

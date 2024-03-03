@@ -75,20 +75,20 @@ class _$ExpensesEventCopyWithImpl<$Res, $Val extends ExpensesEvent>
 }
 
 /// @nodoc
-abstract class _$$_DeleteExpenseCopyWith<$Res> {
-  factory _$$_DeleteExpenseCopyWith(
-          _$_DeleteExpense value, $Res Function(_$_DeleteExpense) then) =
-      __$$_DeleteExpenseCopyWithImpl<$Res>;
+abstract class _$$DeleteExpenseImplCopyWith<$Res> {
+  factory _$$DeleteExpenseImplCopyWith(
+          _$DeleteExpenseImpl value, $Res Function(_$DeleteExpenseImpl) then) =
+      __$$DeleteExpenseImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ExpenseId expenseId});
 }
 
 /// @nodoc
-class __$$_DeleteExpenseCopyWithImpl<$Res>
-    extends _$ExpensesEventCopyWithImpl<$Res, _$_DeleteExpense>
-    implements _$$_DeleteExpenseCopyWith<$Res> {
-  __$$_DeleteExpenseCopyWithImpl(
-      _$_DeleteExpense _value, $Res Function(_$_DeleteExpense) _then)
+class __$$DeleteExpenseImplCopyWithImpl<$Res>
+    extends _$ExpensesEventCopyWithImpl<$Res, _$DeleteExpenseImpl>
+    implements _$$DeleteExpenseImplCopyWith<$Res> {
+  __$$DeleteExpenseImplCopyWithImpl(
+      _$DeleteExpenseImpl _value, $Res Function(_$DeleteExpenseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -96,7 +96,7 @@ class __$$_DeleteExpenseCopyWithImpl<$Res>
   $Res call({
     Object? expenseId = null,
   }) {
-    return _then(_$_DeleteExpense(
+    return _then(_$DeleteExpenseImpl(
       null == expenseId
           ? _value.expenseId
           : expenseId // ignore: cast_nullable_to_non_nullable
@@ -107,8 +107,8 @@ class __$$_DeleteExpenseCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DeleteExpense implements _DeleteExpense {
-  const _$_DeleteExpense(this.expenseId);
+class _$DeleteExpenseImpl implements _DeleteExpense {
+  const _$DeleteExpenseImpl(this.expenseId);
 
   @override
   final ExpenseId expenseId;
@@ -122,7 +122,7 @@ class _$_DeleteExpense implements _DeleteExpense {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DeleteExpense &&
+            other is _$DeleteExpenseImpl &&
             (identical(other.expenseId, expenseId) ||
                 other.expenseId == expenseId));
   }
@@ -133,8 +133,8 @@ class _$_DeleteExpense implements _DeleteExpense {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DeleteExpenseCopyWith<_$_DeleteExpense> get copyWith =>
-      __$$_DeleteExpenseCopyWithImpl<_$_DeleteExpense>(this, _$identity);
+  _$$DeleteExpenseImplCopyWith<_$DeleteExpenseImpl> get copyWith =>
+      __$$DeleteExpenseImplCopyWithImpl<_$DeleteExpenseImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -200,34 +200,34 @@ class _$_DeleteExpense implements _DeleteExpense {
 }
 
 abstract class _DeleteExpense implements ExpensesEvent {
-  const factory _DeleteExpense(final ExpenseId expenseId) = _$_DeleteExpense;
+  const factory _DeleteExpense(final ExpenseId expenseId) = _$DeleteExpenseImpl;
 
   ExpenseId get expenseId;
   @JsonKey(ignore: true)
-  _$$_DeleteExpenseCopyWith<_$_DeleteExpense> get copyWith =>
+  _$$DeleteExpenseImplCopyWith<_$DeleteExpenseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_GetExpensesCopyWith<$Res> {
-  factory _$$_GetExpensesCopyWith(
-          _$_GetExpenses value, $Res Function(_$_GetExpenses) then) =
-      __$$_GetExpensesCopyWithImpl<$Res>;
+abstract class _$$GetExpensesImplCopyWith<$Res> {
+  factory _$$GetExpensesImplCopyWith(
+          _$GetExpensesImpl value, $Res Function(_$GetExpensesImpl) then) =
+      __$$GetExpensesImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_GetExpensesCopyWithImpl<$Res>
-    extends _$ExpensesEventCopyWithImpl<$Res, _$_GetExpenses>
-    implements _$$_GetExpensesCopyWith<$Res> {
-  __$$_GetExpensesCopyWithImpl(
-      _$_GetExpenses _value, $Res Function(_$_GetExpenses) _then)
+class __$$GetExpensesImplCopyWithImpl<$Res>
+    extends _$ExpensesEventCopyWithImpl<$Res, _$GetExpensesImpl>
+    implements _$$GetExpensesImplCopyWith<$Res> {
+  __$$GetExpensesImplCopyWithImpl(
+      _$GetExpensesImpl _value, $Res Function(_$GetExpensesImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_GetExpenses implements _GetExpenses {
-  const _$_GetExpenses();
+class _$GetExpensesImpl implements _GetExpenses {
+  const _$GetExpensesImpl();
 
   @override
   String toString() {
@@ -237,7 +237,7 @@ class _$_GetExpenses implements _GetExpenses {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_GetExpenses);
+        (other.runtimeType == runtimeType && other is _$GetExpensesImpl);
   }
 
   @override
@@ -307,7 +307,7 @@ class _$_GetExpenses implements _GetExpenses {
 }
 
 abstract class _GetExpenses implements ExpensesEvent {
-  const factory _GetExpenses() = _$_GetExpenses;
+  const factory _GetExpenses() = _$GetExpensesImpl;
 }
 
 /// @nodoc
@@ -376,11 +376,11 @@ class _$ExpensesStateCopyWithImpl<$Res, $Val extends ExpensesState>
 }
 
 /// @nodoc
-abstract class _$$_ExpensesListStateCopyWith<$Res>
+abstract class _$$ExpensesListStateImplCopyWith<$Res>
     implements $ExpensesStateCopyWith<$Res> {
-  factory _$$_ExpensesListStateCopyWith(_$_ExpensesListState value,
-          $Res Function(_$_ExpensesListState) then) =
-      __$$_ExpensesListStateCopyWithImpl<$Res>;
+  factory _$$ExpensesListStateImplCopyWith(_$ExpensesListStateImpl value,
+          $Res Function(_$ExpensesListStateImpl) then) =
+      __$$ExpensesListStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -391,11 +391,11 @@ abstract class _$$_ExpensesListStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ExpensesListStateCopyWithImpl<$Res>
-    extends _$ExpensesStateCopyWithImpl<$Res, _$_ExpensesListState>
-    implements _$$_ExpensesListStateCopyWith<$Res> {
-  __$$_ExpensesListStateCopyWithImpl(
-      _$_ExpensesListState _value, $Res Function(_$_ExpensesListState) _then)
+class __$$ExpensesListStateImplCopyWithImpl<$Res>
+    extends _$ExpensesStateCopyWithImpl<$Res, _$ExpensesListStateImpl>
+    implements _$$ExpensesListStateImplCopyWith<$Res> {
+  __$$ExpensesListStateImplCopyWithImpl(_$ExpensesListStateImpl _value,
+      $Res Function(_$ExpensesListStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -406,7 +406,7 @@ class __$$_ExpensesListStateCopyWithImpl<$Res>
     Object? isFetching = null,
     Object? isDeleting = null,
   }) {
-    return _then(_$_ExpensesListState(
+    return _then(_$ExpensesListStateImpl(
       failureOrExpenses: null == failureOrExpenses
           ? _value.failureOrExpenses
           : failureOrExpenses // ignore: cast_nullable_to_non_nullable
@@ -429,8 +429,8 @@ class __$$_ExpensesListStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ExpensesListState implements _ExpensesListState {
-  const _$_ExpensesListState(
+class _$ExpensesListStateImpl implements _ExpensesListState {
+  const _$ExpensesListStateImpl(
       {required this.failureOrExpenses,
       required this.showErrorMessages,
       required this.isFetching,
@@ -454,7 +454,7 @@ class _$_ExpensesListState implements _ExpensesListState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ExpensesListState &&
+            other is _$ExpensesListStateImpl &&
             (identical(other.failureOrExpenses, failureOrExpenses) ||
                 other.failureOrExpenses == failureOrExpenses) &&
             (identical(other.showErrorMessages, showErrorMessages) ||
@@ -472,8 +472,8 @@ class _$_ExpensesListState implements _ExpensesListState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ExpensesListStateCopyWith<_$_ExpensesListState> get copyWith =>
-      __$$_ExpensesListStateCopyWithImpl<_$_ExpensesListState>(
+  _$$ExpensesListStateImplCopyWith<_$ExpensesListStateImpl> get copyWith =>
+      __$$ExpensesListStateImplCopyWithImpl<_$ExpensesListStateImpl>(
           this, _$identity);
 }
 
@@ -483,7 +483,7 @@ abstract class _ExpensesListState implements ExpensesState {
           failureOrExpenses,
       required final bool showErrorMessages,
       required final bool isFetching,
-      required final bool isDeleting}) = _$_ExpensesListState;
+      required final bool isDeleting}) = _$ExpensesListStateImpl;
 
   @override
   Option<Either<ExpenseFailure, List<Expense>>> get failureOrExpenses;
@@ -495,6 +495,6 @@ abstract class _ExpensesListState implements ExpensesState {
   bool get isDeleting;
   @override
   @JsonKey(ignore: true)
-  _$$_ExpensesListStateCopyWith<_$_ExpensesListState> get copyWith =>
+  _$$ExpensesListStateImplCopyWith<_$ExpensesListStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

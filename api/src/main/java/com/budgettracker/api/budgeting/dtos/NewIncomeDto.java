@@ -3,29 +3,33 @@ package com.budgettracker.api.budgeting.dtos;
 
 import com.budgettracker.api.budgeting.enums.Currency;
 import com.budgettracker.api.budgeting.models.Income;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class NewIncomeDto {
-    @NotBlank
-    @Pattern(regexp = "^[a-zA-Z0-9]*$")
+    @NotBlank(message = "From field is required")
+    @Pattern(regexp = "^[\\p{Alnum}\\p{Punct}\\s]*$", message = "From field must contain only letters, numbers, punctuation and spaces")
     private String from;
 
-    @NotBlank
+    @NotNull(message = "Amount field is required")
+    @Positive(message = "Amount must be positive")
     private BigDecimal amount;
 
-    @NotBlank
+    @NotNull(message = "Currency field is required")
     private Currency currency;
 
     private BigInteger userCategoryId;
@@ -35,6 +39,7 @@ public class NewIncomeDto {
         newIncome.setFrom(newIncomeDto.getFrom());
         newIncome.setAmount(newIncomeDto.getAmount());
         newIncome.setCurrency(newIncomeDto.getCurrency());
+        newIncome.setRegisteredAt(LocalDateTime.now());
         return newIncome;
     }
 
